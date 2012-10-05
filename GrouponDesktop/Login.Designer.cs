@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.password = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -60,12 +60,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             // 
-            // textBox1
+            // password
             // 
-            this.textBox1.Location = new System.Drawing.Point(71, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(228, 20);
-            this.textBox1.TabIndex = 3;
+            this.password.Location = new System.Drawing.Point(71, 46);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(228, 20);
+            this.password.TabIndex = 3;
+            this.password.UseSystemPasswordChar = true;
             // 
             // button1
             // 
@@ -75,6 +76,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Login
             // 
@@ -82,7 +84,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 104);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.password);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usuario);
             this.Controls.Add(this.label1);
@@ -98,7 +100,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox usuario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Button button1;
     }
 }

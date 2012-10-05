@@ -69,47 +69,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmCliente\Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="GD2C2012DataSet.cs">
+      <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AbmCliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmProveedor\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmProveedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ArmarCupon\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ArmarCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CargaCredito\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CargaCredito\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComprarCupon\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComprarCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComprarGiftCard\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComprarGiftCard\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FacturarProveedor\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FacturarProveedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GD2C2012DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -117,31 +84,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="HistorialCupones\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HistorialCupones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListadoEstadistico\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PedirDevolucion\Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PedirDevolucion\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PublicarCupon\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PublicarCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Main.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -151,14 +94,23 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistroConsumoCupon\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
+    <None Include="GD2C2012DataSet.xsc">
+      <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet.xss">
+      <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -167,12 +119,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="RegistroConsumoCupon\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RegistroConsumoCupon\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +137,20 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AbmCliente\" />
+    <Folder Include="AbmProveedor\" />
+    <Folder Include="ArmarCupon\" />
+    <Folder Include="CargaCredito\" />
+    <Folder Include="ComprarCupon\" />
+    <Folder Include="ComprarGiftCard\" />
+    <Folder Include="FacturarProveedor\" />
+    <Folder Include="HistorialCupones\" />
+    <Folder Include="ListadoEstadistico\" />
+    <Folder Include="PedirDevolucion\" />
+    <Folder Include="PublicarCupon\" />
+    <Folder Include="RegistroConsumoCupon\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

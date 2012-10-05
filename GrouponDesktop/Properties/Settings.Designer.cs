@@ -22,5 +22,16 @@ namespace GrouponDesktop.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2012;Persist Security Inf" +
+            "o=True;User ID=gd;Password=gd2012")]
+        public string GD2C2012 {
+            get {
+                return ((string)(this["GD2C2012"]));
+            }
+        }
     }
 }
