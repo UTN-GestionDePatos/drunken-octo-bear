@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmCliente\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSet.cs">
       <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -139,7 +145,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AbmCliente\" />
     <Folder Include="AbmProveedor\" />
     <Folder Include="ArmarCupon\" />
     <Folder Include="CargaCredito\" />
