@@ -81,6 +81,42 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AbmCliente\ABMCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmCliente\ABMCliente.Designer.cs">
+      <DependentUpon>ABMCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmCliente\ABMClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmCliente\ABMClientes.Designer.cs">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmCliente\AltaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmCliente\AltaCliente.Designer.cs">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmProveedor\ABMProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmProveedor\ABMProveedor.Designer.cs">
+      <DependentUpon>ABMProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmProveedor\AltaProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmProveedor\AltaProveedor.Designer.cs">
+      <DependentUpon>AltaProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ArmarCupon\ArmarCupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ArmarCupon\ArmarCupon.Designer.cs">
+      <DependentUpon>ArmarCupon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +125,24 @@
     </Compile>
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\AbmCliente\ABMCliente.resx">
+      <DependentUpon>ABMCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmCliente\ABMClientes.resx">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmCliente\AltaCliente.resx">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmProveedor\ABMProveedor.resx">
+      <DependentUpon>ABMProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmProveedor\AltaProveedor.resx">
+      <DependentUpon>AltaProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ArmarCupon\ArmarCupon.resx">
+      <DependentUpon>ArmarCupon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,9 +196,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\AbmCliente\" />
-    <Folder Include="GUI\AbmProveedor\" />
-    <Folder Include="GUI\ArmarCupon\" />
+    <Content Include="Data\Config.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="GUI\CargaCredito\" />
     <Folder Include="GUI\ComprarCupon\" />
     <Folder Include="GUI\ComprarGiftCard\" />
@@ -154,9 +208,6 @@
     <Folder Include="GUI\PedirDevolucion\" />
     <Folder Include="GUI\PublicarCupon\" />
     <Folder Include="GUI\RegistroConsumoCupon\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Data\Config.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
