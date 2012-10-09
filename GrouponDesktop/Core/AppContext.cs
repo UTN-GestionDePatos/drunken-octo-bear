@@ -12,17 +12,26 @@ namespace GrouponDesktop.Core
 
         public AppContext()
         {
+            this.loadConfig("Data\\Config.txt");
             this.createDBManager();
         }
 
         private void createDBManager()
         {
-            DBManager m = new DBManager("user id=gd;" +
-                                       "password=gd2012;server=localhost\\SQLSERVER2008;" +
-                                       "Trusted_Connection=yes;" +
-                                       "database=GD2C2012; " +
-                                       "connection timeout=60");
+            DBManager m = new DBManager("user id=" + Properties.getProperty("dbuser") +
+                                       ";password=" + Properties.getProperty("dbpasswd") + 
+                                       ";server=" + Properties.getProperty("dburl") +
+                                       ";Trusted_Connection=yes;" +
+                                       "database=" + Properties.getProperty("dbname") +
+                                       ";connection timeout=60");
             appContext.Add(typeof(DBManager), m);
+        }
+
+        private void loadConfig(String path)
+        {
+            Properties p = new Properties(path);
+            Console.WriteLine(Properties.getProperty("fecha"));
+            appContext.Add(typeof(Properties),p);
         }
 
         public static Object getObject(Type t)

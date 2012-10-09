@@ -1,5 +1,5 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 
 # mstest test results
@@ -14,7 +14,6 @@ TestResults
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
 [Rr]elease/
 x64/
 *_i.c
@@ -35,7 +34,11 @@ x64/
 *.log
 *.vspscc
 *.vssscc
+*.exe
+*.exe.config
+*.cache
 .builds
+
 
 # Visual C++ cache files
 ipch/
@@ -89,7 +92,6 @@ csx
 AppPackages/
 
 # Others
-[Bb]in
 [Oo]bj
 sql
 TestResults

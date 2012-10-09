@@ -12,6 +12,7 @@ namespace GrouponDesktop.Core
 
         public DBManager(String connectionString)
         {
+            Console.WriteLine(connectionString);
             sqlConnection.ConnectionString = connectionString;
         }
 

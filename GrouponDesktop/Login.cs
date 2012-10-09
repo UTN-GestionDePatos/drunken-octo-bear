@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using GrouponDesktop.Core;
 
 namespace GrouponDesktop
 {
@@ -19,15 +20,8 @@ namespace GrouponDesktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-             * Ésto es claramente temporal y para probar la conexión, si alguien se conecta
-             * así de ahora en más, muere en la horca, así de una (?.
-             */
-            SqlConnection myConnection = new SqlConnection("user id=gd;" +
-                                       "password=gd2012;server=localhost\\SQLSERVER2008;" +
-                                       "Trusted_Connection=yes;" +
-                                       "database=GD2C2012; " +
-                                       "connection timeout=60");
+            DBManager manager = (DBManager) AppContext.getObject(typeof(DBManager));
+            SqlConnection myConnection = manager.getConnection();
             try
             {
                 myConnection.Open();

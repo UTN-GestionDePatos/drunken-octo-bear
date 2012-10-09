@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using GrouponDesktop.Core;
 
 namespace GrouponDesktop
 {
@@ -13,6 +14,7 @@ namespace GrouponDesktop
         [STAThread]
         static void Main()
         {
+            new AppContext();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
