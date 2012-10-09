@@ -103,7 +103,8 @@ CREATE TABLE GruposCupon (
 	precio_real float,
 	fecha_vencimiento_canje datetime,
 	estado varchar(20),
-	fecha_vencimiento_oferta datetime
+	fecha_vencimiento_oferta datetime,
+	descripcion varchar(250)
 )
 ;
 
