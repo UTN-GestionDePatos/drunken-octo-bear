@@ -88,7 +88,8 @@ CREATE TABLE Giftcards (
 	id_giftcard bigint NOT NULL,
 	cliente_origen varchar(30),
 	cliente_destino varchar(30),
-	fecha datetime
+	fecha datetime,
+	monto bigint
 )
 ;
 
