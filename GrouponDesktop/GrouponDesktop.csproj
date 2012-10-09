@@ -69,10 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmCliente\Form1.cs">
+    <Compile Include="Core\AppContext.cs" />
+    <Compile Include="Core\DBManager.cs" />
+    <Compile Include="GUI\AbmCliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\Form1.Designer.cs">
+    <Compile Include="GUI\AbmCliente\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GD2C2012DataSet.cs">
@@ -145,17 +147,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AbmProveedor\" />
-    <Folder Include="ArmarCupon\" />
-    <Folder Include="CargaCredito\" />
-    <Folder Include="ComprarCupon\" />
-    <Folder Include="ComprarGiftCard\" />
-    <Folder Include="FacturarProveedor\" />
-    <Folder Include="HistorialCupones\" />
-    <Folder Include="ListadoEstadistico\" />
-    <Folder Include="PedirDevolucion\" />
-    <Folder Include="PublicarCupon\" />
-    <Folder Include="RegistroConsumoCupon\" />
+    <Folder Include="GUI\AbmProveedor\" />
+    <Folder Include="GUI\ArmarCupon\" />
+    <Folder Include="GUI\CargaCredito\" />
+    <Folder Include="GUI\ComprarCupon\" />
+    <Folder Include="GUI\ComprarGiftCard\" />
+    <Folder Include="GUI\FacturarProveedor\" />
+    <Folder Include="GUI\HistorialCupones\" />
+    <Folder Include="GUI\ListadoEstadistico\" />
+    <Folder Include="GUI\PedirDevolucion\" />
+    <Folder Include="GUI\PublicarCupon\" />
+    <Folder Include="GUI\RegistroConsumoCupon\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
