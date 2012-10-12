@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.GUI.AbmRol
+namespace GrouponDesktop.GUI.AbmCliente
 {
-    public partial class ListadoRol : Form
+    public partial class ModificacionCliente : Form
     {
-        public ListadoRol()
+        public ModificacionCliente()
         {
             InitializeComponent();
         }
 
-    
+       
 
+      
+
+      
     }
 }

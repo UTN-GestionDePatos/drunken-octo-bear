@@ -1,6 +1,6 @@
-﻿namespace GrouponDesktop.AbmCliente
+﻿namespace GrouponDesktop.GUI.AbmCliente
 {
-    partial class AltaProveedor
+    partial class ModificacionCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Guardar = new System.Windows.Forms.Button();
+            this.Limpiar = new System.Windows.Forms.Button();
             this.Direccion = new System.Windows.Forms.GroupBox();
             this.Localidad = new System.Windows.Forms.ComboBox();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
@@ -40,15 +42,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.CiudadProveedor = new System.Windows.Forms.ComboBox();
-            this.NombreContactoProveedor = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.RubroProveedor = new System.Windows.Forms.TextBox();
-            this.TelefonoProveedor = new System.Windows.Forms.TextBox();
-            this.CUIT = new System.Windows.Forms.TextBox();
-            this.RazonSocial = new System.Windows.Forms.TextBox();
-            this.MailProveedor = new System.Windows.Forms.TextBox();
-            this.UsernameProveedor = new System.Windows.Forms.TextBox();
+            this.DNICliente = new System.Windows.Forms.TextBox();
+            this.FchNacimientoCliente = new System.Windows.Forms.TextBox();
+            this.TelefonoCliente = new System.Windows.Forms.TextBox();
+            this.ApellidoCliente = new System.Windows.Forms.TextBox();
+            this.NombreCliente = new System.Windows.Forms.TextBox();
+            this.MailCliente = new System.Windows.Forms.TextBox();
+            this.UsernameCliente = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,11 +56,27 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.Guardar = new System.Windows.Forms.Button();
-            this.Limpiar = new System.Windows.Forms.Button();
             this.Direccion.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // Guardar
+            // 
+            this.Guardar.Location = new System.Drawing.Point(272, 492);
+            this.Guardar.Name = "Guardar";
+            this.Guardar.Size = new System.Drawing.Size(75, 23);
+            this.Guardar.TabIndex = 7;
+            this.Guardar.Text = "Guardar";
+            this.Guardar.UseVisualStyleBackColor = true;
+            // 
+            // Limpiar
+            // 
+            this.Limpiar.Location = new System.Drawing.Point(21, 492);
+            this.Limpiar.Name = "Limpiar";
+            this.Limpiar.Size = new System.Drawing.Size(75, 23);
+            this.Limpiar.TabIndex = 6;
+            this.Limpiar.Text = "Limpiar";
+            this.Limpiar.UseVisualStyleBackColor = true;
             // 
             // Direccion
             // 
@@ -74,10 +90,10 @@
             this.Direccion.Controls.Add(this.label9);
             this.Direccion.Controls.Add(this.label10);
             this.Direccion.Controls.Add(this.label11);
-            this.Direccion.Location = new System.Drawing.Point(18, 291);
+            this.Direccion.Location = new System.Drawing.Point(21, 288);
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(344, 187);
-            this.Direccion.TabIndex = 3;
+            this.Direccion.TabIndex = 5;
             this.Direccion.TabStop = false;
             this.Direccion.Text = "Direccion";
             // 
@@ -164,15 +180,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.CiudadProveedor);
-            this.groupBox1.Controls.Add(this.NombreContactoProveedor);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.RubroProveedor);
-            this.groupBox1.Controls.Add(this.TelefonoProveedor);
-            this.groupBox1.Controls.Add(this.CUIT);
-            this.groupBox1.Controls.Add(this.RazonSocial);
-            this.groupBox1.Controls.Add(this.MailProveedor);
-            this.groupBox1.Controls.Add(this.UsernameProveedor);
+            this.groupBox1.Controls.Add(this.DNICliente);
+            this.groupBox1.Controls.Add(this.FchNacimientoCliente);
+            this.groupBox1.Controls.Add(this.TelefonoCliente);
+            this.groupBox1.Controls.Add(this.ApellidoCliente);
+            this.groupBox1.Controls.Add(this.NombreCliente);
+            this.groupBox1.Controls.Add(this.MailCliente);
+            this.groupBox1.Controls.Add(this.UsernameCliente);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -181,96 +195,80 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Nombre);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(9, 15);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(353, 270);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.Size = new System.Drawing.Size(353, 252);
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
-            // CiudadProveedor
+            // DNICliente
             // 
-            this.CiudadProveedor.FormattingEnabled = true;
-            this.CiudadProveedor.Location = new System.Drawing.Point(126, 186);
-            this.CiudadProveedor.Name = "CiudadProveedor";
-            this.CiudadProveedor.Size = new System.Drawing.Size(209, 21);
-            this.CiudadProveedor.TabIndex = 23;
+            this.DNICliente.Location = new System.Drawing.Point(126, 217);
+            this.DNICliente.Name = "DNICliente";
+            this.DNICliente.Size = new System.Drawing.Size(209, 20);
+            this.DNICliente.TabIndex = 20;
             // 
-            // NombreContactoProveedor
+            // FchNacimientoCliente
             // 
-            this.NombreContactoProveedor.Location = new System.Drawing.Point(126, 251);
-            this.NombreContactoProveedor.Name = "NombreContactoProveedor";
-            this.NombreContactoProveedor.Size = new System.Drawing.Size(209, 20);
-            this.NombreContactoProveedor.TabIndex = 22;
+            this.FchNacimientoCliente.Location = new System.Drawing.Point(126, 186);
+            this.FchNacimientoCliente.Name = "FchNacimientoCliente";
+            this.FchNacimientoCliente.Size = new System.Drawing.Size(209, 20);
+            this.FchNacimientoCliente.TabIndex = 19;
             // 
-            // label12
+            // TelefonoCliente
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 252);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 13);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Nombre de Contacto";
+            this.TelefonoCliente.Location = new System.Drawing.Point(126, 154);
+            this.TelefonoCliente.Name = "TelefonoCliente";
+            this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
+            this.TelefonoCliente.TabIndex = 18;
             // 
-            // RubroProveedor
+            // ApellidoCliente
             // 
-            this.RubroProveedor.Location = new System.Drawing.Point(126, 217);
-            this.RubroProveedor.Name = "RubroProveedor";
-            this.RubroProveedor.Size = new System.Drawing.Size(209, 20);
-            this.RubroProveedor.TabIndex = 20;
+            this.ApellidoCliente.Location = new System.Drawing.Point(126, 88);
+            this.ApellidoCliente.Name = "ApellidoCliente";
+            this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
+            this.ApellidoCliente.TabIndex = 17;
             // 
-            // TelefonoProveedor
+            // NombreCliente
             // 
-            this.TelefonoProveedor.Location = new System.Drawing.Point(126, 154);
-            this.TelefonoProveedor.Name = "TelefonoProveedor";
-            this.TelefonoProveedor.Size = new System.Drawing.Size(209, 20);
-            this.TelefonoProveedor.TabIndex = 18;
+            this.NombreCliente.Location = new System.Drawing.Point(126, 56);
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.Size = new System.Drawing.Size(209, 20);
+            this.NombreCliente.TabIndex = 16;
             // 
-            // CUIT
+            // MailCliente
             // 
-            this.CUIT.Location = new System.Drawing.Point(126, 88);
-            this.CUIT.Name = "CUIT";
-            this.CUIT.Size = new System.Drawing.Size(209, 20);
-            this.CUIT.TabIndex = 17;
+            this.MailCliente.Location = new System.Drawing.Point(126, 122);
+            this.MailCliente.Name = "MailCliente";
+            this.MailCliente.Size = new System.Drawing.Size(209, 20);
+            this.MailCliente.TabIndex = 16;
             // 
-            // RazonSocial
+            // UsernameCliente
             // 
-            this.RazonSocial.Location = new System.Drawing.Point(126, 56);
-            this.RazonSocial.Name = "RazonSocial";
-            this.RazonSocial.Size = new System.Drawing.Size(209, 20);
-            this.RazonSocial.TabIndex = 16;
-            // 
-            // MailProveedor
-            // 
-            this.MailProveedor.Location = new System.Drawing.Point(126, 122);
-            this.MailProveedor.Name = "MailProveedor";
-            this.MailProveedor.Size = new System.Drawing.Size(209, 20);
-            this.MailProveedor.TabIndex = 16;
-            // 
-            // UsernameProveedor
-            // 
-            this.UsernameProveedor.Location = new System.Drawing.Point(126, 26);
-            this.UsernameProveedor.Name = "UsernameProveedor";
-            this.UsernameProveedor.Size = new System.Drawing.Size(209, 20);
-            this.UsernameProveedor.TabIndex = 15;
+            this.UsernameCliente.Enabled = false;
+            this.UsernameCliente.Location = new System.Drawing.Point(126, 26);
+            this.UsernameCliente.Name = "UsernameCliente";
+            this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
+            this.UsernameCliente.TabIndex = 15;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 220);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.Size = new System.Drawing.Size(26, 13);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Rubro";
+            this.label7.Text = "DNI";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 189);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.Size = new System.Drawing.Size(106, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Ciudad";
+            this.label6.Text = "Fecha de nacimiento";
             // 
             // label5
             // 
@@ -284,11 +282,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 93);
+            this.label3.Location = new System.Drawing.Point(6, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "CUIT";
+            this.label3.Text = "Apellido";
             // 
             // label2
             // 
@@ -313,30 +311,11 @@
             this.Nombre.AutoSize = true;
             this.Nombre.Location = new System.Drawing.Point(6, 59);
             this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(70, 13);
+            this.Nombre.Size = new System.Drawing.Size(44, 13);
             this.Nombre.TabIndex = 9;
-            this.Nombre.Text = "Razón Social";
+            this.Nombre.Text = "Nombre";
             // 
-            // Guardar
-            // 
-            this.Guardar.Location = new System.Drawing.Point(265, 492);
-            this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(75, 23);
-            this.Guardar.TabIndex = 5;
-            this.Guardar.Text = "Guardar";
-            this.Guardar.UseVisualStyleBackColor = true;
-            // 
-            // Limpiar
-            // 
-            this.Limpiar.Location = new System.Drawing.Point(14, 492);
-            this.Limpiar.Name = "Limpiar";
-            this.Limpiar.Size = new System.Drawing.Size(75, 23);
-            this.Limpiar.TabIndex = 4;
-            this.Limpiar.Text = "Limpiar";
-            this.Limpiar.UseVisualStyleBackColor = true;
-            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
-            // 
-            // AltaProveedor
+            // ModificacionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -345,8 +324,9 @@
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Direccion);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AltaProveedor";
-            this.Text = "AltaProveedor";
+            this.Name = "ModificacionCliente";
+            this.Text = "Modificacion";
+            //this.Load += new System.EventHandler(this.ModificacionCliente_Load);
             this.Direccion.ResumeLayout(false);
             this.Direccion.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -357,6 +337,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Button Guardar;
+        private System.Windows.Forms.Button Limpiar;
         private System.Windows.Forms.GroupBox Direccion;
         private System.Windows.Forms.ComboBox Localidad;
         private System.Windows.Forms.TextBox CodigoPostal;
@@ -369,12 +351,13 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox RubroProveedor;
-        private System.Windows.Forms.TextBox TelefonoProveedor;
-        private System.Windows.Forms.TextBox CUIT;
-        private System.Windows.Forms.TextBox RazonSocial;
-        private System.Windows.Forms.TextBox MailProveedor;
-        private System.Windows.Forms.TextBox UsernameProveedor;
+        private System.Windows.Forms.TextBox DNICliente;
+        private System.Windows.Forms.TextBox FchNacimientoCliente;
+        private System.Windows.Forms.TextBox TelefonoCliente;
+        private System.Windows.Forms.TextBox ApellidoCliente;
+        private System.Windows.Forms.TextBox NombreCliente;
+        private System.Windows.Forms.TextBox MailCliente;
+        private System.Windows.Forms.TextBox UsernameCliente;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -382,10 +365,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.TextBox NombreContactoProveedor;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox CiudadProveedor;
-        private System.Windows.Forms.Button Guardar;
-        private System.Windows.Forms.Button Limpiar;
     }
 }

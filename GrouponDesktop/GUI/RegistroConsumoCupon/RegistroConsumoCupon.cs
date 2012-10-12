@@ -7,16 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.GUI.AbmRol
+namespace GrouponDesktop.GUI.RegistroConsumoCupon
 {
-    public partial class ListadoRol : Form
+    public partial class RegistroConsumoCupon : Form
     {
-        public ListadoRol()
+        public RegistroConsumoCupon()
         {
             InitializeComponent();
         }
-
-    
-
     }
 }

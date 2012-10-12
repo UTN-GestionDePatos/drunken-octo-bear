@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.Guardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,11 +204,21 @@
             this.Nombre.TabIndex = 9;
             this.Nombre.Text = "Precio Ficticio";
             // 
+            // Guardar
+            // 
+            this.Guardar.Location = new System.Drawing.Point(43, 379);
+            this.Guardar.Name = "Guardar";
+            this.Guardar.Size = new System.Drawing.Size(75, 23);
+            this.Guardar.TabIndex = 4;
+            this.Guardar.Text = "Guardar";
+            this.Guardar.UseVisualStyleBackColor = true;
+            // 
             // ArmarCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 463);
+            this.ClientSize = new System.Drawing.Size(553, 416);
+            this.Controls.Add(this.Guardar);
             this.Controls.Add(this.groupBox1);
             this.Name = "ArmarCupon";
             this.Text = "ArmarCupon";
@@ -236,5 +247,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox DescripcionCupon;
         private System.Windows.Forms.TextBox FchVencimientoOferta;
+        private System.Windows.Forms.Button Guardar;
     }
 }

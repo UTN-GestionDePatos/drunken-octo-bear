@@ -1,6 +1,6 @@
-﻿namespace GrouponDesktop.AbmCliente
+﻿namespace GrouponDesktop.GUI.AbmProveedor
 {
-    partial class AltaProveedor
+    partial class ModificacionProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -74,10 +74,10 @@
             this.Direccion.Controls.Add(this.label9);
             this.Direccion.Controls.Add(this.label10);
             this.Direccion.Controls.Add(this.label11);
-            this.Direccion.Location = new System.Drawing.Point(18, 291);
+            this.Direccion.Location = new System.Drawing.Point(18, 289);
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(344, 187);
-            this.Direccion.TabIndex = 3;
+            this.Direccion.TabIndex = 7;
             this.Direccion.TabStop = false;
             this.Direccion.Text = "Direccion";
             // 
@@ -181,10 +181,10 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Nombre);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(9, 15);
+            this.groupBox1.Location = new System.Drawing.Point(9, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(353, 270);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
@@ -293,7 +293,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 126);
+            this.label2.Location = new System.Drawing.Point(6, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 10;
@@ -319,34 +319,33 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(265, 492);
+            this.Guardar.Location = new System.Drawing.Point(265, 490);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
-            this.Guardar.TabIndex = 5;
+            this.Guardar.TabIndex = 9;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(14, 492);
+            this.Limpiar.Location = new System.Drawing.Point(14, 490);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
-            this.Limpiar.TabIndex = 4;
+            this.Limpiar.TabIndex = 8;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
-            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
-            // AltaProveedor
+            // ModificacionProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 527);
-            this.Controls.Add(this.Guardar);
-            this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Direccion);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AltaProveedor";
-            this.Text = "AltaProveedor";
+            this.Controls.Add(this.Guardar);
+            this.Controls.Add(this.Limpiar);
+            this.Name = "ModificacionProveedor";
+            this.Text = "ModificacionProveedor";
             this.Direccion.ResumeLayout(false);
             this.Direccion.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -369,6 +368,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox CiudadProveedor;
+        private System.Windows.Forms.TextBox NombreContactoProveedor;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox RubroProveedor;
         private System.Windows.Forms.TextBox TelefonoProveedor;
         private System.Windows.Forms.TextBox CUIT;
@@ -382,9 +384,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.TextBox NombreContactoProveedor;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox CiudadProveedor;
         private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Limpiar;
     }

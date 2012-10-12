@@ -7,16 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.GUI.AbmRol
+namespace GrouponDesktop.GUI.HistorialCupones
 {
-    public partial class ListadoRol : Form
+    public partial class HistorialCupones : Form
     {
-        public ListadoRol()
+        public HistorialCupones()
         {
             InitializeComponent();
         }
-
-    
-
     }
 }
