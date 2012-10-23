@@ -1,3 +1,5 @@
+
+
 /*
 	Configuración del Motor.
 */
@@ -9,7 +11,7 @@ GO
 /*TABlAS*/
 
 CREATE TABLE Administradores ( 
-	username varchar(30) unique NOT NULL,
+	username varchar(30) primary key,
 	nombre varchar(30),
 	apellido varchar(30),
 	mail varchar(30),
@@ -18,7 +20,7 @@ CREATE TABLE Administradores (
 ;
 
 CREATE TABLE Cargas ( 
-	id_carga bigint identity(1,1) NOT NULL,
+	id_carga bigint identity(1,1) primary key,
 	username varchar(30) unique,
 	monto bigint,
 	tipo int,
@@ -28,7 +30,7 @@ CREATE TABLE Cargas (
 ;
 
 CREATE TABLE Clientes ( 
-	username varchar(30) unique NOT NULL,
+	username varchar(30) primary key,
 	nombre varchar(30),
 	apellido varchar(30),
 	mail varchar(30),
@@ -41,7 +43,7 @@ CREATE TABLE Clientes (
 ;
 
 CREATE TABLE Cupones ( 
-	id_cupon bigint identity(1,1) NOT NULL,
+	id_cupon bigint identity(1,1) primary key,
 	cliente varchar(30),
 	id_grupo int,
 	fecha_compra datetime,
@@ -51,14 +53,14 @@ CREATE TABLE Cupones (
 ;
 
 CREATE TABLE Devoluciones ( 
-	id_cupon bigint NOT NULL,
+	id_cupon bigint primary key,
 	fecha_devolucion datetime,
 	motivo varchar(250)
 )
 ;
 
 CREATE TABLE Direcciones ( 
-	id_dir int identity(1,1) NOT NULL,
+	id_dir int identity(1,1) primary key,
 	calle varchar(30),
 	piso int,
 	departamento char(10),
@@ -68,13 +70,13 @@ CREATE TABLE Direcciones (
 ;
 
 CREATE TABLE Estados ( 
-	id_estado int identity(1,1) NOT NULL,
+	id_estado int identity(1,1) primary key,
 	nombre_estado varchar(20)
 )
 ;
 
 CREATE TABLE Facturas ( 
-	id_factura bigint unique NOT NULL,
+	id_factura bigint primary key,
 	proveedor varchar(30),
 	monto float,
 	fecha_desde datetime,
@@ -89,13 +91,13 @@ CREATE TABLE Funcion_por_rol (
 ;
 
 CREATE TABLE Funcionalidades ( 
-	id_funcionalidad int identity(1,1) NOT NULL,
+	id_funcionalidad int identity(1,1) primary key,
 	descripcion varchar(50)
 )
 ;
 
 CREATE TABLE Giftcards ( 
-	id_giftcard bigint identity(1,1) NOT NULL,
+	id_giftcard bigint identity(1,1) primary key,
 	cliente_origen varchar(30),
 	cliente_destino varchar(30),
 	fecha datetime,
@@ -104,7 +106,7 @@ CREATE TABLE Giftcards (
 ;
 
 CREATE TABLE GruposCupon ( 
-	id_grupo int unique NOT NULL,
+	id_grupo int primary key,
 	localidad varchar(30),
 	proveedor varchar(30),
 	precio_ficticio float,
@@ -119,6 +121,15 @@ CREATE TABLE GruposCupon (
 )
 ;
 
+CREATE TABLE Localidades(
+	id_localidad int identity(1,1) primary key,
+	localidad varchar(30)
+)
+
+CREATE TABLE Localidad_por_usuario(
+	id_localidad int not null,
+	username varchar(30)
+)
 CREATE TABLE Logins ( 
 	username varchar(30) NOT NULL,
 	passwd varchar(30),
@@ -129,7 +140,7 @@ CREATE TABLE Logins (
 ;
 
 CREATE TABLE Proveedores ( 
-	username varchar(30) unique NOT NULL,
+	username varchar(30) primary key,
 	cuit bigint unique,
 	razon_social varchar(30),
 	mail varchar(30),
@@ -148,14 +159,14 @@ CREATE TABLE Roles (
 ;
 
 CREATE TABLE Tarjetas ( 
-	id_tarjeta bigint identity(1,1) NOT NULL,
+	id_tarjeta bigint identity(1,1) primary key,
 	numero bigint,
 	codigo_validacion bigint
 )
 ;
 
 CREATE TABLE Tipos_pago ( 
-	id_pago int identity(1,1) NOT NULL,
+	id_pago int identity(1,1) primary key,
 	descripcion varchar(30)
 )
 
@@ -264,7 +275,7 @@ AS
 		
 		select @precio = precio_ficticio, @user = c.cliente from GruposCupon gc	
 			join Cupones c on gc.id_grupo = c.id_grupo
-			join inserted on c.id_cupon = inserted.codigo_cupon
+			join inserted on c.id_cupon = inserted.id_cupon
 		
 		update Clientes set saldo = saldo + @precio where username = @user
 		
@@ -278,7 +289,7 @@ AFTER INSERT
 AS
 	BEGIN
 		declare @cupon int
-		select @cupon = codigo_cupon from inserted
+		select @cupon = id_cupon from inserted
 		update Cupones set estado = 'Devuelto' where id_cupon = @cupon
 	END
 
@@ -300,3 +311,88 @@ GO
 CREATE VIEW LoginView
 AS
 SELECT username,passwd,rol,estado,intentos_fallidos FROM Logins
+
+--PROCEDURES
+GO
+
+CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
+AS
+	BEGIN
+		INSERT	INTO Cargas (username, monto, tipo, tarjeta, fecha) 
+				VALUES(@clienteDni, @cargaCredito, @tipoPago, null, @cargaFecha)
+	END
+
+GO
+
+CREATE PROCEDURE ProcesarGitfcard( @clienteDni nvarchar(255), @clienteDestDni nvarchar(255), @giftcardFecha datetime, @giftcardMonto numeric(18,2))
+AS
+	BEGIN
+		INSERT	INTO Giftcards (cliente_origen, cliente_destino,fecha,monto)
+				VALUES (@clienteDni, @clienteDestDni, @giftcardFecha, @giftcardMonto)
+	END
+
+GO
+
+CREATE PROCEDURE InsertarGrupo(	@grouponCodigo nvarchar(50), @proveedorCiudad nvarchar(255), @proveedorCUIT nvarchar(20), @grouponPrecioFicticio numeric(18,2), 
+									@grouponFecha datetime, @grouponCantidad numeric(18,0), @grouponPrecio numeric(18,2),
+									@grouponFechaVencimiento datetime, @grouponDescripcion nvarchar(255))
+AS
+	BEGIN
+		IF NOT EXISTS(SELECT * FROM GruposCupon WHERE id_grupo = @grouponCodigo)
+		BEGIN
+			INSERT	INTO GruposCupon (id_grupo, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
+					VALUES(@grouponCodigo,@proveedorCiudad, @proveedorCUIT,@grouponPrecioFicticio, @grouponFecha, @grouponCantidad, null, @grouponPrecio, @grouponFechaVencimiento, 'Publicado', null, @grouponDescripcion)
+		END
+	END
+			
+GO
+
+CREATE PROCEDURE InsertarCupon( @clienteDni numeric(18,0), @grouponCodigo nvarchar(50), @grouponFechaCompra datetime, @id int output)
+AS
+	BEGIN
+		 
+		INSERT	INTO Cupones (cliente,id_grupo,fecha_compra,estado)
+				VALUES (@clienteDni, @grouponCodigo, @grouponFechaCompra, 'Comprado')
+				
+		select @id = id_cupon from inserted
+			
+	END			
+
+GO
+
+CREATE PROCEDURE ActualizarEntrega (@idCupon int, @grouponEntregadoFecha datetime)
+AS
+	BEGIN
+		UPDATE Cupones
+		SET estado = 'Entregado', fecha_canje = @grouponEntregadoFecha
+		WHERE id_cupon = @idCupon
+	END	
+
+GO
+
+CREATE PROCEDURE ProcesarFactura(@facturaNro numeric(18,0), @proveedorCUIT nvarchar(20), @facturaFecha datetime, @grouponPrecio numeric(18,2))
+AS
+	BEGIN
+	
+		IF NOT EXISTS(SELECT * FROM Facturas WHERE id_factura = @facturaNro)
+		BEGIN
+			INSERT	INTO Facturas 
+					VALUES (@facturaNro, @proveedorCUIT, @grouponPrecio, @facturaFecha, @facturaFecha)
+		END
+		
+		ELSE
+		BEGIN
+			UPDATE Facturas 
+			SET monto = monto + @grouponPrecio
+			WHERE id_factura = @facturaNro
+		END
+	END
+
+GO
+
+CREATE PROCEDURE ProcesarDevolucion (@idCupon int, @grouponDevolucionFecha datetime)
+AS
+	BEGIN
+		INSERT INTO Devoluciones VALUES (@idCupon, @grouponDevolucionFecha, null)
+	END
+	
