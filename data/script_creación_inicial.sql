@@ -1,3 +1,11 @@
+/*
+	Configuración del Motor.
+*/
+sp_configure 'clr enabled', 1
+GO
+RECONFIGURE
+GO
+
 /*TABlAS*/
 
 CREATE TABLE Administradores ( 
@@ -113,7 +121,7 @@ CREATE TABLE GruposCupon (
 
 CREATE TABLE Logins ( 
 	username varchar(30) NOT NULL,
-	password varchar(30),
+	passwd varchar(30),
 	rol varchar(20),
 	estado varchar(20),
 	intentos_fallidos int
@@ -287,3 +295,8 @@ AS
 		update Clientes set saldo = saldo + @saldo where username = @userDestino
 		
 	END
+GO
+
+CREATE VIEW LoginView
+AS
+SELECT username,passwd,rol,estado,intentos_fallidos FROM Logins
