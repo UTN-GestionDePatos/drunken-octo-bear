@@ -21,7 +21,7 @@ CREATE TABLE Administradores (
 
 CREATE TABLE Cargas ( 
 	id_carga bigint identity(1,1) primary key,
-	username varchar(30) unique,
+	username varchar(30),
 	monto bigint,
 	tipo int,
 	tarjeta bigint,
@@ -36,7 +36,7 @@ CREATE TABLE Clientes (
 	mail varchar(30),
 	telefono bigint unique,
 	id_dir int,
-	fecha_nacimiento bigint,
+	fecha_nacimiento datetime,
 	dni bigint,
 	saldo float
 )
@@ -45,7 +45,7 @@ CREATE TABLE Clientes (
 CREATE TABLE Cupones ( 
 	id_cupon bigint identity(1,1) primary key,
 	cliente varchar(30),
-	id_grupo int,
+	id_grupo varchar(30),
 	fecha_compra datetime,
 	estado varchar(20),
 	fecha_canje datetime
@@ -106,7 +106,7 @@ CREATE TABLE Giftcards (
 ;
 
 CREATE TABLE GruposCupon ( 
-	id_grupo int primary key,
+	id_grupo varchar(30) primary key,
 	localidad varchar(30),
 	proveedor varchar(30),
 	precio_ficticio float,
@@ -138,10 +138,9 @@ CREATE TABLE Logins (
 	intentos_fallidos int
 )
 ;
-
 CREATE TABLE Proveedores ( 
 	username varchar(30) primary key,
-	cuit bigint unique,
+	cuit nvarchar(20) unique,
 	razon_social varchar(30),
 	mail varchar(30),
 	telefono bigint unique,
@@ -318,8 +317,10 @@ GO
 CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
 AS
 	BEGIN
+		declare @tipo int
+		select @tipo = id_pago from Tipos_pago where descripcion = @tipoPago 
 		INSERT	INTO Cargas (username, monto, tipo, tarjeta, fecha) 
-				VALUES(@clienteDni, @cargaCredito, @tipoPago, null, @cargaFecha)
+				VALUES(@clienteDni, @cargaCredito, @tipo, null, @cargaFecha)
 	END
 
 GO
@@ -340,7 +341,7 @@ AS
 	BEGIN
 		IF NOT EXISTS(SELECT * FROM GruposCupon WHERE id_grupo = @grouponCodigo)
 		BEGIN
-			INSERT	INTO GruposCupon (id_grupo, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
+			INSERT	INTO GruposCupon (id_grupo, localidad, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
 					VALUES(@grouponCodigo,@proveedorCiudad, @proveedorCUIT,@grouponPrecioFicticio, @grouponFecha, @grouponCantidad, null, @grouponPrecio, @grouponFechaVencimiento, 'Publicado', null, @grouponDescripcion)
 		END
 	END
@@ -354,7 +355,7 @@ AS
 		INSERT	INTO Cupones (cliente,id_grupo,fecha_compra,estado)
 				VALUES (@clienteDni, @grouponCodigo, @grouponFechaCompra, 'Comprado')
 				
-		select @id = id_cupon from inserted
+		select @id = max(id_cupon) from Cupones
 			
 	END			
 
@@ -394,5 +395,19 @@ CREATE PROCEDURE ProcesarDevolucion (@idCupon int, @grouponDevolucionFecha datet
 AS
 	BEGIN
 		INSERT INTO Devoluciones VALUES (@idCupon, @grouponDevolucionFecha, null)
+	END
+
+GO
+
+CREATE PROCEDURE AsignarCiudadAlUsuario(@usuario numeric(18,0), @ciudad nvarchar(255))
+AS	
+	BEGIN
+		IF NOT EXISTS (SELECT * FROM Localidades WHERE localidad = @ciudad)
+			begin
+				INSERT INTO Localidades (localidad) VALUES (@ciudad)
+				declare @id int
+				select @id = id_localidad from Localidades where localidad = @ciudad
+				INSERT INTO Localidad_por_usuario VALUES (@id,@usuario)
+			end
 	END
 	
