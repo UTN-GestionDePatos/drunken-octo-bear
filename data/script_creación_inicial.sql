@@ -172,6 +172,7 @@ CREATE TABLE Tipos_pago (
 
 GO 
 
+--drop procedure MigracionManopla
 
 CREATE PROCEDURE MigracionManopla
 AS
@@ -182,8 +183,8 @@ BEGIN
 --Tipo de pago
 
 insert into Tipos_pago (descripcion) values ('Efectivo')
-insert into Tipos_pago (descripcion) values ('Tarjeta de Credito')
-insert into Tipos_pago (descripcion) values ('Tarjeta de Debito')
+insert into Tipos_pago (descripcion) values ('Crédito')
+insert into Tipos_pago (descripcion) values ('Débito')
 
 --Administrador
 
@@ -242,11 +243,14 @@ ON Cargas
 AFTER INSERT
 AS
 	begin
-		declare @unaCarga float
-		select @unaCarga = monto from inserted
-		update Clientes
-		set saldo = saldo + @unaCarga
-	
+		
+		declare @temp table (id varchar(30), monto float)
+		insert into @temp select inserted.username,sum(inserted.monto) from inserted group by inserted.username
+		
+		update Clientes 
+		set saldo = saldo + t.monto
+		from Clientes c join @temp t on c.username = t.id
+		
 	end
 
 GO
@@ -256,31 +260,43 @@ ON Cupones
 AFTER INSERT
 AS
 	BEGIN
-		declare @precio float, @user varchar(30)
-		select @user = cliente from inserted
-		select @precio = precio_ficticio from GruposCupon gc join inserted on gc.id_grupo = inserted.id_grupo
-		update Clientes set saldo = saldo - @precio where username = @user
+		declare @temp table (cliente varchar(30), monto float)
+		insert into @temp
+		select inserted.cliente, sum(gc.precio_ficticio)
+		from GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo and inserted.estado != 'Devuelto'
+		group by inserted.cliente
 		
+		UPDATE Clientes SET saldo = saldo - t.monto
+		FROM Clientes c join @temp t on c.username = t.cliente 
+	
+		--Esto es exclusivamente de la migración	
+		delete from @temp
+		insert into @temp
+		select inserted.cliente, sum(gc.precio_ficticio)
+		from GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo and inserted.estado = 'Devuelto'
+		group by inserted.cliente
+		
+		UPDATE Clientes SET saldo = saldo + t.monto
+		FROM Clientes c join @temp t on c.username = t.cliente 
+	
 	END
 
 GO
 
-CREATE TRIGGER actualizarSaldoDevoluciones
-ON Devoluciones
-AFTER INSERT
+CREATE TRIGGER actualizarSaldoCuponesPorDevolucion
+ON Cupones
+AFTER UPDATE
 AS
 	BEGIN
-		declare @precio float, @user varchar(30)
-		
-		select @precio = precio_ficticio, @user = c.cliente from GruposCupon gc	
-			join Cupones c on gc.id_grupo = c.id_grupo
-			join inserted on c.id_cupon = inserted.id_cupon
-		
-		update Clientes set saldo = saldo + @precio where username = @user
-		
+
+		UPDATE Clientes SET saldo = saldo + gc.precio_ficticio
+		FROM GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo
+		WHERE username = inserted.cliente AND inserted.estado = 'Devuelto'
+			
 	END
-	
+
 GO
+
 
 CREATE TRIGGER actualizarEstadoDevoluciones
 ON Devoluciones
@@ -294,15 +310,48 @@ AS
 
 GO
 
+
+CREATE TRIGGER actualizarSaldoDevoluciones
+ON Devoluciones
+AFTER INSERT
+AS
+	BEGIN
+		declare @temp table (cliente varchar(30), monto float)
+		insert into @temp
+		select c.cliente, sum(gc.precio_ficticio)
+		from GruposCupon gc join Cupones c on gc.id_grupo = c.id_grupo
+							join inserted on inserted.id_cupon = c.id_cupon
+		group by c.cliente
+		
+		UPDATE Clientes SET saldo = saldo + t.monto
+		FROM Clientes cli join @temp t on cli.username = t.cliente 
+	
+	END
+GO
+
 CREATE TRIGGER actualizarSaldoGiftcards
 ON Giftcards
 AFTER INSERT
 AS
 	BEGIN
-		declare @saldo float, @userOrigen varchar(30), @userDestino varchar(30)
-		select @userOrigen = cliente_origen, @saldo = monto, @userDestino = cliente_destino from inserted
-		update Clientes set saldo = saldo - @saldo where username = @userOrigen
-		update Clientes set saldo = saldo + @saldo where username = @userDestino
+	
+	begin
+		
+		declare @temp table (id varchar(30), monto float)
+		insert into @temp select inserted.cliente_origen,sum(inserted.monto) from inserted group by inserted.cliente_origen
+		
+		update Clientes set saldo = saldo - t.monto
+		from Clientes c join @temp t on c.username = t.id
+	
+		delete from @temp
+		
+		insert into @temp select inserted.cliente_destino,sum(inserted.monto) from inserted group by inserted.cliente_destino
+		
+		update Clientes set saldo = saldo + t.monto
+		from Clientes c join @temp t on c.username = t.id
+	
+			
+	end
 		
 	END
 GO
@@ -314,6 +363,118 @@ SELECT username,passwd,rol,estado,intentos_fallidos FROM Logins
 --PROCEDURES
 GO
 
+
+CREATE FUNCTION idCiudad(@ciudad varchar(30))
+RETURNS int
+AS
+BEGIN
+	DECLARE @id int
+	SELECT @id = id_localidad
+	FROM Localidades
+	WHERE localidad = @ciudad
+	RETURN @id
+END
+
+GO
+
+
+CREATE PROCEDURE MigrarDatosSinCursor
+AS
+BEGIN
+
+	/*MIGRACIONES MASIVAS*/
+	
+	--CLIENTES
+	INSERT INTO Clientes 
+		select distinct convert(varchar(30),Cli_Dni), Cli_Nombre, Cli_Apellido, Cli_Mail, Cli_Telefono, null, Cli_Fecha_Nac, Cli_Dni,0 
+		from Maestra where Cli_Dni is not null
+	
+	--PROVEEDORES
+	INSERT INTO Proveedores
+		select distinct convert(varchar(30),Provee_CUIT), Provee_CUIT, Provee_RS, null , Provee_Telefono, null, Provee_Ciudad, Provee_Rubro, null
+		from Maestra where Provee_CUIT is not null
+	
+	--LOCALIDADES
+	INSERT INTO Localidades (localidad)
+		SELECT DISTINCT Cli_Ciudad 
+		FROM Maestra
+		WHERE Cli_Ciudad is not null
+	
+	--LOCALIDAD POR USUARIO
+	INSERT INTO Localidad_por_usuario 
+		SELECT DISTINCT  dbo.idCiudad(Cli_Ciudad),Cli_Dni
+		FROM Maestra
+		WHERE Cli_Dni is not null
+	
+	--CARGAS
+		INSERT	INTO Cargas (username, monto, tipo, tarjeta, fecha) 
+				SELECT Cli_Dni, Carga_Credito, (select id_pago from Tipos_pago where descripcion = Tipo_Pago_Desc),null, Carga_Fecha FROM Maestra WHERE Carga_Credito is not null
+
+
+	--GIFTCARDS
+
+		INSERT INTO Giftcards (cliente_origen, cliente_destino, fecha, monto)
+		SELECT Cli_Dni, Cli_Dest_Dni, GiftCard_Fecha, GiftCard_Monto FROM Maestra WHERE Cli_Dest_Dni is not null
+
+
+	--GRUPOS
+		
+		INSERT	INTO GruposCupon (id_grupo, localidad, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
+				SELECT distinct Groupon_Codigo, Provee_Ciudad, Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, Groupon_Fecha_Venc, 'Publicado', null, Groupon_Descripcion
+				FROM Maestra 
+				WHERE Groupon_Codigo is not null
+	
+	
+	--CUPONES
+		INSERT INTO Cupones (cliente, id_grupo,fecha_compra,estado)
+		
+			SELECT Cli_Dni, Groupon_Codigo,Groupon_Fecha_Compra,'Comprado'
+			FROM Maestra
+			WHERE Groupon_Codigo is not null AND Groupon_Devolucion_Fecha is null AND Factura_Nro is null AND Groupon_Entregado_Fecha is null
+			
+			except
+			
+			SELECT Cli_Dni, Groupon_Codigo,Groupon_Fecha_Compra,'Comprado' 
+			FROM Maestra
+			WHERE Groupon_Codigo is not null AND Groupon_Devolucion_Fecha is not null AND Factura_Nro is null AND Groupon_Entregado_Fecha is null
+
+			except
+			
+			SELECT Cli_Dni, Groupon_Codigo,Groupon_Fecha_Compra,'Comprado' 
+			FROM Maestra
+			WHERE Groupon_Codigo is not null AND Groupon_Devolucion_Fecha is null AND Factura_Nro is null AND Groupon_Entregado_Fecha is not null
+
+	
+	--ENTREGAS
+		INSERT INTO Cupones (cliente, id_grupo,fecha_compra,estado, fecha_canje)
+		
+			SELECT Cli_Dni, Groupon_Codigo,Groupon_Fecha_Compra,'Entregado' , Groupon_Entregado_Fecha
+			FROM Maestra
+			WHERE Groupon_Codigo is not null AND Groupon_Devolucion_Fecha is null AND Factura_Nro is null AND Groupon_Entregado_Fecha is not null
+
+	
+	--DEVOLUCIONES 
+		INSERT INTO Cupones (cliente, id_grupo,fecha_compra,estado)
+			SELECT Cli_Dni, Groupon_Codigo,Groupon_Fecha_Compra,'Devuelto'
+			FROM Maestra
+			WHERE Groupon_Codigo is not null AND Groupon_Devolucion_Fecha is not null AND Factura_Nro is null AND Groupon_Entregado_Fecha is null
+		
+		INSERT INTO Devoluciones (id_cupon,fecha_devolucion)
+			SELECT DISTINCT c.id_cupon, Groupon_Devolucion_Fecha
+			FROM Maestra m	JOIN Cupones c ON m.Cli_Dni = c.cliente AND Groupon_Codigo = c.id_grupo
+							AND m.Groupon_Fecha_Compra = c.fecha_compra AND m.Groupon_Devolucion_Fecha is not null
+
+
+	--FACTURAS
+		INSERT INTO Facturas (id_factura,proveedor, monto, fecha_desde,fecha_hasta)
+			SELECT Factura_Nro,Provee_CUIT, SUM(Groupon_Precio_Ficticio) monto, Factura_Fecha, Factura_Fecha
+			FROM Maestra
+			WHERE Factura_Nro is not null
+			GROUP BY Factura_Nro, Provee_CUIT, Factura_Fecha
+
+END
+
+/*
 CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
 AS
 	BEGIN
@@ -410,4 +571,4 @@ AS
 				INSERT INTO Localidad_por_usuario VALUES (@id,@usuario)
 			end
 	END
-	
+*/	
