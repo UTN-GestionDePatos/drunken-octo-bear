@@ -262,21 +262,11 @@ AS
 	BEGIN
 		declare @temp table (cliente varchar(30), monto float)
 		insert into @temp
-		select inserted.cliente, sum(gc.precio_ficticio)
-		from GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo and inserted.estado != 'Devuelto'
+		select inserted.cliente, sum(gc.precio_real)
+		from GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo
 		group by inserted.cliente
 		
 		UPDATE Clientes SET saldo = saldo - t.monto
-		FROM Clientes c join @temp t on c.username = t.cliente 
-	
-		--Esto es exclusivamente de la migración	
-		delete from @temp
-		insert into @temp
-		select inserted.cliente, sum(gc.precio_ficticio)
-		from GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo and inserted.estado = 'Devuelto'
-		group by inserted.cliente
-		
-		UPDATE Clientes SET saldo = saldo + t.monto
 		FROM Clientes c join @temp t on c.username = t.cliente 
 	
 	END
@@ -289,7 +279,7 @@ AFTER UPDATE
 AS
 	BEGIN
 
-		UPDATE Clientes SET saldo = saldo + gc.precio_ficticio
+		UPDATE Clientes SET saldo = saldo + gc.precio_real
 		FROM GruposCupon gc JOIN inserted ON gc.id_grupo = inserted.id_grupo
 		WHERE username = inserted.cliente AND inserted.estado = 'Devuelto'
 			
@@ -310,7 +300,6 @@ AS
 
 GO
 
-
 CREATE TRIGGER actualizarSaldoDevoluciones
 ON Devoluciones
 AFTER INSERT
@@ -318,7 +307,7 @@ AS
 	BEGIN
 		declare @temp table (cliente varchar(30), monto float)
 		insert into @temp
-		select c.cliente, sum(gc.precio_ficticio)
+		select c.cliente, sum(gc.precio_real)
 		from GruposCupon gc join Cupones c on gc.id_grupo = c.id_grupo
 							join inserted on inserted.id_cupon = c.id_cupon
 		group by c.cliente
@@ -474,6 +463,14 @@ BEGIN
 
 END
 
+GO
+
+CREATE PROCEDURE asignarSaldoInicial
+AS
+	BEGIN
+		UPDATE Clientes
+		set saldo = saldo + 10
+	END
 /*
 CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
 AS
