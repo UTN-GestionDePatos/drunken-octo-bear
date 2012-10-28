@@ -53,105 +53,6 @@ CREATE TABLE Clientes (
 	saldo float
 )
 
-CREATE TABLE Tipos_pago ( 
-	id_pago int identity(1,1) primary key,
-	descripcion varchar(30)
-)
-
-CREATE TABLE Tarjetas ( 
-	id_tarjeta bigint identity(1,1) primary key,
-	numero bigint,
-	codigo_validacion bigint
-)
-;
-
-CREATE TABLE Cargas ( 
-	id_carga bigint identity(1,1) primary key,
-	username varchar(30) references Clientes(username),
-	monto bigint,
-	tipo int references Tipos_Pago (id_pago),
-	tarjeta bigint references Tarjetas(id_tarjeta),
-	fecha datetime
-)
-;
-CREATE TABLE GruposCupon ( 
-	id_grupo varchar(30) primary key,
-	localidad varchar(30),
-	proveedor varchar(30),
-	precio_ficticio float,
-	fecha_publicacion datetime,
-	stock bigint,
-	limite_por_usuario int,
-	precio_real float,
-	fecha_vencimiento_canje datetime,
-	estado varchar(20),
-	fecha_vencimiento_oferta datetime,
-	descripcion varchar(250)
-)
-;
-
-CREATE TABLE Cupones ( 
-	id_cupon bigint identity(1,1) primary key,
-	cliente varchar(30),
-	id_grupo varchar(30) references GruposCupon(id_grupo),
-	fecha_compra datetime,
-	estado varchar(20),
-	fecha_canje datetime
-)
-;
-
-CREATE TABLE Devoluciones ( 
-	id_cupon bigint primary key references Cupones(id_cupon),
-	fecha_devolucion datetime,
-	motivo varchar(250)
-)
-;
-
-CREATE TABLE Estados ( 
-	id_estado int identity(1,1) primary key,
-	nombre_estado varchar(20)
-)
-;
-
-CREATE TABLE Facturas ( 
-	id_factura bigint primary key,
-	proveedor varchar(30),
-	monto float,
-	fecha_desde datetime,
-	fecha_hasta datetime
-)
-;
-
-
-CREATE TABLE Funcionalidades ( 
-	id_funcionalidad int identity(1,1) primary key,
-	descripcion varchar(50)
-)
-;
-
-CREATE TABLE Funcion_por_rol ( 
-	id_funcionalidad int NOT NULL references Funcionalidades(id_funcionalidad),
-	nombre_rol varchar(20)
-)
-;
-
-CREATE TABLE Giftcards ( 
-	id_giftcard bigint identity(1,1) primary key,
-	cliente_origen varchar(30) references Clientes(username),
-	cliente_destino varchar(30) references Clientes(username),
-	fecha datetime,
-	monto bigint
-)
-;
-
-CREATE TABLE Logins ( 
-	username varchar(30) NOT NULL,
-	passwd varchar(30),
-	rol varchar(20),
-	estado varchar(20),
-	intentos_fallidos int
-)
-;
 CREATE TABLE Proveedores ( 
 	username varchar(30) primary key,
 	cuit nvarchar(20) unique,
@@ -163,13 +64,100 @@ CREATE TABLE Proveedores (
 	rubro varchar(30),
 	nombre_contacto varchar(30)
 )
-;
+
+CREATE TABLE Tipos_pago ( 
+	id_pago int identity(1,1) primary key,
+	descripcion varchar(30)
+)
+
+CREATE TABLE Tarjetas ( 
+	id_tarjeta bigint identity(1,1) primary key,
+	numero bigint,
+	codigo_validacion bigint
+)
+
+CREATE TABLE Cargas ( 
+	id_carga bigint identity(1,1) primary key,
+	username varchar(30) references Clientes(username),
+	monto bigint,
+	tipo int references Tipos_Pago (id_pago),
+	tarjeta bigint references Tarjetas(id_tarjeta),
+	fecha datetime
+)
+
+CREATE TABLE GruposCupon ( 
+	id_grupo varchar(30) primary key,
+	localidad int references Localidades(id_localidad),
+	proveedor varchar(30) references Proveedores(username),
+	precio_ficticio float,
+	fecha_publicacion datetime,
+	stock bigint,
+	limite_por_usuario int,
+	precio_real float,
+	fecha_vencimiento_canje datetime,
+	estado varchar(20),
+	fecha_vencimiento_oferta datetime,
+	descripcion varchar(250)
+)
+
+CREATE TABLE Cupones ( 
+	id_cupon bigint identity(1,1) primary key,
+	cliente varchar(30),
+	id_grupo varchar(30) references GruposCupon(id_grupo),
+	fecha_compra datetime,
+	estado varchar(20),
+	fecha_canje datetime
+)
+
+CREATE TABLE Devoluciones ( 
+	id_cupon bigint primary key references Cupones(id_cupon),
+	fecha_devolucion datetime,
+	motivo varchar(250)
+)
+
+CREATE TABLE Estados ( 
+	id_estado int identity(1,1) primary key,
+	nombre_estado varchar(20)
+)
+
+CREATE TABLE Facturas ( 
+	id_factura bigint primary key,
+	proveedor varchar(30),
+	monto float,
+	fecha_desde datetime,
+	fecha_hasta datetime
+)
+
+CREATE TABLE Funcionalidades ( 
+	id_funcionalidad int identity(1,1) primary key,
+	descripcion varchar(50)
+)
+
+CREATE TABLE Funcion_por_rol ( 
+	id_funcionalidad int NOT NULL references Funcionalidades(id_funcionalidad),
+	nombre_rol varchar(20)
+)
+
+CREATE TABLE Giftcards ( 
+	id_giftcard bigint identity(1,1) primary key,
+	cliente_origen varchar(30) references Clientes(username),
+	cliente_destino varchar(30) references Clientes(username),
+	fecha datetime,
+	monto bigint
+)
+
+CREATE TABLE Logins ( 
+	username varchar(30) NOT NULL,
+	passwd varchar(4000),
+	rol varchar(20),
+	estado varchar(20),
+	intentos_fallidos int
+)
 
 CREATE TABLE Roles ( 
 	nombre varchar(20) unique NOT NULL,
 	estado varchar(20)
 )
-;
 
 GO 
 
@@ -398,13 +386,13 @@ BEGIN
 
 	--LOGINS
 	INSERT INTO Logins
-		SELECT username, username,'Cliente','Habilitado',0
+		SELECT username, HASHBYTES('SHA',username),'Cliente','Habilitado',0
 		FROM Clientes
 	INSERT INTO Logins
-		SELECT username, username,'Proveedor','Habilitado',0
+		SELECT username, HASHBYTES('SHA',username),'Proveedor','Habilitado',0
 		FROM Proveedores		
 	INSERT INTO Logins
-		SELECT username, username,'Administrador','Habilitado',0
+		SELECT username, HASHBYTES('SHA',username),'Administrador','Habilitado',0
 		FROM Administradores		
 	
 	
@@ -592,5 +580,3 @@ begin tran
 exec MigracionManopla
 exec MigrarDatosSinCursor
 commit tran
-
-
