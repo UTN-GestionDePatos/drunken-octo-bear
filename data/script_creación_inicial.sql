@@ -17,47 +17,7 @@ CREATE TABLE Administradores (
 	mail varchar(30),
 	telefono bigint unique
 )
-;
 
-CREATE TABLE Cargas ( 
-	id_carga bigint identity(1,1) primary key,
-	username varchar(30),
-	monto bigint,
-	tipo int,
-	tarjeta bigint,
-	fecha datetime
-)
-;
-
-CREATE TABLE Clientes ( 
-	username varchar(30) primary key,
-	nombre varchar(30),
-	apellido varchar(30),
-	mail varchar(30),
-	telefono bigint unique,
-	id_dir int,
-	fecha_nacimiento datetime,
-	dni bigint,
-	saldo float
-)
-;
-
-CREATE TABLE Cupones ( 
-	id_cupon bigint identity(1,1) primary key,
-	cliente varchar(30),
-	id_grupo varchar(30),
-	fecha_compra datetime,
-	estado varchar(20),
-	fecha_canje datetime
-)
-;
-
-CREATE TABLE Devoluciones ( 
-	id_cupon bigint primary key,
-	fecha_devolucion datetime,
-	motivo varchar(250)
-)
-;
 
 CREATE TABLE Direcciones ( 
 	id_dir int identity(1,1) primary key,
@@ -66,6 +26,84 @@ CREATE TABLE Direcciones (
 	departamento char(10),
 	localidad varchar(30),
 	codigo_postal int
+)
+
+
+CREATE TABLE Localidades(
+	id_localidad int identity(1,1) primary key,
+	localidad varchar(30)
+)
+
+
+CREATE TABLE Localidad_por_usuario(
+	id_localidad int not null references Localidades(id_localidad),
+	username varchar(30)
+)
+
+CREATE TABLE Clientes ( 
+	username varchar(30) primary key,
+	nombre varchar(30),
+	apellido varchar(30),
+	mail varchar(30),
+	telefono bigint unique,
+	id_dir int references Direcciones(id_dir),
+	fecha_nacimiento datetime,
+	ciudad int references Localidades(id_localidad),
+	dni bigint,
+	saldo float
+)
+
+CREATE TABLE Tipos_pago ( 
+	id_pago int identity(1,1) primary key,
+	descripcion varchar(30)
+)
+
+CREATE TABLE Tarjetas ( 
+	id_tarjeta bigint identity(1,1) primary key,
+	numero bigint,
+	codigo_validacion bigint
+)
+;
+
+CREATE TABLE Cargas ( 
+	id_carga bigint identity(1,1) primary key,
+	username varchar(30) references Clientes(username),
+	monto bigint,
+	tipo int references Tipos_Pago (id_pago),
+	tarjeta bigint references Tarjetas(id_tarjeta),
+	fecha datetime
+)
+;
+CREATE TABLE GruposCupon ( 
+	id_grupo varchar(30) primary key,
+	localidad varchar(30),
+	proveedor varchar(30),
+	precio_ficticio float,
+	fecha_publicacion datetime,
+	stock bigint,
+	limite_por_usuario int,
+	precio_real float,
+	fecha_vencimiento_canje datetime,
+	estado varchar(20),
+	fecha_vencimiento_oferta datetime,
+	descripcion varchar(250)
+)
+;
+
+CREATE TABLE Cupones ( 
+	id_cupon bigint identity(1,1) primary key,
+	cliente varchar(30),
+	id_grupo varchar(30) references GruposCupon(id_grupo),
+	fecha_compra datetime,
+	estado varchar(20),
+	fecha_canje datetime
+)
+;
+
+CREATE TABLE Devoluciones ( 
+	id_cupon bigint primary key references Cupones(id_cupon),
+	fecha_devolucion datetime,
+	motivo varchar(250)
 )
 ;
 
@@ -84,11 +122,6 @@ CREATE TABLE Facturas (
 )
 ;
 
-CREATE TABLE Funcion_por_rol ( 
-	id_funcionalidad int NOT NULL,
-	nombre_rol varchar(20)
-)
-;
 
 CREATE TABLE Funcionalidades ( 
 	id_funcionalidad int identity(1,1) primary key,
@@ -96,40 +129,21 @@ CREATE TABLE Funcionalidades (
 )
 ;
 
+CREATE TABLE Funcion_por_rol ( 
+	id_funcionalidad int NOT NULL references Funcionalidades(id_funcionalidad),
+	nombre_rol varchar(20)
+)
+;
+
 CREATE TABLE Giftcards ( 
 	id_giftcard bigint identity(1,1) primary key,
-	cliente_origen varchar(30),
-	cliente_destino varchar(30),
+	cliente_origen varchar(30) references Clientes(username),
+	cliente_destino varchar(30) references Clientes(username),
 	fecha datetime,
 	monto bigint
 )
 ;
 
-CREATE TABLE GruposCupon ( 
-	id_grupo varchar(30) primary key,
-	localidad varchar(30),
-	proveedor varchar(30),
-	precio_ficticio float,
-	fecha_publicacion datetime,
-	stock bigint,
-	limite_por_usuario int,
-	precio_real float,
-	fecha_vencimiento_canje datetime,
-	estado varchar(20),
-	fecha_vencimiento_oferta datetime,
-	descripcion varchar(250)
-)
-;
-
-CREATE TABLE Localidades(
-	id_localidad int identity(1,1) primary key,
-	localidad varchar(30)
-)
-
-CREATE TABLE Localidad_por_usuario(
-	id_localidad int not null,
-	username varchar(30)
-)
 CREATE TABLE Logins ( 
 	username varchar(30) NOT NULL,
 	passwd varchar(30),
@@ -144,8 +158,8 @@ CREATE TABLE Proveedores (
 	razon_social varchar(30),
 	mail varchar(30),
 	telefono bigint unique,
-	id_dir int,
-	ciudad varchar(30),
+	id_dir int references Direcciones(id_dir),
+	ciudad int references Localidades(id_localidad),
 	rubro varchar(30),
 	nombre_contacto varchar(30)
 )
@@ -157,22 +171,8 @@ CREATE TABLE Roles (
 )
 ;
 
-CREATE TABLE Tarjetas ( 
-	id_tarjeta bigint identity(1,1) primary key,
-	numero bigint,
-	codigo_validacion bigint
-)
-;
-
-CREATE TABLE Tipos_pago ( 
-	id_pago int identity(1,1) primary key,
-	descripcion varchar(30)
-)
-
-
 GO 
 
---drop procedure MigracionManopla
 
 CREATE PROCEDURE MigracionManopla
 AS
@@ -349,9 +349,10 @@ CREATE VIEW LoginView
 AS
 SELECT username,passwd,rol,estado,intentos_fallidos FROM Logins
 
---PROCEDURES
+
 GO
 
+--FUNCIONES Y PROCEDIMIKENTOS
 
 CREATE FUNCTION idCiudad(@ciudad varchar(30))
 RETURNS int
@@ -373,16 +374,6 @@ BEGIN
 
 	/*MIGRACIONES MASIVAS*/
 	
-	--CLIENTES
-	INSERT INTO Clientes 
-		select distinct convert(varchar(30),Cli_Dni), Cli_Nombre, Cli_Apellido, Cli_Mail, Cli_Telefono, null, Cli_Fecha_Nac, Cli_Dni,0 
-		from Maestra where Cli_Dni is not null
-	
-	--PROVEEDORES
-	INSERT INTO Proveedores
-		select distinct convert(varchar(30),Provee_CUIT), Provee_CUIT, Provee_RS, null , Provee_Telefono, null, Provee_Ciudad, Provee_Rubro, null
-		from Maestra where Provee_CUIT is not null
-	
 	--LOCALIDADES
 	INSERT INTO Localidades (localidad)
 		SELECT DISTINCT Cli_Ciudad 
@@ -394,6 +385,28 @@ BEGIN
 		SELECT DISTINCT  dbo.idCiudad(Cli_Ciudad),Cli_Dni
 		FROM Maestra
 		WHERE Cli_Dni is not null
+	
+	--CLIENTES
+	INSERT INTO Clientes 
+		select distinct convert(varchar(30),Cli_Dni), Cli_Nombre, Cli_Apellido, Cli_Mail, Cli_Telefono, null, Cli_Fecha_Nac, dbo.idCiudad(Cli_Ciudad), Cli_Dni,0 
+		from Maestra where Cli_Dni is not null
+	
+	--PROVEEDORES
+	INSERT INTO Proveedores
+		select distinct convert(varchar(30),Provee_CUIT), Provee_CUIT, Provee_RS, null , Provee_Telefono, null, dbo.idCiudad(Provee_Ciudad), Provee_Rubro, null
+		from Maestra where Provee_CUIT is not null
+
+	--LOGINS
+	INSERT INTO Logins
+		SELECT username, username,'Cliente','Habilitado',0
+		FROM Clientes
+	INSERT INTO Logins
+		SELECT username, username,'Proveedor','Habilitado',0
+		FROM Proveedores		
+	INSERT INTO Logins
+		SELECT username, username,'Administrador','Habilitado',0
+		FROM Administradores		
+	
 	
 	--CARGAS
 		INSERT	INTO Cargas (username, monto, tipo, tarjeta, fecha) 
@@ -409,7 +422,7 @@ BEGIN
 	--GRUPOS
 		
 		INSERT	INTO GruposCupon (id_grupo, localidad, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
-				SELECT distinct Groupon_Codigo, Provee_Ciudad, Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, Groupon_Fecha_Venc, 'Publicado', null, Groupon_Descripcion
+				SELECT distinct Groupon_Codigo, dbo.idCiudad(Provee_Ciudad), Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, Groupon_Fecha_Venc, 'Publicado', null, Groupon_Descripcion
 				FROM Maestra 
 				WHERE Groupon_Codigo is not null
 	
@@ -471,6 +484,9 @@ AS
 		UPDATE Clientes
 		set saldo = saldo + 10
 	END
+
+GO
+
 /*
 CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
 AS
@@ -569,3 +585,12 @@ AS
 			end
 	END
 */	
+
+GO
+
+begin tran
+exec MigracionManopla
+exec MigrarDatosSinCursor
+commit tran
+
+
