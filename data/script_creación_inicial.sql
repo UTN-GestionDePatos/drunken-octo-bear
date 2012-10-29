@@ -333,6 +333,31 @@ AS
 	END
 GO
 
+CREATE TRIGGER actualizarStockCupones
+ON Cupones
+AFTER INSERT
+AS
+BEGIN
+	UPDATE GruposCupon
+	SET stock = stock - (select count(*) from inserted)
+	FROM inserted i join GruposCupon gc on i.id_grupo = gc.id_grupo
+	
+END
+
+GO
+
+CREATE TRIGGER actualizarStockDevoluciones
+ON Devoluciones
+AFTER INSERT
+AS
+BEGIN
+	UPDATE GruposCupon
+	SET stock = stock + (select count(*) from inserted)
+	FROM inserted i join Cupones c on i.id_cupon = c.id_cupon join GruposCupon gc on c.id_grupo = gc.id_grupo
+END
+
+GO
+
 CREATE VIEW LoginView
 AS
 SELECT username,passwd,rol,estado,intentos_fallidos FROM Logins
