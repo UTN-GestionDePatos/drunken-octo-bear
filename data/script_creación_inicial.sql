@@ -9,7 +9,7 @@ GO
 
 /*
 	Creación de funciones auxiliares.
-*/
+
 CREATE ASSEMBLY Crypt FROM 'Crypt.dll'
 GO
 
@@ -17,7 +17,7 @@ CREATE FUNCTION SHA256(@text nchar(50))
 RETURNS VARBINARY(256) AS 
 EXTERNAL NAME Crypt.Crypt.Sha256
 GO
-
+*/
 /*
 	Tablas
 */
@@ -30,13 +30,12 @@ CREATE TABLE Administradores (
 	telefono bigint unique
 )
 
-
 CREATE TABLE Direcciones ( 
 	id_dir int identity(1,1) primary key,
 	calle varchar(30),
+	altura int,
 	piso int,
-	departamento char(10),
-	localidad varchar(30),
+	departamento char,
 	codigo_postal int
 )
 
@@ -409,6 +408,23 @@ END
 
 GO
 
+CREATE PROCEDURE AsignarDireccion
+AS
+BEGIN
+	declare @dir varchar(100), @cliente varchar(30)
+	declare direcciones cursor for select distinct convert(varchar(30),Cli_dni),Cli_Direccion from Maestra
+	open direcciones
+	fetch direcciones into @dir, @cliente
+	while @@FETCH_STATUS = 0
+	begin
+		insert into Direcciones (calle,altura)
+		select reverse(substring(reverse(@dir),charindex(' ',(reverse(@dir)),0),LEN(@dir))),reverse(substring(reverse(@dir),0,charindex(' ',(reverse(@dir)))))
+		update Clientes set id_dir = SCOPE_IDENTITY() where username = @cliente
+		fetch direcciones into @dir, @cliente
+	end
+END
+
+GO
 
 CREATE PROCEDURE MigrarDatosSinCursor
 AS
@@ -440,7 +456,7 @@ BEGIN
 
 	--LOGINS
 	INSERT INTO Logins
-		SELECT username, dbo.SHA256(username),'Cliente','Habilitado',0
+		SELECT username, username,'Cliente','Habilitado',0
 		FROM Clientes
 	INSERT INTO Logins
 		SELECT username, dbo.SHA256(username),'Proveedor','Habilitado',0
@@ -633,4 +649,6 @@ GO
 begin tran
 exec MigracionManopla
 exec MigrarDatosSinCursor
+exec asignarSaldoInicial
+exec AsignarDireccion
 commit tran
