@@ -16,7 +16,7 @@ GO
 */
 DECLARE @path nvarchar(500)
 
-SET @path = N'$(varPath)' + 'Crypt.dll'
+SET @path = N'$(varPath)' + 'sql\Crypt.dll'
 
 
 CREATE ASSEMBLY Crypt FROM @path

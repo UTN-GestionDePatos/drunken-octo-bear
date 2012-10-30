@@ -1,2 +1,2 @@
-sqlcmd -S localhost\SQLSERVER2008 -U gd -P gd2012 -i sha256.sql -a 32767 -o resultado_output.txt -v varPath="%~dp0"
+sqlcmd -S localhost\SQLSERVER2008 -U gd -P gd2012 -i sql\script_revertir_migracion.sql -a 32767 -o resultado_reversión.txt
 PAUSE
