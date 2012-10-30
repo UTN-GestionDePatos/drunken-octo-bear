@@ -1,5 +1,3 @@
-
-
 /*
 	Configuración del Motor.
 */
@@ -8,7 +6,21 @@ GO
 RECONFIGURE
 GO
 
-/*TABlAS*/
+
+/*
+	Creación de funciones auxiliares.
+*/
+CREATE ASSEMBLY Crypt FROM 'Crypt.dll'
+GO
+
+CREATE FUNCTION SHA256(@text nchar(50))
+RETURNS VARBINARY(256) AS 
+EXTERNAL NAME Crypt.Crypt.Sha256
+GO
+
+/*
+	Tablas
+*/
 
 CREATE TABLE Administradores ( 
 	username varchar(30) primary key,
@@ -115,7 +127,7 @@ CREATE TABLE Devoluciones (
 	motivo varchar(250)
 )
 
-CREATE TABLE Estados ( 
+CREATE TABLE EstadosUsuarios ( 
 	id_estado int identity(1,1) primary key,
 	nombre_estado varchar(20)
 )
@@ -147,16 +159,16 @@ CREATE TABLE Giftcards (
 )
 
 CREATE TABLE Logins ( 
-	username varchar(30) NOT NULL,
+	username varchar(30) primary key,
 	passwd varchar(4000),
 	rol varchar(20),
-	estado varchar(20),
+	estado int references EstadosUsuario(id_estado),
 	intentos_fallidos int
 )
 
 CREATE TABLE Roles ( 
-	nombre varchar(20) unique NOT NULL,
-	estado varchar(20)
+	nombre varchar(20) primary key,
+	estado int references EstadosUsuario(id_estado)
 )
 
 GO 
@@ -167,6 +179,10 @@ AS
 BEGIN
 
 /*PARTE DE LA MIGRACION A MANOPLA*/
+--Estados
+
+insert into EstadosUsuario (nombre_estado) values('Habilitado')
+insert into EstadosUsuario (nombre_estado) values('Deshabilitado')
 
 --Tipo de pago
 
@@ -197,9 +213,9 @@ insert into Funcionalidades (descripcion) values('Listado estadistico')
 
 --Roles
 
-insert into Roles values ('Administrador','Habilitado')
-insert into Roles values ('Cliente','Habilitado')
-insert into Roles values ('Proveedor','Habilitado')
+insert into Roles values ('Administrador',dbo.idEstadoUsuario('Habilitado'))
+insert into Roles values ('Cliente',dbo.idEstadoUsuario('Habilitado'))
+insert into Roles values ('Proveedor',dbo.idEstadoUsuario('Habilitado'))
 
 --Funcion por rol
 insert into Funcion_por_rol values (1,'Administrador')
@@ -380,6 +396,19 @@ END
 
 GO
 
+CREATE FUNCTION idEstadoUsuario(@estado varchar(30))
+RETURNS int
+AS
+BEGIN
+	DECLARE @id int
+	SELECT @id = id_estado
+	FROM Estados
+	WHERE id_estado = @estado
+	RETURN @id
+END
+
+GO
+
 
 CREATE PROCEDURE MigrarDatosSinCursor
 AS
@@ -411,13 +440,13 @@ BEGIN
 
 	--LOGINS
 	INSERT INTO Logins
-		SELECT username, HASHBYTES('SHA',username),'Cliente','Habilitado',0
+		SELECT username, dbo.SHA256(username),'Cliente','Habilitado',0
 		FROM Clientes
 	INSERT INTO Logins
-		SELECT username, HASHBYTES('SHA',username),'Proveedor','Habilitado',0
+		SELECT username, dbo.SHA256(username),'Proveedor','Habilitado',0
 		FROM Proveedores		
 	INSERT INTO Logins
-		SELECT username, HASHBYTES('SHA',username),'Administrador','Habilitado',0
+		SELECT username, dbo.SHA256(username),'Administrador','Habilitado',0
 		FROM Administradores		
 	
 	
