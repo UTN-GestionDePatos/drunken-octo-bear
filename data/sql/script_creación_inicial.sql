@@ -13,11 +13,13 @@ GO
 CREATE ASSEMBLY Crypt FROM 'Crypt.dll'
 GO
 
+
 CREATE FUNCTION SHA256(@text nchar(50))
 RETURNS VARBINARY(256) AS 
 EXTERNAL NAME Crypt.Crypt.Sha256
 GO
 */
+
 /*
 	Tablas
 */
@@ -32,7 +34,7 @@ CREATE TABLE Administradores (
 
 CREATE TABLE Direcciones ( 
 	id_dir int identity(1,1) primary key,
-	calle varchar(30),
+	calle varchar(50),
 	altura int,
 	piso int,
 	departamento char,
@@ -161,13 +163,13 @@ CREATE TABLE Logins (
 	username varchar(30) primary key,
 	passwd varchar(4000),
 	rol varchar(20),
-	estado int references EstadosUsuario(id_estado),
+	estado int references EstadosUsuarios(id_estado),
 	intentos_fallidos int
 )
 
 CREATE TABLE Roles ( 
 	nombre varchar(20) primary key,
-	estado int references EstadosUsuario(id_estado)
+	estado int references EstadosUsuarios(id_estado)
 )
 
 GO 
@@ -180,8 +182,8 @@ BEGIN
 /*PARTE DE LA MIGRACION A MANOPLA*/
 --Estados
 
-insert into EstadosUsuario (nombre_estado) values('Habilitado')
-insert into EstadosUsuario (nombre_estado) values('Deshabilitado')
+insert into EstadosUsuarios (nombre_estado) values('Habilitado')
+insert into EstadosUsuarios (nombre_estado) values('Deshabilitado')
 
 --Tipo de pago
 
@@ -401,8 +403,8 @@ AS
 BEGIN
 	DECLARE @id int
 	SELECT @id = id_estado
-	FROM Estados
-	WHERE id_estado = @estado
+	FROM EstadosUsuarios
+	WHERE  nombre_estado = @estado
 	RETURN @id
 END
 
@@ -411,8 +413,8 @@ GO
 CREATE PROCEDURE AsignarDireccion
 AS
 BEGIN
-	declare @dir varchar(100), @cliente varchar(30)
-	declare direcciones cursor for select distinct convert(varchar(30),Cli_dni),Cli_Direccion from Maestra
+	declare @dir varchar(50), @cliente varchar(30)
+	declare direcciones cursor for select distinct Cli_Direccion,convert(varchar(30),Cli_dni) from Maestra
 	open direcciones
 	fetch direcciones into @dir, @cliente
 	while @@FETCH_STATUS = 0
@@ -422,6 +424,8 @@ BEGIN
 		update Clientes set id_dir = SCOPE_IDENTITY() where username = @cliente
 		fetch direcciones into @dir, @cliente
 	end
+	close direcciones
+	deallocate direcciones
 END
 
 GO
@@ -456,13 +460,13 @@ BEGIN
 
 	--LOGINS
 	INSERT INTO Logins
-		SELECT username, username,'Cliente','Habilitado',0
+		SELECT username, username,'Cliente',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Clientes
 	INSERT INTO Logins
-		SELECT username, dbo.SHA256(username),'Proveedor','Habilitado',0
+		SELECT username, username,'Proveedor',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Proveedores		
 	INSERT INTO Logins
-		SELECT username, dbo.SHA256(username),'Administrador','Habilitado',0
+		SELECT username, username,'Administrador',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Administradores		
 	
 	
