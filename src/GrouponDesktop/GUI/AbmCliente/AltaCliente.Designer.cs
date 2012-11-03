@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.Direccion = new System.Windows.Forms.GroupBox();
+            this.Localidad = new System.Windows.Forms.ComboBox();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
             this.Departamento = new System.Windows.Forms.TextBox();
             this.Piso = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.Localidad = new System.Windows.Forms.ComboBox();
             this.Limpiar = new System.Windows.Forms.Button();
             this.Guardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -215,6 +215,14 @@
             this.Direccion.TabStop = false;
             this.Direccion.Text = "Direccion";
             // 
+            // Localidad
+            // 
+            this.Localidad.FormattingEnabled = true;
+            this.Localidad.Location = new System.Drawing.Point(117, 123);
+            this.Localidad.Name = "Localidad";
+            this.Localidad.Size = new System.Drawing.Size(209, 21);
+            this.Localidad.TabIndex = 29;
+            // 
             // CodigoPostal
             // 
             this.CodigoPostal.Location = new System.Drawing.Point(117, 154);
@@ -287,14 +295,6 @@
             this.label11.Size = new System.Drawing.Size(27, 13);
             this.label11.TabIndex = 20;
             this.label11.Text = "Piso";
-            // 
-            // Localidad
-            // 
-            this.Localidad.FormattingEnabled = true;
-            this.Localidad.Location = new System.Drawing.Point(117, 123);
-            this.Localidad.Name = "Localidad";
-            this.Localidad.Size = new System.Drawing.Size(209, 21);
-            this.Localidad.TabIndex = 29;
             // 
             // Limpiar
             // 

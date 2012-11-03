@@ -35,12 +35,6 @@ namespace GrouponDesktop.AbmCliente
         private void Guardar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        
-     
-
-
-      
+        }     
     }
 }

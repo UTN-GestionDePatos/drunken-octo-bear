@@ -38,5 +38,10 @@ namespace GrouponDesktop.Core
         {
             return appContext[t];
         }
+
+        public static void setObject(Type key, Object t)
+        {
+            appContext[key] = t;
+        }
     }
 }

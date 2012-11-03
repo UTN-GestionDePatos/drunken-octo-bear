@@ -1,12 +1,12 @@
 /*
 	Configuración del Motor.
 */
-sp_configure 'show advanced options', 1
+EXEC sp_configure 'show advanced options', 1
 GO
 RECONFIGURE
-sp_configure 'clr enabled', 1
+EXEC sp_configure 'clr enabled', 1
 GO
-sp_configure 'xp_cmdshell', 1
+EXEC sp_configure 'xp_cmdshell', 1
 GO
 RECONFIGURE
 GO
@@ -26,5 +26,3 @@ CREATE FUNCTION SHA256(@text nchar(50))
 RETURNS VARBINARY(256) AS 
 EXTERNAL NAME Crypt.Crypt.Sha256
 GO
-
-PRINT dbo.SHA256('holis')

@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AppContext.cs" />
+    <Compile Include="Core\Session.cs" />
+    <Compile Include="Core\SQLResponse.cs" />
     <Compile Include="Core\DBManager.cs" />
     <Compile Include="Core\Properties.cs" />
     <Compile Include="GD2C2012DataSet.cs">
@@ -183,6 +185,12 @@
     <Compile Include="GUI\HistorialCupones\HistorialCupones.Designer.cs">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\PedirDevolucion\PedirDevolucion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,10 +209,10 @@
     <Compile Include="GUI\RegistroUsuario\RegistroUsuario.Designer.cs">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="GUI\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="GUI\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="MainClass.cs" />
@@ -260,13 +268,19 @@
     <EmbeddedResource Include="GUI\HistorialCupones\HistorialCupones.resx">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\PedirDevolucion\PedirDevolucion.resx">
       <DependentUpon>PedirDevolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\RegistroConsumoCupon\RegistroConsumoCupon.resx">
       <DependentUpon>RegistroConsumoCupon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="GUI\RegistroUsuario\RegistroUsuario.resx">
+      <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
