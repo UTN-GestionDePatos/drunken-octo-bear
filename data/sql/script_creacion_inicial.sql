@@ -64,7 +64,8 @@ CREATE TABLE Tipos_pago (
 CREATE TABLE Tarjetas ( 
 	id_tarjeta bigint identity(1,1) primary key,
 	numero bigint,
-	codigo_validacion bigint
+	codigo_validacion bigint,
+	username varchar(30) references Clientes(username)
 )
 
 CREATE TABLE Cargas ( 
