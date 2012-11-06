@@ -1,14 +1,40 @@
 --CREAR CLIENTE– agregar en la abm que agregue username y password-
-CREATE PROCEDURE CrearCliente(@user,@pass,@nombre,@mail,@tel,@fecha,@dni,@calle,@altura,@piso,@dpto,@localidad,@cp) 
+CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(4000),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
+@tel bigint unique, @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
+@localidad varchar(30),@cp int,@ret int output) 
+/*
+	0: ok
+	1: el cliente ya existe
+	2: hay clientes gemelos
+	
+*/
 AS
 BEGIN
-	If (select 1 from Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
+	if (select 1 from Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni)is NULL
+	BEGIN
+	
+		If (select 1 from Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
 		BEGIN
 			insert into Logins values(@user,dbo.SHA256(@pass),'Cliente', dbo.idEstado('Habilitado') ,0)
 			insert into Direcciones(calle,altura,piso,departamento,codigo_postal ) values(@calle,@altura,@piso,@dpto,@cp)
 			insert into Clientes values (@user,@nombre,@apellido,@mail,@tel,SCOPE_IDENTITY(),@fecha,SCOPE_IDENTITY(),@dni,10)
 		END
+		ELSE
+		BEGIN
+		ret=2
+		END
+	
+	END
+	
+	ELSE
+	
+	BEGIN
+	ret = 1
+	END
+		
 END
+
+
 
 --MODIFICAR CLIENTE
 CREATE PROCEDURE ModificarCliente(@user,@nombre,@apellido,@mail,@tel,@fecha,@dni,@calle,@altura,@piso,@dpto,@localidad,@cp)
