@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="GD2C2012DataSet" targetNamespace="http://tempuri.org/GD2C2012DataSet.xsd" xmlns:mstns="http://tempuri.org/GD2C2012DataSet.xsd" xmlns="http://tempuri.org/GD2C2012DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="GD2C2012DataSet1" targetNamespace="http://tempuri.org/GD2C2012DataSet1.xsd" xmlns:mstns="http://tempuri.org/GD2C2012DataSet1.xsd" xmlns="http://tempuri.org/GD2C2012DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -118,7 +118,7 @@ SELECT username, nombre, apellido, mail, telefono, id_dir, fecha_nacimiento, ciu
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="GD2C2012DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="GD2C2012DataSet" msprop:Generator_UserDSName="GD2C2012DataSet" msprop:EnableTableAdapterManager="True">
+  <xs:element name="GD2C2012DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="GD2C2012DataSet1" msprop:Generator_UserDSName="GD2C2012DataSet1" msprop:EnableTableAdapterManager="True">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Clientes" msprop:Generator_UserTableName="Clientes" msprop:Generator_RowDeletedName="ClientesRowDeleted" msprop:Generator_TableClassName="ClientesDataTable" msprop:Generator_RowChangedName="ClientesRowChanged" msprop:Generator_RowClassName="ClientesRow" msprop:Generator_RowChangingName="ClientesRowChanging" msprop:Generator_RowEvArgName="ClientesRowChangeEvent" msprop:Generator_RowEvHandlerName="ClientesRowChangeEventHandler" msprop:Generator_TablePropName="Clientes" msprop:Generator_TableVarName="tableClientes" msprop:Generator_RowDeletingName="ClientesRowDeleting">

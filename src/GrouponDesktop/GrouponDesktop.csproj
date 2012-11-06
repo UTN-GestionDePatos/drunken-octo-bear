@@ -83,6 +83,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSetProveedor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetProveedor.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AbmCliente\ABMCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +194,12 @@
     <Compile Include="GUI\ComprarGiftCard\ComprarGirftcard.Designer.cs">
       <DependentUpon>ComprarGirftcard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FacturarProveedor\FacturacionProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FacturarProveedor\FacturacionProveedor.Designer.cs">
+      <DependentUpon>FacturacionProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\HistorialCupones\HistorialCupones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +292,9 @@
     <EmbeddedResource Include="GUI\ComprarGiftCard\ComprarGirftcard.resx">
       <DependentUpon>ComprarGirftcard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FacturarProveedor\FacturacionProveedor.resx">
+      <DependentUpon>FacturacionProveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\HistorialCupones\HistorialCupones.resx">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +338,39 @@
     <None Include="GD2C2012DataSet.xss">
       <DependentUpon>GD2C2012DataSet.xsd</DependentUpon>
     </None>
+    <None Include="GD2C2012DataSet1.xsc">
+      <DependentUpon>GD2C2012DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet1.xss">
+      <DependentUpon>GD2C2012DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet2.xsc">
+      <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet2.xss">
+      <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetProveedor.xsc">
+      <DependentUpon>GD2C2012DataSetProveedor.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetProveedor.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetProveedor.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetProveedor.xss">
+      <DependentUpon>GD2C2012DataSetProveedor.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -345,7 +402,6 @@
     <Content Include="Data\Config.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\FacturarProveedor\" />
     <Folder Include="GUI\ListadoEstadistico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,6 +16,14 @@ namespace GrouponDesktop.GUI.AbmCliente
             InitializeComponent();
         }
 
+        private void ListadoCliente_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet1.Clientes' Puede moverla o quitarla según sea necesario.
+            this.clientesTableAdapter.Fill(this.gD2C2012DataSet1.Clientes);
+
+        }
+
+
      
 
       
