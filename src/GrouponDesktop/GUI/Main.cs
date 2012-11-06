@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.Core;
+using GrouponDesktop.GUI;
+using GrouponDesktop.GUI.AbmRol;
+using GrouponDesktop.AbmCliente;
+using GrouponDesktop.AbmProveedor;
 
 namespace GrouponDesktop.GUI
 {
@@ -37,6 +41,44 @@ namespace GrouponDesktop.GUI
         {
             this.Dispose();
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.Write((String)funcionalidades.SelectedItem);
+
+            switch (((String)funcionalidades.SelectedItem).Substring(0, 2))
+            {
+                case "1:": new ABMRol().Show();
+                    break;
+                case "2:": new RegistroUsuario.RegistroUsuario().Show();
+                    break;
+                case "3:": new ABMCliente().Show();
+                    break;
+                case "4:": new ABMProveedor().Show();
+                    break;
+                case "5:": new CargaCredito.CargaCredito().Show();
+                    break;
+                case "6:": new ComprarGiftCard.ComprarGirftcard().Show();
+                    break;
+                case "7:": new ComprarCupon.CompraCupon().Show();
+                    break;
+                case "8:": new PedirDevolucion.PedirDevolucion().Show();
+                    break;
+                case "9:": new HistorialCupones.HistorialCupones().Show();
+                    break;
+                case "10": new ArmarCupon.ArmarCupon().Show();
+                    break;
+                case "11": new RegistroConsumoCupon.RegistroConsumoCupon().Show();
+                    break;
+                case "12": new RegistroUsuario.RegistroUsuario().Show();
+                    break;
+                case "13": new RegistroUsuario.RegistroUsuario().Show();
+                    break;
+                case "14": new RegistroUsuario.RegistroUsuario().Show();
+                    break;
+                
+            }
         }
     }
 }

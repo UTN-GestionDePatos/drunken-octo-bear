@@ -7,15 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.GUI.AbmRol
+namespace GrouponDesktop.GUI.PublicarCupon
 {
-    public partial class ABMRol : Form
+    public partial class PublicarCupon : Form
     {
-        public ABMRol()
+        public PublicarCupon()
         {
             InitializeComponent();
         }
-
-    
     }
 }

@@ -56,10 +56,5 @@ namespace GrouponDesktop
             RegistroUsuario r = new RegistroUsuario();
             r.Show();
         }
-
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
     }
 }
