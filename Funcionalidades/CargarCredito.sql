@@ -33,9 +33,6 @@ BEGIN
 		begin
 			insert into Cargas values(@username,@monto,@tipo,null,@fecha)
 		end
-		
-		set @ret = 0
-		return;
 	END
 	else
 		begin
