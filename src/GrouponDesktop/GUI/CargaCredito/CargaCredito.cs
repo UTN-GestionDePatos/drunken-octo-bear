@@ -20,7 +20,7 @@ namespace GrouponDesktop.GUI.CargaCredito
 
         private void TipoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.TipoPago.SelectedItem.Equals("Tarjeta de Crédito") || this.TipoPago.SelectedItem.Equals("Tarjeta de Débito"))
+            if (this.TipoPago.SelectedItem.Equals("Crédito") || this.TipoPago.SelectedItem.Equals("Débito"))
             {
                 this.NumeroTarjeta.Enabled = true;
             }
@@ -46,7 +46,7 @@ namespace GrouponDesktop.GUI.CargaCredito
 
             SqlParameter tipoPago = new SqlParameter("@tipoPago", SqlDbType.VarChar);
             tipoPago.Direction = ParameterDirection.Input;
-            tipoPago.Value = TipoPago.Text;
+            tipoPago.Value = TipoPago.SelectedItem.ToString();
 
             SqlParameter monto = new SqlParameter("@monto", SqlDbType.BigInt);
             monto.Direction = ParameterDirection.Input;
@@ -54,8 +54,14 @@ namespace GrouponDesktop.GUI.CargaCredito
 
             SqlParameter tarjeta = new SqlParameter("@numeroTarjeta", SqlDbType.BigInt);
             tarjeta.Direction = ParameterDirection.Input;
-            tarjeta.Value = 0;
-
+            if (!this.NumeroTarjeta.Enabled)
+            {
+                tarjeta.Value = 0;
+            }
+            else {
+                tarjeta.Value = Int64.Parse(this.NumeroTarjeta.Text);
+            }
+            
             query.Parameters.Add(username);
             query.Parameters.Add(fecha);
             query.Parameters.Add(tipoPago);
@@ -67,6 +73,16 @@ namespace GrouponDesktop.GUI.CargaCredito
             query.Connection = db.getConnection();
             query.ExecuteNonQuery();
             Console.Write(query.Parameters["@ret"].Value);
+
+            switch (retval.Value.ToString()) {
+                case "0": MessageBox.Show("Carga correcta");
+                    break;
+                case "1" : MessageBox.Show("Monto menor a $15");
+                    break;
+                case "2": MessageBox.Show("Tarjeta incorrecta");
+                    break;
+            }
+
         }
 
        
