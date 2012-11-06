@@ -35,23 +35,39 @@ BEGIN
 END
 
 
-
 --MODIFICAR CLIENTE
-CREATE PROCEDURE ModificarCliente(@user,@nombre,@apellido,@mail,@tel,@fecha,@dni,@calle,@altura,@piso,@dpto,@localidad,@cp)
+CREATE PROCEDURE ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30),@mail varchar(30),
+@tel bigint unique, @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
+@localidad varchar(30),@cp int,@ret int output)
+/*
+0:salio ok
+1:el cliente a modificar no existe
+*/
 AS
 BEGIN
-	Update Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,fecha_nacimiento=@fecha,dni=@dni, localidad= dbo.idLocalidad(@localidad) where username=@user  
-	Update Direcciones set d.calle=@calle, d.altura=@altura, d.piso=@piso, d.departamento=@dpto, d.codigo_postal=@cp 
-						from Direcciones d join Clientes c on d.id_direccion = c.id_direccion AND c.username = @user
-	Update Localidades set localidad=@localidad --??
-	IF (@estado='Habilitado') 
+	If exists (select * from Logins where username = @user)
 	BEGIN
-	Update Logins set estado= dbo.idEstado('Habilitado') where username =@username
+		Update Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,fecha_nacimiento=@fecha,dni=@dni, localidad= dbo.idLocalidad(@localidad) where username=@user  
+		Update Direcciones set d.calle=@calle, d.altura=@altura, d.piso=@piso, d.departamento=@dpto, d.codigo_postal=@cp 
+						from Direcciones d join Clientes c on d.id_direccion = c.id_direccion AND c.username = @user
+		Update Localidades set localidad=@localidad --??
+		IF (@estado='Habilitado') 
+		BEGIN
+			Update Logins set estado= dbo.idEstado('Habilitado') where username =@username
+		END
+		@ret=0
+	END
+	ELSE
+	BEGIN
+		@ret=1
 	END
 END
 
 --ELIMINAR CLIENTE
-CREATE PROCEDURE EliminarCliente( @user)
+CREATE PROCEDURE EliminarCliente(@user varchar(30))
 BEGIN
-	Update Logins set estado= dbo.idEstado('Deshabilitado') where username =@user
+	If exists (select * from Logins where username = @user)
+	BEGIN
+		Update Logins set estado= dbo.idEstado('Deshabilitado') where username =@user
+	END
 END
