@@ -94,7 +94,7 @@ CREATE TABLE GruposCupon (
 
 CREATE TABLE Cupones ( 
 	id_cupon bigint identity(1,1) primary key,
-	cliente varchar(30),
+	cliente varchar(30) references Clientes(username),
 	id_grupo varchar(30) references GruposCupon(id_grupo),
 	fecha_compra datetime,
 	estado varchar(20),

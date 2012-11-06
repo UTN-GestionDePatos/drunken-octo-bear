@@ -1,6 +1,8 @@
+
+
 --CREAR CLIENTE– agregar en la abm que agregue username y password-
 CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(4000),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
-@tel bigint unique, @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
+@tel bigint, @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
 @localidad varchar(30),@cp int,@ret int output) 
 /*
 	0: ok
@@ -10,7 +12,7 @@ CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(4000),@nombre varc
 */
 AS
 BEGIN
-	if (select 1 from Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni)is NULL
+	if (select 1 from Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni))is NULL
 	BEGIN
 	
 		If (select 1 from Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
@@ -21,7 +23,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-		ret=2
+		set @ret=2
 		END
 	
 	END
@@ -29,16 +31,17 @@ BEGIN
 	ELSE
 	
 	BEGIN
-	ret = 1
+	set @ret = 1
 	END
 		
 END
 
+go
 
 --MODIFICAR CLIENTE
 CREATE PROCEDURE ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30),@mail varchar(30),
-@tel bigint unique, @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
-@localidad varchar(30),@cp int,@ret int output)
+@tel bigint , @fecha datetime, @dni bigint,@calle varchar(50),@altura int, @piso int ,@dpto char ,
+@localidad varchar(30),@cp int,@ret int output, @estado varchar(20))
 /*
 0:salio ok
 1:el cliente a modificar no existe
@@ -47,24 +50,27 @@ AS
 BEGIN
 	If exists (select * from Logins where username = @user)
 	BEGIN
-		Update Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,fecha_nacimiento=@fecha,dni=@dni, localidad= dbo.idLocalidad(@localidad) where username=@user  
+		Update Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,fecha_nacimiento=@fecha,dni=@dni where username=@user  
 		Update Direcciones set d.calle=@calle, d.altura=@altura, d.piso=@piso, d.departamento=@dpto, d.codigo_postal=@cp 
 						from Direcciones d join Clientes c on d.id_direccion = c.id_direccion AND c.username = @user
 		Update Localidades set localidad=@localidad --??
 		IF (@estado='Habilitado') 
 		BEGIN
-			Update Logins set estado= dbo.idEstado('Habilitado') where username =@username
+			Update Logins set estado= dbo.idEstado('Habilitado') where username =@user
 		END
-		@ret=0
+		set @ret=0
 	END
 	ELSE
 	BEGIN
-		@ret=1
+		 set @ret=1
 	END
 END
 
+go
+
 --ELIMINAR CLIENTE
 CREATE PROCEDURE EliminarCliente(@user varchar(30))
+AS
 BEGIN
 	If exists (select * from Logins where username = @user)
 	BEGIN
