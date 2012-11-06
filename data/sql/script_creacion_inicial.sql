@@ -62,9 +62,7 @@ CREATE TABLE Tipos_pago (
 )
 
 CREATE TABLE Tarjetas ( 
-	id_tarjeta bigint identity(1,1) primary key,
-	numero bigint,
-	codigo_validacion bigint,
+	numero bigint primary key,
 	username varchar(30) references Clientes(username)
 )
 
@@ -73,7 +71,7 @@ CREATE TABLE Cargas (
 	username varchar(30) references Clientes(username),
 	monto bigint,
 	tipo int references Tipos_Pago (id_pago),
-	tarjeta bigint references Tarjetas(id_tarjeta),
+	tarjeta bigint references Tarjetas(numero),
 	fecha datetime
 )
 
@@ -127,7 +125,7 @@ CREATE TABLE Funcionalidades (
 
 CREATE TABLE Funcion_por_rol ( 
 	id_funcionalidad int NOT NULL references Funcionalidades(id_funcionalidad),
-	nombre_rol varchar(20)
+	nombre_rol varchar(30)
 )
 
 CREATE TABLE Giftcards ( 
@@ -141,13 +139,13 @@ CREATE TABLE Giftcards (
 CREATE TABLE Logins ( 
 	username varchar(30) primary key,
 	passwd varchar(4000),
-	rol varchar(20),
+	rol varchar(30),
 	estado int references EstadosUsuarios(id_estado),
 	intentos_fallidos int
 )
 
 CREATE TABLE Roles ( 
-	nombre varchar(20) primary key,
+	nombre varchar(30) primary key,
 	estado int references EstadosUsuarios(id_estado)
 )
 
@@ -170,9 +168,11 @@ insert into Tipos_pago (descripcion) values ('Efectivo')
 insert into Tipos_pago (descripcion) values ('Crédito')
 insert into Tipos_pago (descripcion) values ('Débito')
 
---Administrador
+--Administrador (el general y otro más)
 
-insert into Administradores values ('ElAdmin','Saturnino','Velmonte','saturnino.velmonte@gmail.com',45678676)
+insert into Administradores values('admin', 'Eurulio','Korsovich','e.korsovich@gmail.com',45554444)
+insert into Administradores values ('admin123','Saturnino','Velmonte','saturnino.velmonte@gmail.com',45678676)
+insert into Logins values('admin',dbo.SHA256('w23e'),'Administrador General',1,0)
 
 --Funcionalidades
 
@@ -193,11 +193,26 @@ insert into Funcionalidades (descripcion) values('Listado estadistico')
 
 --Roles
 
+insert into Roles values ('Administrador General', dbo.idEstadoUsuario('Habilitado'))
 insert into Roles values ('Administrador',dbo.idEstadoUsuario('Habilitado'))
 insert into Roles values ('Cliente',dbo.idEstadoUsuario('Habilitado'))
 insert into Roles values ('Proveedor',dbo.idEstadoUsuario('Habilitado'))
 
 --Funcion por rol
+insert into Funcion_por_rol values (1,'Administrador General')
+insert into Funcion_por_rol values (2,'Administrador General')
+insert into Funcion_por_rol values (3,'Administrador General')
+insert into Funcion_por_rol values (4,'Administrador General')
+insert into Funcion_por_rol values (5,'Administrador General')
+insert into Funcion_por_rol values (6,'Administrador General')
+insert into Funcion_por_rol values (7,'Administrador General')
+insert into Funcion_por_rol values (8,'Administrador General')
+insert into Funcion_por_rol values (9,'Administrador General')
+insert into Funcion_por_rol values (10,'Administrador General')
+insert into Funcion_por_rol values (11,'Administrador General')
+insert into Funcion_por_rol values (12,'Administrador General')
+insert into Funcion_por_rol values (13,'Administrador General')
+insert into Funcion_por_rol values (14,'Administrador General')
 insert into Funcion_por_rol values (1,'Administrador')
 insert into Funcion_por_rol values (2,'Administrador')
 insert into Funcion_por_rol values (2,'Cliente')
@@ -437,14 +452,16 @@ BEGIN
 
 	--LOGINS
 	INSERT INTO Logins
-		SELECT username, username,'Cliente',dbo.idEstadoUsuario('Habilitado'),0
+		SELECT username,dbo.SHA256(username),'Cliente',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Clientes
 	INSERT INTO Logins
 		SELECT username, dbo.SHA256(username),'Proveedor',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Proveedores		
 	INSERT INTO Logins
 		SELECT username, dbo.SHA256(username),'Administrador',dbo.idEstadoUsuario('Habilitado'),0
-		FROM Administradores		
+		FROM Administradores
+	
+	delete from Logins where username = 'admin' and rol = 'Administrador'		
 	
 	
 	--CARGAS

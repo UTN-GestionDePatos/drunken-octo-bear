@@ -20,6 +20,8 @@ DROP TABLE Cargas
 DROP TABLE Giftcards
 DROP TABLE Devoluciones
 DROP TABLE Cupones
+DROP TABLE Tarjetas
+DROP TABLE Tipos_pago
 DROP TABLE Clientes
 DROP TABLE GruposCupon
 DROP TABLE Proveedores
@@ -31,8 +33,6 @@ DROP TABLE Funcionalidades
 DROP TABLE Localidad_por_usuario
 DROP TABLE Localidades
 DROP TABLE Roles
-DROP TABLE Tarjetas
-DROP TABLE Tipos_pago
 DROP TABLE EstadosUsuarios
 
 DROP VIEW LoginView
@@ -42,3 +42,5 @@ DROP PROCEDURE asignarSaldoInicial
 DROP PROCEDURE MigracionManopla
 DROP PROCEDURE MigrarDatosSinCursor
 DROP PROCEDURE AsignarDireccion
+
+
