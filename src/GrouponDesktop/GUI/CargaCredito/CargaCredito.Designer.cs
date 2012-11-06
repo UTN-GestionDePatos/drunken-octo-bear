@@ -85,9 +85,9 @@
             // 
             this.TipoPago.FormattingEnabled = true;
             this.TipoPago.Items.AddRange(new object[] {
-            "Efectvo",
-            "Tarjeta de Crédito",
-            "Tarjeta de Débito"});
+            "Efectivo",
+            "Crédito",
+            "Débito"});
             this.TipoPago.Location = new System.Drawing.Point(183, 77);
             this.TipoPago.Name = "TipoPago";
             this.TipoPago.Size = new System.Drawing.Size(209, 21);

@@ -67,7 +67,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
 
         private void Listar_Click(object sender, EventArgs e)
         {
-            dataGridCupones.
+            //dataGridCupones.
         }
 
 
