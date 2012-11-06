@@ -22,7 +22,7 @@ SET @path = N'$(varPath)' + 'sql\Crypt.dll'
 CREATE ASSEMBLY dbo.Crypt FROM @path
 GO
 */
-USE [GD2C20012]
+USE [GD2C2012]
 GO
 
 CREATE ASSEMBLY [Crypt]
