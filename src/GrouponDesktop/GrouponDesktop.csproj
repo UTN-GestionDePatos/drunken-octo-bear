@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSet3.Designer.cs" />
     <Compile Include="GD2C2012DataSetProveedor.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -359,6 +360,15 @@
     </None>
     <None Include="GD2C2012DataSet2.xss">
       <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet3.xsc">
+      <DependentUpon>GD2C2012DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet3.xss">
+      <DependentUpon>GD2C2012DataSet3.xsd</DependentUpon>
     </None>
     <None Include="GD2C2012DataSetProveedor.xsc">
       <DependentUpon>GD2C2012DataSetProveedor.xsd</DependentUpon>
