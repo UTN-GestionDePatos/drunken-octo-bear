@@ -5,15 +5,16 @@ GO
 /*
 	Configuración del Motor.
 */
-EXEC sp_configure 'show advanced options', 0
-GO
-RECONFIGURE
 EXEC sp_configure 'clr enabled', 0
 GO
 EXEC sp_configure 'xp_cmdshell', 0
 GO
 RECONFIGURE
 GO
+EXEC sp_configure 'show advanced options', 0
+GO
+
+RECONFIGURE
 
 DROP TABLE Administradores
 DROP TABLE Cargas

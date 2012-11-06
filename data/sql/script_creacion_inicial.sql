@@ -1,3 +1,5 @@
+USE [GD2C2012]
+GO
 /*
 	Tablas
 */
