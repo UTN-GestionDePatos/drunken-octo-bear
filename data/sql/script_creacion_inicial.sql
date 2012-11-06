@@ -460,8 +460,7 @@ BEGIN
 	INSERT INTO Logins
 		SELECT username, dbo.SHA256(username),'Administrador',dbo.idEstadoUsuario('Habilitado'),0
 		FROM Administradores
-	
-	delete from Logins where username = 'admin' and rol = 'Administrador'		
+		WHERE username != 'admin'
 	
 	
 	--CARGAS
