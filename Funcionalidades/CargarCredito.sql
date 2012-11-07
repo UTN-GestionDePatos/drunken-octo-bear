@@ -6,7 +6,13 @@ BEGIN
 	0: ok
 	1: monto < $15
 	2: tarjeta incorrecta
+	3: cliente incorrecto
 */
+	if not exists(select * from Clientes where username = @username)
+	begin
+		set @ret = 3
+		return
+	end
 	IF (@monto>15)
 	BEGIN --ver si me tengo que fijar que exista la tarjeta o agregarla
 		declare @tipo int

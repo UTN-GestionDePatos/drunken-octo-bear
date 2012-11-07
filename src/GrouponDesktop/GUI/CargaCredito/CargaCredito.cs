@@ -31,48 +31,31 @@ namespace GrouponDesktop.GUI.CargaCredito
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
+            if (Username.Text == "" || Monto.Text == "" || TipoPago.SelectedItem == null || (NumeroTarjeta.Text == "" && NumeroTarjeta.Enabled)) {
+                MessageBox.Show("Faltan datos");
+                return;
+            }
+            ParamSet ps = new ParamSet();
+            ps.NombreSP("dbo.CargarCredito");
 
-            SqlCommand query = new SqlCommand("dbo.CargarCredito");
-            query.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter username = new SqlParameter("@username", SqlDbType.VarChar);
-            username.Direction = ParameterDirection.Input;
-            username.Value = Username.Text;
-
-            SqlParameter fecha = new SqlParameter("@fecha", SqlDbType.DateTime);
-            fecha.Direction = ParameterDirection.Input;
-            fecha.Value = Core.Properties.getProperty("fecha");
-
-            SqlParameter tipoPago = new SqlParameter("@tipoPago", SqlDbType.VarChar);
-            tipoPago.Direction = ParameterDirection.Input;
-            tipoPago.Value = TipoPago.SelectedItem.ToString();
-
-            SqlParameter monto = new SqlParameter("@monto", SqlDbType.BigInt);
-            monto.Direction = ParameterDirection.Input;
-            monto.Value = Int64.Parse(Monto.Text);
-
-            SqlParameter tarjeta = new SqlParameter("@numeroTarjeta", SqlDbType.BigInt);
-            tarjeta.Direction = ParameterDirection.Input;
+            Dictionary<String,Object> s = new Dictionary<string,object>();
+            s.Add("@username", Username.Text);
+            s.Add("@fecha", Core.Properties.getProperty("fecha"));
+            s.Add("@tipoPago", TipoPago.SelectedItem.ToString());
+            s.Add("@monto", Int64.Parse(Monto.Text));
+            
             if (!this.NumeroTarjeta.Enabled)
             {
-                tarjeta.Value = 0;
+                s.Add("@numeroTarjeta", 0);
+
             }
             else {
-                tarjeta.Value = Int64.Parse(this.NumeroTarjeta.Text);
+                s.Add("@numeroTarjeta", Int64.Parse(this.NumeroTarjeta.Text));
             }
-            
-            query.Parameters.Add(username);
-            query.Parameters.Add(fecha);
-            query.Parameters.Add(tipoPago);
-            query.Parameters.Add(monto);
-            query.Parameters.Add(tarjeta);
-            SqlParameter retval = query.Parameters.Add("@ret", SqlDbType.Int);
-            retval.Direction = ParameterDirection.Output;
 
-            query.Connection = db.getConnection();
-            query.ExecuteNonQuery();
-            Console.Write(query.Parameters["@ret"].Value);
+            ps.Parametros(s);
+
+            SqlParameter retval = ps.execSP();
 
             switch (retval.Value.ToString()) {
                 case "0": MessageBox.Show("Carga correcta");
@@ -80,6 +63,8 @@ namespace GrouponDesktop.GUI.CargaCredito
                 case "1" : MessageBox.Show("Monto menor a $15");
                     break;
                 case "2": MessageBox.Show("Tarjeta incorrecta");
+                    break;
+                case "3": MessageBox.Show("Cliente incorrecto");
                     break;
             }
 
