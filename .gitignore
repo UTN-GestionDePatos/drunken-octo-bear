@@ -38,6 +38,7 @@ x64/
 *.exe.config
 *.cache
 .builds
+*.exe.manifest
 
 
 # Visual C++ cache files

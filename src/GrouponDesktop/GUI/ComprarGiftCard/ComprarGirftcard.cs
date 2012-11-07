@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GrouponDesktop.Core;
+using System.Data.SqlClient;
 
 namespace GrouponDesktop.GUI.ComprarGiftCard
 {
@@ -15,5 +17,54 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
         {
             InitializeComponent();
         }
+
+        private void Guardar_Click(object sender, EventArgs e)
+        {
+            Session s = (Session)AppContext.getObject(typeof(Session));
+            if (ClienteDestino.Text == "" || monto.SelectedItem == null)
+            {
+                MessageBox.Show("Faltan datos");
+                return;
+            }
+
+            ParamSet ps = new ParamSet();
+            ps.NombreSP("dbo.ComprarGiftcard");
+
+            Dictionary<String, Object> d = new Dictionary<string, object>();
+            d.Add("@clienteOrigen", s.username);
+            d.Add("@fecha", Core.Properties.getProperty("fecha"));
+            d.Add("@clienteDestino", ClienteDestino.Text);
+            d.Add("@monto", Int64.Parse(monto.SelectedItem.ToString()));
+
+            ps.Parametros(d);
+
+            SqlParameter retval = ps.execSP();
+
+            switch (retval.Value.ToString())
+            {
+                case "0": MessageBox.Show("Operación finalizada con éxito");
+                    break;
+                case "1": MessageBox.Show("El cliente destino no puede coincidir con el cliente origen");
+                    break;
+                case "2": MessageBox.Show("El cliente destino no se encuentra habilitado");
+                    break;
+                case "3": MessageBox.Show("Cliente destino incorrecto");
+                    break;
+            }
+        }
+
+        private void ComprarGirftcard_Load(object sender, EventArgs e)
+        {   
+            int min = Int32.Parse(Core.Properties.getProperty("gcmin"));
+            int max = Int32.Parse(Core.Properties.getProperty("gcmax"));
+            for (int i = min; i <= max; i += 5) { //regla de negocio que vaya de a 5 pesos 
+                this.monto.Items.Add(i.ToString());
+            } 
+
+        }
+
+
+
+
     }
 }

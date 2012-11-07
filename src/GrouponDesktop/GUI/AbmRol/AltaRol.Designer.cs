@@ -62,6 +62,7 @@
             this.Guardar.TabIndex = 18;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // Limpiar
             // 
@@ -114,6 +115,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AltaRol";
             this.Text = "Rol - Alta";
+            this.Load += new System.EventHandler(this.AltaRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

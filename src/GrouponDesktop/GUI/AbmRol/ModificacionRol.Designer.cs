@@ -75,10 +75,6 @@
             // ListaFuncionalidades
             // 
             this.ListaFuncionalidades.FormattingEnabled = true;
-            this.ListaFuncionalidades.Items.AddRange(new object[] {
-            "Hola",
-            "Soy",
-            "Groupon"});
             this.ListaFuncionalidades.Location = new System.Drawing.Point(126, 59);
             this.ListaFuncionalidades.Name = "ListaFuncionalidades";
             this.ListaFuncionalidades.Size = new System.Drawing.Size(209, 109);

@@ -5,7 +5,14 @@ BEGIN
 	0: ok
 	1: cliente origen = cliente destino
 	2: cliente destino no habilitado
-*/
+	3: cliente destino no existe
+*/	
+
+	if not exists( select * from Clientes where username = @clienteDestino)
+	begin
+		set @ret = 3
+		return
+	end
 	IF(@clienteOrigen<>@clienteDestino)
 		BEGIN
 			IF (select estado from Logins where username=@clienteDestino) = dbo.idEstado('Habilitado')

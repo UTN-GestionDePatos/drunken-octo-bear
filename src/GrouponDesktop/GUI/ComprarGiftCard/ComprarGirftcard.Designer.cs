@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.Guardar = new System.Windows.Forms.Button();
-            this.Monto = new System.Windows.Forms.TextBox();
             this.ClienteDestino = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.monto = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Guardar
@@ -43,13 +43,7 @@
             this.Guardar.TabIndex = 31;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
-            // 
-            // Monto
-            // 
-            this.Monto.Location = new System.Drawing.Point(132, 49);
-            this.Monto.Name = "Monto";
-            this.Monto.Size = new System.Drawing.Size(209, 20);
-            this.Monto.TabIndex = 30;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // ClienteDestino
             // 
@@ -76,18 +70,27 @@
             this.Nombre.TabIndex = 26;
             this.Nombre.Text = "Cliente Destino:";
             // 
+            // monto
+            // 
+            this.monto.FormattingEnabled = true;
+            this.monto.Location = new System.Drawing.Point(132, 56);
+            this.monto.Name = "monto";
+            this.monto.Size = new System.Drawing.Size(209, 21);
+            this.monto.TabIndex = 32;
+            // 
             // ComprarGirftcard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 140);
+            this.Controls.Add(this.monto);
             this.Controls.Add(this.Guardar);
-            this.Controls.Add(this.Monto);
             this.Controls.Add(this.ClienteDestino);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Nombre);
             this.Name = "ComprarGirftcard";
             this.Text = "ComprarGirftcard";
+            this.Load += new System.EventHandler(this.ComprarGirftcard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,9 +99,9 @@
         #endregion
 
         private System.Windows.Forms.Button Guardar;
-        private System.Windows.Forms.TextBox Monto;
         private System.Windows.Forms.TextBox ClienteDestino;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
+        private System.Windows.Forms.ComboBox monto;
     }
 }

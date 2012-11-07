@@ -42,6 +42,7 @@
             this.Baja.TabIndex = 7;
             this.Baja.Text = "Baja";
             this.Baja.UseVisualStyleBackColor = true;
+            this.Baja.Click += new System.EventHandler(this.Baja_Click);
             // 
             // Modificacion
             // 
@@ -51,6 +52,7 @@
             this.Modificacion.TabIndex = 6;
             this.Modificacion.Text = "Modificación";
             this.Modificacion.UseVisualStyleBackColor = true;
+            this.Modificacion.Click += new System.EventHandler(this.Modificacion_Click);
             // 
             // Alta
             // 
@@ -60,6 +62,7 @@
             this.Alta.TabIndex = 5;
             this.Alta.Text = "Alta";
             this.Alta.UseVisualStyleBackColor = true;
+            this.Alta.Click += new System.EventHandler(this.Alta_Click);
             // 
             // label1
             // 
@@ -81,7 +84,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ABMRol";
             this.Text = "Roles";
-           // this.Load += new System.EventHandler(this.ABMRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

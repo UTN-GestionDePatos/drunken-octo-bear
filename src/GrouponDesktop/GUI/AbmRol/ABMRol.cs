@@ -16,6 +16,21 @@ namespace GrouponDesktop.GUI.AbmRol
             InitializeComponent();
         }
 
+        private void Alta_Click(object sender, EventArgs e)
+        {
+            new AltaRol().Show();
+        }
+
+        private void Modificacion_Click(object sender, EventArgs e)
+        {
+            new ListadoRol().Show();
+        }
+
+        private void Baja_Click(object sender, EventArgs e)
+        {
+            new ListadoRol().Show();
+        }
+
     
     }
 }
