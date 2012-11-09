@@ -73,7 +73,7 @@ namespace GrouponDesktop.GUI
                     break;
                 case "12": new RegistroUsuario.RegistroUsuario().Show();
                     break;
-                case "13": new RegistroUsuario.RegistroUsuario().Show();
+                case "13": new FacturarProveedor.FacturacionProveedor().Show();
                     break;
                 case "14": new RegistroUsuario.RegistroUsuario().Show();
                     break;

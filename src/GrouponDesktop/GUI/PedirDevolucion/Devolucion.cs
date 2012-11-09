@@ -43,7 +43,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
             ps.NombreSP("dbo.ConfirmarDevolucion");
             Dictionary<String, Object> d = new Dictionary<string, object>();
             d.Add("@idCupon", this.idCupon);
-            d.Add("@fecha_actual", DateTime.Now);
+            d.Add("@fecha_actual", Core.Properties.getProperty("fecha"));
             d.Add("@motivo", this.motivo);
             ps.Parametros(d);
             SqlParameter retval = ps.execSP();

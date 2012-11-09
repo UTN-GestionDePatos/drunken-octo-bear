@@ -32,7 +32,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
             Dictionary<String, Object> d = new Dictionary<string, object>();
             d.Add("@idCupon", Int32.Parse(Cupon.Text));
             d.Add("@username", s.username);
-            d.Add("@fecha_actual", DateTime.Now);
+            d.Add("@fecha_actual", Core.Properties.getProperty("fecha"));
             d.Add("@motivo", Motivo.Text);
             ps.Parametros(d);
             SqlParameter retval = ps.execSP();
