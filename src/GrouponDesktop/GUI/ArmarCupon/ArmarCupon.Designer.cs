@@ -74,6 +74,7 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Armar Cupón";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // DescripcionCupon
             // 
@@ -212,6 +213,7 @@
             this.Guardar.TabIndex = 4;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // ArmarCupon
             // 
