@@ -5,8 +5,8 @@ BEGIN
 /*
 	0: ok
 	1: user y cupon no matchean
-	2: el cupon no esta canjeado 
-	3:0
+	2: el cupon o esta devuelto, o esta canjeado 
+	3: el cupon expiro
 */
 	if not exists (select * from Cupones where cliente = @username and id_cupon = @idcupon)
 		begin
@@ -21,12 +21,7 @@ BEGIN
 	
 	-- TODO Si llega aca, hay que mostrar datos del cupon, una manera es hacer un select directamente en c#
 		
-	If (select g.fecha_vencimiento_canje from GruposCupon g join Cupones c on c.id_grupo= g.id_grupo where c.id_cupon=@idcupon)<= @fecha_actual
-	begin
-		insert into Devoluciones values(@idcupon,@fecha_actual,@motivo)
-		set @ret = 0
-		return
-	end
+	If (select g.fecha_vencimiento_canje from GruposCupon g join Cupones c on c.id_grupo= g.id_grupo where c.id_cupon=@idcupon)<= @fecha_actual RETURN
 	else
 	begin
 		--si llega aca es porque expiro el cupon
@@ -37,3 +32,10 @@ END
 
 GO
 
+CREATE PROCEDURE ConfirmarDevolucion(@idcupon int,@fecha_actual datetime,@motivo varchar(250), @ret int output)
+AS
+BEGIN
+		insert into Devoluciones values(@idcupon,@fecha_actual,@motivo)
+		set @ret = 0
+		return
+END
