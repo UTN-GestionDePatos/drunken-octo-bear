@@ -33,6 +33,7 @@ CREATE TABLE Localidad_por_usuario(
 	username varchar(30)
 )
 
+
 CREATE TABLE Clientes ( 
 	username varchar(30) primary key,
 	nombre varchar(30),
@@ -79,7 +80,6 @@ CREATE TABLE Cargas (
 
 CREATE TABLE GruposCupon ( 
 	id_grupo varchar(30) primary key,
-	localidad int references Localidades(id_localidad),
 	proveedor varchar(30) references Proveedores(username),
 	precio_ficticio float,
 	fecha_publicacion datetime,
@@ -90,6 +90,12 @@ CREATE TABLE GruposCupon (
 	estado varchar(20),
 	fecha_vencimiento_oferta datetime,
 	descripcion varchar(250)
+)
+
+
+CREATE TABLE Localidad_por_grupo(
+	id_localidad int not null references Localidades(id_localidad),
+	id_grupo varchar(30) references GruposCupon(id_grupo)
 )
 
 CREATE TABLE Cupones ( 
@@ -352,7 +358,7 @@ AFTER INSERT
 AS
 BEGIN
 	UPDATE GruposCupon
-	SET stock = stock - (select count(*) from inserted)
+	SET stock = stock - (select count(*) from inserted where inserted.id_grupo = gc.id_grupo)
 	FROM inserted i join GruposCupon gc on i.id_grupo = gc.id_grupo
 	
 END
@@ -365,7 +371,7 @@ AFTER INSERT
 AS
 BEGIN
 	UPDATE GruposCupon
-	SET stock = stock + (select count(*) from inserted)
+	SET stock = stock + (select count(*) from inserted where inserted.id_cupon = c.id_cupon)
 	FROM inserted i join Cupones c on i.id_cupon = c.id_cupon join GruposCupon gc on c.id_grupo = gc.id_grupo
 END
 
@@ -478,12 +484,17 @@ BEGIN
 
 	--GRUPOS
 		
-		INSERT	INTO GruposCupon (id_grupo, localidad, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
-				SELECT distinct Groupon_Codigo, dbo.idCiudad(Provee_Ciudad), Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, Groupon_Fecha_Venc, 'Publicado', null, Groupon_Descripcion
+		INSERT	INTO GruposCupon (id_grupo, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
+				SELECT distinct Groupon_Codigo, Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, Groupon_Fecha_Venc, 'Publicado', null, Groupon_Descripcion
 				FROM gd_esquema.Maestra 
 				WHERE Groupon_Codigo is not null
 	
-	
+	--LOCALIDAD POR GRUPO
+	INSERT	INTO Localidad_por_grupo
+			SELECT distinct dbo.idCiudad(Provee_Ciudad), Groupon_Codigo
+			FROM gd_esquema.Maestra
+			WHERE Groupon_Codigo is not null
+			
 	--CUPONES
 		INSERT INTO Cupones (cliente, id_grupo,fecha_compra,estado)
 		
@@ -543,105 +554,256 @@ AS
 	END
 
 GO
+CREATE PROCEDURE PedirDevolucion(@idcupon int ,@username varchar(30),@fecha_actual datetime,@motivo varchar(250),@ret int output)
+AS
+BEGIN
+--ver si esta comparacion de fechas esta bien
+/*
+	0: ok
+	1: user y cupon no matchean
+	2: el cupon o esta devuelto, o esta canjeado 
+	3: el cupon expiro
+*/
+	if not exists (select * from Cupones where cliente = @username and id_cupon = @idcupon)
+		begin
+			 set @ret = 1
+			 return
+		end
+	if not exists (select * from Cupones where id_cupon = @idcupon and estado = 'Comprado')
+		begin
+			set @ret = 2
+			return
+		end	
+	
+	-- TODO Si llega aca, hay que mostrar datos del cupon, una manera es hacer un select directamente en c#
+		
+	If (select g.fecha_vencimiento_canje from GruposCupon g join Cupones c on c.id_grupo= g.id_grupo where c.id_cupon=@idcupon)<= @fecha_actual RETURN
+	else
+	begin
+		--si llega aca es porque expiro el cupon
+		set @ret = 3
+		return
+	end
+END
+
+GO
+
+CREATE PROCEDURE ConfirmarDevolucion(@idcupon int,@fecha_actual datetime,@motivo varchar(250), @ret int output)
+AS
+BEGIN
+		insert into Devoluciones values(@idcupon,@fecha_actual,@motivo)
+		set @ret = 0
+		return
+END
+
+GO
+
+CREATE PROCEDURE Loguearse (@user varchar(30), @pass varchar(30), @ret int output)
 
 /*
-CREATE PROCEDURE CargarCredito(@clienteDni numeric(18,2), @cargaCredito float, @tipoPago nvarchar(100), @cargaFecha datetime)
+	0: ok
+	1: error login
+	2: inhabilitacion
+	3: no existe usuario
+	4: usuario inhabilitado
+*/
 AS
-	BEGIN
-		declare @tipo int
-		select @tipo = id_pago from Tipos_pago where descripcion = @tipoPago 
-		INSERT	INTO Cargas (username, monto, tipo, tarjeta, fecha) 
-				VALUES(@clienteDni, @cargaCredito, @tipo, null, @cargaFecha)
-	END
-
-GO
-
-CREATE PROCEDURE ProcesarGitfcard( @clienteDni nvarchar(255), @clienteDestDni nvarchar(255), @giftcardFecha datetime, @giftcardMonto numeric(18,2))
-AS
-	BEGIN
-		INSERT	INTO Giftcards (cliente_origen, cliente_destino,fecha,monto)
-				VALUES (@clienteDni, @clienteDestDni, @giftcardFecha, @giftcardMonto)
-	END
-
-GO
-
-CREATE PROCEDURE InsertarGrupo(	@grouponCodigo nvarchar(50), @proveedorCiudad nvarchar(255), @proveedorCUIT nvarchar(20), @grouponPrecioFicticio numeric(18,2), 
-									@grouponFecha datetime, @grouponCantidad numeric(18,0), @grouponPrecio numeric(18,2),
-									@grouponFechaVencimiento datetime, @grouponDescripcion nvarchar(255))
-AS
-	BEGIN
-		IF NOT EXISTS(SELECT * FROM GruposCupon WHERE id_grupo = @grouponCodigo)
-		BEGIN
-			INSERT	INTO GruposCupon (id_grupo, localidad, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
-					VALUES(@grouponCodigo,@proveedorCiudad, @proveedorCUIT,@grouponPrecioFicticio, @grouponFecha, @grouponCantidad, null, @grouponPrecio, @grouponFechaVencimiento, 'Publicado', null, @grouponDescripcion)
-		END
-	END
-			
-GO
-
-CREATE PROCEDURE InsertarCupon( @clienteDni numeric(18,0), @grouponCodigo nvarchar(50), @grouponFechaCompra datetime, @id int output)
-AS
-	BEGIN
-		 
-		INSERT	INTO Cupones (cliente,id_grupo,fecha_compra,estado)
-				VALUES (@clienteDni, @grouponCodigo, @grouponFechaCompra, 'Comprado')
-				
-		select @id = max(id_cupon) from Cupones
-			
-	END			
-
-GO
-
-CREATE PROCEDURE ActualizarEntrega (@idCupon int, @grouponEntregadoFecha datetime)
-AS
-	BEGIN
-		UPDATE Cupones
-		SET estado = 'Entregado', fecha_canje = @grouponEntregadoFecha
-		WHERE id_cupon = @idCupon
-	END	
-
-GO
-
-CREATE PROCEDURE ProcesarFactura(@facturaNro numeric(18,0), @proveedorCUIT nvarchar(20), @facturaFecha datetime, @grouponPrecio numeric(18,2))
-AS
-	BEGIN
+BEGIN
 	
-		IF NOT EXISTS(SELECT * FROM Facturas WHERE id_factura = @facturaNro)
-		BEGIN
-			INSERT	INTO Facturas 
-					VALUES (@facturaNro, @proveedorCUIT, @grouponPrecio, @facturaFecha, @facturaFecha)
-		END
-		
-		ELSE
-		BEGIN
-			UPDATE Facturas 
-			SET monto = monto + @grouponPrecio
-			WHERE id_factura = @facturaNro
-		END
-	END
+	if exists (select * from Logins where username = @user)
+	begin
+		if(select estado from Logins where username = @user) = 2
+		begin
+			set @ret = 4
+			return
+		end
+     IF(Select 1 from Logins Where username= @user AND passwd=dbo.SHA256( @pass) )is NULL
+          BEGIN
+               Update Logins set intentos_fallidos =intentos_fallidos+1 Where username = @user
+               if(select intentos_fallidos from Logins where username = @user) = 3
+               begin
+					Update Logins set intentos_fallidos = 0, estado = 2 Where username = @user
+					set @ret = 2
+					return
+               end
+               set @ret = 1
+               return
+          END
+     ELSE
+          BEGIN
+              set @ret = 0
+              return
+          END
+	end
+	else
+		begin
+			set @ret = 3
+			return
+		end
+END
 
 GO
 
-CREATE PROCEDURE ProcesarDevolucion (@idCupon int, @grouponDevolucionFecha datetime)
+CREATE PROCEDURE ComprarGiftcard(@fecha datetime,@monto bigint,@clienteOrigen varchar(30),@clienteDestino varchar(30), @ret int output)
 AS
-	BEGIN
-		INSERT INTO Devoluciones VALUES (@idCupon, @grouponDevolucionFecha, null)
-	END
+BEGIN
+/*
+	0: ok
+	1: cliente origen = cliente destino
+	2: cliente destino no habilitado
+	3: cliente destino no existe
+*/	
+
+	if not exists( select * from Clientes where username = @clienteDestino)
+	begin
+		set @ret = 3
+		return
+	end
+	IF(@clienteOrigen<>@clienteDestino)
+		BEGIN
+			IF (select estado from Logins where username=@clienteDestino) = dbo.idEstado('Habilitado')
+			BEGIN
+				insert into Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
+				set @ret = 0
+				return
+			END
+			else
+			begin
+				set @ret = 2
+				return
+			end
+		END
+	else
+		begin
+			set @ret = 1
+			return
+		end
+END
 
 GO
 
-CREATE PROCEDURE AsignarCiudadAlUsuario(@usuario numeric(18,0), @ciudad nvarchar(255))
-AS	
-	BEGIN
-		IF NOT EXISTS (SELECT * FROM Localidades WHERE localidad = @ciudad)
-			begin
-				INSERT INTO Localidades (localidad) VALUES (@ciudad)
-				declare @id int
-				select @id = id_localidad from Localidades where localidad = @ciudad
-				INSERT INTO Localidad_por_usuario VALUES (@id,@usuario)
-			end
+CREATE PROCEDURE CargarCredito(@username varchar(30),@fecha datetime,@tipoPago varchar(30),@monto bigint,@numeroTarjeta bigint, @ret int output)
+AS
+BEGIN
+
+/*
+	0: ok
+	1: monto < $15
+	2: tarjeta incorrecta
+	3: cliente incorrecto
+*/
+	if not exists(select * from Clientes where username = @username)
+	begin
+		set @ret = 3
+		return
+	end
+	IF (@monto>15)
+	BEGIN --ver si me tengo que fijar que exista la tarjeta o agregarla
+		declare @tipo int
+		select @tipo = id_pago from Tipos_pago where descripcion = @tipoPago
+		
+		if @tipo in (2,3)
+		begin
+			--validacion tarjeta
+			if not exists (select * from Tarjetas where username = @username)
+				begin
+					insert into Tarjetas (numero,username) values (@numeroTarjeta, @username)
+				end
+			else
+				begin
+					if (select numero from Tarjetas where username = @username) != @numeroTarjeta
+					begin
+						set @ret = 2
+						return
+					end
+				end
+			insert into Cargas values(@username,@monto,@tipo,@numeroTarjeta,@fecha)
+		end
+		else --efectivo
+		begin
+			insert into Cargas values(@username,@monto,@tipo,null,@fecha)
+		end
+		
+		set @ret = 0
+		return;
 	END
-*/	
+	else
+		begin
+			set @ret = 1
+			return
+		end
+END
+
+
+GO
+
+CREATE PROCEDURE ArmarCupon (	@codigoGrupo varchar(30), @descripcion varchar(250), @fechaSistema datetime, 
+								@fechaVencimientoCanje datetime, @fechaVencimientoOferta datetime,
+								@precio_ficticio float, @precio_real float, @limite_usuario int, @stock bigint,
+								@proveedor varchar(30), @ret int output)
+AS
+BEGIN
+
+/*
+	0: ok
+	1: grupo ya existe
+	2: la fecha de vencimiento de la oferta ya paso...
+*/
+
+if exists (select * from GruposCupon where id_grupo = @codigoGrupo)
+	begin
+		set @ret = 1
+		return
+	end
+
+if @fechaVencimientoOferta < @fechaSistema
+	begin
+		set @ret = 2
+		return
+	end
+
+insert into GruposCupon values(	@codigoGrupo, @proveedor, @precio_ficticio, null, @stock, @limite_usuario, @precio_real,
+								@fechaVencimientoCanje, 'A publicar', @fechaVencimientoOferta, @descripcion)
+
+set @ret = 0
+return
+END
+
+GO
+
+CREATE PROCEDURE AsignarLocalidadAlGrupo(@localidad varchar(30), @grupo varchar(30), @ret int output)
+AS
+BEGIN
+	INSERT INTO Localidad_por_grupo VALUES (dbo.idCiudad(@localidad),@grupo)
+	set @ret = 0
+	
+END
+
+GO
+
+CREATE PROCEDURE AltaRol (@nombre varchar(50),@ret int output)
+AS
+BEGIN
+	if exists(select * from Roles where nombre = @nombre)
+	begin
+		set @ret = 1
+		return
+	end
+	
+	set @ret = 0
+	insert into Roles values (@nombre,1)
+END
+
+GO
+
+CREATE PROCEDURE AsignarFuncionalidadAlRol (@id int, @rol varchar(50), @ret int output)
+AS
+BEGIN
+	insert into Funcion_por_rol values(@id,@rol)
+	set @ret = 0
+END
+
+
 
 GO
 

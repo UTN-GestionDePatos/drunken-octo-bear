@@ -23,11 +23,19 @@ if @fechaVencimientoOferta < @fechaSistema
 		return
 	end
 
---TODO ver tema de fechas (publicacion vs oferta) y localidades!!!!!!!!!!
-insert into GruposCupon values(	@codigoGrupo, null, @proveedor, @precio_ficticio, null, @stock, @limite_usuario, @precio_real,
+insert into GruposCupon values(	@codigoGrupo, @proveedor, @precio_ficticio, null, @stock, @limite_usuario, @precio_real,
 								@fechaVencimientoCanje, 'A publicar', @fechaVencimientoOferta, @descripcion)
 
 set @ret = 0
 return
 END
 
+GO
+
+CREATE PROCEDURE AsignarLocalidadAlGrupo(@localidad varchar(30), @grupo varchar(30), @ret int output)
+AS
+BEGIN
+	INSERT INTO Localidad_por_grupo VALUES (dbo.idCiudad(@localidad),@grupo)
+	set @ret = 0
+	
+END

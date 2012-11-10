@@ -28,7 +28,7 @@ namespace GrouponDesktop.GUI.HistorialCupones
 
         }
 
-        private void FechaHastaCalendario_DateChanged(object sender, DateRangeEventArgs e)
+        private void FechaHastaCalendario_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime hasta = FechaHastaCalendario.SelectionStart;
             string fechaHastaStr = hasta.Date.ToShortDateString();
@@ -39,7 +39,7 @@ namespace GrouponDesktop.GUI.HistorialCupones
        
         }
 
-        private void FechaDesdeCalendario_DateChanged(object sender, DateRangeEventArgs e)
+        private void FechaDesdeCalendario_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime desde = FechaDesdeCalendario.SelectionStart;
             string fechaDesdeStr = desde.Date.ToShortDateString();

@@ -30,47 +30,52 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DescripcionCupon = new System.Windows.Forms.TextBox();
-            this.FchVencimientoOferta = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.LimitePorUsuario = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.Stock = new System.Windows.Forms.TextBox();
-            this.FchVencimientoCanje = new System.Windows.Forms.TextBox();
             this.PrecioReal = new System.Windows.Forms.TextBox();
             this.PrecioFicticio = new System.Windows.Forms.TextBox();
-            this.LocalidadCupon = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
+            this.codigoGrupo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.VencimientoOfertaCalendario = new System.Windows.Forms.MonthCalendar();
+            this.VencimientoCanjeCalendario = new System.Windows.Forms.MonthCalendar();
+            this.CanjeAbrir = new System.Windows.Forms.Button();
+            this.OfertaAbrir = new System.Windows.Forms.Button();
+            this.VencimientoCanje = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.VencimientoOferta = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.codigoGrupo);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.DescripcionCupon);
-            this.groupBox1.Controls.Add(this.FchVencimientoOferta);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.LimitePorUsuario);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.Stock);
-            this.groupBox1.Controls.Add(this.FchVencimientoCanje);
             this.groupBox1.Controls.Add(this.PrecioReal);
             this.groupBox1.Controls.Add(this.PrecioFicticio);
-            this.groupBox1.Controls.Add(this.LocalidadCupon);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Nombre);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(43, 4);
+            this.groupBox1.Location = new System.Drawing.Point(43, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(498, 369);
+            this.groupBox1.Size = new System.Drawing.Size(498, 300);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Armar Cupón";
@@ -78,23 +83,16 @@
             // 
             // DescripcionCupon
             // 
-            this.DescripcionCupon.Location = new System.Drawing.Point(217, 257);
+            this.DescripcionCupon.Location = new System.Drawing.Point(217, 190);
             this.DescripcionCupon.Multiline = true;
             this.DescripcionCupon.Name = "DescripcionCupon";
             this.DescripcionCupon.Size = new System.Drawing.Size(209, 93);
             this.DescripcionCupon.TabIndex = 27;
             // 
-            // FchVencimientoOferta
-            // 
-            this.FchVencimientoOferta.Location = new System.Drawing.Point(217, 156);
-            this.FchVencimientoOferta.Name = "FchVencimientoOferta";
-            this.FchVencimientoOferta.Size = new System.Drawing.Size(209, 20);
-            this.FchVencimientoOferta.TabIndex = 26;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 280);
+            this.label8.Location = new System.Drawing.Point(6, 213);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 25;
@@ -102,7 +100,7 @@
             // 
             // LimitePorUsuario
             // 
-            this.LimitePorUsuario.Location = new System.Drawing.Point(217, 220);
+            this.LimitePorUsuario.Location = new System.Drawing.Point(217, 153);
             this.LimitePorUsuario.Name = "LimitePorUsuario";
             this.LimitePorUsuario.Size = new System.Drawing.Size(209, 20);
             this.LimitePorUsuario.TabIndex = 22;
@@ -110,7 +108,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 224);
+            this.label12.Location = new System.Drawing.Point(6, 157);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(91, 13);
             this.label12.TabIndex = 21;
@@ -118,17 +116,10 @@
             // 
             // Stock
             // 
-            this.Stock.Location = new System.Drawing.Point(217, 186);
+            this.Stock.Location = new System.Drawing.Point(217, 119);
             this.Stock.Name = "Stock";
             this.Stock.Size = new System.Drawing.Size(209, 20);
             this.Stock.TabIndex = 20;
-            // 
-            // FchVencimientoCanje
-            // 
-            this.FchVencimientoCanje.Location = new System.Drawing.Point(217, 122);
-            this.FchVencimientoCanje.Name = "FchVencimientoCanje";
-            this.FchVencimientoCanje.Size = new System.Drawing.Size(209, 20);
-            this.FchVencimientoCanje.TabIndex = 18;
             // 
             // PrecioReal
             // 
@@ -144,39 +135,14 @@
             this.PrecioFicticio.Size = new System.Drawing.Size(209, 20);
             this.PrecioFicticio.TabIndex = 16;
             // 
-            // LocalidadCupon
-            // 
-            this.LocalidadCupon.Location = new System.Drawing.Point(217, 22);
-            this.LocalidadCupon.Name = "LocalidadCupon";
-            this.LocalidadCupon.Size = new System.Drawing.Size(209, 20);
-            this.LocalidadCupon.TabIndex = 15;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 192);
+            this.label7.Location = new System.Drawing.Point(6, 119);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Stock";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 161);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(168, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Fecha de vencimiento de la oferta";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 129);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Fecha de vencimiento del canje";
             // 
             // label3
             // 
@@ -186,15 +152,6 @@
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Precio Real";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Localidad";
             // 
             // Nombre
             // 
@@ -207,25 +164,152 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(43, 379);
+            this.Guardar.Location = new System.Drawing.Point(43, 504);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(75, 23);
+            this.Guardar.Size = new System.Drawing.Size(68, 23);
             this.Guardar.TabIndex = 4;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
             this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ListaZonas);
+            this.groupBox2.Location = new System.Drawing.Point(613, 14);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(275, 477);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Localidades";
+            // 
+            // ListaZonas
+            // 
+            this.ListaZonas.FormattingEnabled = true;
+            this.ListaZonas.Location = new System.Drawing.Point(42, 32);
+            this.ListaZonas.Name = "ListaZonas";
+            this.ListaZonas.Size = new System.Drawing.Size(217, 409);
+            this.ListaZonas.TabIndex = 8;
+            // 
+            // codigoGrupo
+            // 
+            this.codigoGrupo.Location = new System.Drawing.Point(217, 18);
+            this.codigoGrupo.Name = "codigoGrupo";
+            this.codigoGrupo.Size = new System.Drawing.Size(209, 20);
+            this.codigoGrupo.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Código de Grupo";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.VencimientoOfertaCalendario);
+            this.groupBox3.Controls.Add(this.VencimientoCanjeCalendario);
+            this.groupBox3.Controls.Add(this.CanjeAbrir);
+            this.groupBox3.Controls.Add(this.OfertaAbrir);
+            this.groupBox3.Controls.Add(this.VencimientoCanje);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.VencimientoOferta);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(43, 320);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(548, 171);
+            this.groupBox3.TabIndex = 33;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Fechas";
+            // 
+            // VencimientoOfertaCalendario
+            // 
+            this.VencimientoOfertaCalendario.Location = new System.Drawing.Point(321, 25);
+            this.VencimientoOfertaCalendario.Name = "VencimientoOfertaCalendario";
+            this.VencimientoOfertaCalendario.TabIndex = 34;
+            this.VencimientoOfertaCalendario.Visible = false;
+            this.VencimientoOfertaCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoOfertaCalendario_DateChanged);
+            // 
+            // VencimientoCanjeCalendario
+            // 
+            this.VencimientoCanjeCalendario.Location = new System.Drawing.Point(321, 9);
+            this.VencimientoCanjeCalendario.Name = "VencimientoCanjeCalendario";
+            this.VencimientoCanjeCalendario.TabIndex = 33;
+            this.VencimientoCanjeCalendario.Visible = false;
+            this.VencimientoCanjeCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoCanjeCalendario_DateChanged);
+            // 
+            // CanjeAbrir
+            // 
+            this.CanjeAbrir.Location = new System.Drawing.Point(234, 47);
+            this.CanjeAbrir.Name = "CanjeAbrir";
+            this.CanjeAbrir.Size = new System.Drawing.Size(75, 23);
+            this.CanjeAbrir.TabIndex = 5;
+            this.CanjeAbrir.Text = "Seleccionar";
+            this.CanjeAbrir.UseVisualStyleBackColor = true;
+            this.CanjeAbrir.Click += new System.EventHandler(this.CanjeAbrir_Click);
+            // 
+            // OfertaAbrir
+            // 
+            this.OfertaAbrir.Location = new System.Drawing.Point(234, 17);
+            this.OfertaAbrir.Name = "OfertaAbrir";
+            this.OfertaAbrir.Size = new System.Drawing.Size(75, 23);
+            this.OfertaAbrir.TabIndex = 4;
+            this.OfertaAbrir.Text = "Seleccionar";
+            this.OfertaAbrir.UseVisualStyleBackColor = true;
+            this.OfertaAbrir.Click += new System.EventHandler(this.OfertaAbrir_Click);
+            // 
+            // VencimientoCanje
+            // 
+            this.VencimientoCanje.Enabled = false;
+            this.VencimientoCanje.Location = new System.Drawing.Point(128, 50);
+            this.VencimientoCanje.Name = "VencimientoCanje";
+            this.VencimientoCanje.Size = new System.Drawing.Size(100, 20);
+            this.VencimientoCanje.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Vencimiento Canje";
+            // 
+            // VencimientoOferta
+            // 
+            this.VencimientoOferta.Enabled = false;
+            this.VencimientoOferta.Location = new System.Drawing.Point(128, 17);
+            this.VencimientoOferta.Name = "VencimientoOferta";
+            this.VencimientoOferta.Size = new System.Drawing.Size(100, 20);
+            this.VencimientoOferta.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Vencimiento Oferta:";
+            // 
             // ArmarCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 416);
+            this.ClientSize = new System.Drawing.Size(904, 549);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.groupBox1);
             this.Name = "ArmarCupon";
             this.Text = "ArmarCupon";
+            this.Load += new System.EventHandler(this.ArmarCupon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -236,19 +320,26 @@
         private System.Windows.Forms.TextBox LimitePorUsuario;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox Stock;
-        private System.Windows.Forms.TextBox FchVencimientoCanje;
         private System.Windows.Forms.TextBox PrecioReal;
         private System.Windows.Forms.TextBox PrecioFicticio;
-        private System.Windows.Forms.TextBox LocalidadCupon;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox DescripcionCupon;
-        private System.Windows.Forms.TextBox FchVencimientoOferta;
         private System.Windows.Forms.Button Guardar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckedListBox ListaZonas;
+        private System.Windows.Forms.TextBox codigoGrupo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.MonthCalendar VencimientoOfertaCalendario;
+        private System.Windows.Forms.MonthCalendar VencimientoCanjeCalendario;
+        private System.Windows.Forms.Button CanjeAbrir;
+        private System.Windows.Forms.Button OfertaAbrir;
+        private System.Windows.Forms.TextBox VencimientoCanje;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox VencimientoOferta;
+        private System.Windows.Forms.Label label4;
     }
 }
