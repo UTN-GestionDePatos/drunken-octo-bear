@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.listadoCupones = new System.Windows.Forms.DataGridView();
+            this.Cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listadoCupones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,11 +41,22 @@
             this.listadoCupones.Size = new System.Drawing.Size(749, 150);
             this.listadoCupones.TabIndex = 0;
             // 
+            // Cerrar
+            // 
+            this.Cerrar.Location = new System.Drawing.Point(368, 191);
+            this.Cerrar.Name = "Cerrar";
+            this.Cerrar.Size = new System.Drawing.Size(75, 23);
+            this.Cerrar.TabIndex = 1;
+            this.Cerrar.Text = "Cerrar";
+            this.Cerrar.UseVisualStyleBackColor = true;
+            this.Cerrar.Click += new System.EventHandler(this.Cerrar_Click);
+            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 194);
+            this.ClientSize = new System.Drawing.Size(873, 226);
+            this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.listadoCupones);
             this.Name = "Listado";
             this.Text = "Listado";
@@ -56,5 +68,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView listadoCupones;
+        private System.Windows.Forms.Button Cerrar;
     }
 }

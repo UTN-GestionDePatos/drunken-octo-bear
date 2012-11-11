@@ -29,7 +29,7 @@ namespace GrouponDesktop.GUI.HistorialCupones
         }
 
         private void FechaHastaCalendario_DateSelected(object sender, DateRangeEventArgs e)
-        {
+        {   
             DateTime hasta = FechaHastaCalendario.SelectionStart;
             string fechaHastaStr = hasta.Date.ToShortDateString();
 
@@ -59,20 +59,29 @@ namespace GrouponDesktop.GUI.HistorialCupones
             Session s = (Session)AppContext.getObject(typeof(Session));
             SQLResponse r;
             String cliente = s.username;
+            Listado listado = new Listado();
+
             switch(Estado.SelectedItem.ToString()){
                 case "Comprado":
-                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo where c.cliente = " + cliente + " and c.estado = 'Comprado'");
+                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo where c.cliente = " + cliente + " and c.estado = 'Comprado' and c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text+  "\'");
+                    listado.SetDataGridView(r.result);
+                    listado.Show();
                     break;
+                
                 case "Entregado":
-                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, c.fecha_canje, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo where c.cliente = " + cliente + " and c.estado = 'Entregado'");
+                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, c.fecha_canje, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo where c.cliente = " + cliente + " and c.estado = 'Entregado' and c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+                    listado.SetDataGridView(r.result);
+                    listado.Show();
                     break;
+
                 case "Devuelto":
-                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, d.fecha_devolucion, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo join Devoluciones d on d.id_cupon = c.id_cupon where c.cliente = " + cliente);
+                    r = dbManager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion, c.fecha_compra, d.fecha_devolucion, c.estado from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo join Devoluciones d on d.id_cupon = c.id_cupon where c.cliente = " + cliente + " and c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+                    listado.SetDataGridView(r.result);
+                    listado.Show();
                     break;
+                default: r = null; break;
             }
 
-            Listado listado = new Listado();
-            
         }
 
     }
