@@ -28,26 +28,9 @@ namespace GrouponDesktop.GUI.HistorialCupones
 
         }
 
-        private void FechaHastaCalendario_DateSelected(object sender, DateRangeEventArgs e)
-        {   
-            DateTime hasta = FechaHastaCalendario.SelectionStart;
-            string fechaHastaStr = hasta.Date.ToShortDateString();
+   
 
-            FechaHasta.Text = fechaHastaStr;
-
-            FechaHastaCalendario.Visible = false;
-       
-        }
-
-        private void FechaDesdeCalendario_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            DateTime desde = FechaDesdeCalendario.SelectionStart;
-            string fechaDesdeStr = desde.Date.ToShortDateString();
-
-            FechaDesde.Text = fechaDesdeStr;
-
-            FechaDesdeCalendario.Visible = false;
-        }
+     
 
         private void Listar_Click(object sender, EventArgs e)
         {
@@ -83,6 +66,27 @@ namespace GrouponDesktop.GUI.HistorialCupones
             }
 
         }
+
+        private void FechaHastaCalendario_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime hasta = FechaHastaCalendario.SelectionStart;
+            string fechaHastaStr = hasta.Date.ToShortDateString();
+
+            FechaHasta.Text = fechaHastaStr;
+
+            FechaHastaCalendario.Visible = false;
+        }
+
+        private void FechaDesdeCalendario_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime desde = FechaDesdeCalendario.SelectionStart;
+            string fechaDesdeStr = desde.Date.ToShortDateString();
+
+            FechaDesde.Text = fechaDesdeStr;
+
+            FechaDesdeCalendario.Visible = false;
+        }
+
 
     }
 }

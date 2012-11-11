@@ -1,11 +1,20 @@
+CREATE PROCEDURE FacturarProveedor (@proveedor varchar(30), @fecha_desde datetime, @fecha_hasta datetime, @monto float,@ret int output)
+AS
+BEGIN
 /*
-Esta funcionalidad permite a un administrativo facturar a un proveedor todos los
-cupones canjeados por los clientes.
-Para ello ingresará el período de facturación por intervalos de fecha, se deberá
-seleccionar el proveedor y a continuación se listaran todos los cupones que fueron
-utilizados por los clientes. De manera de no facturar un cupón que no fue utilizado.
-Una vez que se tiene dicho listado, se informará el importe de la factura y el
-número correspondiente de la misma.
-De más esta decir que este proceso debe quedar registrado en la base datos, dado
-que no se permite volverá facturar un cupón que ya fue facturado.
+	0: ok
+	1: se overlapean los intervalos --> cupones ya facturados
 */
+	if exists (select * from Facturas where proveedor = @proveedor and (fecha_desde between @fecha_desde and @fecha_hasta or fecha_hasta between @fecha_desde and @fecha_hasta))
+		begin
+			set @ret = 1
+			return
+		end
+	
+	select @ret = MAX(id_factura)+1 from Facturas
+	insert into Facturas values(@ret, @proveedor, @monto, @fecha_desde, @fecha_hasta)
+	
+	return
+	
+	
+END	

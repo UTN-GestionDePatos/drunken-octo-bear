@@ -24,7 +24,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
         private void FacturacionProveedor_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet3.Cupones' Puede moverla o quitarla según sea necesario.
-            this.cuponesTableAdapter.Fill(this.gD2C2012DataSet3.Cupones);
+            //this.cuponesTableAdapter.Fill(this.gD2C2012DataSet3.Cupones);
             this.proveedores.Items.Clear();
             Session s = (Session)AppContext.getObject(typeof(Session));
             
@@ -68,7 +68,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             }
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_grupo, c.fecha_compra, c.estado, c.fecha_canje FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = " + this.proveedores.SelectedItem + " AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_grupo, c.fecha_compra, c.estado, c.fecha_canje FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
             this.SetDataGridView(r.result);
 
         }
@@ -93,7 +93,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             SQLResponse r;
             object monto = null;
 
-            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = " + this.proveedores.SelectedItem + " AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
             monto = r.result.Rows[0][0];
 
             return monto;
@@ -111,33 +111,30 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             ParamSet ps = new ParamSet();
             ps.NombreSP("dbo.FacturarProveedor");
 
+            float monto = float.Parse(montoFactura().ToString());
             Dictionary<String, Object> d = new Dictionary<string, object>();
             d.Add("@proveedor", proveedores.SelectedItem);
             d.Add("@fecha_desde", FechaDesde.Text);
             d.Add("@fecha_hasta", FechaHasta.Text);
-            d.Add("@monto", montoFactura());
+            d.Add("@monto", monto);
 
             ps.Parametros(d);
 
             SqlParameter retval = ps.execSP();
-            /*
-             * Falta definir el manejo de retorno
-            switch (retval.Value.ToString())
+            
+            String ret = retval.Value.ToString();
+            switch (ret)
             {
-                case "0": MessageBox.Show("Operación finalizada con éxito");
-                    break;
-                case "1": MessageBox.Show("El cliente destino no puede coincidir con el cliente origen");
-                    break;
-                case "2": MessageBox.Show("El cliente destino no se encuentra habilitado");
-                    break;
-                case "3": MessageBox.Show("Cliente destino incorrecto");
-                    break;
-             */ 
+                case "1": MessageBox.Show("Ya hay cupones facturados para el intervalo ingresado.");
+                    return;
+                default: MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + monto.ToString());
+                    return;
+               
+               
             }
         }
 
 
-
-
     }
 }
+

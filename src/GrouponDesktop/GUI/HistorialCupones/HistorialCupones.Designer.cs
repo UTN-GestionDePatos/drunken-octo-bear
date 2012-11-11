@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Listar = new System.Windows.Forms.Button();
             this.FechaHastaCalendario = new System.Windows.Forms.MonthCalendar();
             this.FechaDesdeCalendario = new System.Windows.Forms.MonthCalendar();
             this.FechaHastaAbrirCalendario = new System.Windows.Forms.Button();
@@ -38,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FechaDesde = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Listar = new System.Windows.Forms.Button();
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
@@ -59,16 +59,6 @@
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fechas";
-            // 
-            // Listar
-            // 
-            this.Listar.Location = new System.Drawing.Point(53, 287);
-            this.Listar.Name = "Listar";
-            this.Listar.Size = new System.Drawing.Size(75, 23);
-            this.Listar.TabIndex = 35;
-            this.Listar.Text = "Listar";
-            this.Listar.UseVisualStyleBackColor = true;
-            this.Listar.Click += new System.EventHandler(this.Listar_Click);
             // 
             // FechaHastaCalendario
             // 
@@ -139,6 +129,16 @@
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Desde:";
+            // 
+            // Listar
+            // 
+            this.Listar.Location = new System.Drawing.Point(53, 287);
+            this.Listar.Name = "Listar";
+            this.Listar.Size = new System.Drawing.Size(75, 23);
+            this.Listar.TabIndex = 35;
+            this.Listar.Text = "Listar";
+            this.Listar.UseVisualStyleBackColor = true;
+            this.Listar.Click += new System.EventHandler(this.Listar_Click);
             // 
             // Estado
             // 
