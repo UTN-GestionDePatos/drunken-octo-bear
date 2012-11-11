@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.Core;
+using System.Data.SqlClient;
 
 namespace GrouponDesktop.GUI.FacturarProveedor
 {
@@ -35,7 +36,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             this.proveedores.SelectedIndex = 0;
         }
 
-        private void FechaDesdeCalendario_DateChanged(object sender, DateRangeEventArgs e)
+        private void FechaDesdeCalendario_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime desde = FechaDesdeCalendario.SelectionStart;
             string fechaDesdeStr = desde.Date.ToShortDateString();
@@ -45,7 +46,39 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             FechaDesdeCalendario.Visible = false;
         }
 
-        private void FechaHastaCalendario_DateChanged(object sender, DateRangeEventArgs e)
+
+        private void FechaDesdeAbrirCalendario_Click(object sender, EventArgs e)
+        {
+            FechaHastaCalendario.Visible = false;
+            FechaDesdeCalendario.Visible = true;
+        }
+
+        private void FechaHastaAbrirCalendario_Click(object sender, EventArgs e)
+        {
+            FechaDesdeCalendario.Visible = false;
+            FechaHastaCalendario.Visible = true;
+        }
+
+        private void Listar_Click(object sender, EventArgs e)
+        {
+            if (FechaDesde.Text == "" || FechaHasta.Text == "")
+            {
+                MessageBox.Show("Faltan datos");
+                return;
+            }
+            SQLResponse r;
+
+            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_grupo, c.fecha_compra, c.estado, c.fecha_canje FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = " + this.proveedores.SelectedItem + " AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            this.SetDataGridView(r.result);
+
+        }
+
+        public void SetDataGridView(DataTable data)
+        {
+            this.dataGridCupones.DataSource = data;
+        }
+
+        private void FechaHastaCalendario_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime hasta = FechaHastaCalendario.SelectionStart;
             string fechaHastaStr = hasta.Date.ToShortDateString();
@@ -55,20 +88,55 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             FechaHastaCalendario.Visible = false;
         }
 
-        private void FechaDesdeAbrirCalendario_Click(object sender, EventArgs e)
+        private object montoFactura()
         {
-            FechaDesdeCalendario.Visible = true;
+            SQLResponse r;
+            object monto = null;
+
+            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = " + this.proveedores.SelectedItem + " AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            monto = r.result.Rows[0][0];
+
+            return monto;
+
         }
 
-        private void FechaHastaAbrirCalendario_Click(object sender, EventArgs e)
+        private void Facturar_Click(object sender, EventArgs e)
         {
-            FechaHastaCalendario.Visible = true;
+            if (FechaDesde.Text == "" || FechaHasta.Text == "" || this.dataGridCupones.RowCount == 0 || this.proveedores.Text == "" )
+            {
+                MessageBox.Show("Faltan datos");
+                return;
+            }
+
+            ParamSet ps = new ParamSet();
+            ps.NombreSP("dbo.FacturarProveedor");
+
+            Dictionary<String, Object> d = new Dictionary<string, object>();
+            d.Add("@proveedor", proveedores.SelectedItem);
+            d.Add("@fecha_desde", FechaDesde.Text);
+            d.Add("@fecha_hasta", FechaHasta.Text);
+            d.Add("@monto", montoFactura());
+
+            ps.Parametros(d);
+
+            SqlParameter retval = ps.execSP();
+            /*
+             * Falta definir el manejo de retorno
+            switch (retval.Value.ToString())
+            {
+                case "0": MessageBox.Show("Operación finalizada con éxito");
+                    break;
+                case "1": MessageBox.Show("El cliente destino no puede coincidir con el cliente origen");
+                    break;
+                case "2": MessageBox.Show("El cliente destino no se encuentra habilitado");
+                    break;
+                case "3": MessageBox.Show("Cliente destino incorrecto");
+                    break;
+             */ 
+            }
         }
 
-        private void Listar_Click(object sender, EventArgs e)
-        {
-            //dataGridCupones.
-        }
+
 
 
     }
