@@ -1,9 +1,9 @@
-CREATE PROCEDURE ComprarCupon(@id_grupo varchar(30),@fecha datetime,@cantidad_deseada int,@username varchar(30),@ret int output, @cupon bigint output)
+CREATE PROCEDURE ComprarCupon(@id_grupo varchar(30),@fecha datetime,@username varchar(30),@ret int output)
 AS
 BEGIN
 /*
 ret:
-	0: ok
+	NroCupon: ok
 	1: la cantidad deseada supera el limite por usuario
 	2: la cantidad deseada supera el stock disponible
 	3: el usuario no tiene saldo suficiente
@@ -11,17 +11,18 @@ ret:
 cupon: 	codigo del cupon a informar
 	
 */
-	IF (select limite_por_usuario from GruposCupon where id_grupo = @id_grupo) >= @cantidad_deseada
+	IF (select limite_por_usuario from GruposCupon where id_grupo = @id_grupo) >= 
+		(select COUNT(*) from GruposCupon gc join Cupones c on c.id_grupo = gc.id_grupo and gc.id_grupo = @id_grupo
+			where c.cliente = @username and c.estado != 'Devuelto')
 	BEGIN
-		IF (select stock from GruposCupon where id_grupo= @id_grupo)>=@cantidad_deseada
+		IF (select stock from GruposCupon where id_grupo= @id_grupo)> 0
 		BEGIN
 			declare @precio_real float
 			select @precio_real = precio_real from GruposCupon where id_grupo=@id_grupo
-			IF (select saldo from Clientes where username=@username) >= ( @precio_real * @cantidad_deseada)
+			IF (select saldo from Clientes where username=@username) >= @precio_real
 				BEGIN			
 					insert into Cupones values(@username,@id_grupo,@fecha,'Comprado',NULL)
-					set @cupon = SCOPE_IDENTITY()
-					set @ret = 0
+					set @ret = SCOPE_IDENTITY()
 					return
 				END	
 			else
