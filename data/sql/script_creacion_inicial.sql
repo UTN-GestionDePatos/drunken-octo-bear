@@ -365,14 +365,28 @@ END
 
 GO
 
+
 CREATE TRIGGER actualizarStockDevoluciones
 ON Devoluciones
 AFTER INSERT
 AS
 BEGIN
-	UPDATE GruposCupon
-	SET stock = stock + (select count(*) from inserted where inserted.id_cupon = c.id_cupon)
-	FROM inserted i join Cupones c on i.id_cupon = c.id_cupon join GruposCupon gc on c.id_grupo = gc.id_grupo
+	declare @grupo varchar(30)
+	declare unCursor cursor for (	select gc.id_grupo from inserted i join Cupones c on i.id_cupon = c.id_cupon
+									join GruposCupon gc on gc.id_grupo = c.id_grupo )
+	open unCursor
+	fetch unCursor into @grupo
+	while @@FETCH_STATUS = 0
+	begin
+		UPDATE GruposCupon
+		SET stock = stock + 1
+		WHERE id_grupo = @grupo
+		fetch unCursor into @grupo
+	end
+	
+	close unCursor
+	deallocate unCursor
+	
 END
 
 GO
