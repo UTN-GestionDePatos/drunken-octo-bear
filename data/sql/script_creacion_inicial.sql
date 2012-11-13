@@ -816,9 +816,21 @@ BEGIN
 	insert into Funcion_por_rol values(@id,@rol)
 	set @ret = 0
 END
+GO
 
+CREATE PROCEDURE EliminarFuncionalidadesDeRol(@nombre_rol varchar(30))
+AS
+BEGIN
+	DELETE FROM Funcion_por_rol WHERE nombre_rol = @nombre_rol
+END
+GO
 
-
+CREATE PROCEDURE EliminarRol(@nombre_rol varchar(30))
+AS
+BEGIN
+	EXEC dbo.EliminarFuncionalidadesDeRol @nombre_rol
+	DELETE FROM Roles WHERE nombre = @nombre_rol
+END
 GO
 
 begin tran
