@@ -20,9 +20,23 @@ namespace GrouponDesktop
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Registrarse_Click(object sender, EventArgs e)
         {
-            DBManager manager = (DBManager) AppContext.getObject(typeof(DBManager));
+            RegistroUsuario r = new RegistroUsuario();
+            r.Show();
+        }
+
+        private void password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.confirmarLogin_Click(sender, null);
+            }
+        }
+
+        private void confirmarLogin_Click(object sender, EventArgs e)
+        {
+            DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
             try
             {
 
@@ -54,7 +68,6 @@ namespace GrouponDesktop
                         s.username = usuario.Text;
                         s.rol = (String)r.result.Rows[0][0];
                         AppContext.setObject(typeof(Session), s);
-                        new Main().Show(null);
                         this.Hide();
                         break;
                     case "1": MessageBox.Show("La contraseña no es válida");
@@ -73,13 +86,6 @@ namespace GrouponDesktop
                 MessageBox.Show("No se pudo conectar a la base de datos.");
                 Console.Write(ex);
             }
-          
-        }
-
-        private void Registrarse_Click(object sender, EventArgs e)
-        {
-            RegistroUsuario r = new RegistroUsuario();
-            r.Show();
         }
     }
 }

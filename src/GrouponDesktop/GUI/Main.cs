@@ -17,9 +17,9 @@ namespace GrouponDesktop.GUI
     public partial class Main : Form
     {
         private DBManager dbManager = null;
+        private Session sesion = null;
 
-        public Main()
-        {
+        public Main(){
             InitializeComponent();
             dbManager = (DBManager) AppContext.getObject(typeof(DBManager));
         }
@@ -27,10 +27,11 @@ namespace GrouponDesktop.GUI
         private void Main_Load(object sender, EventArgs e)
         {
             this.funcionalidades.Items.Clear();
-            Session s = (Session) AppContext.getObject(typeof(Session));
-            bienvenida.Text = "Bienvenido: " + s.username;
+            this.sesion = (Session)AppContext.getObject(typeof(Session));
 
-            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM Funcionalidades f,Funcion_por_rol fpr WHERE f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'"+s.rol+"\'");
+            bienvenida.Text = "Bienvenido: " + sesion.username;
+
+            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM Funcionalidades f,Funcion_por_rol fpr WHERE f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'"+sesion.rol+"\'");
             foreach(DataRow row in r.result.Rows){
                 this.funcionalidades.Items.Add(row[0]+": "+row[1]);
             }
@@ -49,7 +50,7 @@ namespace GrouponDesktop.GUI
 
             switch (((String)funcionalidades.SelectedItem).Substring(0, 2))
             {
-                case "1:": new ABMRol().Show();
+                case "1:": new ListadoRol().Show();
                     break;
                 case "2:": new RegistroUsuario.RegistroUsuario().Show();
                     break;
@@ -78,6 +79,14 @@ namespace GrouponDesktop.GUI
                 case "14": new ListadoEstadistico.ListadoEstadistico().Show();
                     break;
                 
+            }
+        }
+
+        private void funcionalidades_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.button1_Click(sender, null);
             }
         }
     }

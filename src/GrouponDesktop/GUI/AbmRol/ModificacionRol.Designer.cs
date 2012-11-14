@@ -35,11 +35,15 @@
             this.NombreRol = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Estado = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Estado);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.Guardar);
             this.groupBox1.Controls.Add(this.Limpiar);
             this.groupBox1.Controls.Add(this.ListaFuncionalidades);
@@ -49,23 +53,24 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox1.Location = new System.Drawing.Point(4, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(356, 224);
+            this.groupBox1.Size = new System.Drawing.Size(356, 245);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(260, 183);
+            this.Guardar.Location = new System.Drawing.Point(260, 216);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
             this.Guardar.TabIndex = 18;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(9, 183);
+            this.Limpiar.Location = new System.Drawing.Point(9, 216);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 17;
@@ -75,16 +80,16 @@
             // ListaFuncionalidades
             // 
             this.ListaFuncionalidades.FormattingEnabled = true;
-            this.ListaFuncionalidades.Location = new System.Drawing.Point(126, 59);
+            this.ListaFuncionalidades.Location = new System.Drawing.Point(102, 59);
             this.ListaFuncionalidades.Name = "ListaFuncionalidades";
-            this.ListaFuncionalidades.Size = new System.Drawing.Size(209, 109);
+            this.ListaFuncionalidades.Size = new System.Drawing.Size(233, 109);
             this.ListaFuncionalidades.TabIndex = 16;
             // 
             // NombreRol
             // 
-            this.NombreRol.Location = new System.Drawing.Point(126, 26);
+            this.NombreRol.Location = new System.Drawing.Point(102, 26);
             this.NombreRol.Name = "NombreRol";
-            this.NombreRol.Size = new System.Drawing.Size(209, 20);
+            this.NombreRol.Size = new System.Drawing.Size(233, 20);
             this.NombreRol.TabIndex = 15;
             // 
             // label1
@@ -105,14 +110,32 @@
             this.Nombre.TabIndex = 9;
             this.Nombre.Text = "Funcionalidades";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Estado";
+            // 
+            // Estado
+            // 
+            this.Estado.FormattingEnabled = true;
+            this.Estado.Location = new System.Drawing.Point(102, 178);
+            this.Estado.Name = "Estado";
+            this.Estado.Size = new System.Drawing.Size(233, 21);
+            this.Estado.TabIndex = 20;
+            // 
             // ModificacionRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 242);
+            this.ClientSize = new System.Drawing.Size(364, 256);
             this.Controls.Add(this.groupBox1);
             this.Name = "ModificacionRol";
             this.Text = "Rol - Modificacion";
+            this.Load += new System.EventHandler(this.ModificacionRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -128,6 +151,8 @@
         private System.Windows.Forms.TextBox NombreRol;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Nombre;
+        private System.Windows.Forms.ComboBox Estado;
+        private System.Windows.Forms.Label label2;
 
     }
 }

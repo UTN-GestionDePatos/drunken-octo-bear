@@ -68,6 +68,7 @@
             this.password.Size = new System.Drawing.Size(228, 20);
             this.password.TabIndex = 3;
             this.password.UseSystemPasswordChar = true;
+            this.password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_KeyPress);
             // 
             // confirmarLogin
             // 
@@ -77,7 +78,7 @@
             this.confirmarLogin.TabIndex = 4;
             this.confirmarLogin.Text = "Login";
             this.confirmarLogin.UseVisualStyleBackColor = true;
-            this.confirmarLogin.Click += new System.EventHandler(this.button1_Click);
+            this.confirmarLogin.Click += new System.EventHandler(this.confirmarLogin_Click);
             // 
             // Registrarse
             // 

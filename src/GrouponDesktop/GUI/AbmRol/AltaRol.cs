@@ -48,31 +48,27 @@ namespace GrouponDesktop.GUI.AbmRol
         {
             if (Nombre.Text == "" || ListaFuncionalidades.CheckedItems.Count == 0) {
                 MessageBox.Show("Faltan datos");
+                return;
             }
 
             String nombreRol = NombreRol.Text;
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.AltaRol");
-            Dictionary<String,Object> d = new Dictionary<string,object>();
-            d.Add("@nombre",nombreRol);
-            ps.Parametros(d);
+
+            ParamSet ps = new ParamSet("dbo.AltaRol");
+            ps.AddParameter("@nombre",nombreRol);
             SqlParameter retval = ps.execSP();
 
             switch (retval.Value.ToString()) {
                 case "1" : MessageBox.Show("El rol ya existe");
-                    break;
+                    return;
             }
             
             ps.NombreSP("dbo.AsignarFuncionalidadAlRol");
-            d.Clear();
-            foreach (Object item in ListaFuncionalidades.CheckedItems)
+
+            foreach (String item in ListaFuncionalidades.CheckedItems)
             {
-                d.Add("@id",Int32.Parse(item.ToString().Substring(0,item.ToString().IndexOf(":"))));
-                d.Add("@rol",nombreRol);
-                ps.Parametros(d);
+                ps.AddParameter("@id",Int32.Parse(item.ToString().Substring(0,item.IndexOf(":"))));
+                ps.AddParameter("@rol",nombreRol);
                 ps.execSP();
-                d.Clear();
-           
             }
             MessageBox.Show("Alta correcta");
         }

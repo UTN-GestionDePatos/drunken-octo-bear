@@ -39,8 +39,13 @@ namespace GrouponDesktop.Core
             this.parametros = parametros;
         }
 
-        public void AddParameter(String nombre, String contenido) {
+        public void AddParameter(String nombre, Object contenido) {
             this.parametros.Add(nombre, contenido);
+        }
+
+        public void RemoveParameters()
+        {
+            this.parametros.Clear();
         }
 
         public SqlParameter execSP()
@@ -57,7 +62,8 @@ namespace GrouponDesktop.Core
             retval.Direction = ParameterDirection.Output;
             query.Connection = db.getConnection();
             query.ExecuteNonQuery();
-
+            
+            this.RemoveParameters();
             return retval;
         }
 
@@ -71,6 +77,7 @@ namespace GrouponDesktop.Core
                 query.Parameters.Add(new SqlParameter(nombreP, parametros[nombreP]));
             query.Connection = db.getConnection();
             query.ExecuteNonQuery();
+            this.RemoveParameters();
         }
 
     }

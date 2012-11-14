@@ -18,7 +18,12 @@ namespace GrouponDesktop
             new AppContext();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            new Login().ShowDialog();
+            Session s = (Session) AppContext.getObject(typeof(Session));
+            if (s != null)
+            {
+                Application.Run(new Main());
+            }
         }
     }
 }

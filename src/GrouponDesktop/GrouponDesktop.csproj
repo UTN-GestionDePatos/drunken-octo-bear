@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AppContext.cs" />
+    <Compile Include="Core\ParamSet.cs" />
     <Compile Include="Core\Session.cs" />
     <Compile Include="Core\SQLResponse.cs" />
     <Compile Include="Core\DBManager.cs" />
@@ -146,12 +147,6 @@
     </Compile>
     <Compile Include="GUI\AbmProveedor\ModificacionProveedor.Designer.cs">
       <DependentUpon>ModificacionProveedor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\AbmRol\ABMRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\AbmRol\ABMRol.Designer.cs">
-      <DependentUpon>ABMRol.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmRol\AltaRol.cs">
       <SubType>Form</SubType>
@@ -268,7 +263,6 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="MainClass.cs" />
-    <Compile Include="ParamSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\AbmCliente\ABMCliente.resx">
       <DependentUpon>ABMCliente.cs</DependentUpon>
@@ -293,9 +287,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmProveedor\ModificacionProveedor.resx">
       <DependentUpon>ModificacionProveedor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\AbmRol\ABMRol.resx">
-      <DependentUpon>ABMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmRol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>

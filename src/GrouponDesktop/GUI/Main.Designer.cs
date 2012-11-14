@@ -42,6 +42,7 @@
             this.funcionalidades.Name = "funcionalidades";
             this.funcionalidades.Size = new System.Drawing.Size(231, 21);
             this.funcionalidades.TabIndex = 0;
+            this.funcionalidades.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.funcionalidades_KeyPress);
             // 
             // bienvenida
             // 
