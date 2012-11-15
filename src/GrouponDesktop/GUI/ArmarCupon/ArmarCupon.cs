@@ -33,6 +33,7 @@ namespace GrouponDesktop.ArmarCupon
                 return;
             }
 
+            try{
             Session s = (Session)AppContext.getObject(typeof(Session));
             ParamSet ps = new ParamSet("dbo.ArmarCupon");
             
@@ -58,6 +59,7 @@ namespace GrouponDesktop.ArmarCupon
 
             }
 
+       
             ps.NombreSP("dbo.AsignarLocalidadAlGrupo");
 
             foreach (Object item in ListaZonas.CheckedItems)
@@ -68,6 +70,12 @@ namespace GrouponDesktop.ArmarCupon
             }
 
             MessageBox.Show("Grupo de cupon armado exitosamente");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Ingrese un valor numérico para los precios, límite y stock");
+                return;
+            }
         }
 
         private void ArmarCupon_Load(object sender, EventArgs e)
@@ -90,17 +98,9 @@ namespace GrouponDesktop.ArmarCupon
             VencimientoCanjeCalendario.Visible = true;
         }
 
-        private void VencimientoOfertaCalendario_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            DateTime oferta = VencimientoOfertaCalendario.SelectionStart;
-            string ofertaStr = oferta.Date.ToShortDateString();
-
-            VencimientoOferta.Text = ofertaStr;
-
-            VencimientoOfertaCalendario.Visible = false;
-        }
-
-        private void VencimientoCanjeCalendario_DateChanged(object sender, DateRangeEventArgs e)
+    
+   
+        private void VencimientoCanjeCalendario_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime canje = VencimientoCanjeCalendario.SelectionStart;
             string canjeStr = canje.Date.ToShortDateString();
@@ -108,6 +108,16 @@ namespace GrouponDesktop.ArmarCupon
             VencimientoCanje.Text = canjeStr;
 
             VencimientoCanjeCalendario.Visible = false;
+        }
+
+        private void VencimientoOfertaCalendario_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime oferta = VencimientoOfertaCalendario.SelectionStart;
+            string ofertaStr = oferta.Date.ToShortDateString();
+
+            VencimientoOferta.Text = ofertaStr;
+
+            VencimientoOfertaCalendario.Visible = false;
         }
 
        

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.codigoGrupo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.DescripcionCupon = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.LimitePorUsuario = new System.Windows.Forms.TextBox();
@@ -42,11 +44,9 @@
             this.Guardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
-            this.codigoGrupo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.VencimientoOfertaCalendario = new System.Windows.Forms.MonthCalendar();
             this.VencimientoCanjeCalendario = new System.Windows.Forms.MonthCalendar();
+            this.VencimientoOfertaCalendario = new System.Windows.Forms.MonthCalendar();
             this.CanjeAbrir = new System.Windows.Forms.Button();
             this.OfertaAbrir = new System.Windows.Forms.Button();
             this.VencimientoCanje = new System.Windows.Forms.TextBox();
@@ -80,6 +80,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Armar Cupón";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // codigoGrupo
+            // 
+            this.codigoGrupo.Location = new System.Drawing.Point(217, 18);
+            this.codigoGrupo.Name = "codigoGrupo";
+            this.codigoGrupo.Size = new System.Drawing.Size(209, 20);
+            this.codigoGrupo.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Código de Grupo";
             // 
             // DescripcionCupon
             // 
@@ -190,26 +206,10 @@
             this.ListaZonas.Size = new System.Drawing.Size(217, 409);
             this.ListaZonas.TabIndex = 8;
             // 
-            // codigoGrupo
-            // 
-            this.codigoGrupo.Location = new System.Drawing.Point(217, 18);
-            this.codigoGrupo.Name = "codigoGrupo";
-            this.codigoGrupo.Size = new System.Drawing.Size(209, 20);
-            this.codigoGrupo.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Código de Grupo";
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.VencimientoOfertaCalendario);
             this.groupBox3.Controls.Add(this.VencimientoCanjeCalendario);
+            this.groupBox3.Controls.Add(this.VencimientoOfertaCalendario);
             this.groupBox3.Controls.Add(this.CanjeAbrir);
             this.groupBox3.Controls.Add(this.OfertaAbrir);
             this.groupBox3.Controls.Add(this.VencimientoCanje);
@@ -223,21 +223,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fechas";
             // 
-            // VencimientoOfertaCalendario
-            // 
-            this.VencimientoOfertaCalendario.Location = new System.Drawing.Point(321, 25);
-            this.VencimientoOfertaCalendario.Name = "VencimientoOfertaCalendario";
-            this.VencimientoOfertaCalendario.TabIndex = 34;
-            this.VencimientoOfertaCalendario.Visible = false;
-            this.VencimientoOfertaCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoOfertaCalendario_DateChanged);
-            // 
             // VencimientoCanjeCalendario
             // 
-            this.VencimientoCanjeCalendario.Location = new System.Drawing.Point(321, 9);
+            this.VencimientoCanjeCalendario.Location = new System.Drawing.Point(331, 17);
             this.VencimientoCanjeCalendario.Name = "VencimientoCanjeCalendario";
-            this.VencimientoCanjeCalendario.TabIndex = 33;
+            this.VencimientoCanjeCalendario.TabIndex = 7;
             this.VencimientoCanjeCalendario.Visible = false;
-            this.VencimientoCanjeCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoCanjeCalendario_DateChanged);
+            this.VencimientoCanjeCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoCanjeCalendario_DateSelected);
+            // 
+            // VencimientoOfertaCalendario
+            // 
+            this.VencimientoOfertaCalendario.Location = new System.Drawing.Point(331, 17);
+            this.VencimientoOfertaCalendario.Name = "VencimientoOfertaCalendario";
+            this.VencimientoOfertaCalendario.TabIndex = 6;
+            this.VencimientoOfertaCalendario.Visible = false;
+            this.VencimientoOfertaCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.VencimientoOfertaCalendario_DateSelected);
             // 
             // CanjeAbrir
             // 
@@ -333,13 +333,13 @@
         private System.Windows.Forms.TextBox codigoGrupo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.MonthCalendar VencimientoOfertaCalendario;
-        private System.Windows.Forms.MonthCalendar VencimientoCanjeCalendario;
         private System.Windows.Forms.Button CanjeAbrir;
         private System.Windows.Forms.Button OfertaAbrir;
         private System.Windows.Forms.TextBox VencimientoCanje;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox VencimientoOferta;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MonthCalendar VencimientoOfertaCalendario;
+        private System.Windows.Forms.MonthCalendar VencimientoCanjeCalendario;
     }
 }

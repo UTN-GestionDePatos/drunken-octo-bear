@@ -66,7 +66,7 @@
             this.FechaHastaCalendario.Name = "FechaHastaCalendario";
             this.FechaHastaCalendario.TabIndex = 34;
             this.FechaHastaCalendario.Visible = false;
-            this.FechaHastaCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.FechaHastaCalendario_DateSelected);
+            this.FechaHastaCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.FechaHastaCalendario_DateSelected);
             // 
             // FechaDesdeCalendario
             // 
@@ -74,7 +74,7 @@
             this.FechaDesdeCalendario.Name = "FechaDesdeCalendario";
             this.FechaDesdeCalendario.TabIndex = 33;
             this.FechaDesdeCalendario.Visible = false;
-            this.FechaDesdeCalendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.FechaDesdeCalendario_DateSelected);
+            this.FechaDesdeCalendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.FechaDesdeCalendario_DateSelected);
             // 
             // FechaHastaAbrirCalendario
             // 

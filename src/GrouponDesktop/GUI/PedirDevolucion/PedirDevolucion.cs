@@ -25,28 +25,36 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 MessageBox.Show("Faltan datos");
                 return;
             }
-            Session s = (Session)AppContext.getObject(typeof(Session));
-            
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.PedirDevolucion");
-            Dictionary<String, Object> d = new Dictionary<string, object>();
-            d.Add("@idCupon", Int32.Parse(Cupon.Text));
-            d.Add("@username", s.username);
-            d.Add("@fecha_actual", Core.Properties.getProperty("fecha"));
-            d.Add("@motivo", Motivo.Text);
-            ps.Parametros(d);
-            SqlParameter retval = ps.execSP();
 
-            switch (retval.Value.ToString())
+            try
             {
-                case "1": MessageBox.Show("El cupón no existe o el usuario no es el dueño");
-                    return;
-                case "2": MessageBox.Show("El cupón está canjeado o ya devuelto");
-                    return;
-                case "3": MessageBox.Show("El cupón expiró");
-                    return;
+                Session s = (Session)AppContext.getObject(typeof(Session));
 
-                
+                ParamSet ps = new ParamSet();
+                ps.NombreSP("dbo.PedirDevolucion");
+                Dictionary<String, Object> d = new Dictionary<string, object>();
+                d.Add("@idCupon", Int32.Parse(Cupon.Text));
+                d.Add("@username", s.username);
+                d.Add("@fecha_actual", Core.Properties.getProperty("fecha"));
+                d.Add("@motivo", Motivo.Text);
+                ps.Parametros(d);
+                SqlParameter retval = ps.execSP();
+
+                switch (retval.Value.ToString())
+                {
+                    case "1": MessageBox.Show("El cupón no existe o el usuario no es el dueño");
+                        return;
+                    case "2": MessageBox.Show("El cupón está canjeado o ya devuelto");
+                        return;
+                    case "3": MessageBox.Show("El cupón expiró");
+                        return;
+
+
+                }
+            }
+            catch (FormatException) {
+                MessageBox.Show("Ingrese un valor numérico de cupón");
+                return;
             }
 
             Devolucion dev = new Devolucion();

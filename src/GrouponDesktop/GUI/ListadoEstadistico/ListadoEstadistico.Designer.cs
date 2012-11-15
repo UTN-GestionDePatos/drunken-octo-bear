@@ -58,6 +58,7 @@
             // 
             // Anio
             // 
+            this.Anio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Anio.FormattingEnabled = true;
             this.Anio.Location = new System.Drawing.Point(136, 34);
             this.Anio.Name = "Anio";
@@ -66,6 +67,7 @@
             // 
             // Semestre
             // 
+            this.Semestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Semestre.FormattingEnabled = true;
             this.Semestre.Items.AddRange(new object[] {
             "1",
@@ -77,6 +79,7 @@
             // 
             // TipoListado
             // 
+            this.TipoListado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TipoListado.FormattingEnabled = true;
             this.TipoListado.Items.AddRange(new object[] {
             "Top 5 Devoluciones",

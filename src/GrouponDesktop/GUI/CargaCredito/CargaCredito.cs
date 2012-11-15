@@ -35,6 +35,14 @@ namespace GrouponDesktop.GUI.CargaCredito
                 MessageBox.Show("Faltan datos");
                 return;
             }
+            try
+            {
+                Int64.Parse(Monto.Text);
+            }
+            catch (FormatException) {
+                MessageBox.Show("Ingrese un monto válido");
+                return;
+            }
             ParamSet ps = new ParamSet("dbo.CargarCredito");
             ps.AddParameter("@username", Username.Text);
             ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
@@ -47,7 +55,16 @@ namespace GrouponDesktop.GUI.CargaCredito
 
             }
             else {
-                ps.AddParameter("@numeroTarjeta", Int64.Parse(this.NumeroTarjeta.Text));
+                try
+                {
+                    ps.AddParameter("@numeroTarjeta", Int64.Parse(this.NumeroTarjeta.Text));
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Ingrese un número de tarjeta válido");
+                    return;
+                }
+               
             }
 
             SqlParameter retval = ps.execSP();

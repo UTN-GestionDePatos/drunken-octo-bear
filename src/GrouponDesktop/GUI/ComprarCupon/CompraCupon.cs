@@ -38,37 +38,47 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (this.cuponesDisponibles.SelectedRows.Count != 1) {
+            if (this.cuponesDisponibles.SelectedRows.Count != 1 )
+            {
 
-                MessageBox.Show("Seleccione un cupón para la compra");
+                MessageBox.Show("Seleccione una fila de cupón para la compra");
                 return;
            }
 
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.ComprarCupon");
 
-            Dictionary<String, Object> d = new Dictionary<string, object>();
-            d.Add("@id_grupo", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
-            d.Add("@fecha", Core.Properties.getProperty("fecha"));
-            d.Add("@username", s.username);
-            ps.Parametros(d);
-            
-            SqlParameter retval = ps.execSP();
-            String ret = retval.Value.ToString();
-        
-            switch (ret)
+            try
             {
-                case "1": MessageBox.Show("Ha llegado al límite por usuario para el cupón solicitado.");
-                    return;
-                case "2": MessageBox.Show("No hay stock para el cupón solicitado.");
-                    return;
-                case "3": MessageBox.Show("El usuario no tiene saldo suficiente.");
-                    return;
-    
-                default: MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
-                    return;
+
+                ParamSet ps = new ParamSet();
+                ps.NombreSP("dbo.ComprarCupon");
+
+                Dictionary<String, Object> d = new Dictionary<string, object>();
+                d.Add("@id_grupo", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+                d.Add("@fecha", Core.Properties.getProperty("fecha"));
+                d.Add("@username", s.username);
+                ps.Parametros(d);
+
+                SqlParameter retval = ps.execSP();
+                String ret = retval.Value.ToString();
+
+                switch (ret)
+                {
+                    case "1": MessageBox.Show("Ha llegado al límite por usuario para el cupón solicitado.");
+                        return;
+                    case "2": MessageBox.Show("No hay stock para el cupón solicitado.");
+                        return;
+                    case "3": MessageBox.Show("El usuario no tiene saldo suficiente.");
+                        return;
+
+                    default: MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
+                        return;
 
 
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("No hay cupones para comprar");
             }
         }
     }
