@@ -39,13 +39,11 @@ namespace GrouponDesktop.GUI.PedirDevolucion
         {
             Session s = (Session)AppContext.getObject(typeof(Session));
 
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.ConfirmarDevolucion");
-            Dictionary<String, Object> d = new Dictionary<string, object>();
-            d.Add("@idCupon", this.idCupon);
-            d.Add("@fecha_actual", Core.Properties.getProperty("fecha"));
-            d.Add("@motivo", this.motivo);
-            ps.Parametros(d);
+            ParamSet ps = new ParamSet("dbo.ConfirmarDevolucion");
+            ps.AddParameter("@idCupon", this.idCupon);
+            ps.AddParameter("@fecha_actual", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@motivo", this.motivo);
+            
             SqlParameter retval = ps.execSP();
 
             MessageBox.Show("Devolución exitosa");

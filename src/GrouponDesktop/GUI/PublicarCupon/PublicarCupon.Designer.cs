@@ -28,46 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.fecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Proveedores = new System.Windows.Forms.ComboBox();
+            this.VerCupones = new System.Windows.Forms.Button();
+            this.cupones = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.cupones)).BeginInit();
             this.SuspendLayout();
+            // 
+            // fecha
+            // 
+            this.fecha.AutoSize = true;
+            this.fecha.Location = new System.Drawing.Point(39, 9);
+            this.fecha.Name = "fecha";
+            this.fecha.Size = new System.Drawing.Size(186, 13);
+            this.fecha.TabIndex = 3;
+            this.fecha.Text = "Publicación de cupones para la fecha";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Location = new System.Drawing.Point(39, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Número de Cupón";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Proveedor:";
             // 
-            // textBox1
+            // Proveedores
             // 
-            this.textBox1.Location = new System.Drawing.Point(123, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 20);
-            this.textBox1.TabIndex = 1;
+            this.Proveedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Proveedores.FormattingEnabled = true;
+            this.Proveedores.Location = new System.Drawing.Point(135, 53);
+            this.Proveedores.Name = "Proveedores";
+            this.Proveedores.Size = new System.Drawing.Size(272, 21);
+            this.Proveedores.TabIndex = 5;
             // 
-            // button1
+            // VerCupones
             // 
-            this.button1.Location = new System.Drawing.Point(93, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Publicar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.VerCupones.Location = new System.Drawing.Point(527, 51);
+            this.VerCupones.Name = "VerCupones";
+            this.VerCupones.Size = new System.Drawing.Size(95, 23);
+            this.VerCupones.TabIndex = 6;
+            this.VerCupones.Text = "Ver Cupones";
+            this.VerCupones.UseVisualStyleBackColor = true;
+            this.VerCupones.Click += new System.EventHandler(this.VerCupones_Click);
+            // 
+            // cupones
+            // 
+            this.cupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cupones.Location = new System.Drawing.Point(42, 150);
+            this.cupones.Name = "cupones";
+            this.cupones.Size = new System.Drawing.Size(580, 66);
+            this.cupones.TabIndex = 7;
             // 
             // PublicarCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 91);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(670, 312);
+            this.Controls.Add(this.cupones);
+            this.Controls.Add(this.VerCupones);
+            this.Controls.Add(this.Proveedores);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.fecha);
             this.Name = "PublicarCupon";
             this.Text = "PublicarCupon";
+            this.Load += new System.EventHandler(this.PublicarCupon_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.cupones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,8 +102,10 @@
 
         #endregion
 
+        private System.Windows.Forms.Label fecha;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox Proveedores;
+        private System.Windows.Forms.Button VerCupones;
+        private System.Windows.Forms.DataGridView cupones;
     }
 }

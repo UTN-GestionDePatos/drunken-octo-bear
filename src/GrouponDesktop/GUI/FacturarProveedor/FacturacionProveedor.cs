@@ -23,8 +23,6 @@ namespace GrouponDesktop.GUI.FacturarProveedor
 
         private void FacturacionProveedor_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet3.Cupones' Puede moverla o quitarla según sea necesario.
-            //this.cuponesTableAdapter.Fill(this.gD2C2012DataSet3.Cupones);
             this.proveedores.Items.Clear();
             Session s = (Session)AppContext.getObject(typeof(Session));
             
@@ -108,17 +106,13 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 return;
             }
 
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.FacturarProveedor");
-
+            ParamSet ps = new ParamSet("dbo.FacturarProveedor");
+            
             float monto = float.Parse(montoFactura().ToString());
-            Dictionary<String, Object> d = new Dictionary<string, object>();
-            d.Add("@proveedor", proveedores.SelectedItem);
-            d.Add("@fecha_desde", FechaDesde.Text);
-            d.Add("@fecha_hasta", FechaHasta.Text);
-            d.Add("@monto", monto);
-
-            ps.Parametros(d);
+            ps.AddParameter("@proveedor", proveedores.SelectedItem);
+            ps.AddParameter("@fecha_desde", FechaDesde.Text);
+            ps.AddParameter("@fecha_hasta", FechaHasta.Text);
+            ps.AddParameter("@monto", monto);
 
             SqlParameter retval = ps.execSP();
             

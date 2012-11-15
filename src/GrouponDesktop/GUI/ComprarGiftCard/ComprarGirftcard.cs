@@ -27,16 +27,12 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 return;
             }
 
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.ComprarGiftcard");
+            ParamSet ps = new ParamSet("dbo.ComprarGiftcard"); 
 
-            Dictionary<String, Object> d = new Dictionary<string, object>();
-            d.Add("@clienteOrigen", s.username);
-            d.Add("@fecha", Core.Properties.getProperty("fecha"));
-            d.Add("@clienteDestino", ClienteDestino.Text);
-            d.Add("@monto", Int64.Parse(monto.SelectedItem.ToString()));
-
-            ps.Parametros(d);
+            ps.AddParameter("@clienteOrigen", s.username);
+            ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@clienteDestino", ClienteDestino.Text);
+            ps.AddParameter("@monto", Int64.Parse(monto.SelectedItem.ToString()));
 
             SqlParameter retval = ps.execSP();
 

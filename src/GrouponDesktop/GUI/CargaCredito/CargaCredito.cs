@@ -35,25 +35,20 @@ namespace GrouponDesktop.GUI.CargaCredito
                 MessageBox.Show("Faltan datos");
                 return;
             }
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.CargarCredito");
-
-            Dictionary<String,Object> s = new Dictionary<string,object>();
-            s.Add("@username", Username.Text);
-            s.Add("@fecha", Core.Properties.getProperty("fecha"));
-            s.Add("@tipoPago", TipoPago.SelectedItem.ToString());
-            s.Add("@monto", Int64.Parse(Monto.Text));
+            ParamSet ps = new ParamSet("dbo.CargarCredito");
+            ps.AddParameter("@username", Username.Text);
+            ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
+            ps.AddParameter("@monto", Int64.Parse(Monto.Text));
             
             if (!this.NumeroTarjeta.Enabled)
             {
-                s.Add("@numeroTarjeta", 0);
+                ps.AddParameter("@numeroTarjeta", 0);
 
             }
             else {
-                s.Add("@numeroTarjeta", Int64.Parse(this.NumeroTarjeta.Text));
+                ps.AddParameter("@numeroTarjeta", Int64.Parse(this.NumeroTarjeta.Text));
             }
-
-            ps.Parametros(s);
 
             SqlParameter retval = ps.execSP();
 

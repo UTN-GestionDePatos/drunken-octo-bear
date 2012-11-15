@@ -72,6 +72,7 @@
             // 
             // monto
             // 
+            this.monto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.monto.FormattingEnabled = true;
             this.monto.Location = new System.Drawing.Point(132, 56);
             this.monto.Name = "monto";

@@ -46,14 +46,9 @@ namespace GrouponDesktop
                     return;
                 }
 
-                ParamSet ps = new ParamSet();
-                ps.NombreSP("dbo.Loguearse");
-
-                Dictionary<String, Object> d = new Dictionary<string, object>();
-                d.Add("@user", usuario.Text);
-                d.Add("@pass", password.Text);
-
-                ps.Parametros(d);
+                ParamSet ps = new ParamSet("dbo.Loguearse");
+                ps.AddParameter("@user", usuario.Text);
+                ps.AddParameter("@pass", password.Text);
 
                 SqlParameter retval = ps.execSP();
 

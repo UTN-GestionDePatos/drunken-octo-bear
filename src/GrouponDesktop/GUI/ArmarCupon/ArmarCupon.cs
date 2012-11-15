@@ -34,22 +34,19 @@ namespace GrouponDesktop.ArmarCupon
             }
 
             Session s = (Session)AppContext.getObject(typeof(Session));
-            ParamSet ps = new ParamSet();
-            ps.NombreSP("dbo.ArmarCupon");
-            Dictionary<String, Object> d = new Dictionary<string, object>();
+            ParamSet ps = new ParamSet("dbo.ArmarCupon");
             
-            d.Add("@codigoGrupo",codigoGrupo.Text);
-            d.Add("@descripcion", DescripcionCupon.Text);
-            d.Add("@fechaSistema", Core.Properties.getProperty("fecha"));
-            d.Add("@fechaVencimientoCanje", VencimientoCanje.Text);
-            d.Add("@fechaVencimientoOferta", VencimientoOferta.Text);
-            d.Add("@precio_ficticio", float.Parse(PrecioFicticio.Text));
-            d.Add("@precio_real", float.Parse(PrecioReal.Text));
-            d.Add("@limite_usuario", Int32.Parse(LimitePorUsuario.Text));
-            d.Add("@stock", Int32.Parse(Stock.Text));
-            d.Add("@proveedor", s.username);
-            ps.Parametros(d);
-
+            ps.AddParameter("@codigoGrupo",codigoGrupo.Text);
+            ps.AddParameter("@descripcion", DescripcionCupon.Text);
+            ps.AddParameter("@fechaSistema", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@fechaVencimientoCanje", VencimientoCanje.Text);
+            ps.AddParameter("@fechaVencimientoOferta", VencimientoOferta.Text);
+            ps.AddParameter("@precio_ficticio", float.Parse(PrecioFicticio.Text));
+            ps.AddParameter("@precio_real", float.Parse(PrecioReal.Text));
+            ps.AddParameter("@limite_usuario", Int32.Parse(LimitePorUsuario.Text));
+            ps.AddParameter("@stock", Int32.Parse(Stock.Text));
+            ps.AddParameter("@proveedor", s.username);
+            
             SqlParameter retval = ps.execSP();
 
             switch (retval.Value.ToString())
@@ -61,17 +58,13 @@ namespace GrouponDesktop.ArmarCupon
 
             }
 
-            d.Clear();
             ps.NombreSP("dbo.AsignarLocalidadAlGrupo");
 
             foreach (Object item in ListaZonas.CheckedItems)
             {
-                d.Add("@localidad", item.ToString());
-                d.Add("@grupo", codigoGrupo.Text);
-                ps.Parametros(d);
+                ps.AddParameter("@localidad", item.ToString());
+                ps.AddParameter("@grupo", codigoGrupo.Text);
                 ps.execSP();
-                d.Clear();
-
             }
 
             MessageBox.Show("Grupo de cupon armado exitosamente");

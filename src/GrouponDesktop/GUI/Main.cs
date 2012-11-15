@@ -31,7 +31,7 @@ namespace GrouponDesktop.GUI
 
             bienvenida.Text = "Bienvenido: " + sesion.username;
 
-            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM Funcionalidades f,Funcion_por_rol fpr WHERE f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'"+sesion.rol+"\'");
+            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM Funcionalidades f,Funcion_por_rol fpr WHERE f.id_funcionalidad != 2 and f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'"+sesion.rol+"\'");
             foreach(DataRow row in r.result.Rows){
                 this.funcionalidades.Items.Add(row[0]+": "+row[1]);
             }
@@ -52,8 +52,6 @@ namespace GrouponDesktop.GUI
             {
                 case "1:": new ListadoRol().Show();
                     break;
-                case "2:": new RegistroUsuario.RegistroUsuario().Show();
-                    break;
                 case "3:": new ABMCliente().Show();
                     break;
                 case "4:": new ABMProveedor().Show();
@@ -72,7 +70,7 @@ namespace GrouponDesktop.GUI
                     break;
                 case "11": new RegistroConsumoCupon.RegistroConsumoCupon().Show();
                     break;
-                case "12": new RegistroUsuario.RegistroUsuario().Show();
+                case "12": new PublicarCupon.PublicarCupon().Show();
                     break;
                 case "13": new FacturarProveedor.FacturacionProveedor().Show();
                     break;

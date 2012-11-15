@@ -142,6 +142,7 @@
             // 
             // Estado
             // 
+            this.Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Estado.FormattingEnabled = true;
             this.Estado.Items.AddRange(new object[] {
             "Comprado",

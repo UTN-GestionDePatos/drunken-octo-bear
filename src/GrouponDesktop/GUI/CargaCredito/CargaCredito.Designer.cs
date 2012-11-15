@@ -83,6 +83,7 @@
             // 
             // TipoPago
             // 
+            this.TipoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TipoPago.FormattingEnabled = true;
             this.TipoPago.Items.AddRange(new object[] {
             "Efectivo",
