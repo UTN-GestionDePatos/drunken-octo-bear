@@ -24,7 +24,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             try
             {
                 
-                SQLResponse response = manager.executeQuery("SELECT localidad from Localidades");
+                SQLResponse response = manager.executeQuery("SELECT localidad from GESTION_DE_PATOS.Localidades");
 
                 foreach(DataRow r in response.result.Rows){
                     ListaZonas.Items.Add(r[0]);
@@ -34,6 +34,25 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             catch (Exception)
             {
                 
+            }
+        }
+
+        private void Rol_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (this.Rol.SelectedItem.ToString() == "Cliente")
+            {
+                this.ListaZonas.Visible = true;
+                this.zonas.Visible = true;
+                this.datosCliente.Visible = true;
+                this.datosProveedor.Visible = false;
+            }
+            else
+            {
+                this.ListaZonas.Visible = false;
+                this.zonas.Visible = false;
+                this.datosCliente.Visible = false;
+                this.datosProveedor.Visible = true;
+
             }
         }
     }
