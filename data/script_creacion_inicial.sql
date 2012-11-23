@@ -236,11 +236,10 @@ GO
 CREATE PROCEDURE GESTION_DE_PATOS.PedirDevolucion(@idcupon int ,@username varchar(30),@fecha_actual datetime,@motivo varchar(250),@ret int output)
 AS
 BEGIN
---ver si esta comparacion de fechas esta bien
+
 /*
 	0: ok
 	1: user y cupon no matchean
-	2: el cupon no esta comprado 
 	3: el cupon expiro
 	4: el cupon esta devuelto o canjeado
 */	
@@ -249,11 +248,6 @@ BEGIN
 			 set @ret = 1
 			 return
 		end
-	if not exists (select * from GESTION_DE_PATOS.Cupones where id_cupon = @idcupon)
-		begin
-			set @ret = 2
-			return
-		end	
 	
 	if exists (select * from GESTION_DE_PATOS.Canjes where id_cupon = @idcupon) or exists (select * from GESTION_DE_PATOS.Devoluciones where id_cupon = @idcupon)
 		begin
@@ -261,23 +255,36 @@ BEGIN
 			return
 		end
 	
-	If (select g.fecha_vencimiento_canje from GESTION_DE_PATOS.Promociones g join GESTION_DE_PATOS.Cupones c on c.id_promocion= g.id_promocion where c.id_cupon=@idcupon)<= @fecha_actual RETURN
-	else
+	If (select g.fecha_vencimiento_canje from GESTION_DE_PATOS.Promociones g join GESTION_DE_PATOS.Cupones c on c.id_promocion= g.id_promocion where c.id_cupon=@idcupon)< @fecha_actual
 	begin
 		--si llega aca es porque expiro el cupon
 		set @ret = 3
 		return
 	end
+	set @ret = 0
+
 END
 GO
 
 CREATE PROCEDURE GESTION_DE_PATOS.ConfirmarDevolucion(@idcupon int,@fecha_actual datetime,@motivo varchar(250), @ret int output)
 AS
 BEGIN
+/*
+	0: ok
+	1: ya se devolvio el cupon
+	
+*/
+		if exists(select * from GESTION_DE_PATOS.Devoluciones where id_cupon = @idcupon)
+		begin
+			set @ret = 1
+			return
+		end		
+		
 		insert into GESTION_DE_PATOS.Devoluciones values(@idcupon,@fecha_actual,@motivo)
 		set @ret = 0
 		return
 END
+
 GO
 
 CREATE PROCEDURE GESTION_DE_PATOS.Loguearse (@user varchar(30), @pass varchar(30), @ret int output)
@@ -343,7 +350,7 @@ BEGIN
 	end
 	IF(@clienteOrigen<>@clienteDestino)
 		BEGIN
-			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.idEstado('Habilitado')
+			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.idEstadoUsuario('Habilitado')
 			BEGIN
 				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
 				set @ret = 0
@@ -509,6 +516,63 @@ RETURN
 )
 GO
 
+CREATE PROCEDURE GESTION_DE_PATOS.PublicarCupon(@codigoPromocion varchar(30), @fecha datetime)
+AS
+BEGIN
+update GESTION_DE_PATOS.Promociones set estado = 'Publicado', fecha_publicacion = @fecha where id_promocion = @codigoPromocion
+END
+
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.ComprarCupon(@id_promocion varchar(30),@fecha datetime,@username varchar(30),@ret int output)
+AS
+BEGIN
+/*
+ret:
+	NroCupon: ok
+	1: la cantidad deseada supera el limite por usuario
+	2: la cantidad deseada supera el stock disponible
+	3: el usuario no tiene saldo suficiente
+
+cupon: 	codigo del cupon a informar
+*/
+	IF (select limite_por_usuario from GESTION_DE_PATOS.Promociones where id_promocion = @id_promocion) > 
+		(select COUNT(*) from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Cupones c on c.id_promocion = gc.id_promocion and gc.id_promocion = @id_promocion
+			where c.cliente = @username) - (select COUNT(*) from GESTION_DE_PATOS.Promociones p 
+											join GESTION_DE_PATOS.Cupones c on c.id_promocion = p.id_promocion
+											and p.id_promocion = @id_promocion
+											join GESTION_DE_PATOS.Devoluciones d on d.id_cupon = c.id_cupon)
+	BEGIN
+		IF (select stock from GESTION_DE_PATOS.Promociones where id_promocion= @id_promocion)> 0
+		BEGIN
+			declare @precio_real float
+			select @precio_real = precio_real from GESTION_DE_PATOS.Promociones where id_promocion=@id_promocion
+			IF (select saldo from GESTION_DE_PATOS.Clientes where username=@username) >= @precio_real
+				BEGIN			
+					insert into GESTION_DE_PATOS.Cupones values(@username,@id_promocion,@fecha)
+					set @ret = SCOPE_IDENTITY()
+					return
+				END	
+			else
+				begin
+					set @ret = 3
+					return
+				end		
+		END
+		else
+			begin
+				set @ret = 2
+				return
+			end
+	END
+	else
+	begin
+		set @ret = 1
+		return
+	end
+END
+
+GO
 
 /*
 	=============================================
@@ -657,13 +721,13 @@ BEGIN
 
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Rol')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Registro Usuario')
-		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM GESTION_DE_PATOS.Clientes')
-		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM GESTION_DE_PATOS.Proveedores')
+		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Clientes')
+		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Proveedores')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Carga de credito')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Comprar Giftcard')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Comprar Cupon')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Pedir Devolucion')
-		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Historial de Compra de GESTION_DE_PATOS.Cupones')
+		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Historial de Compra de Cupones')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Armar Cupon')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Registro de consumo de cupon')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Publicar Cupon')

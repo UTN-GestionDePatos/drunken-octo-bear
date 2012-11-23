@@ -1,6 +1,6 @@
 
-CREATE PROCEDURE PublicarCupon(@codigoGrupo varchar(30))
+CREATE PROCEDURE GESTION_DE_PATOS.PublicarCupon(@codigoPromocion varchar(30), @fecha datetime)
 AS
 BEGIN
-update GruposCupon set estado = 'Publicado' where id_grupo = @codigoGrupo
+update GESTION_DE_PATOS.Promociones set estado = 'Publicado', fecha_publicacion = @fecha where id_promocion = @codigoPromocion
 END

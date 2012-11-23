@@ -31,7 +31,7 @@ namespace GrouponDesktop.GUI
 
             bienvenida.Text = "Bienvenido: " + sesion.username;
 
-            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM Funcionalidades f,Funcion_por_rol fpr WHERE f.id_funcionalidad != 2 and f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'"+sesion.rol+"\'");
+            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM GESTION_DE_PATOS.Funcionalidades f,GESTION_DE_PATOS.Funcion_por_rol fpr WHERE f.id_funcionalidad != 2 and f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'" + sesion.rol + "\'");
             foreach(DataRow row in r.result.Rows){
                 this.funcionalidades.Items.Add(row[0]+": "+row[1]);
             }

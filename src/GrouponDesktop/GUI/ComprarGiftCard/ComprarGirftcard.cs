@@ -27,7 +27,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 return;
             }
 
-            ParamSet ps = new ParamSet("dbo.ComprarGiftcard"); 
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarGiftcard"); 
 
             ps.AddParameter("@clienteOrigen", s.username);
             ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));

@@ -31,7 +31,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 Session s = (Session)AppContext.getObject(typeof(Session));
 
                 ParamSet ps = new ParamSet();
-                ps.NombreSP("dbo.PedirDevolucion");
+                ps.NombreSP("GESTION_DE_PATOS.PedirDevolucion");
                 Dictionary<String, Object> d = new Dictionary<string, object>();
                 d.Add("@idCupon", Int32.Parse(Cupon.Text));
                 d.Add("@username", s.username);
@@ -60,12 +60,12 @@ namespace GrouponDesktop.GUI.PedirDevolucion
             Devolucion dev = new Devolucion();
             
             DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
-            SQLResponse response = manager.executeQuery("select c.id_cupon, c.id_grupo, gc.descripcion from Cupones c join GruposCupon gc on c.id_grupo = gc.id_grupo where c.id_cupon = " + Cupon.Text);
+            SQLResponse response = manager.executeQuery("select c.id_cupon, c.id_promocion, gc.descripcion from GESTION_DE_PATOS.Cupones c join GESTION_DE_PATOS.Promociones gc on c.id_promocion = gc.id_promocion where c.id_cupon = " + Cupon.Text);
 
             foreach (DataRow r in response.result.Rows)
             {
                 dev.SetDatos("ID CUPON: " + r[0] + "  \n");
-                dev.SetDatos("ID GRUPO: " + r[1] + "  \n");
+                dev.SetDatos("PROMOCIÓN: " + r[1] + "  \n");
                 dev.SetDatos("DESCRIPCIÓN: " + r[2] + "  \n");
 
                 dev.idCupon = Int32.Parse(r[0].ToString());

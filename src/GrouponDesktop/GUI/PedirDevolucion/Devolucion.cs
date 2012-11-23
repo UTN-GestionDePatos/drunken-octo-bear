@@ -39,14 +39,21 @@ namespace GrouponDesktop.GUI.PedirDevolucion
         {
             Session s = (Session)AppContext.getObject(typeof(Session));
 
-            ParamSet ps = new ParamSet("dbo.ConfirmarDevolucion");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ConfirmarDevolucion");
             ps.AddParameter("@idCupon", this.idCupon);
             ps.AddParameter("@fecha_actual", Core.Properties.getProperty("fecha"));
             ps.AddParameter("@motivo", this.motivo);
             
             SqlParameter retval = ps.execSP();
+            switch (retval.Value.ToString()) {
+                case "0": MessageBox.Show("Devolución exitosa");
+                    return;
 
-            MessageBox.Show("Devolución exitosa");
+                case "1": MessageBox.Show("El cupón ya está devuelto");
+                    return;
+
+
+            }
             this.Hide();  
         }
 

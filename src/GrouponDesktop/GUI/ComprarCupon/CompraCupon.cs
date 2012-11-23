@@ -25,7 +25,7 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
         private void CompraCupon_Load(object sender, EventArgs e)
         {
-            r = dbManager.executeQuery("select distinct gc.id_grupo Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_canje VencimientoCanje, gc.proveedor Proveedor from GruposCupon gc join Localidad_por_grupo lpg on lpg.id_grupo = gc.id_grupo join Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad where gc.estado = 'Publicado' and gc.fecha_vencimiento_oferta >= '" + Core.Properties.getProperty("fecha") + "'");
+            r = dbManager.executeQuery("select distinct gc.id_promocion Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_canje VencimientoCanje, gc.proveedor Proveedor from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Localidad_por_promocion lpg on lpg.id_promocion = gc.id_promocion join GESTION_DE_PATOS.Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad where gc.estado = 'Publicado' and gc.fecha_vencimiento_oferta >= '" + Core.Properties.getProperty("fecha") + "'");
 
             this.cuponesDisponibles.DataSource = r.result;
 
@@ -50,10 +50,10 @@ namespace GrouponDesktop.GUI.ComprarCupon
             {
 
                 ParamSet ps = new ParamSet();
-                ps.NombreSP("dbo.ComprarCupon");
+                ps.NombreSP("GESTION_DE_PATOS.ComprarCupon");
 
                 Dictionary<String, Object> d = new Dictionary<string, object>();
-                d.Add("@id_grupo", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+                d.Add("@id_promocion", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
                 d.Add("@fecha", Core.Properties.getProperty("fecha"));
                 d.Add("@username", s.username);
                 ps.Parametros(d);

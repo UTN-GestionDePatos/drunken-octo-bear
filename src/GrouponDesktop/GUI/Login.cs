@@ -46,7 +46,7 @@ namespace GrouponDesktop
                     return;
                 }
 
-                ParamSet ps = new ParamSet("dbo.Loguearse");
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.Loguearse");
                 ps.AddParameter("@user", usuario.Text);
                 ps.AddParameter("@pass", password.Text);
 
@@ -55,7 +55,7 @@ namespace GrouponDesktop
                 switch (retval.Value.ToString())
                 {
                     case "0":
-                        SqlCommand consulta = new SqlCommand("SELECT rol FROM Logins WHERE username=@username AND passwd=dbo.SHA256(@passwd)");
+                        SqlCommand consulta = new SqlCommand("SELECT rol FROM GESTION_DE_PATOS.Usuarios WHERE username=@username AND passwd=GESTION_DE_PATOS.SHA256(@passwd)");
                         consulta.Parameters.AddWithValue("username", usuario.Text);
                         consulta.Parameters.AddWithValue("passwd", password.Text);
                         SQLResponse r = manager.executeQuery(consulta);

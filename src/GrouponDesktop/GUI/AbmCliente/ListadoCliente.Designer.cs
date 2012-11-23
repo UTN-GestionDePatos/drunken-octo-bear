@@ -41,9 +41,6 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridClientes = new System.Windows.Forms.DataGridView();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSet1 = new GrouponDesktop.GD2C2012DataSet1();
-            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
             this.usernameDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +51,9 @@
             this.ciudadDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet1 = new GrouponDesktop.GD2C2012DataSet1();
+            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
@@ -183,21 +183,6 @@
             this.dataGridClientes.Size = new System.Drawing.Size(490, 241);
             this.dataGridClientes.TabIndex = 2;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
-            this.dataGridClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellContentClick);
-            // 
-            // clientesBindingSource
-            // 
-            this.clientesBindingSource.DataMember = "Clientes";
-            this.clientesBindingSource.DataSource = this.gD2C2012DataSet1;
-            // 
-            // gD2C2012DataSet1
-            // 
-            this.gD2C2012DataSet1.DataSetName = "GD2C2012DataSet1";
-            this.gD2C2012DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clientesTableAdapter
-            // 
-            this.clientesTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridView
             // 
@@ -258,6 +243,20 @@
             this.saldoDataGridView.DataPropertyName = "saldo";
             this.saldoDataGridView.HeaderText = "saldo";
             this.saldoDataGridView.Name = "saldoDataGridView";
+            // 
+            // clientesBindingSource
+            // 
+            this.clientesBindingSource.DataMember = "Clientes";
+            this.clientesBindingSource.DataSource = this.gD2C2012DataSet1;
+            // 
+            // gD2C2012DataSet1
+            // 
+            this.gD2C2012DataSet1.DataSetName = "GD2C2012DataSet1";
+            this.gD2C2012DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientesTableAdapter
+            // 
+            this.clientesTableAdapter.ClearBeforeFill = true;
             // 
             // ListadoCliente
             // 

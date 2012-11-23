@@ -35,7 +35,7 @@ namespace GrouponDesktop.ArmarCupon
 
             try{
             Session s = (Session)AppContext.getObject(typeof(Session));
-            ParamSet ps = new ParamSet("dbo.ArmarCupon");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ArmarCupon");
             
             ps.AddParameter("@codigoGrupo",codigoGrupo.Text);
             ps.AddParameter("@descripcion", DescripcionCupon.Text);
@@ -59,8 +59,8 @@ namespace GrouponDesktop.ArmarCupon
 
             }
 
-       
-            ps.NombreSP("dbo.AsignarLocalidadAlGrupo");
+
+            ps.NombreSP("GESTION_DE_PATOS.AsignarLocalidadAlGrupo");
 
             foreach (Object item in ListaZonas.CheckedItems)
             {
@@ -81,7 +81,7 @@ namespace GrouponDesktop.ArmarCupon
         private void ArmarCupon_Load(object sender, EventArgs e)
         {
             DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
-            SQLResponse response = manager.executeQuery("SELECT localidad from Localidades");
+            SQLResponse response = manager.executeQuery("SELECT localidad from GESTION_DE_PATOS.Localidades");
             
             foreach(DataRow r in response.result.Rows){
                 ListaZonas.Items.Add(r[0]);

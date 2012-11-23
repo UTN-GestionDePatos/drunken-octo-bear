@@ -80,6 +80,8 @@
             this.cupones.Name = "cupones";
             this.cupones.Size = new System.Drawing.Size(580, 66);
             this.cupones.TabIndex = 7;
+            this.cupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cupones_CellClick);
+            
             // 
             // PublicarCupon
             // 

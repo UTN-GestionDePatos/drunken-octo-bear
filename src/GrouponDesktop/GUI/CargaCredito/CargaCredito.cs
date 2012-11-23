@@ -43,7 +43,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                 MessageBox.Show("Ingrese un monto válido");
                 return;
             }
-            ParamSet ps = new ParamSet("dbo.CargarCredito");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
             ps.AddParameter("@username", Username.Text);
             ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
             ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
