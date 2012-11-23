@@ -77,6 +77,7 @@
             this.Limpiar.TabIndex = 6;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
             // Direccion
             // 
@@ -326,7 +327,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ModificacionCliente";
             this.Text = "Modificacion";
-            //this.Load += new System.EventHandler(this.ModificacionCliente_Load);
+            this.Load += new System.EventHandler(this.ModificacionCliente_Load);
             this.Direccion.ResumeLayout(false);
             this.Direccion.PerformLayout();
             this.groupBox1.ResumeLayout(false);

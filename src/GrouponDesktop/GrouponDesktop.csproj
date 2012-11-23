@@ -112,6 +112,7 @@
     <Compile Include="GUI\AbmCliente\AltaCliente.Designer.cs">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\FilaSeleccionada.cs" />
     <Compile Include="GUI\AbmCliente\ListadoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
