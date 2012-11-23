@@ -3,8 +3,8 @@ CREATE PROCEDURE CrearProveedor(@user varchar(30),@pass varchar(30),@cuit bigint
 @telefono bigint,@direccion varchar(100),@ciudad varchar(30),@nombre_contacto varchar(30)) 
 AS
 BEGIN
-	insert into Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
-	insert into Proveedores values(@user,@cuit,@razon_social,@mail,@telefono, @direccion,@ciudad,SCOPE_IDENTITY(),@nombre_contacto)
+	insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
+	insert into GESTION_DE_PATOS.Proveedores values(@user,@cuit,@razon_social,@mail,@telefono, @direccion,@ciudad,SCOPE_IDENTITY(),@nombre_contacto)
 END
 
 go
@@ -14,12 +14,12 @@ CREATE PROCEDURE ModificarProveedor(@user varchar(30),@cuit bigint,@razon_social
 @telefono bigint,@direccion varchar(100),@ciudad varchar(30),@nombre_contacto varchar(30), @estado varchar(20))
 AS
 BEGIN
-	Update Proveedores set cuit=@cuit,razon_social=@razon_social,mail=@mail,telefono=@telefono,direccion = @direccion,
+	Update GESTION_DE_PATOS.Proveedores set cuit=@cuit,razon_social=@razon_social,mail=@mail,telefono=@telefono,direccion = @direccion,
 	ciudad = @ciudad, nombre_contacto=@nombre_contacto
 						where username = @user
 	IF (@estado='Habilitado')
 	BEGIN
-	Update Usuarios set estado= GESTION_DE_PATOS.idEstado('Habilitado') where username =@user
+	Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstado('Habilitado') where username =@user
 	END
 END
 go
@@ -29,5 +29,5 @@ go
 CREATE PROCEDURE EliminarProveedor(@user varchar(30))
 AS
 BEGIN
-	Update Usuarios set estado= dbo.idEstado('Deshabilitado') where username =@user
+	Update GESTION_DE_PATOS.Usuarios set estado= dbo.idEstado('Deshabilitado') where username =@user
 END

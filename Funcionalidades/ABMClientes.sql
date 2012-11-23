@@ -11,13 +11,13 @@ CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(30),@nombre varcha
 */
 AS
 BEGIN
-	if (select 1 from Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni))is NULL
+	if (select 1 from GESTION_DE_PATOS.Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni))is NULL
 	BEGIN
 	
-		If (select 1 from Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
+		If (select 1 from GESTION_DE_PATOS.Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
 		BEGIN
-			insert into Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
-			insert into Clientes values (@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,@dni,10)
+			insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
+			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,@dni,10)
 		END
 		ELSE
 		BEGIN
@@ -45,12 +45,12 @@ CREATE PROCEDURE ModificarCliente(@user varchar(30),@nombre varchar(30), @apelli
 */
 AS
 BEGIN
-	If exists (select * from Usuarios where username = @user)
+	If exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
 	BEGIN
-		Update Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,direccion =@direccion,fecha_nacimiento=@fecha,dni=@dni where username=@user  
+		Update GESTION_DE_PATOS.Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,direccion =@direccion,fecha_nacimiento=@fecha,dni=@dni where username=@user  
 		IF (@estado='Habilitado') 
 		BEGIN
-			Update Usuarios set estado= GESTION_DE_PATOS.idEstado('Habilitado') where username =@user
+			Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstado('Habilitado') where username =@user
 		END
 		set @ret=0
 	END
@@ -66,8 +66,8 @@ go
 CREATE PROCEDURE EliminarCliente(@user varchar(30))
 AS
 BEGIN
-	If exists (select * from Usuarios where username = @user)
+	If exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
 	BEGIN
-		Update Usuarios set estado= GESTION_DE_PATOS.idEstado('Deshabilitado') where username =@user
+		Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstado('Deshabilitado') where username =@user
 	END
 END
