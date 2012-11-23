@@ -67,7 +67,80 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
+            Nombre.Text = "";
+            Apellido.Text = "";
+            DNI.Text = "";
+            Mail.Text = "";
+            dataGridClientes.DataSource = null;
+        }
 
+        private bool validarTextBox(TextBox textBox)
+        {
+            bool sin_espacios = true;
+
+            if (textBox.Text == "")
+            {
+                return false;
+            }
+
+            for (int i = 0; i < textBox.Text.Length; i++)
+            {
+                if (string.Equals(textBox.Text.ToString()[i], " "))
+                {
+                    sin_espacios = false;
+                }
+            }
+
+            return sin_espacios;
+        }
+
+        private void Buscar_Click(object sender, EventArgs e)
+        {
+            if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Mail.Text == "")
+            {
+                MessageBox.Show("Debe ingresar por lo menos un filtro");
+                return;
+            }
+
+            String where = "WHERE";
+
+            if (validarTextBox(Nombre))
+            {
+                where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
+                if (validarTextBox(Apellido))
+                    where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
+                if (validarTextBox(DNI))
+                    where = where + " AND dni = " + DNI.Text.ToString();
+                if (validarTextBox(Mail))
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+            }
+            else if (validarTextBox(Apellido))
+            {
+                where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
+                if (validarTextBox(DNI))
+                    where = where + " AND dni = " + DNI.Text.ToString();
+                if (validarTextBox(Mail))
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+            }
+            else if (validarTextBox(DNI))
+            {
+                where = where + " dni = " + DNI.Text.ToString();
+                if(validarTextBox(Mail))
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+            }
+            else if(validarTextBox(Mail))
+            {
+                where = where + " mail like '" + Mail.Text.ToString() + "%'";
+            }
+
+            String query = "SELECT * FROM GESTION_DE_PATOS.Clientes ";
+            if (!string.Equals(where,"WHERE"))
+            {
+                query = query + where;
+            }
+
+            SQLResponse r = dbManager.executeQuery(query);
+            this.SetDataGridView(r.result);
         }
 
 

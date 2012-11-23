@@ -41,6 +41,9 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridClientes = new System.Windows.Forms.DataGridView();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet1 = new GrouponDesktop.GD2C2012DataSet1();
+            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
             this.usernameDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,9 +54,6 @@
             this.ciudadDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSet1 = new GrouponDesktop.GD2C2012DataSet1();
-            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
@@ -135,6 +135,7 @@
             this.Buscar.TabIndex = 20;
             this.Buscar.Text = "Buscar";
             this.Buscar.UseVisualStyleBackColor = true;
+            this.Buscar.Click += new System.EventHandler(this.Buscar_Click);
             // 
             // Limpiar
             // 
@@ -184,66 +185,6 @@
             this.dataGridClientes.TabIndex = 2;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
             // 
-            // usernameDataGridView
-            // 
-            this.usernameDataGridView.DataPropertyName = "username";
-            this.usernameDataGridView.HeaderText = "username";
-            this.usernameDataGridView.Name = "usernameDataGridView";
-            // 
-            // nombreDataGridView
-            // 
-            this.nombreDataGridView.DataPropertyName = "nombre";
-            this.nombreDataGridView.HeaderText = "nombre";
-            this.nombreDataGridView.Name = "nombreDataGridView";
-            // 
-            // apellidoDataGridView
-            // 
-            this.apellidoDataGridView.DataPropertyName = "apellido";
-            this.apellidoDataGridView.HeaderText = "apellido";
-            this.apellidoDataGridView.Name = "apellidoDataGridView";
-            // 
-            // mailDataGridView
-            // 
-            this.mailDataGridView.DataPropertyName = "mail";
-            this.mailDataGridView.HeaderText = "mail";
-            this.mailDataGridView.Name = "mailDataGridView";
-            // 
-            // telefonoDataGridView
-            // 
-            this.telefonoDataGridView.DataPropertyName = "telefono";
-            this.telefonoDataGridView.HeaderText = "telefono";
-            this.telefonoDataGridView.Name = "telefonoDataGridView";
-            // 
-            // iddirDataGridView
-            // 
-            this.iddirDataGridView.DataPropertyName = "id_dir";
-            this.iddirDataGridView.HeaderText = "id_dir";
-            this.iddirDataGridView.Name = "iddirDataGridView";
-            // 
-            // fecha_nacimientoDataGridView
-            // 
-            this.fecha_nacimientoDataGridView.DataPropertyName = "fecha_nacimiento";
-            this.fecha_nacimientoDataGridView.HeaderText = "fecha_nacimiento";
-            this.fecha_nacimientoDataGridView.Name = "fecha_nacimientoDataGridView";
-            // 
-            // ciudadDataGridView
-            // 
-            this.ciudadDataGridView.DataPropertyName = "ciudad";
-            this.ciudadDataGridView.HeaderText = "ciudad";
-            this.ciudadDataGridView.Name = "ciudadDataGridView";
-            // 
-            // dniDataGridView
-            // 
-            this.dniDataGridView.DataPropertyName = "dni";
-            this.dniDataGridView.HeaderText = "dni";
-            this.dniDataGridView.Name = "dniDataGridView";
-            // 
-            // saldoDataGridView
-            // 
-            this.saldoDataGridView.DataPropertyName = "saldo";
-            this.saldoDataGridView.HeaderText = "saldo";
-            this.saldoDataGridView.Name = "saldoDataGridView";
-            // 
             // clientesBindingSource
             // 
             this.clientesBindingSource.DataMember = "Clientes";
@@ -257,6 +198,66 @@
             // clientesTableAdapter
             // 
             this.clientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // usernameDataGridView
+            // 
+            this.usernameDataGridView.DataPropertyName = "username";
+            this.usernameDataGridView.HeaderText = "Username";
+            this.usernameDataGridView.Name = "usernameDataGridView";
+            // 
+            // nombreDataGridView
+            // 
+            this.nombreDataGridView.DataPropertyName = "nombre";
+            this.nombreDataGridView.HeaderText = "Nombre";
+            this.nombreDataGridView.Name = "nombreDataGridView";
+            // 
+            // apellidoDataGridView
+            // 
+            this.apellidoDataGridView.DataPropertyName = "apellido";
+            this.apellidoDataGridView.HeaderText = "Apellido";
+            this.apellidoDataGridView.Name = "apellidoDataGridView";
+            // 
+            // mailDataGridView
+            // 
+            this.mailDataGridView.DataPropertyName = "mail";
+            this.mailDataGridView.HeaderText = "Mail";
+            this.mailDataGridView.Name = "mailDataGridView";
+            // 
+            // telefonoDataGridView
+            // 
+            this.telefonoDataGridView.DataPropertyName = "telefono";
+            this.telefonoDataGridView.HeaderText = "Telefono";
+            this.telefonoDataGridView.Name = "telefonoDataGridView";
+            // 
+            // iddirDataGridView
+            // 
+            this.iddirDataGridView.DataPropertyName = "id_dir";
+            this.iddirDataGridView.HeaderText = "ID_dir";
+            this.iddirDataGridView.Name = "iddirDataGridView";
+            // 
+            // fecha_nacimientoDataGridView
+            // 
+            this.fecha_nacimientoDataGridView.DataPropertyName = "fecha_nacimiento";
+            this.fecha_nacimientoDataGridView.HeaderText = "Fecha de Nacimiento";
+            this.fecha_nacimientoDataGridView.Name = "fecha_nacimientoDataGridView";
+            // 
+            // ciudadDataGridView
+            // 
+            this.ciudadDataGridView.DataPropertyName = "ciudad";
+            this.ciudadDataGridView.HeaderText = "Ciudad";
+            this.ciudadDataGridView.Name = "ciudadDataGridView";
+            // 
+            // dniDataGridView
+            // 
+            this.dniDataGridView.DataPropertyName = "dni";
+            this.dniDataGridView.HeaderText = "DNI";
+            this.dniDataGridView.Name = "dniDataGridView";
+            // 
+            // saldoDataGridView
+            // 
+            this.saldoDataGridView.DataPropertyName = "saldo";
+            this.saldoDataGridView.HeaderText = "Saldo";
+            this.saldoDataGridView.Name = "saldoDataGridView";
             // 
             // ListadoCliente
             // 
