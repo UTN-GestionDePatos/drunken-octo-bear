@@ -44,17 +44,15 @@
             this.razon_socialDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iddirDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ciudadDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rubroDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombrecontactoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSetProveedor = new GrouponDesktop.GD2C2012DataSetProveedor();
-            this.proveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSetProveedorTableAdapters.ProveedoresTableAdapter();
+            this.proveedoresBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.proveedoresDataSet = new GrouponDesktop.ProveedoresDataSet();
+            this.proveedoresTableAdapter1 = new GrouponDesktop.ProveedoresDataSetTableAdapters.ProveedoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetProveedor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proveedoresDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // CUIT
@@ -63,6 +61,7 @@
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(135, 20);
             this.CUIT.TabIndex = 26;
+            this.CUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CUIT_KeyPress);
             // 
             // label4
             // 
@@ -85,7 +84,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(496, 152);
+            this.groupBox1.Size = new System.Drawing.Size(496, 129);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -96,6 +95,7 @@
             this.RazonSocial.Name = "RazonSocial";
             this.RazonSocial.Size = new System.Drawing.Size(135, 20);
             this.RazonSocial.TabIndex = 24;
+            this.RazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RazonSocial_KeyPress);
             // 
             // label3
             // 
@@ -108,21 +108,23 @@
             // 
             // Buscar
             // 
-            this.Buscar.Location = new System.Drawing.Point(393, 119);
+            this.Buscar.Location = new System.Drawing.Point(393, 94);
             this.Buscar.Name = "Buscar";
             this.Buscar.Size = new System.Drawing.Size(75, 23);
             this.Buscar.TabIndex = 20;
             this.Buscar.Text = "Buscar";
             this.Buscar.UseVisualStyleBackColor = true;
+            this.Buscar.Click += new System.EventHandler(this.Buscar_Click);
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(12, 119);
+            this.Limpiar.Location = new System.Drawing.Point(12, 96);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 19;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
             // Mail
             // 
@@ -130,6 +132,7 @@
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(135, 20);
             this.Mail.TabIndex = 19;
+            this.Mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Mail_KeyPress);
             // 
             // label5
             // 
@@ -150,84 +153,70 @@
             this.razon_socialDataGridView,
             this.mailDataGridView,
             this.telefonoDataGridView,
-            this.iddirDataGridView,
             this.ciudadDataGridView,
-            this.rubroDataGridView,
             this.nombrecontactoDataGridView});
-            this.dataGridProveedores.DataSource = this.proveedoresBindingSource;
-            this.dataGridProveedores.Location = new System.Drawing.Point(13, 171);
+            this.dataGridProveedores.DataSource = this.proveedoresBindingSource1;
+            this.dataGridProveedores.Location = new System.Drawing.Point(13, 147);
             this.dataGridProveedores.Name = "dataGridProveedores";
-            this.dataGridProveedores.Size = new System.Drawing.Size(495, 284);
+            this.dataGridProveedores.Size = new System.Drawing.Size(495, 308);
             this.dataGridProveedores.TabIndex = 3;
             this.dataGridProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellClick);
             // 
             // usernameDataGridView
             // 
             this.usernameDataGridView.DataPropertyName = "username";
-            this.usernameDataGridView.HeaderText = "username";
+            this.usernameDataGridView.HeaderText = "Username";
             this.usernameDataGridView.Name = "usernameDataGridView";
             // 
             // cuitDataGridView
             // 
             this.cuitDataGridView.DataPropertyName = "cuit";
-            this.cuitDataGridView.HeaderText = "cuit";
+            this.cuitDataGridView.HeaderText = "CUIT";
             this.cuitDataGridView.Name = "cuitDataGridView";
             // 
             // razon_socialDataGridView
             // 
             this.razon_socialDataGridView.DataPropertyName = "razon_social";
-            this.razon_socialDataGridView.HeaderText = "razon_social";
+            this.razon_socialDataGridView.HeaderText = "Razón Social";
             this.razon_socialDataGridView.Name = "razon_socialDataGridView";
             // 
             // mailDataGridView
             // 
             this.mailDataGridView.DataPropertyName = "mail";
-            this.mailDataGridView.HeaderText = "mail";
+            this.mailDataGridView.HeaderText = "E-Mail";
             this.mailDataGridView.Name = "mailDataGridView";
             // 
             // telefonoDataGridView
             // 
             this.telefonoDataGridView.DataPropertyName = "telefono";
-            this.telefonoDataGridView.HeaderText = "telefono";
+            this.telefonoDataGridView.HeaderText = "Telefono";
             this.telefonoDataGridView.Name = "telefonoDataGridView";
-            // 
-            // iddirDataGridView
-            // 
-            this.iddirDataGridView.DataPropertyName = "id_dir";
-            this.iddirDataGridView.HeaderText = "id_dir";
-            this.iddirDataGridView.Name = "iddirDataGridView";
             // 
             // ciudadDataGridView
             // 
             this.ciudadDataGridView.DataPropertyName = "ciudad";
-            this.ciudadDataGridView.HeaderText = "ciudad";
+            this.ciudadDataGridView.HeaderText = "Ciudad";
             this.ciudadDataGridView.Name = "ciudadDataGridView";
-            // 
-            // rubroDataGridView
-            // 
-            this.rubroDataGridView.DataPropertyName = "rubro";
-            this.rubroDataGridView.HeaderText = "rubro";
-            this.rubroDataGridView.Name = "rubroDataGridView";
             // 
             // nombrecontactoDataGridView
             // 
             this.nombrecontactoDataGridView.DataPropertyName = "nombre_contacto";
-            this.nombrecontactoDataGridView.HeaderText = "nombre_contacto";
+            this.nombrecontactoDataGridView.HeaderText = "Nombre de Contacto";
             this.nombrecontactoDataGridView.Name = "nombrecontactoDataGridView";
             // 
-            // proveedoresBindingSource
+            // proveedoresBindingSource1
             // 
-            this.proveedoresBindingSource.DataMember = "Proveedores";
-            this.proveedoresBindingSource.DataSource = this.gD2C2012DataSetProveedor;
+            this.proveedoresBindingSource1.DataMember = "Proveedores";
+            this.proveedoresBindingSource1.DataSource = this.proveedoresDataSet;
             // 
-            // gD2C2012DataSetProveedor
+            // proveedoresDataSet
             // 
-            this.gD2C2012DataSetProveedor.DataSetName = "GD2C2012DataSetProveedor";
-            this.gD2C2012DataSetProveedor.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.proveedoresDataSet.DataSetName = "ProveedoresDataSet";
+            this.proveedoresDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // proveedoresTableAdapter
+            // proveedoresTableAdapter1
             // 
-            this.proveedoresTableAdapter.ClearBeforeFill = true;
+            this.proveedoresTableAdapter1.ClearBeforeFill = true;
             // 
             // ListadoProveedor
             // 
@@ -238,11 +227,12 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ListadoProveedor";
             this.Text = "ListadoProveedor";
+            this.Load += new System.EventHandler(this.ListadoProveedor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proveedoresDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -259,17 +249,15 @@
         private System.Windows.Forms.TextBox Mail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridProveedores;
-        private GD2C2012DataSetProveedor gD2C2012DataSetProveedor;
-        private System.Windows.Forms.BindingSource proveedoresBindingSource;
-        private GrouponDesktop.GD2C2012DataSetProveedorTableAdapters.ProveedoresTableAdapter proveedoresTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn cuitDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn razon_socialDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iddirDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ciudadDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rubroDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombrecontactoDataGridView;
+        private ProveedoresDataSet proveedoresDataSet;
+        private System.Windows.Forms.BindingSource proveedoresBindingSource1;
+        private GrouponDesktop.ProveedoresDataSetTableAdapters.ProveedoresTableAdapter proveedoresTableAdapter1;
     }
 }

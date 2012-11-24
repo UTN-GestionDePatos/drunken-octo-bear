@@ -41,21 +41,31 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridClientes = new System.Windows.Forms.DataGridView();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechanacimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ciudadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetClientes = new GrouponDesktop.GD2C2012DataSetClientes();
+            this.clientesTableAdapter2 = new GrouponDesktop.ClientesTableAdapters.ClientesTableAdapter();
+            this.clientesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.clientes = new GrouponDesktop.Clientes();
+            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
             this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD2C2012DataSet1 = new GrouponDesktop.GD2C2012DataSet1();
-            this.clientesTableAdapter = new GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter();
-            this.usernameDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mailDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iddirDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_nacimientoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciudadDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dniDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saldoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesTableAdapter1 = new GrouponDesktop.GD2C2012DataSetClientesTableAdapters.ClientesTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet1)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +95,7 @@
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
+            this.Apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Apellido_KeyPress);
             // 
             // label4
             // 
@@ -101,6 +112,7 @@
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(135, 20);
             this.Nombre.TabIndex = 24;
+            this.Nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nombre_KeyPress);
             // 
             // label3
             // 
@@ -117,6 +129,7 @@
             this.DNI.Name = "DNI";
             this.DNI.Size = new System.Drawing.Size(135, 20);
             this.DNI.TabIndex = 22;
+            this.DNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DNI_KeyPress);
             // 
             // label2
             // 
@@ -153,6 +166,7 @@
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(135, 20);
             this.Mail.TabIndex = 19;
+            this.Mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Mail_KeyPress);
             // 
             // label5
             // 
@@ -168,96 +182,122 @@
             this.dataGridClientes.AutoGenerateColumns = false;
             this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.usernameDataGridView,
-            this.nombreDataGridView,
-            this.apellidoDataGridView,
-            this.mailDataGridView,
-            this.telefonoDataGridView,
-            this.iddirDataGridView,
-            this.fecha_nacimientoDataGridView,
-            this.ciudadDataGridView,
-            this.dniDataGridView,
-            this.saldoDataGridView});
-            this.dataGridClientes.DataSource = this.clientesBindingSource;
+            this.usernameDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.apellidoDataGridViewTextBoxColumn,
+            this.mailDataGridViewTextBoxColumn,
+            this.telefonoDataGridViewTextBoxColumn,
+            this.direccionDataGridViewTextBoxColumn,
+            this.fechanacimientoDataGridViewTextBoxColumn,
+            this.ciudadDataGridViewTextBoxColumn,
+            this.dniDataGridViewTextBoxColumn,
+            this.saldoDataGridViewTextBoxColumn});
+            this.dataGridClientes.DataSource = this.clientesBindingSource1;
             this.dataGridClientes.Location = new System.Drawing.Point(13, 142);
             this.dataGridClientes.Name = "dataGridClientes";
             this.dataGridClientes.Size = new System.Drawing.Size(490, 241);
             this.dataGridClientes.TabIndex = 2;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
             // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // apellidoDataGridViewTextBoxColumn
+            // 
+            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido";
+            this.apellidoDataGridViewTextBoxColumn.HeaderText = "apellido";
+            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            // 
+            // mailDataGridViewTextBoxColumn
+            // 
+            this.mailDataGridViewTextBoxColumn.DataPropertyName = "mail";
+            this.mailDataGridViewTextBoxColumn.HeaderText = "mail";
+            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "direccion";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            // 
+            // fechanacimientoDataGridViewTextBoxColumn
+            // 
+            this.fechanacimientoDataGridViewTextBoxColumn.DataPropertyName = "fecha_nacimiento";
+            this.fechanacimientoDataGridViewTextBoxColumn.HeaderText = "fecha_nacimiento";
+            this.fechanacimientoDataGridViewTextBoxColumn.Name = "fechanacimientoDataGridViewTextBoxColumn";
+            // 
+            // ciudadDataGridViewTextBoxColumn
+            // 
+            this.ciudadDataGridViewTextBoxColumn.DataPropertyName = "ciudad";
+            this.ciudadDataGridViewTextBoxColumn.HeaderText = "ciudad";
+            this.ciudadDataGridViewTextBoxColumn.Name = "ciudadDataGridViewTextBoxColumn";
+            // 
+            // dniDataGridViewTextBoxColumn
+            // 
+            this.dniDataGridViewTextBoxColumn.DataPropertyName = "dni";
+            this.dniDataGridViewTextBoxColumn.HeaderText = "dni";
+            this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
+            // 
+            // saldoDataGridViewTextBoxColumn
+            // 
+            this.saldoDataGridViewTextBoxColumn.DataPropertyName = "saldo";
+            this.saldoDataGridViewTextBoxColumn.HeaderText = "saldo";
+            this.saldoDataGridViewTextBoxColumn.Name = "saldoDataGridViewTextBoxColumn";
+            // 
+            // clientesBindingSource1
+            // 
+            this.clientesBindingSource1.DataMember = "Clientes";
+            this.clientesBindingSource1.DataSource = this.gD2C2012DataSetClientes;
+            // 
+            // gD2C2012DataSetClientes
+            // 
+            this.gD2C2012DataSetClientes.DataSetName = "GD2C2012DataSetClientes";
+            this.gD2C2012DataSetClientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientesTableAdapter2
+            // 
+            this.clientesTableAdapter2.ClearBeforeFill = true;
+            // 
+            // clientesBindingSource2
+            // 
+            this.clientesBindingSource2.DataMember = "Clientes";
+            // 
+            // clientes
+            // 
+            this.clientes.DataSetName = "Clientes";
+            this.clientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientesTableAdapter
+            // 
+            this.clientesTableAdapter.ClearBeforeFill = true;
+            // 
             // clientesBindingSource
             // 
             this.clientesBindingSource.DataMember = "Clientes";
-            this.clientesBindingSource.DataSource = this.gD2C2012DataSet1;
             // 
             // gD2C2012DataSet1
             // 
             this.gD2C2012DataSet1.DataSetName = "GD2C2012DataSet1";
             this.gD2C2012DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // clientesTableAdapter
+            // clientesTableAdapter1
             // 
-            this.clientesTableAdapter.ClearBeforeFill = true;
-            // 
-            // usernameDataGridView
-            // 
-            this.usernameDataGridView.DataPropertyName = "username";
-            this.usernameDataGridView.HeaderText = "Username";
-            this.usernameDataGridView.Name = "usernameDataGridView";
-            // 
-            // nombreDataGridView
-            // 
-            this.nombreDataGridView.DataPropertyName = "nombre";
-            this.nombreDataGridView.HeaderText = "Nombre";
-            this.nombreDataGridView.Name = "nombreDataGridView";
-            // 
-            // apellidoDataGridView
-            // 
-            this.apellidoDataGridView.DataPropertyName = "apellido";
-            this.apellidoDataGridView.HeaderText = "Apellido";
-            this.apellidoDataGridView.Name = "apellidoDataGridView";
-            // 
-            // mailDataGridView
-            // 
-            this.mailDataGridView.DataPropertyName = "mail";
-            this.mailDataGridView.HeaderText = "Mail";
-            this.mailDataGridView.Name = "mailDataGridView";
-            // 
-            // telefonoDataGridView
-            // 
-            this.telefonoDataGridView.DataPropertyName = "telefono";
-            this.telefonoDataGridView.HeaderText = "Telefono";
-            this.telefonoDataGridView.Name = "telefonoDataGridView";
-            // 
-            // iddirDataGridView
-            // 
-            this.iddirDataGridView.DataPropertyName = "id_dir";
-            this.iddirDataGridView.HeaderText = "ID_dir";
-            this.iddirDataGridView.Name = "iddirDataGridView";
-            // 
-            // fecha_nacimientoDataGridView
-            // 
-            this.fecha_nacimientoDataGridView.DataPropertyName = "fecha_nacimiento";
-            this.fecha_nacimientoDataGridView.HeaderText = "Fecha de Nacimiento";
-            this.fecha_nacimientoDataGridView.Name = "fecha_nacimientoDataGridView";
-            // 
-            // ciudadDataGridView
-            // 
-            this.ciudadDataGridView.DataPropertyName = "ciudad";
-            this.ciudadDataGridView.HeaderText = "Ciudad";
-            this.ciudadDataGridView.Name = "ciudadDataGridView";
-            // 
-            // dniDataGridView
-            // 
-            this.dniDataGridView.DataPropertyName = "dni";
-            this.dniDataGridView.HeaderText = "DNI";
-            this.dniDataGridView.Name = "dniDataGridView";
-            // 
-            // saldoDataGridView
-            // 
-            this.saldoDataGridView.DataPropertyName = "saldo";
-            this.saldoDataGridView.HeaderText = "Saldo";
-            this.saldoDataGridView.Name = "saldoDataGridView";
+            this.clientesTableAdapter1.ClearBeforeFill = true;
             // 
             // ListadoCliente
             // 
@@ -272,6 +312,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet1)).EndInit();
             this.ResumeLayout(false);
@@ -292,19 +336,25 @@
         private System.Windows.Forms.TextBox DNI;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridClientes;
-        private GD2C2012DataSet1 gD2C2012DataSet1;
+        private GrouponDesktop.ClientesTableAdapters.ClientesTableAdapter clientesTableAdapter2;
+        private System.Windows.Forms.BindingSource clientesBindingSource2;
+        private Clientes clientes;
         private System.Windows.Forms.BindingSource clientesBindingSource;
         private GrouponDesktop.GD2C2012DataSet1TableAdapters.ClientesTableAdapter clientesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iddirDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimientoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ciudadDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dniDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn saldoDataGridView;
+        private GD2C2012DataSet1 gD2C2012DataSet1;
+        private GD2C2012DataSetClientes gD2C2012DataSetClientes;
+        private System.Windows.Forms.BindingSource clientesBindingSource1;
+        private GrouponDesktop.GD2C2012DataSetClientesTableAdapters.ClientesTableAdapter clientesTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechanacimientoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ciudadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dniDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saldoDataGridViewTextBoxColumn;
 
     }
 }

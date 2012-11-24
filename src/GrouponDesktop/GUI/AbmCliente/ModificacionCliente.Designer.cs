@@ -68,6 +68,7 @@
             this.Guardar.TabIndex = 7;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // Limpiar
             // 
@@ -137,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-3, 157);
+            this.label4.Location = new System.Drawing.Point(6, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 23;
@@ -146,7 +147,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(-3, 95);
+            this.label8.Location = new System.Drawing.Point(6, 91);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 13);
             this.label8.TabIndex = 22;
@@ -155,7 +156,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(-3, 126);
+            this.label9.Location = new System.Drawing.Point(6, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 21;
@@ -164,7 +165,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(-3, 29);
+            this.label10.Location = new System.Drawing.Point(6, 29);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 13);
             this.label10.TabIndex = 19;
@@ -173,7 +174,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(-3, 60);
+            this.label11.Location = new System.Drawing.Point(6, 59);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(27, 13);
             this.label11.TabIndex = 20;
@@ -328,6 +329,7 @@
             this.Name = "ModificacionCliente";
             this.Text = "Modificacion";
             this.Load += new System.EventHandler(this.ModificacionCliente_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionCliente_FormClosing);
             this.Direccion.ResumeLayout(false);
             this.Direccion.PerformLayout();
             this.groupBox1.ResumeLayout(false);

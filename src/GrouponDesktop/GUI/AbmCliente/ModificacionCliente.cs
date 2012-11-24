@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.Core;
+using System.Data.SqlClient;
 
 namespace GrouponDesktop.GUI.AbmCliente
 {
@@ -24,17 +25,17 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ModificacionCliente_Load(object sender, EventArgs e)
         {
-            UsernameCliente.Text = cliente.getDato("usernameDataGridView").ToString();
-            NombreCliente.Text = cliente.getDato("nombreDataGridView").ToString();
-            ApellidoCliente.Text = cliente.getDato("apellidoDataGridView").ToString();
-            MailCliente.Text = cliente.getDato("mailDataGridView").ToString();
-            TelefonoCliente.Text = cliente.getDato("telefonoDataGridView").ToString();
-            FchNacimientoCliente.Text = cliente.getDato("fecha_nacimientoDataGridView").ToString();
-            DNICliente.Text = cliente.getDato("dniDataGridView").ToString();
+            UsernameCliente.Text = cliente.getDato("usernameDataGridViewTextBoxColumn").ToString();
+            NombreCliente.Text = cliente.getDato("nombreDataGridViewTextBoxColumn").ToString();
+            ApellidoCliente.Text = cliente.getDato("apellidoDataGridViewTextBoxColumn").ToString();
+            MailCliente.Text = cliente.getDato("mailDataGridViewTextBoxColumn").ToString();
+            TelefonoCliente.Text = cliente.getDato("telefonoDataGridViewTextBoxColumn").ToString();
+            FchNacimientoCliente.Text = cliente.getDato("fechanacimientoDataGridViewTextBoxColumn").ToString();
+            DNICliente.Text = cliente.getDato("dniDataGridViewTextBoxColumn").ToString();
             Calle.Text = "";
             Piso.Text = "";
             Departamento.Text = "";
-            Localidad.Text = cliente.getDato("ciudadDataGridView").ToString();
+            Localidad.Text = cliente.getDato("ciudadDataGridViewTextBoxColumn").ToString();
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -51,6 +52,45 @@ namespace GrouponDesktop.GUI.AbmCliente
             Departamento.Text = "";
             Localidad.Text = "";
         }
+
+        private void Guardar_Click(object sender, EventArgs e)
+        {
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMClientes");
+
+            ps.AddParameter("@user", UsernameCliente.Text);
+            ps.AddParameter("@nombre", NombreCliente.Text);
+            ps.AddParameter("@apellido", ApellidoCliente.Text);
+            ps.AddParameter("@mail", MailCliente.Text);
+            ps.AddParameter("@tel", TelefonoCliente.Text);
+            ps.AddParameter("@fecha", FchNacimientoCliente.Text);
+            ps.AddParameter("@dni", DNICliente.Text);
+            ps.AddParameter("@direccion", Calle.Text);
+            //FALTA AGREGAR ESTOS 3 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
+            ps.AddParameter("@piso", Piso.Text);
+            ps.AddParameter("@departamento", Departamento.Text);
+            ps.AddParameter("@ciudad", Localidad.Text);
+
+            SqlParameter retval = ps.execSP();
+
+            switch (retval.Value.ToString())
+            {
+                case "0": MessageBox.Show("Registro modificado con éxito");
+                    break;
+                case "1": MessageBox.Show("Ocurrió un error al modificar el registro");
+                    break;
+            }
+
+        }
+
+        private void ModificacionCliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Modificar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+
 
       
     }

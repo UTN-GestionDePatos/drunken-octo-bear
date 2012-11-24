@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using GrouponDesktop.Core;
 using GrouponDesktop.GUI.RegistroUsuario;
 using GrouponDesktop.GUI;
+using GrouponDesktop.GUI.AbmCliente;
+using GrouponDesktop.GUI.AbmProveedor;
 
 namespace GrouponDesktop
 {
@@ -22,6 +24,7 @@ namespace GrouponDesktop
 
         private void Registrarse_Click(object sender, EventArgs e)
         {
+            new ListadoCliente().Show();
             RegistroUsuario r = new RegistroUsuario();
             r.Show();
         }
@@ -81,6 +84,11 @@ namespace GrouponDesktop
                 MessageBox.Show("No se pudo conectar a la base de datos.");
                 Console.Write(ex);
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

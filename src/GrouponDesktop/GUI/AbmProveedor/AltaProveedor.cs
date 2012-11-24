@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GrouponDesktop.Core;
+using System.Data.SqlClient;
 
 namespace GrouponDesktop.AbmCliente
 {
@@ -30,6 +32,44 @@ namespace GrouponDesktop.AbmCliente
             this.Departamento.Text = "";
             this.CodigoPostal.Text = "";
             
+        }
+
+        private void AltaProveedor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Guardar_Click(object sender, EventArgs e)
+        {
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMProveedores");
+
+            ps.AddParameter("@user", UsernameProveedor.Text);
+            ps.AddParameter("@cuit", CUIT.Text);
+            ps.AddParameter("@razon_social", RazonSocial.Text);
+            ps.AddParameter("@mail", MailProveedor.Text);
+            ps.AddParameter("@telefono", TelefonoProveedor.Text);
+            ps.AddParameter("@direccion", Calle.Text);
+            ps.AddParameter("@nombre_contacto", NombreContactoProveedor.Text);
+            ps.AddParameter("@ciudad", CiudadProveedor.Text);
+            //FALTA AGREGAR ESTOS 5 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
+            ps.AddParameter("@piso", Piso.Text);
+            ps.AddParameter("@departamento", Departamento.Text);
+            ps.AddParameter("@rubro", RubroProveedor.Text);
+            ps.AddParameter("@localidad", Localidad.Text);
+            ps.AddParameter("@codigo_postal", CodigoPostal.Text);
+
+            SqlParameter retval = ps.execSP();
+
+            switch (retval.Value.ToString())
+            {
+                case "0": MessageBox.Show("Registro guardado con éxito");
+                    break;
+                case "1": MessageBox.Show("El proveedor a modificar no existe");
+                    break;
+            }
         }
 
        
