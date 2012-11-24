@@ -29,7 +29,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
             try
             {
                 Session s = (Session)AppContext.getObject(typeof(Session));
-                ParamSet ps = new ParamSet("dbo.ConsumoCupon");
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ConsumoCupon");
 
                 ps.AddParameter("@idcupon", Int32.Parse(CodigoCupon.Text));
                 ps.AddParameter("@username", Cliente.Text);
@@ -44,12 +44,12 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
                         return;
                     case "2": MessageBox.Show("El cupón no pertenece al proveedor logueado");
                         return;
-                    case "3": MessageBox.Show("El cupón no está disponible para canjear. Se venció el canje, ya se canjeó o el cliente lo devolvió");
+                    case "3": MessageBox.Show("Se venció el canje del cupón");
                         return;
                     case "0": MessageBox.Show("Registro de consumo de cupón exitoso");
                         return;
-
-
+                    case "5": MessageBox.Show("El cupón está devuelto o ya canjeado");
+                        return;
                 }
             }
             catch (FormatException) {
