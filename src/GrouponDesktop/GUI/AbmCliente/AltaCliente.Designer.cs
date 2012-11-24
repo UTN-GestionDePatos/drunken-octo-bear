@@ -46,14 +46,10 @@
             this.Direccion = new System.Windows.Forms.GroupBox();
             this.Localidad = new System.Windows.Forms.ComboBox();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
-            this.Departamento = new System.Windows.Forms.TextBox();
-            this.Piso = new System.Windows.Forms.TextBox();
             this.Calle = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.Limpiar = new System.Windows.Forms.Button();
             this.Guardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -200,17 +196,13 @@
             // 
             this.Direccion.Controls.Add(this.Localidad);
             this.Direccion.Controls.Add(this.CodigoPostal);
-            this.Direccion.Controls.Add(this.Departamento);
-            this.Direccion.Controls.Add(this.Piso);
             this.Direccion.Controls.Add(this.Calle);
             this.Direccion.Controls.Add(this.label4);
-            this.Direccion.Controls.Add(this.label8);
             this.Direccion.Controls.Add(this.label9);
             this.Direccion.Controls.Add(this.label10);
-            this.Direccion.Controls.Add(this.label11);
             this.Direccion.Location = new System.Drawing.Point(21, 288);
             this.Direccion.Name = "Direccion";
-            this.Direccion.Size = new System.Drawing.Size(344, 187);
+            this.Direccion.Size = new System.Drawing.Size(344, 120);
             this.Direccion.TabIndex = 1;
             this.Direccion.TabStop = false;
             this.Direccion.Text = "Direccion";
@@ -218,31 +210,17 @@
             // Localidad
             // 
             this.Localidad.FormattingEnabled = true;
-            this.Localidad.Location = new System.Drawing.Point(117, 123);
+            this.Localidad.Location = new System.Drawing.Point(117, 52);
             this.Localidad.Name = "Localidad";
             this.Localidad.Size = new System.Drawing.Size(209, 21);
             this.Localidad.TabIndex = 29;
             // 
             // CodigoPostal
             // 
-            this.CodigoPostal.Location = new System.Drawing.Point(117, 154);
+            this.CodigoPostal.Location = new System.Drawing.Point(117, 83);
             this.CodigoPostal.Name = "CodigoPostal";
             this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostal.TabIndex = 28;
-            // 
-            // Departamento
-            // 
-            this.Departamento.Location = new System.Drawing.Point(117, 88);
-            this.Departamento.Name = "Departamento";
-            this.Departamento.Size = new System.Drawing.Size(209, 20);
-            this.Departamento.TabIndex = 27;
-            // 
-            // Piso
-            // 
-            this.Piso.Location = new System.Drawing.Point(117, 56);
-            this.Piso.Name = "Piso";
-            this.Piso.Size = new System.Drawing.Size(209, 20);
-            this.Piso.TabIndex = 25;
             // 
             // Calle
             // 
@@ -254,25 +232,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 157);
+            this.label4.Location = new System.Drawing.Point(2, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 23;
             this.label4.Text = "Código Postal";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(2, 93);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Departamento";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(2, 126);
+            this.label9.Location = new System.Drawing.Point(2, 55);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 21;
@@ -287,18 +256,9 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "Calle";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(2, 59);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(27, 13);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Piso";
-            // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(21, 492);
+            this.Limpiar.Location = new System.Drawing.Point(21, 414);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 2;
@@ -308,7 +268,7 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(272, 492);
+            this.Guardar.Location = new System.Drawing.Point(272, 414);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
             this.Guardar.TabIndex = 3;
@@ -320,7 +280,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 527);
+            this.ClientSize = new System.Drawing.Size(371, 444);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Direccion);
@@ -355,14 +315,10 @@
         private System.Windows.Forms.TextBox TelefonoCliente;
         private System.Windows.Forms.GroupBox Direccion;
         private System.Windows.Forms.TextBox CodigoPostal;
-        private System.Windows.Forms.TextBox Departamento;
-        private System.Windows.Forms.TextBox Piso;
         private System.Windows.Forms.TextBox Calle;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox Localidad;
         private System.Windows.Forms.Button Limpiar;
         private System.Windows.Forms.Button Guardar;

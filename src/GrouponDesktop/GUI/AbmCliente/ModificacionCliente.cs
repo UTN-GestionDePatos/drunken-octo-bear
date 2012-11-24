@@ -62,7 +62,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMClientes");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarCliente");
 
             ps.AddParameter("@user", UsernameCliente.Text);
             ps.AddParameter("@nombre", NombreCliente.Text);
@@ -81,9 +81,9 @@ namespace GrouponDesktop.GUI.AbmCliente
 
             switch (retval.Value.ToString())
             {
-                case "0": MessageBox.Show("Registro modificado con éxito");
+                case "0": MessageBox.Show("Registro modificado con éxito","Modificar cliente");
                     break;
-                case "1": MessageBox.Show("Ocurrió un error al modificar el registro");
+                case "1": MessageBox.Show("Ocurrió un error al modificar el registro","Modificar cliente");
                     break;
             }
 

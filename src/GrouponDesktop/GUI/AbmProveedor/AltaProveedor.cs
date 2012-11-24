@@ -44,7 +44,7 @@ namespace GrouponDesktop.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMProveedores");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaProveedor");
 
             ps.AddParameter("@user", UsernameProveedor.Text);
             ps.AddParameter("@cuit", CUIT.Text);
@@ -55,8 +55,8 @@ namespace GrouponDesktop.AbmCliente
             ps.AddParameter("@nombre_contacto", NombreContactoProveedor.Text);
             ps.AddParameter("@ciudad", CiudadProveedor.Text);
             //FALTA AGREGAR ESTOS 5 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-            ps.AddParameter("@piso", Piso.Text);
-            ps.AddParameter("@departamento", Departamento.Text);
+           // ps.AddParameter("@piso", Piso.Text);
+           // ps.AddParameter("@departamento", Departamento.Text);
             ps.AddParameter("@rubro", RubroProveedor.Text);
             ps.AddParameter("@localidad", Localidad.Text);
             ps.AddParameter("@codigo_postal", CodigoPostal.Text);
@@ -65,9 +65,9 @@ namespace GrouponDesktop.AbmCliente
 
             switch (retval.Value.ToString())
             {
-                case "0": MessageBox.Show("Registro guardado con éxito");
+                case "0": MessageBox.Show("Registro guardado con éxito","Alta proveedor");
                     break;
-                case "1": MessageBox.Show("El proveedor a modificar no existe");
+                case "1": MessageBox.Show("El proveedor ya existe","Alta proveedor");
                     break;
             }
         }

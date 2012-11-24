@@ -51,7 +51,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
             {
                 if (MessageBox.Show("¿Esta seguro que quiere eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMProveedores");
+                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarProveedor");
                     String username = dataGridProveedores[dataGridProveedores.CurrentCell.ColumnIndex, dataGridProveedores.CurrentCell.RowIndex].Value.ToString();
                     ps.AddParameter("@user", username);
 
@@ -59,7 +59,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
                     switch (retval.Value.ToString())
                     {
-                        case "0": MessageBox.Show("Registro eliminado");
+                        case "0": MessageBox.Show("Registro eliminado","Eliminar proveedor");
+                            break;
+                        case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar proveedor");
                             break;
                     }
                 }
@@ -79,8 +81,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
         {
             // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet5.viewproveedores' Puede moverla o quitarla según sea necesario.
             this.viewproveedoresTableAdapter.Fill(this.gD2C2012DataSet5.viewproveedores);
-            // TODO: esta línea de código carga datos en la tabla 'proveedoresDataSet.Proveedores' Puede moverla o quitarla según sea necesario.
-  //          this.proveedoresTableAdapter1.Fill(this.proveedoresDataSet.Proveedores);
+
             dataGridProveedores.DataSource = null;
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();

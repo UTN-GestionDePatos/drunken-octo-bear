@@ -1,8 +1,8 @@
 
 
---CREAR CLIENTE– agregar en la abm que agregue username y password-
-CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
-@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100),@ret int output) 
+--CREAR CLIENTE
+CREATE PROCEDURE AltaCliente(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @piso int, @departamento int,@ciudad int, @ret int output) 
 /*
 	0: ok
 	1: el cliente ya existe
@@ -11,25 +11,25 @@ CREATE PROCEDURE CrearCliente(@user varchar(30),@pass varchar(30),@nombre varcha
 */
 AS
 BEGIN
-	if (select 1 from GESTION_DE_PATOS.Clientes where (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni))is NULL
+	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE username = @user AND (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni) ) )
 	BEGIN
 	
-		If (select 1 from GESTION_DE_PATOS.Clientes where (nombre !=@nombre) AND (telefono=@tel ) AND(dni=@dni OR mail=@mail) )is NULL
+		IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE (nombre !=@nombre) AND (telefono=@tel) AND (dni=@dni OR mail=@mail) ))
 		BEGIN
-			insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
-			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,@dni,10)
+			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
+			INSERT INTO GESTION_DE_PATOS.Clientes VALUES(@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,@ciudad,@dni,10)
+			--Falta poner piso, departamento, ciudad
+			set @ret = 0
 		END
 		ELSE
 		BEGIN
-		set @ret=2
+			set @ret = 2
 		END
 	
-	END
-	
-	ELSE
-	
+	END	
+	ELSE	
 	BEGIN
-	set @ret = 1
+		set @ret = 1
 	END
 		
 END
@@ -37,21 +37,24 @@ END
 go
 
 --MODIFICAR CLIENTE
-CREATE PROCEDURE ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30),@mail varchar(30),
-@tel bigint , @fecha datetime, @dni bigint,@direccion varchar(100),@ret int output, @estado varchar(20))
+CREATE PROCEDURE ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @piso int, @departamento int,@ciudad int, @estado varchar(20), @ret int output) 
+
 /*
 0:salio ok
 1:el cliente a modificar no existe
 */
 AS
 BEGIN
-	If exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
+	IF EXISTS (SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
-		Update GESTION_DE_PATOS.Clientes set nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel,direccion =@direccion,fecha_nacimiento=@fecha,dni=@dni where username=@user  
-		IF (@estado='Habilitado') 
+		UPDATE GESTION_DE_PATOS.Clientes SET nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel, direccion=@direccion,fecha_nacimiento=@fecha,ciudad = @ciudad, dni=@dni 
+										 WHERE username=@user  
+		IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
 		BEGIN
-			Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstado('Habilitado') where username =@user
-		END
+			UPDATE GESTION_DE_PATOS.Usuarios SET estado= GESTION_DE_PATOS.idEstadoUsuario(@estado) WHERE username =@user
+		END	
+									 
 		set @ret=0
 	END
 	ELSE
@@ -62,4 +65,20 @@ END
 
 go
 
-
+--ELIMINAR CLIENTE
+CREATE PROCEDURE EliminarCliente(@user varchar(30), @ret int output)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
+	BEGIN
+	
+		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
+										 WHERE username = @user
+		
+		set @ret = 0
+		--Cliente eliminado								 
+	END
+	
+	set @ret = 1
+	--El cliente no existe
+END

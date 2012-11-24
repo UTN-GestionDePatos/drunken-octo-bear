@@ -72,7 +72,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMProveedores");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarProveedor");
 
             ps.AddParameter("@user", Username.Text);
             ps.AddParameter("@cuit", CUIT.Text);
@@ -93,9 +93,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             switch (retval.Value.ToString())
             {
-                case "0": MessageBox.Show("Registro modificado con éxito");
+                case "0": MessageBox.Show("Registro modificado con éxito","Modificar proveedor");
                     break;
-                case "1": MessageBox.Show("Ocurrió un error al modificar el registro");
+                case "1": MessageBox.Show("Ocurrió un error al modificar el registro","Modificar proveedor");
                     break;
             }
         }

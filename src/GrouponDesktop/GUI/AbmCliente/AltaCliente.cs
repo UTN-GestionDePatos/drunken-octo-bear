@@ -36,7 +36,7 @@ namespace GrouponDesktop.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMClientes");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
 
             ps.AddParameter("@user", UsernameCliente.Text);
             ps.AddParameter("@nombre", NombreCliente.Text);
