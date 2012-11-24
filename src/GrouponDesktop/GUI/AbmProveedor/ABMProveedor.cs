@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.AbmCliente;
+using GrouponDesktop.GUI.AbmProveedor;
 
 namespace GrouponDesktop.AbmProveedor
 {
@@ -21,6 +22,12 @@ namespace GrouponDesktop.AbmProveedor
         {
             AltaProveedor ap = new AltaProveedor();
             ap.Show();
+        }
+
+        private void Busqueda_Click(object sender, EventArgs e)
+        {
+            new ListadoProveedor().Show();
+
         }
     }
 }

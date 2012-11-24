@@ -86,6 +86,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         MailCliente.Text == "" || TelefonoCliente.Text == "" ||
                         FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
                         DireccionC.Text == "" || ListaZonas.CheckedItems.Count == 0 ||
+                        CodigoPostalC.Text == "" ||
                         ciudadCliente.SelectedItem.ToString() == "" ) {
 
                             MessageBox.Show("Faltan datos");
@@ -98,11 +99,12 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                     ps.AddParameter("@nombre", NombreCliente.Text);
                     ps.AddParameter("@apellido", ApellidoCliente.Text);
                     ps.AddParameter("@mail", MailCliente.Text);
-                    ps.AddParameter("@tel", TelefonoCliente.Text);
+                    ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
                     ps.AddParameter("@fecha", FchNacimientoCliente.Text);
-                    ps.AddParameter("@dni", DNICliente.Text);
+                    ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
                     ps.AddParameter("@direccion", DireccionC.Text);
                     ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
+                    ps.AddParameter("@cp", Int64.Parse(CodigoPostalC.Text));
 
                     try { 
  
@@ -131,7 +133,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                     }
                     
                     catch(SqlException){
-                        MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni o la fecha de nacimiento");
+                        MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento");
                         return;
                     }
 
@@ -144,6 +146,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         MailP.Text == "" || TelefonoP.Text == "" ||
                         Direccion.Text == "" || NombreContacto.Text == "" ||
                         ciudadP.SelectedItem.ToString() == "" ||
+                        CodigoPostalP.Text == ""||
                         RubroP.SelectedItem.ToString() == "")
                     {
 
@@ -158,11 +161,13 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                     ps.AddParameter("@rs", RazonSocial.Text);
                     ps.AddParameter("@cuit", CUIT.Text);
                     ps.AddParameter("@mail", MailP.Text);
-                    ps.AddParameter("@telefono", TelefonoP.Text);
+                    ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
                     ps.AddParameter("@direccion", Direccion.Text);
                     ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
                     ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
                     ps.AddParameter("@contacto", NombreContacto.Text);
+                    ps.AddParameter("@cp", Int64.Parse(CodigoPostalP.Text));
+
 
                     try{
                         ret = ps.execSP();
@@ -186,7 +191,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
     
                 }
                  catch(SqlException){
-                    MessageBox.Show("Ingrese un valor correcto para el teléfono");
+                    MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
                  }
 
                 return;
@@ -214,6 +219,8 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             NombreContacto.Text = "";
             TelefonoP.Text = "";
             MailP.Text = "";
+            CodigoPostalC.Text = "";
+            CodigoPostalP.Text = "";
 
 
         }

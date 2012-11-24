@@ -27,41 +27,67 @@ namespace GrouponDesktop.AbmCliente
             this.TelefonoCliente.Text = "";
             this.FchNacimientoCliente.Text = "";
             this.DNICliente.Text = "";
-            this.Calle.Text = "";
-            /*
-            this.Piso.Text = "";
-            this.Departamento.Text = "";*/
+            this.PasswordCliente.Text = "";
+            this.DireccionC.Text = "";
             this.CodigoPostal.Text = "";
+            for (int i = 0; i < ListaZonas.Items.Count; i++) ListaZonas.SetItemChecked(i, false);
             
         }
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
-
-            ps.AddParameter("@user", UsernameCliente.Text);
-            ps.AddParameter("@nombre", NombreCliente.Text);
-            ps.AddParameter("@apellido", ApellidoCliente.Text);
-            ps.AddParameter("@mail", MailCliente.Text);
-            ps.AddParameter("@tel", TelefonoCliente.Text);
-            ps.AddParameter("@fecha", FchNacimientoCliente.Text);
-            ps.AddParameter("@dni", DNICliente.Text);
-            ps.AddParameter("@direccion", Calle.Text);
-            //FALTA AGREGAR ESTOS 3 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-            //ps.AddParameter("@piso", Piso.Text);
-            //ps.AddParameter("@departamento", Departamento.Text);
-            ps.AddParameter("@ciudad", Localidad.Text);
-            ps.AddParameter("@estado", "Habilitado");
-            SqlParameter retval = ps.execSP();
-
-            switch (retval.Value.ToString())
+            try
             {
-                case "0": MessageBox.Show("Registro guardado con éxito");
-                    break;
-                case "1": MessageBox.Show("El cliente ya existe");
-                    break;
-                case "2": MessageBox.Show("Hay clientes gemelos");
-                    break;
+                if (UsernameCliente.Text == "" || PasswordCliente.Text == "" ||
+                       NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
+                       MailCliente.Text == "" || TelefonoCliente.Text == "" ||
+                       FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
+                       DireccionC.Text == "" || ListaZonas.CheckedItems.Count == 0 ||
+                       CodigoPostal.Text == "" ||
+                       ciudadCliente.SelectedItem.ToString() == "")
+                {
+
+                    MessageBox.Show("Faltan datos");
+                    return;
+                }
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
+
+                ps.AddParameter("@user", UsernameCliente.Text);
+                ps.AddParameter("@pass", PasswordCliente.Text);
+                ps.AddParameter("@nombre", NombreCliente.Text);
+                ps.AddParameter("@apellido", ApellidoCliente.Text);
+                ps.AddParameter("@mail", MailCliente.Text);
+                ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
+                ps.AddParameter("@fecha", FchNacimientoCliente.Text);
+                ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
+                ps.AddParameter("@direccion", DireccionC.Text);
+                ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
+                ps.AddParameter("@cp", Int64.Parse(CodigoPostal.Text));
+                SqlParameter retval = ps.execSP();
+
+                switch (retval.Value.ToString())
+                {
+                    case "0":
+                        ps.NombreSP("GESTION_DE_PATOS.RegistrarLocalidades");
+                        foreach (Object localidad in this.ListaZonas.CheckedItems)
+                        {
+                            ps.AddParameter("@localidad", localidad.ToString());
+                            ps.AddParameter("@user", UsernameCliente.Text);
+                            ps.executeNoReturn();
+                        }
+
+                        MessageBox.Show("Registro realizado con éxito");
+                        return;
+
+                    case "1": MessageBox.Show("El cliente ya existe");
+                        break;
+                    case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado");
+                        break;
+                }
+            }
+            catch (SqlException) {
+                MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento");
+                return;
             }
         }
 

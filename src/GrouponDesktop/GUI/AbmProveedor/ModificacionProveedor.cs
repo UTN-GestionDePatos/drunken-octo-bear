@@ -25,26 +25,24 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void ModificacionProveedor_Load(object sender, EventArgs e)
         {
-            Username.Text = proveedor.getDato("usernameDataGridViewTextBoxColumn").ToString();
+            UsernameP.Text = proveedor.getDato("usernameDataGridViewTextBoxColumn").ToString();
+            PassP.Text = proveedor.getDato("passwdDataGridViewTextBoxColumn").ToString();
             RazonSocial.Text = proveedor.getDato("razon_socialDataGridViewTextBoxColumn").ToString();
             CUIT.Text = proveedor.getDato("cuitDataGridViewTextBoxColumn").ToString();
-            Mail.Text = proveedor.getDato("mailDataGridViewTextBoxColumn").ToString();
-            Telefono.Text = proveedor.getDato("telefonoDataGridViewTextBoxColumn").ToString();
-            Ciudad.Text = proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString();
-            Rubro.Text = proveedor.getDato("rubroDataGridViewTextBoxColumn").ToString();
+            MailP.Text = proveedor.getDato("mailDataGridViewTextBoxColumn").ToString();
+            TelefonoP.Text = proveedor.getDato("telefonoDataGridViewTextBoxColumn").ToString();
+            ciudadP.Text = proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString();
+            RubroP.Text = proveedor.getDato("rubroDataGridViewTextBoxColumn").ToString();
             NombreContacto.Text = proveedor.getDato("nombre_contactoDataGridViewTextBoxColumn").ToString();
-            Calle.Text = proveedor.getDato("direccionDataGridViewTextBoxColumn").ToString();
-            Piso.Text = "";
-            Departamento.Text = "";
-            Localidad.Text = "";
-            CodigoPostal.Text = "";
+            Direccion.Text = proveedor.getDato("direccionDataGridViewTextBoxColumn").ToString();
+            CodigoPostalP.Text = proveedor.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
 
-            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + Username.Text + "'");
+            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = " + UsernameP.Text);
             Estado.Text = r2.result.Rows[0][0].ToString();
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
 
-            Ciudad.Items.Add(proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString());
+          /*  Ciudad.Items.Add(proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString());
             SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
             foreach (DataRow row in r.result.Rows)
             {
@@ -56,43 +54,37 @@ namespace GrouponDesktop.GUI.AbmProveedor
             {
                 this.Localidad.Items.Add(row[0]);
             }
+            */
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
-            Username.Text = "";
+            UsernameP.Text = "";
+            PassP.Text = "";
             RazonSocial.Text = "";
             CUIT.Text = "";
-            Mail.Text = "";
-            Telefono.Text = "";
-            Ciudad.Text = "";
-            Rubro.Text = "";
+            MailP.Text = "";
+            TelefonoP.Text = "";
             NombreContacto.Text = "";
-            Calle.Text = "";
-            Piso.Text = "";
-            Departamento.Text = "";
-            Localidad.Text = "";
-            CodigoPostal.Text = "";
+            Direccion.Text = "";
+            CodigoPostalP.Text = "";
         }
 
         private void Guardar_Click(object sender, EventArgs e)
         {
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarProveedor");
 
-            ps.AddParameter("@user", Username.Text);
+            ps.AddParameter("@user", UsernameP.Text);
+            ps.AddParameter("@pass", PassP.Text);
             ps.AddParameter("@cuit", CUIT.Text);
             ps.AddParameter("@razon_social", RazonSocial.Text);
-            ps.AddParameter("@mail", Mail.Text);
-            ps.AddParameter("@telefono", Telefono.Text);
-            ps.AddParameter("@direccion", Calle.Text);
+            ps.AddParameter("@mail", MailP.Text);
+            ps.AddParameter("@telefono", TelefonoP.Text);
+            ps.AddParameter("@direccion", Direccion.Text);
+            ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
             ps.AddParameter("@nombre_contacto", NombreContacto.Text);
-            ps.AddParameter("@ciudad", Ciudad.Text);
-            //FALTA AGREGAR ESTOS 5 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-            ps.AddParameter("@piso", Piso.Text);
-            ps.AddParameter("@departamento", Departamento.Text);
-            ps.AddParameter("@rubro", Rubro.Text);
-            ps.AddParameter("@localidad", Localidad.Text);
-            ps.AddParameter("@codigo_postal", CodigoPostal.Text);
+            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
+            ps.AddParameter("@cp", CodigoPostalP.Text);
             ps.AddParameter("@estado", Estado.Text);
 
             SqlParameter retval = ps.execSP();

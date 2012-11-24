@@ -21,18 +21,13 @@ namespace GrouponDesktop.AbmCliente
         private void Limpiar_Click(object sender, EventArgs e)
         {
             this.RazonSocial.Text = "";
-            this.UsernameProveedor.Text = "";
+            this.UsernameP.Text = "";
             this.CUIT.Text = "";
-            this.MailProveedor.Text = "";
-            this.TelefonoProveedor.Text = "";
-            this.NombreContactoProveedor.Text = "";
-            this.RubroProveedor.Text = "";
-            this.Calle.Text = "";
-            /*
-            this.Piso.Text = "";
-            this.Departamento.Text = "";
-             * */
-            this.CodigoPostal.Text = "";
+            this.MailP.Text = "";
+            this.TelefonoP.Text = "";
+            this.NombreContacto.Text = "";
+            this.Direccion.Text = "";
+            this.CodigoPostalP.Text = "";
             
         }
 
@@ -46,35 +41,65 @@ namespace GrouponDesktop.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaProveedor");
+            if (UsernameP.Text == "" || PassP.Text == "" ||
+                       RazonSocial.Text == "" || CUIT.Text == "" ||
+                       MailP.Text == "" || TelefonoP.Text == "" ||
+                       Direccion.Text == "" || NombreContacto.Text == "" ||
+                       ciudadP.SelectedItem.ToString() == "" ||
+                       CodigoPostalP.Text == "" ||
+                       RubroP.SelectedItem.ToString() == "")
+            {
 
-            ps.AddParameter("@user", UsernameProveedor.Text);
+                MessageBox.Show("Faltan datos");
+                return;
+            }
+
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaProveedor");
+            ps.AddParameter("@user", UsernameP.Text);
+            ps.AddParameter("@pass", PassP.Text);
             ps.AddParameter("@cuit", CUIT.Text);
             ps.AddParameter("@razon_social", RazonSocial.Text);
-            ps.AddParameter("@mail", MailProveedor.Text);
-            ps.AddParameter("@telefono", TelefonoProveedor.Text);
-            ps.AddParameter("@direccion", Calle.Text);
-            ps.AddParameter("@nombre_contacto", NombreContactoProveedor.Text);
-            ps.AddParameter("@ciudad", CiudadProveedor.Text);
-            //FALTA AGREGAR ESTOS 5 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-           // ps.AddParameter("@piso", Piso.Text);
-           // ps.AddParameter("@departamento", Departamento.Text);
-            ps.AddParameter("@rubro", RubroProveedor.Text);
-            ps.AddParameter("@localidad", Localidad.Text);
-            ps.AddParameter("@codigo_postal", CodigoPostal.Text);
-            ps.AddParameter("@estado", "Habilitado");
+            ps.AddParameter("@mail", MailP.Text);
+            ps.AddParameter("@telefono", TelefonoP.Text);
+            ps.AddParameter("@direccion", Direccion.Text);
+            ps.AddParameter("@nombre_contacto", NombreContacto.Text);
+            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
+            ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
+            ps.AddParameter("@cp", CodigoPostalP.Text);
 
-            SqlParameter retval = ps.execSP();
 
-            switch (retval.Value.ToString())
+            try
             {
-                case "0": MessageBox.Show("Registro guardado con éxito","Alta proveedor");
-                    break;
-                case "1": MessageBox.Show("El proveedor ya existe","Alta proveedor");
-                    break;
-            }
-        }
+                SqlParameter ret = ps.execSP();
+                switch (ret.Value.ToString())
+                {
+                    case "0":
+                        MessageBox.Show("Registro realizado con éxito");
+                        return;
 
+                    case "2":
+                        MessageBox.Show("El usuario ya existe");
+                        return;
+
+                    case "1":
+                        MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
+                        return;
+
+                }
+
+                return;
+
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
+            }
+
+            return;
+
+
+
+        }
        
     }
 }

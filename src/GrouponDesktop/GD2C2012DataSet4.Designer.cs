@@ -280,7 +280,7 @@ namespace GrouponDesktop {
             
             private global::System.Data.DataColumn columndni;
             
-            private global::System.Data.DataColumn columnsaldo;
+           
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public viewclientesDataTable() {
@@ -375,12 +375,7 @@ namespace GrouponDesktop {
                 }
             }
             
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn saldoColumn {
-                get {
-                    return this.columnsaldo;
-                }
-            }
+          
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
@@ -411,7 +406,7 @@ namespace GrouponDesktop {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewclientesRow AddviewclientesRow(string username, string nombre, string apellido, string mail, long telefono, string direccion, System.DateTime fecha_nacimiento, string ciudad, long dni, double saldo) {
+            public viewclientesRow AddviewclientesRow(string username, string nombre, string apellido, string mail, long telefono, string direccion, System.DateTime fecha_nacimiento, string ciudad, long dni) {
                 viewclientesRow rowviewclientesRow = ((viewclientesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         username,
@@ -422,8 +417,7 @@ namespace GrouponDesktop {
                         direccion,
                         fecha_nacimiento,
                         ciudad,
-                        dni,
-                        saldo};
+                        dni};
                 rowviewclientesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewclientesRow);
                 return rowviewclientesRow;
@@ -458,7 +452,7 @@ namespace GrouponDesktop {
                 this.columnfecha_nacimiento = base.Columns["fecha_nacimiento"];
                 this.columnciudad = base.Columns["ciudad"];
                 this.columndni = base.Columns["dni"];
-                this.columnsaldo = base.Columns["saldo"];
+              
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -481,8 +475,6 @@ namespace GrouponDesktop {
                 base.Columns.Add(this.columnciudad);
                 this.columndni = new global::System.Data.DataColumn("dni", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndni);
-                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsaldo);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnusername}, true));
                 this.columnusername.AllowDBNull = false;
@@ -755,20 +747,7 @@ namespace GrouponDesktop {
                 }
             }
             
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public double saldo {
-                get {
-                    try {
-                        return ((double)(this[this.tableviewclientes.saldoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'saldo\' de la tabla \'viewclientes\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableviewclientes.saldoColumn] = value;
-                }
-            }
+           
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsnombreNull() {
@@ -850,15 +829,7 @@ namespace GrouponDesktop {
                 this[this.tableviewclientes.dniColumn] = global::System.Convert.DBNull;
             }
             
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IssaldoNull() {
-                return this.IsNull(this.tableviewclientes.saldoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetsaldoNull() {
-                this[this.tableviewclientes.saldoColumn] = global::System.Convert.DBNull;
-            }
+           
         }
         
         /// <summary>
@@ -1020,7 +991,6 @@ namespace GrouponDesktop.GD2C2012DataSet4TableAdapters {
             tableMapping.ColumnMappings.Add("fecha_nacimiento", "fecha_nacimiento");
             tableMapping.ColumnMappings.Add("ciudad", "ciudad");
             tableMapping.ColumnMappings.Add("dni", "dni");
-            tableMapping.ColumnMappings.Add("saldo", "saldo");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1035,13 +1005,11 @@ namespace GrouponDesktop.GD2C2012DataSet4TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT username, nombre, apellido, mail, telefono, direccion, fecha_nacimiento, c" +
-                "iudad, dni, saldo FROM GESTION_DE_PATOS.viewclientes";
+            this._commandCollection[0].CommandText = "SELECT * FROM GESTION_DE_PATOS.viewclientes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT username, nombre, apellido, mail, telefono, direccion, fecha_nacimiento, c" +
-                "iudad, dni, saldo FROM GESTION_DE_PATOS.viewclientes";
+            this._commandCollection[1].CommandText = "SELECT * FROM GESTION_DE_PATOS.viewclientes";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         

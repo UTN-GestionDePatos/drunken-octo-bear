@@ -57,12 +57,13 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		username varchar(30) primary key ,
 		nombre varchar(30),
 		apellido varchar(30),
+		dni bigint,
+		fecha_nacimiento datetime,
 		mail varchar(30),
 		telefono bigint unique,
 		direccion varchar(100),
-		fecha_nacimiento datetime,
+		codigo_postal int,		
 		ciudad int references Localidades(id_localidad),
-		dni bigint,
 		saldo float
 	)
 
@@ -78,6 +79,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		mail varchar(30),
 		telefono bigint unique,
 		direccion varchar(100),
+		codigo_postal int,
 		ciudad int references Localidades(id_localidad),
 		id_rubro bigint references Rubros (id_rubro),
 		nombre_contacto varchar(30)
@@ -615,7 +617,7 @@ GO
 
 CREATE PROCEDURE GESTION_DE_PATOS.RegistroCliente(@user varchar(30), @pass varchar(30),@nombre varchar(50),
 @apellido varchar(50),@mail varchar(50), @tel bigint, @fecha datetime,
-@dni bigint, @direccion varchar(100), @ciudad varchar(50), @ret int output)
+@dni bigint, @direccion varchar(100), @ciudad varchar(50), @cp int, @ret int output)
 AS
 BEGIN
 
@@ -623,6 +625,7 @@ BEGIN
 	0: ok
 	1: ya existe el usuario
 	2: datos duplicados (telefono, dni o mail que son únicos)
+	
 */
 	IF not exists(Select 1 from GESTION_DE_PATOS.Usuarios where username= @user)
 		BEGIN
@@ -630,7 +633,7 @@ BEGIN
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 				BEGIN
 						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
-						insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,GESTION_DE_PATOS.idCiudad(@ciudad),@dni,10)
+						insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 						SET @ret = 0
 						return
 				END
@@ -659,7 +662,7 @@ GO
 CREATE PROCEDURE GESTION_DE_PATOS.RegistrarProveedor(@user varchar(30), @pass varchar(30), @rs varchar(30), 
 													 @cuit varchar(30),@mail varchar(30), @telefono bigint, 
 													 @direccion varchar(100), @ciudad varchar(30), @rubro varchar(30),
-													 @contacto varchar(30), @ret int output)
+													 @contacto varchar(30), @cp int, @ret int output)
 AS
 BEGIN
 		
@@ -667,6 +670,7 @@ BEGIN
 	0: ok
 	1: ya existe el usuario
 	2: datos duplicados (telefono, razoón social, mail o cuit que son únicos)
+
 */
 	IF not exists(Select 1 from GESTION_DE_PATOS.Usuarios where username= @user)
 		BEGIN
@@ -675,7 +679,7 @@ BEGIN
 							where telefono = @telefono or mail = @mail)
 				BEGIN
 						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
-						insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@rs,@mail,@telefono,@direccion,GESTION_DE_PATOS.idCiudad(@ciudad)
+						insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@rs,@mail,@telefono,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad)
 																		, GESTION_DE_PATOS.idRubro(@rubro), @contacto)
 						SET @ret = 0
 						return
@@ -771,7 +775,7 @@ GO
 
 --CREAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.AltaCliente(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
-@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @ciudad varchar(50), @ret int output) 
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @ciudad varchar(50), @cp int, @ret int output) 
 /*
 	0: ok
 	1: el cliente ya existe
@@ -780,15 +784,14 @@ CREATE PROCEDURE GESTION_DE_PATOS.AltaCliente(@user varchar(30),@pass varchar(30
 */
 AS
 BEGIN
-	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE username = @user AND (nombre = @nombre) AND (apellido = @apellido) AND (dni=@dni) ) )
+	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE username = @user ))
 	BEGIN
 	
 		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 		BEGIN
 			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
-			INSERT INTO GESTION_DE_PATOS.Clientes VALUES(@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,GESTION_DE_PATOS.idCiudad(@ciudad),@dni,10)
-		
+			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 			set @ret = 0
 		END
 		ELSE
@@ -808,7 +811,7 @@ go
 
 --MODIFICAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
-@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100),@ciudad VARCHAR(50), @estado varchar(20), @ret int output) 
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100),@ciudad VARCHAR(50), @estado varchar(20), @cp int, @ret int output) 
 
 /*
 0:salio ok
@@ -818,7 +821,7 @@ AS
 BEGIN
 	IF EXISTS (SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
-		UPDATE GESTION_DE_PATOS.Clientes SET nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel, direccion=@direccion,fecha_nacimiento=@fecha,ciudad = GESTION_DE_PATOS.idCiudad(@ciudad), dni=@dni 
+		UPDATE GESTION_DE_PATOS.Clientes SET nombre=@nombre, apellido=@apellido,mail=@mail,telefono=@tel, direccion=@direccion,fecha_nacimiento=@fecha,ciudad = GESTION_DE_PATOS.idCiudad(@ciudad), dni=@dni, codigo_postal = @cp 
 										 WHERE username=@user  
 		IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
 		BEGIN
@@ -834,6 +837,15 @@ BEGIN
 END
 
 go
+
+CREATE PROCEDURE GESTION_DE_PATOS.EliminarLocalidades (@user varchar(30))
+AS
+BEGIN
+	delete from GESTION_DE_PATOS.Localidad_por_usuario where username = @user
+	
+END
+
+GO
 
 --ELIMINAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.EliminarCliente(@user varchar(30), @ret int output)
@@ -857,17 +869,22 @@ GO
 
 --CREAR PROVEEDOR
 CREATE PROCEDURE GESTION_DE_PATOS.AltaProveedor(@user varchar(30),@pass varchar(30),@cuit bigint,@razon_social varchar(30),@mail varchar(30),
-@telefono bigint,@direccion varchar(100), @rubro varchar(30), @nombre_contacto varchar(30),@ciudad varchar(30), @ret int output) 
+@telefono bigint,@direccion varchar(100), @rubro varchar(30), @nombre_contacto varchar(30),@ciudad varchar(30), @cp int, @ret int output) 
 AS
 BEGIN
-
+	if exists (Select * from GESTION_DE_PATOS.Proveedores where username = @user)
+	begin
+		set @ret = 2
+		return
+	end
+	
 	If not exists(select * from GESTION_DE_PATOS.Proveedores where razon_social = @razon_social or telefono = @telefono
 							or mail = @mail or cuit = @cuit) and not exists(select * from GESTION_DE_PATOS.Clientes 
 							where telefono = @telefono or mail = @mail)
 	BEGIN
 		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
-		INSERT INTO GESTION_DE_PATOS.Proveedores VALUES(@user,@cuit,@razon_social,@mail,@telefono, @direccion,GESTION_DE_PATOS.idCiudad(@ciudad),GESTION_DE_PATOS.idRubro(@rubro),@nombre_contacto)
-		
+		insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@razon_social,@mail,@telefono,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad)
+																		, GESTION_DE_PATOS.idRubro(@rubro), @nombre_contacto)
 		set @ret = 0
 	END
 	
@@ -878,14 +895,14 @@ go
 
 --MODFICAR PROVEEDOR
 CREATE PROCEDURE GESTION_DE_PATOS.ModificarProveedor(@user varchar(30),@pass varchar(30),@cuit bigint,@razon_social varchar(30),@mail varchar(30),
-@telefono bigint,@direccion varchar(100),@rubro VARCHAR(30), @nombre_contacto varchar(30), @ciudad VARCHAR(30), @estado varchar(20), @ret int output) 
+@telefono bigint,@direccion varchar(100),@rubro VARCHAR(30), @nombre_contacto varchar(30), @ciudad VARCHAR(30), @estado varchar(20), @cp int,@ret int output) 
 AS
 BEGIN
 
 	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE username = @user)
 	BEGIN
 		UPDATE GESTION_DE_PATOS.Proveedores SET cuit=@cuit,razon_social=@razon_social,mail=@mail,telefono=@telefono,direccion = @direccion,
-		ciudad = GESTION_DE_PATOS.idCiudad(@ciudad), id_rubro = GESTION_DE_PATOS.idRubro(@rubro), nombre_contacto=@nombre_contacto
+		ciudad = GESTION_DE_PATOS.idCiudad(@ciudad), id_rubro = GESTION_DE_PATOS.idRubro(@rubro), nombre_contacto=@nombre_contacto, codigo_postal = @cp
 							WHERE username = @user
 					
 		IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
@@ -1042,15 +1059,16 @@ GO
 	=============================================
 */
 
+
 CREATE VIEW GESTION_DE_PATOS.viewclientes AS
-SELECT username, nombre, apellido, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', telefono, direccion, fecha_nacimiento, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', dni, saldo 
-FROM GESTION_DE_PATOS.Clientes;
+SELECT u.username, u.passwd, nombre, apellido, dni, fecha_nacimiento, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', telefono, direccion, codigo_postal, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad'
+FROM GESTION_DE_PATOS.Clientes c join GESTION_DE_PATOS.Usuarios u on c.username = u.username;
 
 GO
 
 CREATE VIEW GESTION_DE_PATOS.viewproveedores AS
-SELECT username, cuit, razon_social, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail' , telefono, direccion, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
-FROM GESTION_DE_PATOS.Proveedores;
+SELECT u.username, u.passwd, cuit, razon_social, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail' , telefono, direccion, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
+FROM GESTION_DE_PATOS.Proveedores p join GESTION_DE_PATOS.Usuarios u on p.username = u.username;
 
 GO
 
@@ -1153,7 +1171,7 @@ BEGIN
 
 	--Clientes
 	INSERT INTO GESTION_DE_PATOS.Clientes 
-		select distinct convert(varchar(30),Cli_Dni), Cli_Nombre, Cli_Apellido, Cli_Mail, Cli_Telefono, Cli_Direccion, Cli_Fecha_Nac, GESTION_DE_PATOS.idCiudad(Cli_Ciudad), Cli_Dni,0 
+		select distinct convert(varchar(30),Cli_Dni), Cli_Nombre, Cli_Apellido, Cli_Dni, Cli_Fecha_Nac, Cli_Mail, Cli_Telefono, Cli_Direccion, null, GESTION_DE_PATOS.idCiudad(Cli_Ciudad), 0 
 		from gd_esquema.Maestra where Cli_Dni is not null
 	
 	--Rubros
@@ -1161,7 +1179,7 @@ BEGIN
 
 	--Proveedores
 	INSERT INTO GESTION_DE_PATOS.Proveedores
-		select distinct convert(varchar(30),Provee_CUIT), Provee_CUIT, Provee_RS, null , Provee_Telefono, Provee_Dom, GESTION_DE_PATOS.idCiudad(Provee_Ciudad), GESTION_DE_PATOS.idRubro(Provee_Rubro), null
+		select distinct convert(varchar(30),Provee_CUIT), Provee_CUIT, Provee_RS, null , Provee_Telefono, Provee_Dom, null, GESTION_DE_PATOS.idCiudad(Provee_Ciudad), GESTION_DE_PATOS.idRubro(Provee_Rubro), null
 		from gd_esquema.Maestra where Provee_CUIT is not null
 
 	--Usuarios

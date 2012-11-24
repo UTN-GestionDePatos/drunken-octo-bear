@@ -76,6 +76,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.CodigoPostalC = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.CodigoPostalP = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.datosProveedor.SuspendLayout();
             this.datosClientes.SuspendLayout();
             this.SuspendLayout();
@@ -143,6 +147,9 @@
             // 
             // datosProveedor
             // 
+            this.datosProveedor.Controls.Add(this.datosClientes);
+            this.datosProveedor.Controls.Add(this.CodigoPostalP);
+            this.datosProveedor.Controls.Add(this.label22);
             this.datosProveedor.Controls.Add(this.ciudadP);
             this.datosProveedor.Controls.Add(this.label18);
             this.datosProveedor.Controls.Add(this.NombreContacto);
@@ -166,7 +173,7 @@
             this.datosProveedor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.datosProveedor.Location = new System.Drawing.Point(12, 58);
             this.datosProveedor.Name = "datosProveedor";
-            this.datosProveedor.Size = new System.Drawing.Size(353, 364);
+            this.datosProveedor.Size = new System.Drawing.Size(353, 385);
             this.datosProveedor.TabIndex = 23;
             this.datosProveedor.TabStop = false;
             this.datosProveedor.Text = "Datos Personales";
@@ -176,7 +183,7 @@
             // 
             this.ciudadP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ciudadP.FormattingEnabled = true;
-            this.ciudadP.Location = new System.Drawing.Point(126, 278);
+            this.ciudadP.Location = new System.Drawing.Point(126, 316);
             this.ciudadP.Name = "ciudadP";
             this.ciudadP.Size = new System.Drawing.Size(209, 21);
             this.ciudadP.TabIndex = 27;
@@ -184,7 +191,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 281);
+            this.label18.Location = new System.Drawing.Point(6, 319);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(40, 13);
             this.label18.TabIndex = 26;
@@ -192,7 +199,7 @@
             // 
             // NombreContacto
             // 
-            this.NombreContacto.Location = new System.Drawing.Point(126, 311);
+            this.NombreContacto.Location = new System.Drawing.Point(126, 349);
             this.NombreContacto.Name = "NombreContacto";
             this.NombreContacto.Size = new System.Drawing.Size(209, 20);
             this.NombreContacto.TabIndex = 25;
@@ -200,7 +207,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 314);
+            this.label17.Location = new System.Drawing.Point(6, 352);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(105, 13);
             this.label17.TabIndex = 24;
@@ -210,7 +217,7 @@
             // 
             this.RubroP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RubroP.FormattingEnabled = true;
-            this.RubroP.Location = new System.Drawing.Point(126, 245);
+            this.RubroP.Location = new System.Drawing.Point(126, 283);
             this.RubroP.Name = "RubroP";
             this.RubroP.Size = new System.Drawing.Size(209, 21);
             this.RubroP.TabIndex = 23;
@@ -276,7 +283,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 248);
+            this.label9.Location = new System.Drawing.Point(6, 286);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 14;
@@ -338,6 +345,8 @@
             // 
             // datosClientes
             // 
+            this.datosClientes.Controls.Add(this.CodigoPostalC);
+            this.datosClientes.Controls.Add(this.label21);
             this.datosClientes.Controls.Add(this.ciudadCliente);
             this.datosClientes.Controls.Add(this.PasswordCliente);
             this.datosClientes.Controls.Add(this.label19);
@@ -358,9 +367,9 @@
             this.datosClientes.Controls.Add(this.label2);
             this.datosClientes.Controls.Add(this.label1);
             this.datosClientes.Controls.Add(this.Nombre);
-            this.datosClientes.Location = new System.Drawing.Point(12, 58);
+            this.datosClientes.Location = new System.Drawing.Point(1, 0);
             this.datosClientes.Name = "datosClientes";
-            this.datosClientes.Size = new System.Drawing.Size(332, 359);
+            this.datosClientes.Size = new System.Drawing.Size(332, 385);
             this.datosClientes.TabIndex = 27;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
@@ -370,7 +379,7 @@
             // 
             this.ciudadCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ciudadCliente.FormattingEnabled = true;
-            this.ciudadCliente.Location = new System.Drawing.Point(122, 314);
+            this.ciudadCliente.Location = new System.Drawing.Point(122, 337);
             this.ciudadCliente.Name = "ciudadCliente";
             this.ciudadCliente.Size = new System.Drawing.Size(209, 21);
             this.ciudadCliente.TabIndex = 51;
@@ -385,7 +394,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(2, 317);
+            this.label19.Location = new System.Drawing.Point(2, 340);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(40, 13);
             this.label19.TabIndex = 50;
@@ -417,7 +426,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(3, 279);
+            this.label20.Location = new System.Drawing.Point(2, 280);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 13);
             this.label20.TabIndex = 48;
@@ -528,12 +537,43 @@
             this.Nombre.TabIndex = 33;
             this.Nombre.Text = "Nombre";
             // 
+            // CodigoPostalC
+            // 
+            this.CodigoPostalC.Location = new System.Drawing.Point(121, 308);
+            this.CodigoPostalC.Name = "CodigoPostalC";
+            this.CodigoPostalC.Size = new System.Drawing.Size(209, 20);
+            this.CodigoPostalC.TabIndex = 53;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(2, 314);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(72, 13);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "Código Postal";
+            // 
+            // CodigoPostalP
+            // 
+            this.CodigoPostalP.Location = new System.Drawing.Point(126, 247);
+            this.CodigoPostalP.Name = "CodigoPostalP";
+            this.CodigoPostalP.Size = new System.Drawing.Size(209, 20);
+            this.CodigoPostalP.TabIndex = 29;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 250);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(72, 13);
+            this.label22.TabIndex = 28;
+            this.label22.Text = "Código Postal";
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 484);
-            this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.datosProveedor);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Rol);
@@ -603,6 +643,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Nombre;
+        private System.Windows.Forms.TextBox CodigoPostalC;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox CodigoPostalP;
+        private System.Windows.Forms.Label label22;
 
     }
 }

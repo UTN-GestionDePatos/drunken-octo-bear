@@ -26,23 +26,26 @@ namespace GrouponDesktop.GUI.AbmCliente
         private void ModificacionCliente_Load(object sender, EventArgs e)
         {
             UsernameCliente.Text = cliente.getDato("usernameDataGridViewTextBoxColumn").ToString();
+            PasswordCliente.Text = cliente.getDato("passwdDataGridViewTextBoxColumn").ToString();
             NombreCliente.Text = cliente.getDato("nombreDataGridViewTextBoxColumn").ToString();
             ApellidoCliente.Text = cliente.getDato("apellidoDataGridViewTextBoxColumn").ToString();
             MailCliente.Text = cliente.getDato("mailDataGridViewTextBoxColumn").ToString();
             TelefonoCliente.Text = cliente.getDato("telefonoDataGridViewTextBoxColumn").ToString();
             FchNacimientoCliente.Text = cliente.getDato("fechanacimientoDataGridViewTextBoxColumn").ToString();
             DNICliente.Text = cliente.getDato("dniDataGridViewTextBoxColumn").ToString();
-            Calle.Text = "";
-            Piso.Text = "";
-            Departamento.Text = "";
-            Localidad.Text = cliente.getDato("ciudadDataGridViewTextBoxColumn").ToString();
+            DireccionC.Text = cliente.getDato("direccionDataGridViewTextBoxColumn").ToString();
+            CodigoPostal.Text = cliente.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
 
-            Localidad.Items.Add(cliente.getDato("ciudadDataGridViewTextBoxColumn").ToString());
             SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
             foreach (DataRow row in r.result.Rows)
             {
-                this.Localidad.Items.Add(row[0]);
+                this.ciudadCliente.Items.Add(row[0]);
             }
+
+            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = " + UsernameCliente.Text);
+            Estado.Text = r2.result.Rows[0][0].ToString();
+            Estado.Items.Add("Habilitado");
+            Estado.Items.Add("Deshabilitado");
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -54,39 +57,55 @@ namespace GrouponDesktop.GUI.AbmCliente
             TelefonoCliente.Text = "";
             FchNacimientoCliente.Text = "";
             DNICliente.Text = "";
-            Calle.Text = "";
-            Piso.Text = "";
-            Departamento.Text = "";
-            Localidad.Text = "";
+            DireccionC.Text = "";
+            CodigoPostal.Text = "";
+            PasswordCliente.Text = "";
         }
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarCliente");
-
-            ps.AddParameter("@user", UsernameCliente.Text);
-            ps.AddParameter("@nombre", NombreCliente.Text);
-            ps.AddParameter("@apellido", ApellidoCliente.Text);
-            ps.AddParameter("@mail", MailCliente.Text);
-            ps.AddParameter("@tel", TelefonoCliente.Text);
-            ps.AddParameter("@fecha", FchNacimientoCliente.Text);
-            ps.AddParameter("@dni", DNICliente.Text);
-            ps.AddParameter("@direccion", Calle.Text);
-            //FALTA AGREGAR ESTOS 3 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-            ps.AddParameter("@piso", Piso.Text);
-            ps.AddParameter("@departamento", Departamento.Text);
-            ps.AddParameter("@ciudad", Localidad.Text);
-
-            SqlParameter retval = ps.execSP();
-
-            switch (retval.Value.ToString())
+            try
             {
-                case "0": MessageBox.Show("Registro modificado con éxito","Modificar cliente");
-                    break;
-                case "1": MessageBox.Show("Ocurrió un error al modificar el registro","Modificar cliente");
-                    break;
-            }
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarCliente");
 
+                ps.AddParameter("@user", UsernameCliente.Text);
+                ps.AddParameter("@nombre", NombreCliente.Text);
+                ps.AddParameter("@apellido", ApellidoCliente.Text);
+                ps.AddParameter("@mail", MailCliente.Text);
+                ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
+                ps.AddParameter("@fecha", FchNacimientoCliente.Text);
+                ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
+                ps.AddParameter("@direccion", DireccionC.Text);
+                ps.AddParameter("@cp", Int64.Parse(CodigoPostal.Text));
+                ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
+
+                SqlParameter retval = ps.execSP();
+
+                switch (retval.Value.ToString())
+                {
+                    case "0":
+                        ps.NombreSP("GESTION_DE_PATOS.EliminarLocalidades");
+                        ps.AddParameter("@user", UsernameCliente.Text);
+                        ps.executeNoReturn();
+
+                        ps.NombreSP("GESTION_DE_PATOS.RegistrarLocalidades");
+                        foreach (Object localidad in this.ListaZonas.CheckedItems)
+                        {
+                            ps.AddParameter("@localidad", localidad.ToString());
+                            ps.AddParameter("@user", UsernameCliente.Text);
+                            ps.executeNoReturn();
+                        }
+
+                        MessageBox.Show("Registro modificado con éxito", "Modificar cliente");
+                        break;
+                    case "1": MessageBox.Show("Ocurrió un error al modificar el registro", "Modificar cliente");
+                        break;
+                }
+            }
+            catch (SqlException) {
+                MessageBox.Show("Ingrese valores correctos para el dni, teléfono, código postal y fecha de nacimiento");
+                return;
+            }
         }
 
         private void ModificacionCliente_FormClosing(object sender, FormClosingEventArgs e)
