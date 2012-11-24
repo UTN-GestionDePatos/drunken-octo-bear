@@ -33,6 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.cambiarPass = new System.Windows.Forms.Button();
+            this.DarDeBaja = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // funcionalidades
@@ -41,7 +43,7 @@
             this.funcionalidades.FormattingEnabled = true;
             this.funcionalidades.Location = new System.Drawing.Point(31, 49);
             this.funcionalidades.Name = "funcionalidades";
-            this.funcionalidades.Size = new System.Drawing.Size(231, 21);
+            this.funcionalidades.Size = new System.Drawing.Size(268, 21);
             this.funcionalidades.TabIndex = 0;
             this.funcionalidades.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.funcionalidades_KeyPress);
             // 
@@ -66,9 +68,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(31, 80);
+            this.button1.Location = new System.Drawing.Point(31, 81);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 23);
+            this.button1.Size = new System.Drawing.Size(118, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Ir";
             this.button1.UseVisualStyleBackColor = true;
@@ -76,19 +78,43 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(176, 81);
+            this.button2.Location = new System.Drawing.Point(184, 82);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 22);
+            this.button2.Size = new System.Drawing.Size(118, 22);
             this.button2.TabIndex = 4;
             this.button2.Text = "Cerrar Sesión";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // cambiarPass
+            // 
+            this.cambiarPass.Location = new System.Drawing.Point(31, 121);
+            this.cambiarPass.Name = "cambiarPass";
+            this.cambiarPass.Size = new System.Drawing.Size(118, 23);
+            this.cambiarPass.TabIndex = 5;
+            this.cambiarPass.Text = "Cambiar Contraseña";
+            this.cambiarPass.UseVisualStyleBackColor = true;
+            this.cambiarPass.Visible = false;
+            this.cambiarPass.Click += new System.EventHandler(this.cambiarPass_Click_1);
+            // 
+            // DarDeBaja
+            // 
+            this.DarDeBaja.Location = new System.Drawing.Point(184, 121);
+            this.DarDeBaja.Name = "DarDeBaja";
+            this.DarDeBaja.Size = new System.Drawing.Size(118, 22);
+            this.DarDeBaja.TabIndex = 6;
+            this.DarDeBaja.Text = "Darse de Baja";
+            this.DarDeBaja.UseVisualStyleBackColor = true;
+            this.DarDeBaja.Visible = false;
+            this.DarDeBaja.Click += new System.EventHandler(this.DarDeBaja_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 109);
+            this.ClientSize = new System.Drawing.Size(311, 147);
+            this.Controls.Add(this.DarDeBaja);
+            this.Controls.Add(this.cambiarPass);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -109,6 +135,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cambiarPass;
+        private System.Windows.Forms.Button DarDeBaja;
 
     }
 }

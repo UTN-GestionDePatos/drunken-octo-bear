@@ -62,12 +62,4 @@ END
 
 go
 
---ELIMINAR CLIENTE
-CREATE PROCEDURE EliminarCliente(@user varchar(30))
-AS
-BEGIN
-	If exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
-	BEGIN
-		Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstado('Deshabilitado') where username =@user
-	END
-END
+

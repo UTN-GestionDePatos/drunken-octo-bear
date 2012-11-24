@@ -321,15 +321,22 @@ CREATE PROCEDURE GESTION_DE_PATOS.Loguearse (@user varchar(30), @pass varchar(30
 	2: inhabilitacion
 	3: no existe usuario
 	4: usuario inhabilitado
+	5: usuario dado de baja
 */
 AS
 BEGIN
 	
 	if exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
 	begin
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = 2
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstadoUsuario('Deshabilitado')
 		begin
 			set @ret = 4
+			return
+		end
+		
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
+		begin
+			set @ret = 5
 			return
 		end
      IF(Select 1 from GESTION_DE_PATOS.Usuarios Where username= @user AND passwd=GESTION_DE_PATOS.SHA256( @pass) )is NULL
@@ -683,6 +690,47 @@ BEGIN
 END
 
 GO
+
+--ELIMINAR CLIENTE
+CREATE PROCEDURE GESTION_DE_PATOS.EliminarCliente(@user varchar(30))
+AS
+BEGIN
+	If exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
+	BEGIN
+		Update GESTION_DE_PATOS.Usuarios set estado= GESTION_DE_PATOS.idEstadoUsuario('Eliminado') where username =@user
+	END
+END
+
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarPassword (@user varchar(30), @passVieja varchar(30), @passNueva varchar(30),
+												   @passNueva2 varchar(30), @ret int output)
+AS
+BEGIN
+	/*
+		0: ok
+		1: passVieja incorrecta
+		2: passN y passN2 no coinciden
+	*/
+	if not exists (select * from GESTION_DE_PATOS.Usuarios where username = @user and passwd = GESTION_DE_PATOS.SHA256(@passVieja))
+	begin
+		set @ret = 1
+		return
+	end
+	
+	if @passNueva != @passNueva2
+	begin
+		set @ret = 2
+		return
+	end
+	
+	update GESTION_DE_PATOS.Usuarios set passwd = GESTION_DE_PATOS.SHA256(@passNueva) where username = @user
+	set @ret = 0
+	return
+END
+
+GO
+
 
 /*
 	=============================================

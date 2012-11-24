@@ -24,7 +24,6 @@ namespace GrouponDesktop
 
         private void Registrarse_Click(object sender, EventArgs e)
         {
-           // new ListadoCliente().Show(); y esto?!?!?!?
             RegistroUsuario r = new RegistroUsuario();
             r.Show();
         }
@@ -75,6 +74,8 @@ namespace GrouponDesktop
                     case "3": MessageBox.Show("Usuario incorrecto");
                         break;
                     case "4": MessageBox.Show("Usted se encuentra inhabilitado, hable con un administrador");
+                        break;
+                    case "5": MessageBox.Show("Usuario incorrecto");
                         break;
                 }
 

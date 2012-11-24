@@ -193,6 +193,12 @@
     <Compile Include="GUI\ArmarCupon\ArmarCupon.Designer.cs">
       <DependentUpon>ArmarCupon.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\cambiarPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\cambiarPass.Designer.cs">
+      <DependentUpon>cambiarPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ArmarCupon\ArmarCupon.resx">
       <DependentUpon>ArmarCupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\cambiarPass.resx">
+      <DependentUpon>cambiarPass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
