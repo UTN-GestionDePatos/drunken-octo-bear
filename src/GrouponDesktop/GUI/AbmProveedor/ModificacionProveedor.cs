@@ -39,6 +39,11 @@ namespace GrouponDesktop.GUI.AbmProveedor
             Localidad.Text = "";
             CodigoPostal.Text = "";
 
+            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + Username.Text + "'");
+            Estado.Text = r2.result.Rows[0][0].ToString();
+            Estado.Items.Add("Habilitado");
+            Estado.Items.Add("Deshabilitado");
+
             Ciudad.Items.Add(proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString());
             SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
             foreach (DataRow row in r.result.Rows)
@@ -88,6 +93,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
             ps.AddParameter("@rubro", Rubro.Text);
             ps.AddParameter("@localidad", Localidad.Text);
             ps.AddParameter("@codigo_postal", CodigoPostal.Text);
+            ps.AddParameter("@estado", Estado.Text);
 
             SqlParameter retval = ps.execSP();
 

@@ -58,8 +58,12 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.Estado = new System.Windows.Forms.ComboBox();
             this.Direccion.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Direccion
@@ -74,9 +78,9 @@
             this.Direccion.Controls.Add(this.label9);
             this.Direccion.Controls.Add(this.label10);
             this.Direccion.Controls.Add(this.label11);
-            this.Direccion.Location = new System.Drawing.Point(18, 289);
+            this.Direccion.Location = new System.Drawing.Point(12, 290);
             this.Direccion.Name = "Direccion";
-            this.Direccion.Size = new System.Drawing.Size(344, 187);
+            this.Direccion.Size = new System.Drawing.Size(350, 187);
             this.Direccion.TabIndex = 7;
             this.Direccion.TabStop = false;
             this.Direccion.Text = "Direccion";
@@ -84,35 +88,35 @@
             // Localidad
             // 
             this.Localidad.FormattingEnabled = true;
-            this.Localidad.Location = new System.Drawing.Point(117, 123);
+            this.Localidad.Location = new System.Drawing.Point(123, 123);
             this.Localidad.Name = "Localidad";
             this.Localidad.Size = new System.Drawing.Size(209, 21);
             this.Localidad.TabIndex = 29;
             // 
             // CodigoPostal
             // 
-            this.CodigoPostal.Location = new System.Drawing.Point(117, 154);
+            this.CodigoPostal.Location = new System.Drawing.Point(123, 154);
             this.CodigoPostal.Name = "CodigoPostal";
             this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostal.TabIndex = 28;
             // 
             // Departamento
             // 
-            this.Departamento.Location = new System.Drawing.Point(117, 88);
+            this.Departamento.Location = new System.Drawing.Point(123, 88);
             this.Departamento.Name = "Departamento";
             this.Departamento.Size = new System.Drawing.Size(209, 20);
             this.Departamento.TabIndex = 27;
             // 
             // Piso
             // 
-            this.Piso.Location = new System.Drawing.Point(117, 56);
+            this.Piso.Location = new System.Drawing.Point(123, 56);
             this.Piso.Name = "Piso";
             this.Piso.Size = new System.Drawing.Size(209, 20);
             this.Piso.TabIndex = 25;
             // 
             // Calle
             // 
-            this.Calle.Location = new System.Drawing.Point(117, 26);
+            this.Calle.Location = new System.Drawing.Point(123, 26);
             this.Calle.Name = "Calle";
             this.Calle.Size = new System.Drawing.Size(209, 20);
             this.Calle.TabIndex = 24;
@@ -319,7 +323,7 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(265, 490);
+            this.Guardar.Location = new System.Drawing.Point(265, 544);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
             this.Guardar.TabIndex = 9;
@@ -329,18 +333,47 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(14, 490);
+            this.Limpiar.Location = new System.Drawing.Point(14, 544);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 8;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Estado);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Location = new System.Drawing.Point(12, 483);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(350, 45);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Estado de Usuario";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Estado";
+            // 
+            // Estado
+            // 
+            this.Estado.FormattingEnabled = true;
+            this.Estado.Location = new System.Drawing.Point(123, 12);
+            this.Estado.Name = "Estado";
+            this.Estado.Size = new System.Drawing.Size(209, 21);
+            this.Estado.TabIndex = 30;
+            // 
             // ModificacionProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 527);
+            this.ClientSize = new System.Drawing.Size(371, 582);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Direccion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Guardar);
@@ -354,6 +387,8 @@
             this.Direccion.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +425,8 @@
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Limpiar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox Estado;
+        private System.Windows.Forms.Label label13;
     }
 }

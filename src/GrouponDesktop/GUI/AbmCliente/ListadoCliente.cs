@@ -33,8 +33,9 @@ namespace GrouponDesktop.GUI.AbmCliente
             // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSetClientes.Clientes' Puede moverla o quitarla según sea necesario.
           //  this.clientesTableAdapter1.Fill(this.gD2C2012DataSetClientes.Clientes);
             dataGridClientes.DataSource = null;
-            SQLResponse r;
             /*
+            SQLResponse r;
+            
             r = dbManager.executeQuery("SELECT * FROM Clientes");
             this.SetDataGridView(r.result);
             */
@@ -75,8 +76,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 if (MessageBox.Show("¿Esta seguro que quiere eliminar este cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.ABMClientes");
-                    String username = dataGridClientes[dataGridClientes.CurrentCell.ColumnIndex, dataGridClientes.CurrentCell.RowIndex].Value.ToString();
+                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarCliente");
+                    int columna = dataGridClientes.Columns["usernameDataGridViewTextBoxColumn"].Index;
+                    int fila = dataGridClientes.CurrentCell.RowIndex;
+
+                    String username = dataGridClientes[columna, fila].Value.ToString();
                     ps.AddParameter("@user", username);
 
                     SqlParameter retval = ps.execSP();
@@ -84,6 +88,8 @@ namespace GrouponDesktop.GUI.AbmCliente
                     switch (retval.Value.ToString())
                     {
                         case "0": MessageBox.Show("Registro eliminado");
+                            break;
+                        case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar cliente");
                             break;
                     }
                 }

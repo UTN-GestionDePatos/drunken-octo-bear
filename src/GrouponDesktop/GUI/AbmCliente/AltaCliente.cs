@@ -28,8 +28,9 @@ namespace GrouponDesktop.AbmCliente
             this.FchNacimientoCliente.Text = "";
             this.DNICliente.Text = "";
             this.Calle.Text = "";
+            /*
             this.Piso.Text = "";
-            this.Departamento.Text = "";
+            this.Departamento.Text = "";*/
             this.CodigoPostal.Text = "";
             
         }
@@ -47,10 +48,10 @@ namespace GrouponDesktop.AbmCliente
             ps.AddParameter("@dni", DNICliente.Text);
             ps.AddParameter("@direccion", Calle.Text);
             //FALTA AGREGAR ESTOS 3 PARAMETROS EN EL SCRIPT DE LOS PROCEDURES
-            ps.AddParameter("@piso", Piso.Text);
-            ps.AddParameter("@departamento", Departamento.Text);
+            //ps.AddParameter("@piso", Piso.Text);
+            //ps.AddParameter("@departamento", Departamento.Text);
             ps.AddParameter("@ciudad", Localidad.Text);
-
+            ps.AddParameter("@estado", "Habilitado");
             SqlParameter retval = ps.execSP();
 
             switch (retval.Value.ToString())

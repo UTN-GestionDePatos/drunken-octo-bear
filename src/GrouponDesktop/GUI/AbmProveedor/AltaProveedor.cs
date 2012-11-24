@@ -28,8 +28,10 @@ namespace GrouponDesktop.AbmCliente
             this.NombreContactoProveedor.Text = "";
             this.RubroProveedor.Text = "";
             this.Calle.Text = "";
+            /*
             this.Piso.Text = "";
             this.Departamento.Text = "";
+             * */
             this.CodigoPostal.Text = "";
             
         }
@@ -60,6 +62,7 @@ namespace GrouponDesktop.AbmCliente
             ps.AddParameter("@rubro", RubroProveedor.Text);
             ps.AddParameter("@localidad", Localidad.Text);
             ps.AddParameter("@codigo_postal", CodigoPostal.Text);
+            ps.AddParameter("@estado", "Habilitado");
 
             SqlParameter retval = ps.execSP();
 
