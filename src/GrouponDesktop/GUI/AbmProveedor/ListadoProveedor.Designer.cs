@@ -39,18 +39,25 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridProveedores = new System.Windows.Forms.DataGridView();
-            this.usernameDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cuitDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.razon_socialDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mailDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciudadDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombrecontactoDataGridView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet5 = new GrouponDesktop.GD2C2012DataSet5();
             this.proveedoresBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.proveedoresDataSet = new GrouponDesktop.ProveedoresDataSet();
             this.proveedoresTableAdapter1 = new GrouponDesktop.ProveedoresDataSetTableAdapters.ProveedoresTableAdapter();
+            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSet5TableAdapters.viewproveedoresTableAdapter();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razon_socialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ciudadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rubroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_contactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedoresDataSet)).BeginInit();
             this.SuspendLayout();
@@ -148,61 +155,31 @@
             this.dataGridProveedores.AutoGenerateColumns = false;
             this.dataGridProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.usernameDataGridView,
-            this.cuitDataGridView,
-            this.razon_socialDataGridView,
-            this.mailDataGridView,
-            this.telefonoDataGridView,
-            this.ciudadDataGridView,
-            this.nombrecontactoDataGridView});
-            this.dataGridProveedores.DataSource = this.proveedoresBindingSource1;
+            this.usernameDataGridViewTextBoxColumn,
+            this.cuitDataGridViewTextBoxColumn,
+            this.razon_socialDataGridViewTextBoxColumn,
+            this.mailDataGridViewTextBoxColumn,
+            this.direccionDataGridViewTextBoxColumn,
+            this.telefonoDataGridViewTextBoxColumn,
+            this.ciudadDataGridViewTextBoxColumn,
+            this.rubroDataGridViewTextBoxColumn,
+            this.nombre_contactoDataGridViewTextBoxColumn});
+            this.dataGridProveedores.DataSource = this.viewproveedoresBindingSource;
             this.dataGridProveedores.Location = new System.Drawing.Point(13, 147);
             this.dataGridProveedores.Name = "dataGridProveedores";
             this.dataGridProveedores.Size = new System.Drawing.Size(495, 308);
             this.dataGridProveedores.TabIndex = 3;
             this.dataGridProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellClick);
             // 
-            // usernameDataGridView
+            // viewproveedoresBindingSource
             // 
-            this.usernameDataGridView.DataPropertyName = "username";
-            this.usernameDataGridView.HeaderText = "Username";
-            this.usernameDataGridView.Name = "usernameDataGridView";
+            this.viewproveedoresBindingSource.DataMember = "viewproveedores";
+            this.viewproveedoresBindingSource.DataSource = this.gD2C2012DataSet5;
             // 
-            // cuitDataGridView
+            // gD2C2012DataSet5
             // 
-            this.cuitDataGridView.DataPropertyName = "cuit";
-            this.cuitDataGridView.HeaderText = "CUIT";
-            this.cuitDataGridView.Name = "cuitDataGridView";
-            // 
-            // razon_socialDataGridView
-            // 
-            this.razon_socialDataGridView.DataPropertyName = "razon_social";
-            this.razon_socialDataGridView.HeaderText = "Razón Social";
-            this.razon_socialDataGridView.Name = "razon_socialDataGridView";
-            // 
-            // mailDataGridView
-            // 
-            this.mailDataGridView.DataPropertyName = "mail";
-            this.mailDataGridView.HeaderText = "E-Mail";
-            this.mailDataGridView.Name = "mailDataGridView";
-            // 
-            // telefonoDataGridView
-            // 
-            this.telefonoDataGridView.DataPropertyName = "telefono";
-            this.telefonoDataGridView.HeaderText = "Telefono";
-            this.telefonoDataGridView.Name = "telefonoDataGridView";
-            // 
-            // ciudadDataGridView
-            // 
-            this.ciudadDataGridView.DataPropertyName = "ciudad";
-            this.ciudadDataGridView.HeaderText = "Ciudad";
-            this.ciudadDataGridView.Name = "ciudadDataGridView";
-            // 
-            // nombrecontactoDataGridView
-            // 
-            this.nombrecontactoDataGridView.DataPropertyName = "nombre_contacto";
-            this.nombrecontactoDataGridView.HeaderText = "Nombre de Contacto";
-            this.nombrecontactoDataGridView.Name = "nombrecontactoDataGridView";
+            this.gD2C2012DataSet5.DataSetName = "GD2C2012DataSet5";
+            this.gD2C2012DataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // proveedoresBindingSource1
             // 
@@ -218,6 +195,68 @@
             // 
             this.proveedoresTableAdapter1.ClearBeforeFill = true;
             // 
+            // viewproveedoresTableAdapter
+            // 
+            this.viewproveedoresTableAdapter.ClearBeforeFill = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // cuitDataGridViewTextBoxColumn
+            // 
+            this.cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
+            this.cuitDataGridViewTextBoxColumn.HeaderText = "CUIT";
+            this.cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
+            // 
+            // razon_socialDataGridViewTextBoxColumn
+            // 
+            this.razon_socialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
+            this.razon_socialDataGridViewTextBoxColumn.HeaderText = "Razón Social";
+            this.razon_socialDataGridViewTextBoxColumn.Name = "razon_socialDataGridViewTextBoxColumn";
+            // 
+            // mailDataGridViewTextBoxColumn
+            // 
+            this.mailDataGridViewTextBoxColumn.DataPropertyName = "mail";
+            this.mailDataGridViewTextBoxColumn.HeaderText = "E-Mail";
+            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
+            this.mailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "Direccion";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.HeaderText = "Telefono";
+            this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            // 
+            // ciudadDataGridViewTextBoxColumn
+            // 
+            this.ciudadDataGridViewTextBoxColumn.DataPropertyName = "ciudad";
+            this.ciudadDataGridViewTextBoxColumn.HeaderText = "Ciudad";
+            this.ciudadDataGridViewTextBoxColumn.Name = "ciudadDataGridViewTextBoxColumn";
+            this.ciudadDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rubroDataGridViewTextBoxColumn
+            // 
+            this.rubroDataGridViewTextBoxColumn.DataPropertyName = "rubro";
+            this.rubroDataGridViewTextBoxColumn.HeaderText = "Rubro";
+            this.rubroDataGridViewTextBoxColumn.Name = "rubroDataGridViewTextBoxColumn";
+            this.rubroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombre_contactoDataGridViewTextBoxColumn
+            // 
+            this.nombre_contactoDataGridViewTextBoxColumn.DataPropertyName = "nombre_contacto";
+            this.nombre_contactoDataGridViewTextBoxColumn.HeaderText = "Nombre de Contacto";
+            this.nombre_contactoDataGridViewTextBoxColumn.Name = "nombre_contactoDataGridViewTextBoxColumn";
+            this.nombre_contactoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // ListadoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,6 +270,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedoresBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedoresDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -249,15 +290,20 @@
         private System.Windows.Forms.TextBox Mail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridProveedores;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cuitDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn razon_socialDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ciudadDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombrecontactoDataGridView;
         private ProveedoresDataSet proveedoresDataSet;
         private System.Windows.Forms.BindingSource proveedoresBindingSource1;
         private GrouponDesktop.ProveedoresDataSetTableAdapters.ProveedoresTableAdapter proveedoresTableAdapter1;
+        private GD2C2012DataSet5 gD2C2012DataSet5;
+        private System.Windows.Forms.BindingSource viewproveedoresBindingSource;
+        private GrouponDesktop.GD2C2012DataSet5TableAdapters.viewproveedoresTableAdapter viewproveedoresTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cuitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn razon_socialDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ciudadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rubroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_contactoDataGridViewTextBoxColumn;
     }
 }

@@ -208,6 +208,32 @@ BEGIN
 END
 GO
 
+CREATE FUNCTION GESTION_DE_PATOS.rubro(@id_rubro bigint)
+RETURNS varchar(30)
+AS
+BEGIN
+	DECLARE @descripcion varchar(30)
+	SELECT @descripcion = descripcion
+	FROM GESTION_DE_PATOS.Rubros
+	WHERE @id_rubro = id_rubro
+	RETURN @descripcion
+END
+
+GO
+
+CREATE FUNCTION GESTION_DE_PATOS.localidad(@id_localidad int)
+RETURNS varchar(30)
+AS
+BEGIN
+	DECLARE @localidad varchar(30)
+	SELECT @localidad = localidad
+	FROM GESTION_DE_PATOS.Localidades
+	WHERE @id_localidad = id_localidad
+	RETURN @localidad
+END
+
+GO
+
 CREATE FUNCTION GESTION_DE_PATOS.idRubro(@rubro varchar(30))
 RETURNS int
 AS
@@ -773,7 +799,23 @@ BEGIN
 END
 GO
 
+/*
+	=============================================
+					   VISTAS 
+	=============================================
+*/
 
+CREATE VIEW GESTION_DE_PATOS.viewclientes AS
+SELECT username, nombre, apellido, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', telefono, direccion, fecha_nacimiento, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', dni, saldo 
+FROM GESTION_DE_PATOS.Clientes;
+
+GO
+
+CREATE VIEW GESTION_DE_PATOS.viewproveedores AS
+SELECT username, cuit, razon_social, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail' , telefono, direccion, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
+FROM GESTION_DE_PATOS.Proveedores;
+
+GO
 
 /*
 	=============================================
@@ -789,6 +831,7 @@ BEGIN
 
 		insert into GESTION_DE_PATOS.EstadosUsuarios(nombre_estado) values('Habilitado')
 		insert into GESTION_DE_PATOS.EstadosUsuarios(nombre_estado) values('Deshabilitado')
+		insert into GESTION_DE_PATOS.EstadosUsuarios(nombre_estado) values('Eliminado')
 
 		--Tipo de pago
 

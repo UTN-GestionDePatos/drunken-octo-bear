@@ -36,6 +36,13 @@ namespace GrouponDesktop.GUI.AbmCliente
             Piso.Text = "";
             Departamento.Text = "";
             Localidad.Text = cliente.getDato("ciudadDataGridViewTextBoxColumn").ToString();
+
+            Localidad.Items.Add(cliente.getDato("ciudadDataGridViewTextBoxColumn").ToString());
+            SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
+            foreach (DataRow row in r.result.Rows)
+            {
+                this.Localidad.Items.Add(row[0]);
+            }
         }
 
         private void Limpiar_Click(object sender, EventArgs e)

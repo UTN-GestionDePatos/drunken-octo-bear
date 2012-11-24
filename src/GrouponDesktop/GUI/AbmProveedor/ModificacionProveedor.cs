@@ -32,12 +32,25 @@ namespace GrouponDesktop.GUI.AbmProveedor
             Telefono.Text = proveedor.getDato("telefonoDataGridViewTextBoxColumn").ToString();
             Ciudad.Text = proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString();
             Rubro.Text = proveedor.getDato("rubroDataGridViewTextBoxColumn").ToString();
-            NombreContacto.Text = "nombre_contactoDataGridViewTextBoxColumn";
-            Calle.Text = "";
+            NombreContacto.Text = proveedor.getDato("nombre_contactoDataGridViewTextBoxColumn").ToString();
+            Calle.Text = proveedor.getDato("direccionDataGridViewTextBoxColumn").ToString();
             Piso.Text = "";
             Departamento.Text = "";
             Localidad.Text = "";
             CodigoPostal.Text = "";
+
+            Ciudad.Items.Add(proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString());
+            SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
+            foreach (DataRow row in r.result.Rows)
+            {
+                this.Ciudad.Items.Add(row[0]);
+            }
+
+            //Localidad.Items.Add(proveedor.getDato("localidadDataGridViewTextBoxColumn").ToString());
+            foreach (DataRow row in r.result.Rows)
+            {
+                this.Localidad.Items.Add(row[0]);
+            }
         }
 
         private void Limpiar_Click(object sender, EventArgs e)

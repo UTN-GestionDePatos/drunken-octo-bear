@@ -26,25 +26,6 @@ namespace GrouponDesktop.GUI.AbmProveedor
             this.dataGridProveedores.DataSource = data;
         }
 
-        private void ListadoCliente_Load(object sender, EventArgs e)
-        {
-            SQLResponse r;
-
-            r = dbManager.executeQuery("SELECT * FROM Proveedores");
-            this.SetDataGridView(r.result);
-
-
-            DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
-            modificar.Name = "modificar";
-            modificar.HeaderText = "Modificar";
-            this.dataGridProveedores.Columns.Add(modificar);
-
-            DataGridViewButtonColumn eliminar = new DataGridViewButtonColumn();
-            eliminar.Name = "eliminar";
-            eliminar.HeaderText = "Eliminar";
-            this.dataGridProveedores.Columns.Add(eliminar);
-
-        }
 
         private void dataGridProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -96,10 +77,21 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void ListadoProveedor_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet5.viewproveedores' Puede moverla o quitarla según sea necesario.
+            this.viewproveedoresTableAdapter.Fill(this.gD2C2012DataSet5.viewproveedores);
             // TODO: esta línea de código carga datos en la tabla 'proveedoresDataSet.Proveedores' Puede moverla o quitarla según sea necesario.
-            this.proveedoresTableAdapter1.Fill(this.proveedoresDataSet.Proveedores);
+  //          this.proveedoresTableAdapter1.Fill(this.proveedoresDataSet.Proveedores);
             dataGridProveedores.DataSource = null;
 
+            DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
+            modificar.Name = "modificar";
+            modificar.HeaderText = "Modificar";
+            this.dataGridProveedores.Columns.Add(modificar);
+
+            DataGridViewButtonColumn eliminar = new DataGridViewButtonColumn();
+            eliminar.Name = "eliminar";
+            eliminar.HeaderText = "Eliminar";
+            this.dataGridProveedores.Columns.Add(eliminar);
         }
 
         private bool validarTextBox(TextBox textBox)
@@ -126,7 +118,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
         {
             if (RazonSocial.Text == "" && Mail.Text == "" && CUIT.Text == "")
             {
-                MessageBox.Show("Debe ingresar por lo menos un filtro");
+                MessageBox.Show("Debe ingresar por lo menos un filtro","Error al buscar");
                 return;
             }
 
@@ -151,7 +143,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
                 where = where + " cuit like '" + CUIT.Text.ToString() + "%'";
 
             //Formación de query final
-            String query = "SELECT * FROM GESTION_DE_PATOS.Proveedores ";
+            String query = "SELECT * FROM GESTION_DE_PATOS.viewproveedores ";
             if (!string.Equals(where, "WHERE"))
             {
                 query = query + where;

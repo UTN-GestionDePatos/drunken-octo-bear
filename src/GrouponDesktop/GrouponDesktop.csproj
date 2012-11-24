@@ -100,10 +100,25 @@
       <DependentUpon>GD2C2012DataSet2.xsd</DependentUpon>
     </Compile>
     <Compile Include="GD2C2012DataSet3.Designer.cs" />
+    <Compile Include="GD2C2012DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSetClientes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSetClientesLocalidades.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmCliente\ABMCliente.cs">
       <SubType>Form</SubType>
@@ -415,6 +430,28 @@
     <None Include="GD2C2012DataSet3.xss">
       <DependentUpon>GD2C2012DataSet3.xsd</DependentUpon>
     </None>
+    <None Include="GD2C2012DataSet4.xsc">
+      <DependentUpon>GD2C2012DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet4.xss">
+      <DependentUpon>GD2C2012DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet5.xsc">
+      <DependentUpon>GD2C2012DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet5.xss">
+      <DependentUpon>GD2C2012DataSet5.xsd</DependentUpon>
+    </None>
     <None Include="GD2C2012DataSetClientes.xsc">
       <DependentUpon>GD2C2012DataSetClientes.xsd</DependentUpon>
     </None>
@@ -425,6 +462,17 @@
     </None>
     <None Include="GD2C2012DataSetClientes.xss">
       <DependentUpon>GD2C2012DataSetClientes.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetClientesLocalidades.xsc">
+      <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetClientesLocalidades.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetClientesLocalidades.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetClientesLocalidades.xss">
+      <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

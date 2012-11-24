@@ -28,14 +28,16 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet4.viewclientes' Puede moverla o quitarla según sea necesario.
+            this.viewclientesTableAdapter.Fill(this.gD2C2012DataSet4.viewclientes);
             // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSetClientes.Clientes' Puede moverla o quitarla según sea necesario.
-            this.clientesTableAdapter1.Fill(this.gD2C2012DataSetClientes.Clientes);
+          //  this.clientesTableAdapter1.Fill(this.gD2C2012DataSetClientes.Clientes);
             dataGridClientes.DataSource = null;
             SQLResponse r;
-
-            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.Clientes");
+            /*
+            r = dbManager.executeQuery("SELECT * FROM Clientes");
             this.SetDataGridView(r.result);
-
+            */
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
             modificar.Name = "modificar";
@@ -122,7 +124,7 @@ namespace GrouponDesktop.GUI.AbmCliente
         {
             if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Mail.Text == "")
             {
-                MessageBox.Show("Debe ingresar por lo menos un filtro");
+                MessageBox.Show("Debe ingresar por lo menos un filtro","Error al buscar");
                 return;
             }
 
@@ -159,7 +161,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             }
 
             //Formación de query final
-            String query = "SELECT * FROM GESTION_DE_PATOS.Clientes ";
+            String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
             if (!string.Equals(where,"WHERE"))
             {
                 query = query + where;
@@ -199,6 +201,19 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 this.Buscar_Click(sender, null);
             }
+        }
+
+        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.viewclientesTableAdapter.FillBy(this.gD2C2012DataSet4.viewclientes);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
         }
 
 
