@@ -1,30 +1,81 @@
---si se registro me devuelve 1, si hubo error porque ya esta regitsrado 0
-CREATE FUNCTION Registro(@user varchar(30),@rol varchar(20),@nombre varchar(30),
-@apellido varchar(30),@mail varchar(30), @tel bigint unique, @fecha datetime,
-@dni bigint, @calle varchar(50),@altura int,@piso int,@dpto char ,@cp int)
-RETURNS int
+CREATE PROCEDURE GESTION_DE_PATOS.RegistroCliente(@user varchar(30), @pass varchar(30),@nombre varchar(50),
+@apellido varchar(50),@mail varchar(50), @tel bigint, @fecha datetime,
+@dni bigint, @direccion varchar(100), @ciudad varchar(50), @ret int output)
 AS
 BEGIN
-declare @ret int
-	IF (Select 1 from Logins where username= @user)is NULL
+
+/*
+	0: ok
+	1: ya existe el usuario
+	2: datos duplicados (telefono, dni o mail que son únicos)
+*/
+	IF not exists(Select 1 from GESTION_DE_PATOS.Usuarios where username= @user)
 		BEGIN
-			If (@rol = 'Cliente')
+			If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel
+							or dni = @dni) and not exists (select * from GESTION_DE_PATOS.Proveedores
+							where telefono = @tel or mail = @mail)
 				BEGIN
-						insert into Logins values(@user,dbo.SHA256(@pass),'Cliente', dbo.idEstado('Habilitado') ,0)
-						insert into Direcciones(calle,altura,piso,departamento,codigo_postal ) values(@calle,@altura,@piso,@dpto,@cp)
-						insert into Clientes values (@user,@nombre,@apellido,@mail,@tel,SCOPE_IDENTITY(),@fecha,SCOPE_IDENTITY(),@dni,10)
-						RETURN @ret=1
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@mail,@tel,@direccion,@fecha,GESTION_DE_PATOS.idCiudad(@ciudad),@dni,10)
+						SET @ret = 0
+						return
 				END
-			If (@rol = 'Proveedor')
-			BEGIN
-					insert into Logins values(@user,dbo.SHA256(@pass),@rol, dbo.idEstado('Habilitado') ,0)
-					insert into Direcciones(calle,altura,piso,departamento,codigo_postal ) values(@calle,@altura,@piso,@dpto,@cp)
-					insert into Proveedores values(@user,@cuit,@razon,@mail,@tel, SCOPE_IDENTITY(),SCOPE_IDENTITY(),@rubro,@nombre)
-				RETURN @ret=1
-			END
+			else
+				begin
+					set @ret = 2
+					return
+				end
 		END
 	ELSE
 		BEGIN
-			RETURN @ret=0 
+			set @ret = 1 
 		END
+END
+
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.RegistrarLocalidades(@localidad varchar(50), @user varchar(30))
+AS
+BEGIN
+	insert into GESTION_DE_PATOS.Localidad_por_usuario values(GESTION_DE_PATOS.idCiudad(@localidad),@user)
+END
+
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.RegistrarProveedor(@user varchar(30), @pass varchar(30), @rs varchar(30), 
+													 @cuit varchar(30),@mail varchar(30), @telefono bigint, 
+													 @direccion varchar(100), @ciudad varchar(30), @rubro varchar(30),
+													 @contacto varchar(30), @ret int output)
+AS
+BEGIN
+		
+/*
+	0: ok
+	1: ya existe el usuario
+	2: datos duplicados (telefono, razoón social, mail o cuit que son únicos)
+*/
+	IF not exists(Select 1 from GESTION_DE_PATOS.Usuarios where username= @user)
+		BEGIN
+			If not exists(select * from GESTION_DE_PATOS.Proveedores where razon_social = @rs or telefono = @telefono
+							or mail = @mail or cuit = @cuit) and not exists(select * from GESTION_DE_PATOS.Clientes 
+							where telefono = @telefono or mail = @mail)
+				BEGIN
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@rs,@mail,@telefono,@direccion,GESTION_DE_PATOS.idCiudad(@ciudad)
+																		, GESTION_DE_PATOS.idRubro(@rubro), @contacto)
+						SET @ret = 0
+						return
+				END
+			else
+				begin
+					set @ret = 2
+					return
+				end
+		END
+	ELSE
+		BEGIN
+			set @ret = 1 
+		END
+
+
 END

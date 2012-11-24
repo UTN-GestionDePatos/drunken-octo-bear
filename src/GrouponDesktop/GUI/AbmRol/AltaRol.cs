@@ -21,7 +21,8 @@ namespace GrouponDesktop.GUI.AbmRol
         private void Limpiar_Click(object sender, EventArgs e)
         {
             this.NombreRol.Text = "";
-            this.ListaFuncionalidades.ClearSelected();
+            for (int i = 0; i < ListaFuncionalidades.Items.Count; i++) ListaFuncionalidades.SetItemChecked(i, false);
+          
         }
 
         private void AltaRol_Load(object sender, EventArgs e)

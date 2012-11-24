@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GrouponDesktop.GUI.AbmCliente;
 
 namespace GrouponDesktop.AbmCliente
 {
@@ -20,6 +21,14 @@ namespace GrouponDesktop.AbmCliente
         {
             AltaCliente ac = new AltaCliente();
             ac.Show();
+        }
+
+        private void Modificacion_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ListadoCliente().Show();
+            
+
         }
     }
 }

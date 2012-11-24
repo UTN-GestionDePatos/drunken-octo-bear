@@ -31,13 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Alta = new System.Windows.Forms.Button();
             this.Modificacion = new System.Windows.Forms.Button();
-            this.Baja = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 22);
+            this.label1.Location = new System.Drawing.Point(61, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 13);
             this.label1.TabIndex = 0;
@@ -55,28 +54,19 @@
             // 
             // Modificacion
             // 
-            this.Modificacion.Location = new System.Drawing.Point(130, 53);
+            this.Modificacion.Location = new System.Drawing.Point(143, 53);
             this.Modificacion.Name = "Modificacion";
             this.Modificacion.Size = new System.Drawing.Size(75, 23);
             this.Modificacion.TabIndex = 2;
-            this.Modificacion.Text = "Modificación";
+            this.Modificacion.Text = "Búsqueda";
             this.Modificacion.UseVisualStyleBackColor = true;
-            // 
-            // Baja
-            // 
-            this.Baja.Location = new System.Drawing.Point(224, 53);
-            this.Baja.Name = "Baja";
-            this.Baja.Size = new System.Drawing.Size(75, 23);
-            this.Baja.TabIndex = 3;
-            this.Baja.Text = "Baja";
-            this.Baja.UseVisualStyleBackColor = true;
+            this.Modificacion.Click += new System.EventHandler(this.Modificacion_Click);
             // 
             // ABMCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 92);
-            this.Controls.Add(this.Baja);
+            this.ClientSize = new System.Drawing.Size(273, 95);
             this.Controls.Add(this.Modificacion);
             this.Controls.Add(this.Alta);
             this.Controls.Add(this.label1);
@@ -92,6 +82,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Alta;
         private System.Windows.Forms.Button Modificacion;
-        private System.Windows.Forms.Button Baja;
     }
 }

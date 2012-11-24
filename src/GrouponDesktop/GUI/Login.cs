@@ -24,7 +24,7 @@ namespace GrouponDesktop
 
         private void Registrarse_Click(object sender, EventArgs e)
         {
-            new ListadoCliente().Show();
+           // new ListadoCliente().Show(); y esto?!?!?!?
             RegistroUsuario r = new RegistroUsuario();
             r.Show();
         }
@@ -86,9 +86,5 @@ namespace GrouponDesktop
             }
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

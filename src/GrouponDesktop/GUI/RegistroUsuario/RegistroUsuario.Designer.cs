@@ -28,8 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.datosCliente = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.Guardar = new System.Windows.Forms.Button();
+            this.Limpiar = new System.Windows.Forms.Button();
+            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
+            this.zonas = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Rol = new System.Windows.Forms.ComboBox();
+            this.datosProveedor = new System.Windows.Forms.GroupBox();
+            this.ciudadP = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.NombreContacto = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.RubroP = new System.Windows.Forms.ComboBox();
+            this.PassP = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Direccion = new System.Windows.Forms.TextBox();
+            this.TelefonoP = new System.Windows.Forms.TextBox();
+            this.CUIT = new System.Windows.Forms.TextBox();
+            this.RazonSocial = new System.Windows.Forms.TextBox();
+            this.MailP = new System.Windows.Forms.TextBox();
+            this.UsernameP = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.ciudadCliente = new System.Windows.Forms.ComboBox();
             this.PasswordCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -49,229 +76,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.Guardar = new System.Windows.Forms.Button();
-            this.Limpiar = new System.Windows.Forms.Button();
-            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
-            this.zonas = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Rol = new System.Windows.Forms.ComboBox();
-            this.datosProveedor = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.NombreContacto = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.CiudadP = new System.Windows.Forms.ComboBox();
-            this.PassP = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Direccion = new System.Windows.Forms.TextBox();
-            this.TelefonoP = new System.Windows.Forms.TextBox();
-            this.CUIT = new System.Windows.Forms.TextBox();
-            this.RazonSocial = new System.Windows.Forms.TextBox();
-            this.MailP = new System.Windows.Forms.TextBox();
-            this.UsernameP = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.datosCliente.SuspendLayout();
             this.datosProveedor.SuspendLayout();
+            this.datosClientes.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // datosCliente
-            // 
-            this.datosCliente.Controls.Add(this.comboBox2);
-            this.datosCliente.Controls.Add(this.PasswordCliente);
-            this.datosCliente.Controls.Add(this.label19);
-            this.datosCliente.Controls.Add(this.label12);
-            this.datosCliente.Controls.Add(this.DireccionC);
-            this.datosCliente.Controls.Add(this.DNICliente);
-            this.datosCliente.Controls.Add(this.label20);
-            this.datosCliente.Controls.Add(this.FchNacimientoCliente);
-            this.datosCliente.Controls.Add(this.TelefonoCliente);
-            this.datosCliente.Controls.Add(this.ApellidoCliente);
-            this.datosCliente.Controls.Add(this.NombreCliente);
-            this.datosCliente.Controls.Add(this.MailCliente);
-            this.datosCliente.Controls.Add(this.UsernameCliente);
-            this.datosCliente.Controls.Add(this.label7);
-            this.datosCliente.Controls.Add(this.label6);
-            this.datosCliente.Controls.Add(this.label5);
-            this.datosCliente.Controls.Add(this.label3);
-            this.datosCliente.Controls.Add(this.label2);
-            this.datosCliente.Controls.Add(this.label1);
-            this.datosCliente.Controls.Add(this.Nombre);
-            this.datosCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.datosCliente.Location = new System.Drawing.Point(0, 0);
-            this.datosCliente.Name = "datosCliente";
-            this.datosCliente.Size = new System.Drawing.Size(353, 365);
-            this.datosCliente.TabIndex = 1;
-            this.datosCliente.TabStop = false;
-            this.datosCliente.Text = "Datos Personales";
-            this.datosCliente.Visible = false;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(126, 317);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(209, 21);
-            this.comboBox2.TabIndex = 31;
-            // 
-            // PasswordCliente
-            // 
-            this.PasswordCliente.Location = new System.Drawing.Point(126, 55);
-            this.PasswordCliente.Name = "PasswordCliente";
-            this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
-            this.PasswordCliente.TabIndex = 22;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 320);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(40, 13);
-            this.label19.TabIndex = 30;
-            this.label19.Text = "Ciudad";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 58);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Password";
-            // 
-            // DireccionC
-            // 
-            this.DireccionC.Location = new System.Drawing.Point(126, 276);
-            this.DireccionC.Name = "DireccionC";
-            this.DireccionC.Size = new System.Drawing.Size(209, 20);
-            this.DireccionC.TabIndex = 29;
-            // 
-            // DNICliente
-            // 
-            this.DNICliente.Location = new System.Drawing.Point(126, 245);
-            this.DNICliente.Name = "DNICliente";
-            this.DNICliente.Size = new System.Drawing.Size(209, 20);
-            this.DNICliente.TabIndex = 20;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(7, 282);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 13);
-            this.label20.TabIndex = 28;
-            this.label20.Text = "Direccion";
-            // 
-            // FchNacimientoCliente
-            // 
-            this.FchNacimientoCliente.Location = new System.Drawing.Point(126, 214);
-            this.FchNacimientoCliente.Name = "FchNacimientoCliente";
-            this.FchNacimientoCliente.Size = new System.Drawing.Size(209, 20);
-            this.FchNacimientoCliente.TabIndex = 19;
-            // 
-            // TelefonoCliente
-            // 
-            this.TelefonoCliente.Location = new System.Drawing.Point(126, 182);
-            this.TelefonoCliente.Name = "TelefonoCliente";
-            this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
-            this.TelefonoCliente.TabIndex = 18;
-            // 
-            // ApellidoCliente
-            // 
-            this.ApellidoCliente.Location = new System.Drawing.Point(126, 116);
-            this.ApellidoCliente.Name = "ApellidoCliente";
-            this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
-            this.ApellidoCliente.TabIndex = 17;
-            // 
-            // NombreCliente
-            // 
-            this.NombreCliente.Location = new System.Drawing.Point(126, 84);
-            this.NombreCliente.Name = "NombreCliente";
-            this.NombreCliente.Size = new System.Drawing.Size(209, 20);
-            this.NombreCliente.TabIndex = 16;
-            // 
-            // MailCliente
-            // 
-            this.MailCliente.Location = new System.Drawing.Point(126, 150);
-            this.MailCliente.Name = "MailCliente";
-            this.MailCliente.Size = new System.Drawing.Size(209, 20);
-            this.MailCliente.TabIndex = 16;
-            // 
-            // UsernameCliente
-            // 
-            this.UsernameCliente.Location = new System.Drawing.Point(126, 26);
-            this.UsernameCliente.Name = "UsernameCliente";
-            this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
-            this.UsernameCliente.TabIndex = 15;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 248);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(26, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "DNI";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 217);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Fecha de nacimiento";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 185);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Teléfono";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Apellido";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 154);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Mail";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Username";
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(6, 87);
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(44, 13);
-            this.Nombre.TabIndex = 9;
-            this.Nombre.Text = "Nombre";
             // 
             // Guardar
             // 
@@ -281,6 +88,7 @@
             this.Guardar.TabIndex = 6;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // Limpiar
             // 
@@ -290,6 +98,7 @@
             this.Limpiar.TabIndex = 5;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
             // ListaZonas
             // 
@@ -334,14 +143,13 @@
             // 
             // datosProveedor
             // 
-            this.datosProveedor.Controls.Add(this.comboBox1);
+            this.datosProveedor.Controls.Add(this.ciudadP);
             this.datosProveedor.Controls.Add(this.label18);
             this.datosProveedor.Controls.Add(this.NombreContacto);
             this.datosProveedor.Controls.Add(this.label17);
-            this.datosProveedor.Controls.Add(this.CiudadP);
+            this.datosProveedor.Controls.Add(this.RubroP);
             this.datosProveedor.Controls.Add(this.PassP);
             this.datosProveedor.Controls.Add(this.label8);
-            this.datosProveedor.Controls.Add(this.datosCliente);
             this.datosProveedor.Controls.Add(this.Direccion);
             this.datosProveedor.Controls.Add(this.TelefonoP);
             this.datosProveedor.Controls.Add(this.CUIT);
@@ -364,14 +172,14 @@
             this.datosProveedor.Text = "Datos Personales";
             this.datosProveedor.Visible = false;
             // 
-            // comboBox1
+            // ciudadP
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 278);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(209, 21);
-            this.comboBox1.TabIndex = 27;
+            this.ciudadP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ciudadP.FormattingEnabled = true;
+            this.ciudadP.Location = new System.Drawing.Point(126, 278);
+            this.ciudadP.Name = "ciudadP";
+            this.ciudadP.Size = new System.Drawing.Size(209, 21);
+            this.ciudadP.TabIndex = 27;
             // 
             // label18
             // 
@@ -398,14 +206,14 @@
             this.label17.TabIndex = 24;
             this.label17.Text = "Nombre de Contacto";
             // 
-            // CiudadP
+            // RubroP
             // 
-            this.CiudadP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CiudadP.FormattingEnabled = true;
-            this.CiudadP.Location = new System.Drawing.Point(126, 245);
-            this.CiudadP.Name = "CiudadP";
-            this.CiudadP.Size = new System.Drawing.Size(209, 21);
-            this.CiudadP.TabIndex = 23;
+            this.RubroP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RubroP.FormattingEnabled = true;
+            this.RubroP.Location = new System.Drawing.Point(126, 245);
+            this.RubroP.Name = "RubroP";
+            this.RubroP.Size = new System.Drawing.Size(209, 21);
+            this.RubroP.TabIndex = 23;
             // 
             // PassP
             // 
@@ -528,11 +336,204 @@
             this.label16.TabIndex = 9;
             this.label16.Text = "Razón Social";
             // 
+            // datosClientes
+            // 
+            this.datosClientes.Controls.Add(this.ciudadCliente);
+            this.datosClientes.Controls.Add(this.PasswordCliente);
+            this.datosClientes.Controls.Add(this.label19);
+            this.datosClientes.Controls.Add(this.label12);
+            this.datosClientes.Controls.Add(this.DireccionC);
+            this.datosClientes.Controls.Add(this.DNICliente);
+            this.datosClientes.Controls.Add(this.label20);
+            this.datosClientes.Controls.Add(this.FchNacimientoCliente);
+            this.datosClientes.Controls.Add(this.TelefonoCliente);
+            this.datosClientes.Controls.Add(this.ApellidoCliente);
+            this.datosClientes.Controls.Add(this.NombreCliente);
+            this.datosClientes.Controls.Add(this.MailCliente);
+            this.datosClientes.Controls.Add(this.UsernameCliente);
+            this.datosClientes.Controls.Add(this.label7);
+            this.datosClientes.Controls.Add(this.label6);
+            this.datosClientes.Controls.Add(this.label5);
+            this.datosClientes.Controls.Add(this.label3);
+            this.datosClientes.Controls.Add(this.label2);
+            this.datosClientes.Controls.Add(this.label1);
+            this.datosClientes.Controls.Add(this.Nombre);
+            this.datosClientes.Location = new System.Drawing.Point(12, 58);
+            this.datosClientes.Name = "datosClientes";
+            this.datosClientes.Size = new System.Drawing.Size(332, 359);
+            this.datosClientes.TabIndex = 27;
+            this.datosClientes.TabStop = false;
+            this.datosClientes.Text = "Datos Personales";
+            this.datosClientes.Visible = false;
+            // 
+            // ciudadCliente
+            // 
+            this.ciudadCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ciudadCliente.FormattingEnabled = true;
+            this.ciudadCliente.Location = new System.Drawing.Point(122, 314);
+            this.ciudadCliente.Name = "ciudadCliente";
+            this.ciudadCliente.Size = new System.Drawing.Size(209, 21);
+            this.ciudadCliente.TabIndex = 51;
+            // 
+            // PasswordCliente
+            // 
+            this.PasswordCliente.Location = new System.Drawing.Point(122, 52);
+            this.PasswordCliente.Name = "PasswordCliente";
+            this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
+            this.PasswordCliente.TabIndex = 47;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(2, 317);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 13);
+            this.label19.TabIndex = 50;
+            this.label19.Text = "Ciudad";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(2, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "Password";
+            // 
+            // DireccionC
+            // 
+            this.DireccionC.Location = new System.Drawing.Point(122, 273);
+            this.DireccionC.Name = "DireccionC";
+            this.DireccionC.Size = new System.Drawing.Size(209, 20);
+            this.DireccionC.TabIndex = 49;
+            // 
+            // DNICliente
+            // 
+            this.DNICliente.Location = new System.Drawing.Point(122, 242);
+            this.DNICliente.Name = "DNICliente";
+            this.DNICliente.Size = new System.Drawing.Size(209, 20);
+            this.DNICliente.TabIndex = 45;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(3, 279);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(52, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Direccion";
+            // 
+            // FchNacimientoCliente
+            // 
+            this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
+            this.FchNacimientoCliente.Name = "FchNacimientoCliente";
+            this.FchNacimientoCliente.Size = new System.Drawing.Size(209, 20);
+            this.FchNacimientoCliente.TabIndex = 44;
+            // 
+            // TelefonoCliente
+            // 
+            this.TelefonoCliente.Location = new System.Drawing.Point(122, 179);
+            this.TelefonoCliente.Name = "TelefonoCliente";
+            this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
+            this.TelefonoCliente.TabIndex = 43;
+            // 
+            // ApellidoCliente
+            // 
+            this.ApellidoCliente.Location = new System.Drawing.Point(122, 113);
+            this.ApellidoCliente.Name = "ApellidoCliente";
+            this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
+            this.ApellidoCliente.TabIndex = 42;
+            // 
+            // NombreCliente
+            // 
+            this.NombreCliente.Location = new System.Drawing.Point(122, 81);
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.Size = new System.Drawing.Size(209, 20);
+            this.NombreCliente.TabIndex = 40;
+            // 
+            // MailCliente
+            // 
+            this.MailCliente.Location = new System.Drawing.Point(122, 147);
+            this.MailCliente.Name = "MailCliente";
+            this.MailCliente.Size = new System.Drawing.Size(209, 20);
+            this.MailCliente.TabIndex = 41;
+            // 
+            // UsernameCliente
+            // 
+            this.UsernameCliente.Location = new System.Drawing.Point(122, 23);
+            this.UsernameCliente.Name = "UsernameCliente";
+            this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
+            this.UsernameCliente.TabIndex = 39;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(2, 245);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 13);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "DNI";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(2, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 13);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Fecha de nacimiento";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(2, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "Teléfono";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(2, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Apellido";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 151);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Mail";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Username";
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSize = true;
+            this.Nombre.Location = new System.Drawing.Point(2, 84);
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Size = new System.Drawing.Size(44, 13);
+            this.Nombre.TabIndex = 33;
+            this.Nombre.Text = "Nombre";
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 492);
+            this.ClientSize = new System.Drawing.Size(639, 484);
+            this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.datosProveedor);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Rol);
@@ -543,10 +544,10 @@
             this.Name = "RegistroUsuario";
             this.Text = "RegistroUsuario";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
-            this.datosCliente.ResumeLayout(false);
-            this.datosCliente.PerformLayout();
             this.datosProveedor.ResumeLayout(false);
             this.datosProveedor.PerformLayout();
+            this.datosClientes.ResumeLayout(false);
+            this.datosClientes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -554,31 +555,14 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox datosCliente;
-        private System.Windows.Forms.TextBox DNICliente;
-        private System.Windows.Forms.TextBox FchNacimientoCliente;
-        private System.Windows.Forms.TextBox TelefonoCliente;
-        private System.Windows.Forms.TextBox ApellidoCliente;
-        private System.Windows.Forms.TextBox NombreCliente;
-        private System.Windows.Forms.TextBox MailCliente;
-        private System.Windows.Forms.TextBox UsernameCliente;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Limpiar;
-        private System.Windows.Forms.TextBox PasswordCliente;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckedListBox ListaZonas;
         private System.Windows.Forms.Label zonas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Rol;
         private System.Windows.Forms.GroupBox datosProveedor;
-        private System.Windows.Forms.ComboBox CiudadP;
+        private System.Windows.Forms.ComboBox RubroP;
         private System.Windows.Forms.TextBox PassP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Direccion;
@@ -596,12 +580,29 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox NombreContacto;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ciudadP;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.GroupBox datosClientes;
+        private System.Windows.Forms.ComboBox ciudadCliente;
+        private System.Windows.Forms.TextBox PasswordCliente;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox DireccionC;
+        private System.Windows.Forms.TextBox DNICliente;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox FchNacimientoCliente;
+        private System.Windows.Forms.TextBox TelefonoCliente;
+        private System.Windows.Forms.TextBox ApellidoCliente;
+        private System.Windows.Forms.TextBox NombreCliente;
+        private System.Windows.Forms.TextBox MailCliente;
+        private System.Windows.Forms.TextBox UsernameCliente;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Nombre;
 
     }
 }

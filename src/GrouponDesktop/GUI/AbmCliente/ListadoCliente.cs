@@ -33,7 +33,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             dataGridClientes.DataSource = null;
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT * FROM Clientes");
+            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.Clientes");
             this.SetDataGridView(r.result);
 
 
