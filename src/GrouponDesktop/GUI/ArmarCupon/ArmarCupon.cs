@@ -56,6 +56,8 @@ namespace GrouponDesktop.ArmarCupon
                     return;
                 case "2": MessageBox.Show("La fecha de vencimiento de la oferta ya pasó");
                     return;
+                case "3": MessageBox.Show("El canje no puede vencer antes de la oferta");
+                    return;
 
             }
 
