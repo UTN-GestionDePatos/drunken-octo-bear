@@ -110,6 +110,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSet7.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSetClientes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +129,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSetViewProveedores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmCliente\ABMCliente.cs">
       <SubType>Form</SubType>
@@ -198,6 +213,12 @@
     </Compile>
     <Compile Include="GUI\cambiarPass.Designer.cs">
       <DependentUpon>cambiarPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CambiarPassDesdeAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CambiarPassDesdeAdmin.Designer.cs">
+      <DependentUpon>CambiarPassDesdeAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
@@ -330,6 +351,9 @@
     <EmbeddedResource Include="GUI\cambiarPass.resx">
       <DependentUpon>cambiarPass.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CambiarPassDesdeAdmin.resx">
+      <DependentUpon>CambiarPassDesdeAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </EmbeddedResource>
@@ -461,6 +485,28 @@
     <None Include="GD2C2012DataSet5.xss">
       <DependentUpon>GD2C2012DataSet5.xsd</DependentUpon>
     </None>
+    <None Include="GD2C2012DataSet6.xsc">
+      <DependentUpon>GD2C2012DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet6.xss">
+      <DependentUpon>GD2C2012DataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet7.xsc">
+      <DependentUpon>GD2C2012DataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSet7.xss">
+      <DependentUpon>GD2C2012DataSet7.xsd</DependentUpon>
+    </None>
     <None Include="GD2C2012DataSetClientes.xsc">
       <DependentUpon>GD2C2012DataSetClientes.xsd</DependentUpon>
     </None>
@@ -482,6 +528,17 @@
     </None>
     <None Include="GD2C2012DataSetClientesLocalidades.xss">
       <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetViewProveedores.xsc">
+      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetViewProveedores.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetViewProveedores.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetViewProveedores.xss">
+      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -23,3 +23,23 @@ BEGIN
 	set @ret = 0
 	return
 END
+
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarPasswordDesdeAdmin (@user varchar(30), @passNueva varchar(30),
+												   @passNueva2 varchar(30), @ret int output)
+AS
+BEGIN
+	/*
+		0: ok
+		1: passN y passN2 no coinciden
+	*/
+	
+	IF @passNueva != @passNueva2
+	BEGIN
+		set @ret = 1
+		RETURN
+	END
+	
+	UPDATE GESTION_DE_PATOS.Usuarios SET passwd = GESTION_DE_PATOS.SHA256(@passNueva) where username = @user
+	set @ret = 0
+	RETURN
+END

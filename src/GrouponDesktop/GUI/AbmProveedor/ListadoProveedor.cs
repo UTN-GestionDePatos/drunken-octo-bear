@@ -80,15 +80,20 @@ namespace GrouponDesktop.GUI.AbmProveedor
             RazonSocial.Text = "";
             Mail.Text = "";
             CUIT.Text = "";
-            dataGridProveedores.DataSource = null;
+
+            SQLResponse r;
+
+            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.viewproveedores");
+            this.SetDataGridView(r.result);
+
         }
 
         private void ListadoProveedor_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet5.viewproveedores' Puede moverla o quitarla según sea necesario.
-            this.viewproveedoresTableAdapter.Fill(this.gD2C2012DataSet5.viewproveedores);
+            SQLResponse r;
 
-            dataGridProveedores.DataSource = null;
+            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.viewproveedores");
+            this.SetDataGridView(r.result);
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
             modificar.Name = "modificar";
@@ -131,23 +136,37 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             //Clausula WHERE para filtrar la búsqueda
             String where = "WHERE";
+            bool es_primero = true;
 
             if (validarTextBox(RazonSocial))
             {
                 where = where + " razon_social like '" + RazonSocial.Text.ToString() + "%'";
-                if (validarTextBox(Mail))
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
-                if (validarTextBox(CUIT))
-                    where = where + " AND cuit like '" + CUIT.Text.ToString() + "%'";
+                es_primero = false;
             }
-            else if (validarTextBox(Mail))
+
+            if (validarTextBox(CUIT))
             {
-                where = where + " mail like '" + Mail.Text.ToString() + "%'";
-                if (validarTextBox(CUIT))
-                    where = where + " AND cuit like '" + CUIT.Text.ToString() + "%'";
+                if (es_primero)
+                {
+                    where = where + " cuit like '" + CUIT.Text.ToString() + "'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND cuit like '" + CUIT.Text.ToString() + "'";
+
             }
-            else if (validarTextBox(CUIT))
-                where = where + " cuit like '" + CUIT.Text.ToString() + "%'";
+
+            if (validarTextBox(Mail))
+            {
+                if (es_primero)
+                {
+                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+
+            }
 
             //Formación de query final
             String query = "SELECT * FROM GESTION_DE_PATOS.viewproveedores ";

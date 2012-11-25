@@ -41,7 +41,6 @@
             this.NombreContacto = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.RubroP = new System.Windows.Forms.ComboBox();
-            this.PassP = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.Direccion = new System.Windows.Forms.TextBox();
             this.TelefonoP = new System.Windows.Forms.TextBox();
@@ -56,6 +55,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.CambiarPassword = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.datosProveedor.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +110,7 @@
             // 
             // datosProveedor
             // 
+            this.datosProveedor.Controls.Add(this.CambiarPassword);
             this.datosProveedor.Controls.Add(this.CodigoPostalP);
             this.datosProveedor.Controls.Add(this.label22);
             this.datosProveedor.Controls.Add(this.ciudadP);
@@ -117,7 +118,6 @@
             this.datosProveedor.Controls.Add(this.NombreContacto);
             this.datosProveedor.Controls.Add(this.label17);
             this.datosProveedor.Controls.Add(this.RubroP);
-            this.datosProveedor.Controls.Add(this.PassP);
             this.datosProveedor.Controls.Add(this.label8);
             this.datosProveedor.Controls.Add(this.Direccion);
             this.datosProveedor.Controls.Add(this.TelefonoP);
@@ -139,7 +139,6 @@
             this.datosProveedor.TabIndex = 25;
             this.datosProveedor.TabStop = false;
             this.datosProveedor.Text = "Datos Personales";
-            this.datosProveedor.Visible = false;
             // 
             // CodigoPostalP
             // 
@@ -199,13 +198,6 @@
             this.RubroP.Name = "RubroP";
             this.RubroP.Size = new System.Drawing.Size(209, 21);
             this.RubroP.TabIndex = 23;
-            // 
-            // PassP
-            // 
-            this.PassP.Location = new System.Drawing.Point(126, 55);
-            this.PassP.Name = "PassP";
-            this.PassP.Size = new System.Drawing.Size(209, 20);
-            this.PassP.TabIndex = 22;
             // 
             // label8
             // 
@@ -321,6 +313,16 @@
             this.label16.TabIndex = 9;
             this.label16.Text = "Razón Social";
             // 
+            // CambiarPassword
+            // 
+            this.CambiarPassword.Location = new System.Drawing.Point(126, 53);
+            this.CambiarPassword.Name = "CambiarPassword";
+            this.CambiarPassword.Size = new System.Drawing.Size(112, 23);
+            this.CambiarPassword.TabIndex = 30;
+            this.CambiarPassword.Text = "Cambiar password";
+            this.CambiarPassword.UseVisualStyleBackColor = true;
+            this.CambiarPassword.Click += new System.EventHandler(this.CambiarPassword_Click);
+            // 
             // ModificacionProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,7 +360,6 @@
         private System.Windows.Forms.TextBox NombreContacto;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox RubroP;
-        private System.Windows.Forms.TextBox PassP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Direccion;
         private System.Windows.Forms.TextBox TelefonoP;
@@ -373,5 +374,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button CambiarPassword;
     }
 }

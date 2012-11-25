@@ -28,17 +28,13 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet4.viewclientes' Puede moverla o quitarla según sea necesario.
-            this.viewclientesTableAdapter.Fill(this.gD2C2012DataSet4.viewclientes);
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSetClientes.Clientes' Puede moverla o quitarla según sea necesario.
-          //  this.clientesTableAdapter1.Fill(this.gD2C2012DataSetClientes.Clientes);
-            dataGridClientes.DataSource = null;
-            /*
+            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet6.viewclientes' Puede moverla o quitarla según sea necesario.
+            //this.viewclientesTableAdapter.Fill(this.gD2C2012DataSet6.viewclientes);
+
             SQLResponse r;
             
-            r = dbManager.executeQuery("SELECT * FROM Clientes");
+            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.viewclientes");
             this.SetDataGridView(r.result);
-            */
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
             modificar.Name = "modificar";
@@ -106,7 +102,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             Nombre.Text = "";
             Apellido.Text = "";
             DNI.Text = "";
-            Username.Text = "";
+            Mail.Text = "";
 
             String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
             SQLResponse r = dbManager.executeQuery(query);
@@ -135,7 +131,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void Buscar_Click(object sender, EventArgs e)
         {
-            if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Username.Text == "")
+            if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Mail.Text == "")
             {
                 MessageBox.Show("Debe ingresar por lo menos un filtro","Error al buscar");
                 return;
@@ -175,15 +171,15 @@ namespace GrouponDesktop.GUI.AbmCliente
 
             }
 
-            if (validarTextBox(Username))
+            if (validarTextBox(Mail))
             {
                 if (es_primero)
                 {
-                    where = where + " username like '" + Username.Text.ToString() + "%'";
+                    where = where + " mail = " + Mail.Text.ToString();
                     es_primero = false;
                 }
                 else
-                    where = where + " AND username like '" + Username.Text.ToString() + "%'";
+                    where = where + " AND mail = " + Mail.Text.ToString();
 
             }
 
@@ -230,20 +226,6 @@ namespace GrouponDesktop.GUI.AbmCliente
                 this.Buscar_Click(sender, null);
             }
         }
-
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.viewclientesTableAdapter.FillBy(this.gD2C2012DataSet4.viewclientes);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
 
 
      

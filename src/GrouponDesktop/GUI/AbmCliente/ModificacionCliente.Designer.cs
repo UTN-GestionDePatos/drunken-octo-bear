@@ -36,7 +36,6 @@
             this.CodigoPostal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ciudadCliente = new System.Windows.Forms.ComboBox();
-            this.PasswordCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.DireccionC = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.CambiarPassword = new System.Windows.Forms.Button();
             this.datosClientes.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -99,14 +99,13 @@
             this.ListaZonas.Name = "ListaZonas";
             this.ListaZonas.Size = new System.Drawing.Size(330, 244);
             this.ListaZonas.TabIndex = 32;
-            this.ListaZonas.Visible = false;
             // 
             // datosClientes
             // 
+            this.datosClientes.Controls.Add(this.CambiarPassword);
             this.datosClientes.Controls.Add(this.CodigoPostal);
             this.datosClientes.Controls.Add(this.label4);
             this.datosClientes.Controls.Add(this.ciudadCliente);
-            this.datosClientes.Controls.Add(this.PasswordCliente);
             this.datosClientes.Controls.Add(this.label19);
             this.datosClientes.Controls.Add(this.label12);
             this.datosClientes.Controls.Add(this.DireccionC);
@@ -125,13 +124,12 @@
             this.datosClientes.Controls.Add(this.label2);
             this.datosClientes.Controls.Add(this.label1);
             this.datosClientes.Controls.Add(this.Nombre);
-            this.datosClientes.Location = new System.Drawing.Point(12, 24);
+            this.datosClientes.Location = new System.Drawing.Point(17, 12);
             this.datosClientes.Name = "datosClientes";
-            this.datosClientes.Size = new System.Drawing.Size(332, 405);
+            this.datosClientes.Size = new System.Drawing.Size(335, 405);
             this.datosClientes.TabIndex = 31;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
-            this.datosClientes.Visible = false;
             // 
             // CodigoPostal
             // 
@@ -157,13 +155,6 @@
             this.ciudadCliente.Name = "ciudadCliente";
             this.ciudadCliente.Size = new System.Drawing.Size(209, 21);
             this.ciudadCliente.TabIndex = 51;
-            // 
-            // PasswordCliente
-            // 
-            this.PasswordCliente.Location = new System.Drawing.Point(122, 52);
-            this.PasswordCliente.Name = "PasswordCliente";
-            this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
-            this.PasswordCliente.TabIndex = 47;
             // 
             // label19
             // 
@@ -340,6 +331,16 @@
             this.label13.TabIndex = 21;
             this.label13.Text = "Estado";
             // 
+            // CambiarPassword
+            // 
+            this.CambiarPassword.Location = new System.Drawing.Point(122, 49);
+            this.CambiarPassword.Name = "CambiarPassword";
+            this.CambiarPassword.Size = new System.Drawing.Size(104, 23);
+            this.CambiarPassword.TabIndex = 54;
+            this.CambiarPassword.Text = "Cambiar password";
+            this.CambiarPassword.UseVisualStyleBackColor = true;
+            this.CambiarPassword.Click += new System.EventHandler(this.CambiarPassword_Click);
+            // 
             // ModificacionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,7 +375,6 @@
         private System.Windows.Forms.TextBox CodigoPostal;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ciudadCliente;
-        private System.Windows.Forms.TextBox PasswordCliente;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox DireccionC;
@@ -396,5 +396,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox Estado;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button CambiarPassword;
     }
 }

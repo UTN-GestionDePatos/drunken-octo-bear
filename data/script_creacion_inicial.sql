@@ -1106,14 +1106,14 @@ GO
 
 
 CREATE VIEW GESTION_DE_PATOS.viewclientes AS
-SELECT u.username, u.passwd, nombre, apellido, dni, fecha_nacimiento, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', telefono, direccion, codigo_postal, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad'
-FROM GESTION_DE_PATOS.Clientes c join GESTION_DE_PATOS.Usuarios u on c.username = u.username;
+SELECT username, nombre, apellido, dni, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail'
+FROM GESTION_DE_PATOS.Clientes
 
 GO
 
 CREATE VIEW GESTION_DE_PATOS.viewproveedores AS
-SELECT u.username, u.passwd, cuit, razon_social, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail' , telefono, direccion, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
-FROM GESTION_DE_PATOS.Proveedores p join GESTION_DE_PATOS.Usuarios u on p.username = u.username;
+SELECT username, razon_social, cuit, GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
+FROM GESTION_DE_PATOS.Proveedores
 
 GO
 

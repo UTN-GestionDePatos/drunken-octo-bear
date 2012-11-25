@@ -27,27 +27,38 @@ namespace GrouponDesktop.GUI.AbmCliente
         {
             UsernameCliente.Text = cliente.getDato("usernameDataGridViewTextBoxColumn").ToString();
 
-            SQLResponse response = dbManager.executeQuery("SELECT passwd FROM GESTION_DE_PATOS.Usuarios WHERE username = '" + UsernameCliente.Text + "'");
-            PasswordCliente.Text = response.result.Rows[0][0].ToString();
             NombreCliente.Text = cliente.getDato("nombreDataGridViewTextBoxColumn").ToString();
             ApellidoCliente.Text = cliente.getDato("apellidoDataGridViewTextBoxColumn").ToString();
             MailCliente.Text = cliente.getDato("mailDataGridViewTextBoxColumn").ToString();
-            TelefonoCliente.Text = cliente.getDato("telefonoDataGridViewTextBoxColumn").ToString();
-            FchNacimientoCliente.Text = cliente.getDato("fechanacimientoDataGridViewTextBoxColumn").ToString();
             DNICliente.Text = cliente.getDato("dniDataGridViewTextBoxColumn").ToString();
-            DireccionC.Text = cliente.getDato("direccionDataGridViewTextBoxColumn").ToString();
-           // CodigoPostal.Text = cliente.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
 
-            SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
-            foreach (DataRow row in r.result.Rows)
+            SQLResponse response = dbManager.executeQuery("SELECT fecha_nacimiento, telefono, direccion, codigo_postal, GESTION_DE_PATOS.localidad(ciudad) FROM GESTION_DE_PATOS.Clientes WHERE username = '" + UsernameCliente.Text + "' AND dni = " + DNICliente.Text);
+
+            FchNacimientoCliente.Text = response.result.Rows[0][0].ToString();
+            TelefonoCliente.Text = response.result.Rows[0][1].ToString();
+            DireccionC.Text = response.result.Rows[0][2].ToString();
+            CodigoPostal.Text = response.result.Rows[0][3].ToString();
+            
+            SQLResponse ciudades = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
+            foreach (DataRow row in ciudades.result.Rows)
             {
                 this.ciudadCliente.Items.Add(row[0]);
             }
 
-            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + UsernameCliente.Text + "'");
-            Estado.Text = r2.result.Rows[0][0].ToString();
+            ciudadCliente.SelectedItem = response.result.Rows[0][4].ToString();
+
+            response = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + UsernameCliente.Text + "'");
+            
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
+            Estado.Text = response.result.Rows[0][0].ToString();
+
+            response = dbManager.executeQuery("SELECT GESTION_DE_PATOS.localidad(id_localidad) AS 'localidad' FROM GESTION_DE_PATOS.Localidad_por_usuario WHERE username = '" + UsernameCliente.Text + "'");
+
+            foreach (DataRow row in response.result.Rows)
+            {
+                this.ListaZonas.Items.Add(row[0]);
+            }
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -61,7 +72,6 @@ namespace GrouponDesktop.GUI.AbmCliente
             DNICliente.Text = "";
             DireccionC.Text = "";
             CodigoPostal.Text = "";
-            PasswordCliente.Text = "";
         }
 
         private void Guardar_Click(object sender, EventArgs e)
@@ -116,6 +126,13 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 e.Cancel = true;
             }
+        }
+
+        private void CambiarPassword_Click(object sender, EventArgs e)
+        {
+            CambiarPassDesdeAdmin new_form = new CambiarPassDesdeAdmin(UsernameCliente.Text);
+            new_form.Show();
+
         }
 
 

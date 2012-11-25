@@ -26,41 +26,43 @@ namespace GrouponDesktop.GUI.AbmProveedor
         private void ModificacionProveedor_Load(object sender, EventArgs e)
         {
             UsernameP.Text = proveedor.getDato("usernameDataGridViewTextBoxColumn").ToString();
-            PassP.Text = proveedor.getDato("passwdDataGridViewTextBoxColumn").ToString();
-            RazonSocial.Text = proveedor.getDato("razon_socialDataGridViewTextBoxColumn").ToString();
             CUIT.Text = proveedor.getDato("cuitDataGridViewTextBoxColumn").ToString();
-            MailP.Text = proveedor.getDato("mailDataGridViewTextBoxColumn").ToString();
-            TelefonoP.Text = proveedor.getDato("telefonoDataGridViewTextBoxColumn").ToString();
-            ciudadP.Text = proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString();
-            RubroP.Text = proveedor.getDato("rubroDataGridViewTextBoxColumn").ToString();
-            NombreContacto.Text = proveedor.getDato("nombre_contactoDataGridViewTextBoxColumn").ToString();
-            Direccion.Text = proveedor.getDato("direccionDataGridViewTextBoxColumn").ToString();
-            CodigoPostalP.Text = proveedor.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
+ 
+            SQLResponse response = dbManager.executeQuery("SELECT telefono, GESTION_DE_PATOS.localidad(ciudad) AS 'ciudad', direccion, codigo_postal FROM GESTION_DE_PATOS.Proveedores WHERE username = '" + UsernameP.Text + "' AND cuit = '" + CUIT.Text + "'");
 
-            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = " + UsernameP.Text);
-            Estado.Text = r2.result.Rows[0][0].ToString();
+            RazonSocial.Text = proveedor.getDato("razonsocialDataGridViewTextBoxColumn").ToString();
+            MailP.Text = proveedor.getDato("mailDataGridViewTextBoxColumn").ToString();
+            TelefonoP.Text = response.result.Rows[0][0].ToString();
+            NombreContacto.Text = proveedor.getDato("nombrecontactoDataGridViewTextBoxColumn").ToString();
+            Direccion.Text = response.result.Rows[0][2].ToString();
+            CodigoPostalP.Text = response.result.Rows[0][3].ToString();
+
+            SQLResponse rubros = dbManager.executeQuery("SELECT descripcion FROM GESTION_DE_PATOS.Rubros");
+            foreach (DataRow row in rubros.result.Rows)
+            {
+                this.RubroP.Items.Add(row[0]);
+            }
+
+            RubroP.SelectedItem = proveedor.getDato("rubroDataGridViewTextBoxColumn").ToString();
+
+            SQLResponse ciudades = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
+            foreach (DataRow row in ciudades.result.Rows)
+            {
+                this.ciudadP.Items.Add(row[0]);
+            }
+
+            ciudadP.SelectedItem = response.result.Rows[0][1].ToString();
+
+            response = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + UsernameP.Text + "'");
+
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
-
-          /*  Ciudad.Items.Add(proveedor.getDato("ciudadDataGridViewTextBoxColumn").ToString());
-            SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
-            foreach (DataRow row in r.result.Rows)
-            {
-                this.Ciudad.Items.Add(row[0]);
-            }
-
-            //Localidad.Items.Add(proveedor.getDato("localidadDataGridViewTextBoxColumn").ToString());
-            foreach (DataRow row in r.result.Rows)
-            {
-                this.Localidad.Items.Add(row[0]);
-            }
-            */
+            Estado.Text = response.result.Rows[0][0].ToString();
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
             UsernameP.Text = "";
-            PassP.Text = "";
             RazonSocial.Text = "";
             CUIT.Text = "";
             MailP.Text = "";
@@ -75,7 +77,6 @@ namespace GrouponDesktop.GUI.AbmProveedor
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarProveedor");
 
             ps.AddParameter("@user", UsernameP.Text);
-            ps.AddParameter("@pass", PassP.Text);
             ps.AddParameter("@cuit", CUIT.Text);
             ps.AddParameter("@razon_social", RazonSocial.Text);
             ps.AddParameter("@mail", MailP.Text);
@@ -109,6 +110,12 @@ namespace GrouponDesktop.GUI.AbmProveedor
             {
                 e.Cancel = true;
             }
+        }
+
+        private void CambiarPassword_Click(object sender, EventArgs e)
+        {
+            CambiarPassDesdeAdmin new_form = new CambiarPassDesdeAdmin(UsernameP.Text);
+            new_form.Show();
         }
 
 
