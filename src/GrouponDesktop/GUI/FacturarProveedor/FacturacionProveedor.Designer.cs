@@ -43,16 +43,15 @@
             this.FechaDesde = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridCupones = new System.Windows.Forms.DataGridView();
-            this.idcuponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idgrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechacompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechacanjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD2C2012DataSet3 = new GrouponDesktop.GD2C2012DataSet3();
             this.cuponesTableAdapter = new GrouponDesktop.GD2C2012DataSet3TableAdapters.CuponesTableAdapter();
             this.Facturar = new System.Windows.Forms.Button();
+            this.idcuponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idgrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechacompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechacanjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCupones)).BeginInit();
@@ -195,50 +194,12 @@
             this.clienteDataGridViewTextBoxColumn,
             this.idgrupoDataGridViewTextBoxColumn,
             this.fechacompraDataGridViewTextBoxColumn,
-            this.estadoDataGridViewTextBoxColumn,
             this.fechacanjeDataGridViewTextBoxColumn});
             this.dataGridCupones.DataSource = this.cuponesBindingSource;
             this.dataGridCupones.Location = new System.Drawing.Point(13, 278);
             this.dataGridCupones.Name = "dataGridCupones";
             this.dataGridCupones.Size = new System.Drawing.Size(476, 150);
             this.dataGridCupones.TabIndex = 33;
-            // 
-            // idcuponDataGridViewTextBoxColumn
-            // 
-            this.idcuponDataGridViewTextBoxColumn.DataPropertyName = "id_cupon";
-            this.idcuponDataGridViewTextBoxColumn.HeaderText = "ID Cupón";
-            this.idcuponDataGridViewTextBoxColumn.Name = "idcuponDataGridViewTextBoxColumn";
-            this.idcuponDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clienteDataGridViewTextBoxColumn
-            // 
-            this.clienteDataGridViewTextBoxColumn.DataPropertyName = "cliente";
-            this.clienteDataGridViewTextBoxColumn.HeaderText = "Cliente";
-            this.clienteDataGridViewTextBoxColumn.Name = "clienteDataGridViewTextBoxColumn";
-            // 
-            // idgrupoDataGridViewTextBoxColumn
-            // 
-            this.idgrupoDataGridViewTextBoxColumn.DataPropertyName = "id_grupo";
-            this.idgrupoDataGridViewTextBoxColumn.HeaderText = "ID Grupo Cupones";
-            this.idgrupoDataGridViewTextBoxColumn.Name = "idgrupoDataGridViewTextBoxColumn";
-            // 
-            // fechacompraDataGridViewTextBoxColumn
-            // 
-            this.fechacompraDataGridViewTextBoxColumn.DataPropertyName = "fecha_compra";
-            this.fechacompraDataGridViewTextBoxColumn.HeaderText = "Fecha de Compra";
-            this.fechacompraDataGridViewTextBoxColumn.Name = "fechacompraDataGridViewTextBoxColumn";
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado de Cupón";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            // 
-            // fechacanjeDataGridViewTextBoxColumn
-            // 
-            this.fechacanjeDataGridViewTextBoxColumn.DataPropertyName = "fecha_canje";
-            this.fechacanjeDataGridViewTextBoxColumn.HeaderText = "Fecha de Canje";
-            this.fechacanjeDataGridViewTextBoxColumn.Name = "fechacanjeDataGridViewTextBoxColumn";
             // 
             // cuponesBindingSource
             // 
@@ -263,6 +224,37 @@
             this.Facturar.Text = "Facturar";
             this.Facturar.UseVisualStyleBackColor = true;
             this.Facturar.Click += new System.EventHandler(this.Facturar_Click);
+            // 
+            // idcuponDataGridViewTextBoxColumn
+            // 
+            this.idcuponDataGridViewTextBoxColumn.DataPropertyName = "id_cupon";
+            this.idcuponDataGridViewTextBoxColumn.HeaderText = "ID Cupón";
+            this.idcuponDataGridViewTextBoxColumn.Name = "idcuponDataGridViewTextBoxColumn";
+            this.idcuponDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clienteDataGridViewTextBoxColumn
+            // 
+            this.clienteDataGridViewTextBoxColumn.DataPropertyName = "cliente";
+            this.clienteDataGridViewTextBoxColumn.HeaderText = "Cliente";
+            this.clienteDataGridViewTextBoxColumn.Name = "clienteDataGridViewTextBoxColumn";
+            // 
+            // idgrupoDataGridViewTextBoxColumn
+            // 
+            this.idgrupoDataGridViewTextBoxColumn.DataPropertyName = "id_promocion";
+            this.idgrupoDataGridViewTextBoxColumn.HeaderText = "Promoción";
+            this.idgrupoDataGridViewTextBoxColumn.Name = "idgrupoDataGridViewTextBoxColumn";
+            // 
+            // fechacompraDataGridViewTextBoxColumn
+            // 
+            this.fechacompraDataGridViewTextBoxColumn.DataPropertyName = "fecha_compra";
+            this.fechacompraDataGridViewTextBoxColumn.HeaderText = "Fecha de Compra";
+            this.fechacompraDataGridViewTextBoxColumn.Name = "fechacompraDataGridViewTextBoxColumn";
+            // 
+            // fechacanjeDataGridViewTextBoxColumn
+            // 
+            this.fechacanjeDataGridViewTextBoxColumn.DataPropertyName = "fecha_canje";
+            this.fechacanjeDataGridViewTextBoxColumn.HeaderText = "Fecha de Canje";
+            this.fechacanjeDataGridViewTextBoxColumn.Name = "fechacanjeDataGridViewTextBoxColumn";
             // 
             // FacturacionProveedor
             // 
@@ -306,12 +298,11 @@
         private System.Windows.Forms.BindingSource cuponesBindingSource;
         private GrouponDesktop.GD2C2012DataSet3TableAdapters.CuponesTableAdapter cuponesTableAdapter;
         private System.Windows.Forms.Button Listar;
+        private System.Windows.Forms.Button Facturar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idcuponDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clienteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idgrupoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechacompraDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechacanjeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button Facturar;
     }
 }

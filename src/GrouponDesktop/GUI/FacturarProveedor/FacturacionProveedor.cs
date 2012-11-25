@@ -26,7 +26,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             this.proveedores.Items.Clear();
             Session s = (Session)AppContext.getObject(typeof(Session));
             
-            SQLResponse r = dbManager.executeQuery("SELECT cuit FROM Proveedores");
+            SQLResponse r = dbManager.executeQuery("SELECT username FROM GESTION_DE_PATOS.Proveedores");
             foreach (DataRow row in r.result.Rows)
             {
                 this.proveedores.Items.Add(row[0]);
@@ -66,7 +66,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             }
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_grupo, c.fecha_compra, c.estado, c.fecha_canje FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p, GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
             this.SetDataGridView(r.result);
 
         }
@@ -91,7 +91,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             SQLResponse r;
             object monto = null;
 
-            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM dbo.Cupones c, dbo.GruposCupon g, dbo.Proveedores p WHERE c.estado = 'Entregado' AND c.id_grupo = g.id_grupo AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p,GESTION_DE_PATOS.Canjes ca WHERE c.id_cupon = ca.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
             monto = r.result.Rows[0][0];
 
             return monto;
@@ -106,7 +106,14 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 return;
             }
 
-            ParamSet ps = new ParamSet("dbo.FacturarProveedor");
+            if (this.dataGridCupones.SelectedRows.Count != 1)
+            {
+
+                MessageBox.Show("Seleccione una fila de cupón para la compra");
+                return;
+            }
+
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.FacturarProveedor");
             
             float monto = float.Parse(montoFactura().ToString());
             ps.AddParameter("@proveedor", proveedores.SelectedItem);
