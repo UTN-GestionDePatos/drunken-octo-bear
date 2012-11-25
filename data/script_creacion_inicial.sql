@@ -868,7 +868,7 @@ END
 GO
 
 --CREAR PROVEEDOR
-CREATE PROCEDURE GESTION_DE_PATOS.AltaProveedor(@user varchar(30),@pass varchar(30),@cuit bigint,@razon_social varchar(30),@mail varchar(30),
+CREATE PROCEDURE GESTION_DE_PATOS.AltaProveedor(@user varchar(30),@pass varchar(30),@cuit varchar(30),@razon_social varchar(30),@mail varchar(30),
 @telefono bigint,@direccion varchar(100), @rubro varchar(30), @nombre_contacto varchar(30),@ciudad varchar(30), @cp int, @ret int output) 
 AS
 BEGIN
@@ -886,9 +886,11 @@ BEGIN
 		insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@razon_social,@mail,@telefono,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad)
 																		, GESTION_DE_PATOS.idRubro(@rubro), @nombre_contacto)
 		set @ret = 0
+		return
 	END
 	
 	set @ret = 1
+	return
 END
 
 go

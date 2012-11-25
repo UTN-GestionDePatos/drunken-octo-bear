@@ -97,6 +97,20 @@ namespace GrouponDesktop.AbmCliente
             {
                 e.Cancel = true;
             }
+        }
+
+        private void AltaCliente_Load(object sender, EventArgs e)
+        {
+            DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
+
+            SQLResponse response = manager.executeQuery("SELECT localidad from GESTION_DE_PATOS.Localidades");
+
+            foreach (DataRow r in response.result.Rows)
+            {
+                ListaZonas.Items.Add(r[0]);
+                ciudadCliente.Items.Add(r[0]);
+              
+            }
         }     
     }
 }

@@ -31,6 +31,8 @@
             this.Limpiar = new System.Windows.Forms.Button();
             this.Guardar = new System.Windows.Forms.Button();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.CodigoPostal = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.ciudadCliente = new System.Windows.Forms.ComboBox();
             this.PasswordCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -51,8 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.CodigoPostal = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.zonas = new System.Windows.Forms.Label();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.datosClientes.SuspendLayout();
@@ -108,7 +108,22 @@
             this.datosClientes.TabIndex = 28;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
-            this.datosClientes.Visible = false;
+            // 
+            // CodigoPostal
+            // 
+            this.CodigoPostal.Location = new System.Drawing.Point(121, 358);
+            this.CodigoPostal.Name = "CodigoPostal";
+            this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
+            this.CodigoPostal.TabIndex = 53;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(2, 361);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "Código Postal";
             // 
             // ciudadCliente
             // 
@@ -272,22 +287,6 @@
             this.Nombre.TabIndex = 33;
             this.Nombre.Text = "Nombre";
             // 
-            // CodigoPostal
-            // 
-            this.CodigoPostal.Location = new System.Drawing.Point(121, 358);
-            this.CodigoPostal.Name = "CodigoPostal";
-            this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
-            this.CodigoPostal.TabIndex = 53;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 361);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "Código Postal";
-            // 
             // zonas
             // 
             this.zonas.AutoSize = true;
@@ -296,7 +295,6 @@
             this.zonas.Size = new System.Drawing.Size(109, 13);
             this.zonas.TabIndex = 30;
             this.zonas.Text = "Zonas de Preferencia";
-            this.zonas.Visible = false;
             // 
             // ListaZonas
             // 
@@ -305,7 +303,6 @@
             this.ListaZonas.Name = "ListaZonas";
             this.ListaZonas.Size = new System.Drawing.Size(217, 244);
             this.ListaZonas.TabIndex = 29;
-            this.ListaZonas.Visible = false;
             // 
             // AltaCliente
             // 
@@ -319,6 +316,7 @@
             this.Controls.Add(this.Limpiar);
             this.Name = "AltaCliente";
             this.Text = "AltaCliente";
+            this.Load += new System.EventHandler(this.AltaCliente_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaCliente_FormClosing);
             this.datosClientes.ResumeLayout(false);
             this.datosClientes.PerformLayout();

@@ -107,7 +107,6 @@
             this.datosProveedor.TabIndex = 24;
             this.datosProveedor.TabStop = false;
             this.datosProveedor.Text = "Datos Personales";
-            this.datosProveedor.Visible = false;
             // 
             // CodigoPostalP
             // 
@@ -299,6 +298,7 @@
             this.Controls.Add(this.Limpiar);
             this.Name = "AltaProveedor";
             this.Text = "AltaProveedor";
+            this.Load += new System.EventHandler(this.AltaProveedor_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaProveedor_FormClosing);
             this.datosProveedor.ResumeLayout(false);
             this.datosProveedor.PerformLayout();

@@ -28,6 +28,7 @@ namespace GrouponDesktop.AbmCliente
             this.NombreContacto.Text = "";
             this.Direccion.Text = "";
             this.CodigoPostalP.Text = "";
+            this.PassP.Text = "";
             
         }
 
@@ -60,12 +61,12 @@ namespace GrouponDesktop.AbmCliente
             ps.AddParameter("@cuit", CUIT.Text);
             ps.AddParameter("@razon_social", RazonSocial.Text);
             ps.AddParameter("@mail", MailP.Text);
-            ps.AddParameter("@telefono", TelefonoP.Text);
+            ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
             ps.AddParameter("@direccion", Direccion.Text);
             ps.AddParameter("@nombre_contacto", NombreContacto.Text);
             ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
             ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
-            ps.AddParameter("@cp", CodigoPostalP.Text);
+            ps.AddParameter("@cp", Int64.Parse(CodigoPostalP.Text));
 
 
             try
@@ -99,6 +100,26 @@ namespace GrouponDesktop.AbmCliente
 
 
 
+        }
+
+        private void AltaProveedor_Load(object sender, EventArgs e)
+        {
+            DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
+
+            SQLResponse response = manager.executeQuery("SELECT localidad from GESTION_DE_PATOS.Localidades");
+
+            foreach (DataRow r in response.result.Rows)
+            {
+                ciudadP.Items.Add(r[0]);
+       
+            }
+
+            response = manager.executeQuery("SELECT descripcion from GESTION_DE_PATOS.Rubros");
+            foreach (DataRow r in response.result.Rows)
+            {
+                RubroP.Items.Add(r[0]);
+            }
+            RubroP.Items.Add("Otro");
         }
        
     }
