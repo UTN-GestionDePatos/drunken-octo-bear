@@ -106,10 +106,9 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 return;
             }
 
-            if (this.dataGridCupones.SelectedRows.Count != 1)
+            if (this.dataGridCupones.Rows.Count == 1)
             {
-
-                MessageBox.Show("Seleccione una fila de cupón para la compra");
+                MessageBox.Show("No hay cupones para facturar");
                 return;
             }
 
