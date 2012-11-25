@@ -52,7 +52,10 @@ namespace GrouponDesktop.GUI.AbmProveedor
                 if (MessageBox.Show("¿Esta seguro que quiere eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarProveedor");
-                    String username = dataGridProveedores[dataGridProveedores.CurrentCell.ColumnIndex, dataGridProveedores.CurrentCell.RowIndex].Value.ToString();
+                    int columna = dataGridProveedores.Columns["usernameDataGridViewTextBoxColumn"].Index;
+                    int fila = dataGridProveedores.CurrentCell.RowIndex;
+
+                    String username = dataGridProveedores[columna, fila].Value.ToString();
                     ps.AddParameter("@user", username);
 
                     SqlParameter retval = ps.execSP();
@@ -63,6 +66,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
                             break;
                         case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar proveedor");
                             break;
+                        case "2": MessageBox.Show("El proveedor ya se encuentra eliminado");
+                            break;
+
                     }
                 }
             }

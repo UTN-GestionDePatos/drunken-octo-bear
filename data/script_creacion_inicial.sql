@@ -829,10 +829,12 @@ BEGIN
 		END	
 									 
 		set @ret=0
+		return
 	END
 	ELSE
 	BEGIN
 		 set @ret=1
+		 return
 	END
 END
 
@@ -853,15 +855,24 @@ AS
 BEGIN
 	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
-	
+		
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
+		begin
+			set @ret = 2
+			return
+		
+		end
+		
 		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
 										 WHERE username = @user
 		
 		set @ret = 0
+		return
 		--Cliente eliminado								 
 	END
 	
 	set @ret = 1
+	return
 	--El cliente no existe
 END
 
@@ -913,9 +924,11 @@ BEGIN
 		END	
 				
 		set @ret = 0
+		return
 	END
 	
 	set @ret = 1
+	return
 END
 go
 
@@ -926,15 +939,21 @@ AS
 BEGIN
 	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
-	
+		if (select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
+		begin
+			set @ret = 2
+			return
+		end
 		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
 										 WHERE username = @user
 		
 		set @ret = 0
+		return
 		--Proveedor eliminado								 
 	END
 	
 	set @ret = 1
+	return
 	--El proveedor no existe
 END
 
