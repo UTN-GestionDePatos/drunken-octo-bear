@@ -26,7 +26,9 @@ namespace GrouponDesktop.GUI.AbmCliente
         private void ModificacionCliente_Load(object sender, EventArgs e)
         {
             UsernameCliente.Text = cliente.getDato("usernameDataGridViewTextBoxColumn").ToString();
-            PasswordCliente.Text = cliente.getDato("passwdDataGridViewTextBoxColumn").ToString();
+
+            SQLResponse response = dbManager.executeQuery("SELECT passwd FROM GESTION_DE_PATOS.Usuarios WHERE username = '" + UsernameCliente.Text + "'");
+            PasswordCliente.Text = response.result.Rows[0][0].ToString();
             NombreCliente.Text = cliente.getDato("nombreDataGridViewTextBoxColumn").ToString();
             ApellidoCliente.Text = cliente.getDato("apellidoDataGridViewTextBoxColumn").ToString();
             MailCliente.Text = cliente.getDato("mailDataGridViewTextBoxColumn").ToString();
@@ -34,7 +36,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             FchNacimientoCliente.Text = cliente.getDato("fechanacimientoDataGridViewTextBoxColumn").ToString();
             DNICliente.Text = cliente.getDato("dniDataGridViewTextBoxColumn").ToString();
             DireccionC.Text = cliente.getDato("direccionDataGridViewTextBoxColumn").ToString();
-            CodigoPostal.Text = cliente.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
+           // CodigoPostal.Text = cliente.getDato("codigopostalDataGridViewTextBoxColumn").ToString();
 
             SQLResponse r = dbManager.executeQuery("SELECT localidad FROM GESTION_DE_PATOS.Localidades");
             foreach (DataRow row in r.result.Rows)
@@ -42,7 +44,7 @@ namespace GrouponDesktop.GUI.AbmCliente
                 this.ciudadCliente.Items.Add(row[0]);
             }
 
-            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = " + UsernameCliente.Text);
+            SQLResponse r2 = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + UsernameCliente.Text + "'");
             Estado.Text = r2.result.Rows[0][0].ToString();
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");

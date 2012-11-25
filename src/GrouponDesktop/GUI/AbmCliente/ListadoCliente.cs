@@ -106,8 +106,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             Nombre.Text = "";
             Apellido.Text = "";
             DNI.Text = "";
-            Mail.Text = "";
-            dataGridClientes.DataSource = null;
+            Username.Text = "";
+
+            String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
+            SQLResponse r = dbManager.executeQuery(query);
+            this.SetDataGridView(r.result);
         }
 
         private bool validarTextBox(TextBox textBox)
@@ -132,7 +135,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void Buscar_Click(object sender, EventArgs e)
         {
-            if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Mail.Text == "")
+            if (Nombre.Text == "" && Apellido.Text == "" && DNI.Text == "" && Username.Text == "")
             {
                 MessageBox.Show("Debe ingresar por lo menos un filtro","Error al buscar");
                 return;
@@ -140,35 +143,50 @@ namespace GrouponDesktop.GUI.AbmCliente
 
             //Clausula WHERE para filtrar la búsqueda
             String where = "WHERE";
+            bool es_primero = true;
 
             if (validarTextBox(Nombre))
             {
                 where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
-                if (validarTextBox(Apellido))
+                es_primero = false;
+            }
+
+            if (validarTextBox(Apellido))
+            {
+                if (es_primero)
+                {
+                    where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
                     where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
-                if (validarTextBox(DNI))
-                    where = where + " AND dni = " + DNI.Text.ToString();
-                if (validarTextBox(Mail))
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+
             }
-            else if (validarTextBox(Apellido))
+
+            if (validarTextBox(DNI))
             {
-                where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
-                if (validarTextBox(DNI))
-                    where = where + " AND dni = " + DNI.Text.ToString();
-                if (validarTextBox(Mail))
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+                if (es_primero)
+                {
+                    where = where + " dni like '" + DNI.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND dni like '" + DNI.Text.ToString() + "%'";
+
             }
-            else if (validarTextBox(DNI))
+
+            if (validarTextBox(Username))
             {
-                where = where + " dni = " + DNI.Text.ToString();
-                if(validarTextBox(Mail))
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+                if (es_primero)
+                {
+                    where = where + " username like '" + Username.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND username like '" + Username.Text.ToString() + "%'";
+
             }
-            else if(validarTextBox(Mail))
-            {
-                where = where + " mail like '" + Mail.Text.ToString() + "%'";
-            }
+
 
             //Formación de query final
             String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
