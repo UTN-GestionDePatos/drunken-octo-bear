@@ -19,8 +19,8 @@ namespace GrouponDesktop.GUI.AbmRol
 
         private void ListadoRol_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet2.Roles' Puede moverla o quitarla según sea necesario.
-            this.rolesTableAdapter.Fill(this.gD2C2012DataSet2.Roles);
+            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet8.Roles' Puede moverla o quitarla según sea necesario.
+            this.rolesTableAdapter.Fill(this.gD2C2012DataSet8.Roles);
 
         }
 

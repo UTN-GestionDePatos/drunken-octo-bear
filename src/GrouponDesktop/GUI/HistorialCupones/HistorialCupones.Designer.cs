@@ -40,12 +40,17 @@
             this.Listar = new System.Windows.Forms.Button();
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Listar);
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.FechaHastaCalendario);
+            this.groupBox2.Controls.Add(this.Estado);
             this.groupBox2.Controls.Add(this.FechaDesdeCalendario);
             this.groupBox2.Controls.Add(this.FechaHastaAbrirCalendario);
             this.groupBox2.Controls.Add(this.FechaDesdeAbrirCalendario);
@@ -55,7 +60,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(43, 35);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(485, 171);
+            this.groupBox2.Size = new System.Drawing.Size(485, 189);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fechas";
@@ -132,7 +137,7 @@
             // 
             // Listar
             // 
-            this.Listar.Location = new System.Drawing.Point(53, 287);
+            this.Listar.Location = new System.Drawing.Point(34, 148);
             this.Listar.Name = "Listar";
             this.Listar.Size = new System.Drawing.Size(75, 23);
             this.Listar.TabIndex = 35;
@@ -148,35 +153,41 @@
             "Comprado",
             "Entregado",
             "Devuelto"});
-            this.Estado.Location = new System.Drawing.Point(214, 237);
+            this.Estado.Location = new System.Drawing.Point(88, 84);
             this.Estado.Name = "Estado";
-            this.Estado.Size = new System.Drawing.Size(306, 21);
+            this.Estado.Size = new System.Drawing.Size(158, 21);
             this.Estado.TabIndex = 36;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 237);
+            this.label3.Location = new System.Drawing.Point(8, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 37;
             this.label3.Text = "Estado Cupón";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(43, 242);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(485, 150);
+            this.dataGridView1.TabIndex = 34;
+            // 
             // HistorialCupones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 322);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.Estado);
-            this.Controls.Add(this.Listar);
+            this.ClientSize = new System.Drawing.Size(571, 503);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Name = "HistorialCupones";
             this.Text = "HistorialCupones";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -192,8 +203,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FechaDesde;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox Estado;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox Estado;
+        private System.Windows.Forms.DataGridView dataGridView1;
 
 
 

@@ -54,10 +54,16 @@ namespace GrouponDesktop.GUI.AbmCliente
             Estado.Text = response.result.Rows[0][0].ToString();
 
             response = dbManager.executeQuery("SELECT GESTION_DE_PATOS.localidad(id_localidad) AS 'localidad' FROM GESTION_DE_PATOS.Localidad_por_usuario WHERE username = '" + UsernameCliente.Text + "'");
-
-            foreach (DataRow row in response.result.Rows)
+ 
+            foreach (DataRow row in ciudades.result.Rows)
             {
                 this.ListaZonas.Items.Add(row[0]);
+    /*
+                if (response.result.Rows.Contains(row[0].ToString()))
+                {
+                    this.ListaZonas.SelectedItems.Add(row[0]);
+                }
+     */
             }
         }
 
