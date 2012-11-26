@@ -34,16 +34,22 @@ namespace GrouponDesktop.GUI.AbmRol
                     return;
                 }
 
+                DBManager m = (DBManager)AppContext.getObject(typeof(DBManager));
+                SQLResponse resp = m.executeQuery("select id_estado from GESTION_DE_PATOS.EstadosUsuarios where nombre_estado = 'Eliminado'");
+
+                
                 DataGridViewCellCollection celdas = this.Datos.Rows[e.RowIndex].Cells;
-                ParamSet builder = new ParamSet("EliminarRol");
+                ParamSet builder = new ParamSet("GESTION_DE_PATOS.EstablecerEstadoDelRol");
                 builder.AddParameter("nombre_rol", celdas[0].Value.ToString());
+                builder.AddParameter("estado", resp.result.Rows[0][0]);
                 builder.executeNoReturn();
-                this.Datos.Rows.RemoveAt(e.RowIndex);
+                this.rolesTableAdapter.Fill(this.gD2C2012DataSet8.Roles);
             }
             // Índice 2 es modificar columna.
             else if (e.ColumnIndex == 2)
             {
-                new ModificacionRol(this.Datos.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                new ModificacionRol(this.Datos.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog();
+                this.rolesTableAdapter.Fill(this.gD2C2012DataSet8.Roles);
             }
         }
 

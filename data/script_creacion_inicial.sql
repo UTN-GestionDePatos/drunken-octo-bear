@@ -348,7 +348,11 @@ BEGIN
 			set @ret = 4
 			return
 		end
-		
+		if (select r.estado from GESTION_DE_PATOS.Usuarios LEFT JOIN GESTION_DE_PATOS.Roles r ON rol = r.nombre where username = @user ) != (select id_estado from GESTION_DE_PATOS.EstadosUsuarios where nombre_estado = 'Habilitado')
+		begin
+			set @ret = 4
+			return
+		end
 		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
 		begin
 			set @ret = 5
@@ -554,11 +558,15 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE GESTION_DE_PATOS.EliminarRol(@nombre_rol varchar(30))
+CREATE PROCEDURE GESTION_DE_PATOS.EstablecerEstadoDelRol(@nombre_rol varchar(30), @estado int)
 AS
 BEGIN
-	EXEC GESTION_DE_PATOS.EliminarFuncionalidadesDeRol @nombre_rol
-	DELETE FROM GESTION_DE_PATOS.Roles WHERE nombre = @nombre_rol
+	IF( @estado = (select id_estado from GESTION_DE_PATOS.EstadosUsuarios where nombre_estado = 'Eliminado'))
+	BEGIN
+		EXEC GESTION_DE_PATOS.EliminarFuncionalidadesDeRol @nombre_rol
+	END
+	
+	UPDATE GESTION_DE_PATOS.Roles SET estado = @estado  WHERE nombre = @nombre_rol
 END
 GO
 

@@ -31,7 +31,7 @@ namespace GrouponDesktop.GUI.AbmRol
             try
             {
 
-                SQLResponse response = manager.executeQuery("SELECT id_funcionalidad, descripcion from Funcionalidades");
+                SQLResponse response = manager.executeQuery("SELECT id_funcionalidad, descripcion from GESTION_DE_PATOS.Funcionalidades");
 
                 foreach (DataRow r in response.result.Rows)
                 {
@@ -54,7 +54,7 @@ namespace GrouponDesktop.GUI.AbmRol
 
             String nombreRol = NombreRol.Text;
 
-            ParamSet ps = new ParamSet("dbo.AltaRol");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaRol");
             ps.AddParameter("@nombre",nombreRol);
             SqlParameter retval = ps.execSP();
 
@@ -62,8 +62,8 @@ namespace GrouponDesktop.GUI.AbmRol
                 case "1" : MessageBox.Show("El rol ya existe");
                     return;
             }
-            
-            ps.NombreSP("dbo.AsignarFuncionalidadAlRol");
+
+            ps.NombreSP("GESTION_DE_PATOS.AsignarFuncionalidadAlRol");
 
             foreach (String item in ListaFuncionalidades.CheckedItems)
             {

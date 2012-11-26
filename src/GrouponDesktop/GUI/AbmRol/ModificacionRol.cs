@@ -25,7 +25,7 @@ namespace GrouponDesktop.GUI.AbmRol
 
         private void ModificacionRol_Load(object sender, EventArgs e)
         {
-            SqlCommand query = new SqlCommand("SELECT * FROM dbo.FuncionalidadesDelRol(@rol)");
+            SqlCommand query = new SqlCommand("SELECT * FROM GESTION_DE_PATOS.FuncionalidadesDelRol(@rol)");
             query.Parameters.AddWithValue("rol", this.nombre);
             SQLResponse respuesta = manager.executeQuery(query);
 
@@ -37,8 +37,8 @@ namespace GrouponDesktop.GUI.AbmRol
             }
 
             respuesta = manager.executeQuery("SELECT id_estado, nombre_estado, "+
-                "(SELECT 1 FROM Roles roles WHERE roles.estado = e.id_estado AND "+
-                " roles.nombre = '"+this.nombre+"') FROM EstadosUsuarios e");
+                "(SELECT 1 FROM GESTION_DE_PATOS.Roles roles WHERE roles.estado = e.id_estado AND " +
+                " roles.nombre = '" + this.nombre + "') FROM GESTION_DE_PATOS.EstadosUsuarios e");
             foreach (DataRow r in respuesta.result.Rows)
             {
                 this.Estado.Items.Add(r[0]+": "+ r[1]);
@@ -50,11 +50,11 @@ namespace GrouponDesktop.GUI.AbmRol
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet builder = new ParamSet("EliminarFuncionalidadesDeRol");
+            ParamSet builder = new ParamSet("GESTION_DE_PATOS.EliminarFuncionalidadesDeRol");
             builder.AddParameter("nombre_rol", this.nombre);
             builder.executeNoReturn();
 
-            builder.NombreSP("dbo.AsignarFuncionalidadAlRol");
+            builder.NombreSP("GESTION_DE_PATOS.AsignarFuncionalidadAlRol");
             foreach (String item in ListaFuncionalidades.CheckedItems)
             {
                 builder.AddParameter("@id", Int32.Parse(item.ToString().Substring(0, item.IndexOf(":"))));
@@ -65,14 +65,18 @@ namespace GrouponDesktop.GUI.AbmRol
             SqlCommand query;
 
             String estado = this.Estado.SelectedItem.ToString();
-            query = new SqlCommand("UPDATE Roles SET estado=@estado WHERE nombre=@nombre_rol");
-            query.Parameters.AddWithValue("estado", estado.Substring(0, estado.IndexOf(':')));
-            query.Parameters.AddWithValue("nombre_rol", this.nombre);
-            manager.executeQuery(query);
+
+            builder = new ParamSet("GESTION_DE_PATOS.EstablecerEstadoDelRol");
+            builder.AddParameter("nombre_rol", this.nombre);
+            builder.AddParameter("estado", estado.Substring(0, estado.IndexOf(':')));
+            builder.executeNoReturn();
+
+
+            //("estado", estado.Substring(0, estado.IndexOf(':')))
 
             if (this.nombre != this.NombreRol.Text)
             {
-                query = new SqlCommand("UPDATE Roles SET nombre=@nombre WHERE nombre=@nombre_original");
+                query = new SqlCommand("UPDATE GESTION_DE_PATOS.Roles SET nombre=@nombre WHERE nombre=@nombre_original");
                 query.Parameters.AddWithValue("nombre", this.NombreRol.Text);
                 query.Parameters.AddWithValue("nombre_original", this.nombre);
                 manager.executeQuery(query);
