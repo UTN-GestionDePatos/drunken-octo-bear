@@ -85,7 +85,7 @@ namespace GrouponDesktop.GUI.AbmCliente
                 ps.AddParameter("@apellido", ApellidoCliente.Text);
                 ps.AddParameter("@mail", MailCliente.Text);
                 ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
-                ps.AddParameter("@fecha", FchNacimientoCliente.Text);
+                ps.AddParameter("@fecha", DateTime.Parse(FchNacimientoCliente.Text));
                 ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
                 ps.AddParameter("@direccion", DireccionC.Text);
                 ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostal.Text));

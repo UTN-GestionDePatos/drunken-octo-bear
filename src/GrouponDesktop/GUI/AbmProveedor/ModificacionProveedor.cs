@@ -93,7 +93,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
             switch (retval.Value.ToString())
             {
                 case "0":
-                    MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK
+                    MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK);
                     break;
                 case "1": MessageBox.Show("El proveedor no existe", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     break;
