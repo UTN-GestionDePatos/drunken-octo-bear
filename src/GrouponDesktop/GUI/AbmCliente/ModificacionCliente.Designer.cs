@@ -33,6 +33,7 @@
             this.zonas = new System.Windows.Forms.Label();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.CambiarPassword = new System.Windows.Forms.Button();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ciudadCliente = new System.Windows.Forms.ComboBox();
@@ -57,7 +58,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.CambiarPassword = new System.Windows.Forms.Button();
             this.datosClientes.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +130,16 @@
             this.datosClientes.TabIndex = 31;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
+            // 
+            // CambiarPassword
+            // 
+            this.CambiarPassword.Location = new System.Drawing.Point(122, 49);
+            this.CambiarPassword.Name = "CambiarPassword";
+            this.CambiarPassword.Size = new System.Drawing.Size(104, 23);
+            this.CambiarPassword.TabIndex = 54;
+            this.CambiarPassword.Text = "Cambiar password";
+            this.CambiarPassword.UseVisualStyleBackColor = true;
+            this.CambiarPassword.Click += new System.EventHandler(this.CambiarPassword_Click);
             // 
             // CodigoPostal
             // 
@@ -234,6 +244,7 @@
             // 
             // UsernameCliente
             // 
+            this.UsernameCliente.Enabled = false;
             this.UsernameCliente.Location = new System.Drawing.Point(122, 23);
             this.UsernameCliente.Name = "UsernameCliente";
             this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
@@ -330,16 +341,6 @@
             this.label13.Size = new System.Drawing.Size(40, 13);
             this.label13.TabIndex = 21;
             this.label13.Text = "Estado";
-            // 
-            // CambiarPassword
-            // 
-            this.CambiarPassword.Location = new System.Drawing.Point(122, 49);
-            this.CambiarPassword.Name = "CambiarPassword";
-            this.CambiarPassword.Size = new System.Drawing.Size(104, 23);
-            this.CambiarPassword.TabIndex = 54;
-            this.CambiarPassword.Text = "Cambiar password";
-            this.CambiarPassword.UseVisualStyleBackColor = true;
-            this.CambiarPassword.Click += new System.EventHandler(this.CambiarPassword_Click);
             // 
             // ModificacionCliente
             // 

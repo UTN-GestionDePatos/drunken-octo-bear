@@ -80,21 +80,24 @@ namespace GrouponDesktop.GUI.AbmProveedor
             ps.AddParameter("@cuit", CUIT.Text);
             ps.AddParameter("@razon_social", RazonSocial.Text);
             ps.AddParameter("@mail", MailP.Text);
-            ps.AddParameter("@telefono", TelefonoP.Text);
+            ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
             ps.AddParameter("@direccion", Direccion.Text);
+            ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
+            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
             ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
             ps.AddParameter("@nombre_contacto", NombreContacto.Text);
-            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
-            ps.AddParameter("@cp", CodigoPostalP.Text);
             ps.AddParameter("@estado", Estado.Text);
 
             SqlParameter retval = ps.execSP();
 
             switch (retval.Value.ToString())
             {
-                case "0": MessageBox.Show("Registro modificado con éxito","Modificar proveedor");
+                case "0":
+                    MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK
                     break;
-                case "1": MessageBox.Show("Ocurrió un error al modificar el registro","Modificar proveedor");
+                case "1": MessageBox.Show("El proveedor no existe", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+                case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     break;
             }
         }

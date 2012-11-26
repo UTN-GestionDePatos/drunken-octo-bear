@@ -180,7 +180,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 
 	CREATE TABLE Usuarios ( 
 		username varchar(30) primary key,
-		passwd varchar(4000),
+		passwd varchar(50),
 		rol varchar(30),
 		estado int references EstadosUsuarios(id_estado),
 		intentos_fallidos int

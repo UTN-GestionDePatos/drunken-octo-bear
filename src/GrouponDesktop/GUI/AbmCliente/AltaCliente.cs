@@ -56,13 +56,13 @@ namespace GrouponDesktop.AbmCliente
                 ps.AddParameter("@pass", PasswordCliente.Text);
                 ps.AddParameter("@nombre", NombreCliente.Text);
                 ps.AddParameter("@apellido", ApellidoCliente.Text);
+                ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
+                ps.AddParameter("@fecha", FchNacimientoCliente.Text);
                 ps.AddParameter("@mail", MailCliente.Text);
                 ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
-                ps.AddParameter("@fecha", FchNacimientoCliente.Text);
-                ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
                 ps.AddParameter("@direccion", DireccionC.Text);
+                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostal.Text));
                 ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
-                ps.AddParameter("@cp", Int64.Parse(CodigoPostal.Text));
                 SqlParameter retval = ps.execSP();
 
                 switch (retval.Value.ToString())
@@ -76,12 +76,12 @@ namespace GrouponDesktop.AbmCliente
                             ps.executeNoReturn();
                         }
 
-                        MessageBox.Show("Registro realizado con éxito");
+                        MessageBox.Show("Registro realizado con éxito","Alta cliente");
                         return;
 
-                    case "1": MessageBox.Show("El cliente ya existe");
+                    case "1": MessageBox.Show("El cliente ya existe", "Alta cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
-                    case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado");
+                    case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado", "Alta cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
             }

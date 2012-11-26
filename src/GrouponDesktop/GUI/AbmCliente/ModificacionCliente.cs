@@ -88,8 +88,9 @@ namespace GrouponDesktop.GUI.AbmCliente
                 ps.AddParameter("@fecha", FchNacimientoCliente.Text);
                 ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
                 ps.AddParameter("@direccion", DireccionC.Text);
-                ps.AddParameter("@cp", Int64.Parse(CodigoPostal.Text));
+                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostal.Text));
                 ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
+                ps.AddParameter("@estado", Estado.SelectedItem.ToString());
 
                 SqlParameter retval = ps.execSP();
 
@@ -110,7 +111,9 @@ namespace GrouponDesktop.GUI.AbmCliente
 
                         MessageBox.Show("Registro modificado con éxito", "Modificar cliente");
                         break;
-                    case "1": MessageBox.Show("Ocurrió un error al modificar el registro", "Modificar cliente");
+                    case "1": MessageBox.Show("El cliente no existe", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
             }

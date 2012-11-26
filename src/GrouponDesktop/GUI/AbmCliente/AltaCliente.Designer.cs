@@ -104,7 +104,7 @@
             this.datosClientes.Controls.Add(this.Nombre);
             this.datosClientes.Location = new System.Drawing.Point(15, 12);
             this.datosClientes.Name = "datosClientes";
-            this.datosClientes.Size = new System.Drawing.Size(332, 405);
+            this.datosClientes.Size = new System.Drawing.Size(343, 405);
             this.datosClientes.TabIndex = 28;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";

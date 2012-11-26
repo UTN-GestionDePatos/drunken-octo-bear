@@ -1,5 +1,5 @@
-CREATE PROCEDURE GESTION_DE_PATOS.CambiarPassword (@user varchar(30), @passVieja varchar(30), @passNueva varchar(30),
-												   @passNueva2 varchar(30), @ret int output)
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarPassword (@user varchar(30), @passVieja varchar(50), @passNueva varchar(50),
+												   @passNueva2 varchar(50), @ret int output)
 AS
 BEGIN
 	/*
@@ -24,8 +24,10 @@ BEGIN
 	return
 END
 
-CREATE PROCEDURE GESTION_DE_PATOS.CambiarPasswordDesdeAdmin (@user varchar(30), @passNueva varchar(30),
-												   @passNueva2 varchar(30), @ret int output)
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarPasswordDesdeAdmin (@user varchar(30), @passNueva varchar(50),
+												   @passNueva2 varchar(50), @ret int output)
 AS
 BEGIN
 	/*
@@ -43,3 +45,5 @@ BEGIN
 	set @ret = 0
 	RETURN
 END
+
+GO

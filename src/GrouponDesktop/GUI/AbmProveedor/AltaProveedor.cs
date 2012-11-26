@@ -63,11 +63,10 @@ namespace GrouponDesktop.AbmCliente
             ps.AddParameter("@mail", MailP.Text);
             ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
             ps.AddParameter("@direccion", Direccion.Text);
-            ps.AddParameter("@nombre_contacto", NombreContacto.Text);
+            ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
             ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
             ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
-            ps.AddParameter("@cp", Int64.Parse(CodigoPostalP.Text));
-
+            ps.AddParameter("@nombre_contacto", NombreContacto.Text);
 
             try
             {
