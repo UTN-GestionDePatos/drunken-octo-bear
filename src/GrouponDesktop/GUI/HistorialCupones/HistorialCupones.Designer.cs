@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Listar = new System.Windows.Forms.Button();
             this.FechaHastaCalendario = new System.Windows.Forms.MonthCalendar();
             this.FechaDesdeCalendario = new System.Windows.Forms.MonthCalendar();
             this.FechaHastaAbrirCalendario = new System.Windows.Forms.Button();
@@ -37,20 +39,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FechaDesde = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Listar = new System.Windows.Forms.Button();
-            this.Estado = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Cupones = new System.Windows.Forms.DataGridView();
+            this.gD2C2012DataSetHistorial = new GrouponDesktop.GD2C2012DataSetHistorial();
+            this.viewcuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewcuponesTableAdapter = new GrouponDesktop.GD2C2012DataSetHistorialTableAdapters.viewcuponesTableAdapter();
+            this.idcuponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.promocionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechacompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Cupones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewcuponesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Listar);
-            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.FechaHastaCalendario);
-            this.groupBox2.Controls.Add(this.Estado);
             this.groupBox2.Controls.Add(this.FechaDesdeCalendario);
             this.groupBox2.Controls.Add(this.FechaHastaAbrirCalendario);
             this.groupBox2.Controls.Add(this.FechaDesdeAbrirCalendario);
@@ -58,12 +64,22 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.FechaDesde);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(43, 35);
+            this.groupBox2.Location = new System.Drawing.Point(71, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(485, 189);
+            this.groupBox2.Size = new System.Drawing.Size(585, 189);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fechas";
+            // 
+            // Listar
+            // 
+            this.Listar.Location = new System.Drawing.Point(34, 148);
+            this.Listar.Name = "Listar";
+            this.Listar.Size = new System.Drawing.Size(75, 23);
+            this.Listar.TabIndex = 35;
+            this.Listar.Text = "Listar";
+            this.Listar.UseVisualStyleBackColor = true;
+            this.Listar.Click += new System.EventHandler(this.Listar_Click);
             // 
             // FechaHastaCalendario
             // 
@@ -135,58 +151,77 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Desde:";
             // 
-            // Listar
+            // Cupones
             // 
-            this.Listar.Location = new System.Drawing.Point(34, 148);
-            this.Listar.Name = "Listar";
-            this.Listar.Size = new System.Drawing.Size(75, 23);
-            this.Listar.TabIndex = 35;
-            this.Listar.Text = "Listar";
-            this.Listar.UseVisualStyleBackColor = true;
-            this.Listar.Click += new System.EventHandler(this.Listar_Click);
+            this.Cupones.AutoGenerateColumns = false;
+            this.Cupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Cupones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idcuponDataGridViewTextBoxColumn,
+            this.promocionDataGridViewTextBoxColumn,
+            this.fechacompraDataGridViewTextBoxColumn,
+            this.estadoDataGridViewTextBoxColumn});
+            this.Cupones.DataSource = this.viewcuponesBindingSource;
+            this.Cupones.Location = new System.Drawing.Point(30, 238);
+            this.Cupones.Name = "Cupones";
+            this.Cupones.Size = new System.Drawing.Size(663, 205);
+            this.Cupones.TabIndex = 34;
             // 
-            // Estado
+            // gD2C2012DataSetHistorial
             // 
-            this.Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Estado.FormattingEnabled = true;
-            this.Estado.Items.AddRange(new object[] {
-            "Comprado",
-            "Entregado",
-            "Devuelto"});
-            this.Estado.Location = new System.Drawing.Point(88, 84);
-            this.Estado.Name = "Estado";
-            this.Estado.Size = new System.Drawing.Size(158, 21);
-            this.Estado.TabIndex = 36;
+            this.gD2C2012DataSetHistorial.DataSetName = "GD2C2012DataSetHistorial";
+            this.gD2C2012DataSetHistorial.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // label3
+            // viewcuponesBindingSource
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Estado Cupón";
+            this.viewcuponesBindingSource.DataMember = "viewcupones";
+            this.viewcuponesBindingSource.DataSource = this.gD2C2012DataSetHistorial;
             // 
-            // dataGridView1
+            // viewcuponesTableAdapter
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(43, 242);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(485, 150);
-            this.dataGridView1.TabIndex = 34;
+            this.viewcuponesTableAdapter.ClearBeforeFill = true;
+            // 
+            // idcuponDataGridViewTextBoxColumn
+            // 
+            this.idcuponDataGridViewTextBoxColumn.DataPropertyName = "id_cupon";
+            this.idcuponDataGridViewTextBoxColumn.HeaderText = "ID Cupón";
+            this.idcuponDataGridViewTextBoxColumn.Name = "idcuponDataGridViewTextBoxColumn";
+            // 
+            // promocionDataGridViewTextBoxColumn
+            // 
+            this.promocionDataGridViewTextBoxColumn.DataPropertyName = "promocion";
+            this.promocionDataGridViewTextBoxColumn.HeaderText = "Promoción";
+            this.promocionDataGridViewTextBoxColumn.Name = "promocionDataGridViewTextBoxColumn";
+            this.promocionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.promocionDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // fechacompraDataGridViewTextBoxColumn
+            // 
+            this.fechacompraDataGridViewTextBoxColumn.DataPropertyName = "fecha_compra";
+            this.fechacompraDataGridViewTextBoxColumn.HeaderText = "Fecha de Compra";
+            this.fechacompraDataGridViewTextBoxColumn.Name = "fechacompraDataGridViewTextBoxColumn";
+            // 
+            // estadoDataGridViewTextBoxColumn
+            // 
+            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado de Cupón";
+            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // HistorialCupones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 503);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(741, 503);
+            this.Controls.Add(this.Cupones);
             this.Controls.Add(this.groupBox2);
             this.Name = "HistorialCupones";
             this.Text = "HistorialCupones";
+            this.Load += new System.EventHandler(this.HistorialCupones_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Cupones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewcuponesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,9 +238,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FechaDesde;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Estado;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Cupones;
+        private GD2C2012DataSetHistorial gD2C2012DataSetHistorial;
+        private System.Windows.Forms.BindingSource viewcuponesBindingSource;
+        private GrouponDesktop.GD2C2012DataSetHistorialTableAdapters.viewcuponesTableAdapter viewcuponesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idcuponDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn promocionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechacompraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
 
 
 

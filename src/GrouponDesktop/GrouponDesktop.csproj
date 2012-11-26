@@ -135,6 +135,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSetHistorial.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetHistorial.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2012DataSetHistorialCupones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSetViewProveedores.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -544,6 +554,28 @@
     </None>
     <None Include="GD2C2012DataSetClientesLocalidades.xss">
       <DependentUpon>GD2C2012DataSetClientesLocalidades.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetHistorial.xsc">
+      <DependentUpon>GD2C2012DataSetHistorial.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetHistorial.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetHistorial.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetHistorial.xss">
+      <DependentUpon>GD2C2012DataSetHistorial.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetHistorialCupones.xsc">
+      <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetHistorialCupones.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetHistorialCupones.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetHistorialCupones.xss">
+      <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
     </None>
     <None Include="GD2C2012DataSetViewProveedores.xsc">
       <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>

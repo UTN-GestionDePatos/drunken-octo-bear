@@ -210,6 +210,19 @@ BEGIN
 END
 GO
 
+CREATE FUNCTION GESTION_DE_PATOS.promocion(@id_promocion varchar(30))
+RETURNS varchar(250)
+AS
+BEGIN
+	DECLARE @descripcion varchar(250)
+	SELECT @descripcion = descripcion
+	FROM GESTION_DE_PATOS.Promociones
+	WHERE @id_promocion = id_promocion
+	RETURN @descripcion
+END
+
+GO
+
 CREATE FUNCTION GESTION_DE_PATOS.rubro(@id_rubro bigint)
 RETURNS varchar(30)
 AS
@@ -1164,6 +1177,16 @@ CREATE VIEW GESTION_DE_PATOS.viewproveedores AS
 SELECT username, razon_social, cuit, GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
 FROM GESTION_DE_PATOS.Proveedores
 
+GO
+
+CREATE VIEW GESTION_DE_PATOS.viewcupones AS
+SELECT c.id_cupon AS 'id_cupon', c.cliente AS 'cliente', GESTION_DE_PATOS.promocion(id_promocion) AS 'promocion', c.fecha_compra AS 'fecha_compra', 
+CASE WHEN (fecha_devolucion is null AND fecha_canje is null) THEN 'Comprado'
+	 WHEN (fecha_devolucion is null AND fecha_canje is not null) THEN 'Canjeado'
+ELSE 'Devuelto' END AS 'estado'
+FROM GESTION_DE_PATOS.Cupones c LEFT JOIN GESTION_DE_PATOS.Devoluciones d ON c.id_cupon = d.id_cupon
+	 LEFT JOIN GESTION_DE_PATOS.Canjes cj ON c.id_cupon = cj.id_cupon
+	 	 
 GO
 
 /*

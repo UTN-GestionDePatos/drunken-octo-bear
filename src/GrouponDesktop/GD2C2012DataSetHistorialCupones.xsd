@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GD2C2012DataSetHistorialCupones" targetNamespace="http://tempuri.org/GD2C2012DataSetHistorialCupones.xsd" xmlns:mstns="http://tempuri.org/GD2C2012DataSetHistorialCupones.xsd" xmlns="http://tempuri.org/GD2C2012DataSetHistorialCupones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="GD2C2012" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GD2C2012 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.GrouponDesktop.Properties.Settings.GlobalReference.Default.GD2C2012" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewcuponesTableAdapter" GeneratorDataComponentClassName="viewcuponesTableAdapter" Name="viewcupones" UserDataComponentName="viewcuponesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GD2C2012 (Settings)" DbObjectName="GD2C2012.GESTION_DE_PATOS.viewcupones" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id_cupon, promocion, fecha_compra, estado FROM GESTION_DE_PATOS.viewcupones</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id_cupon" DataSetColumn="id_cupon" />
+              <Mapping SourceColumn="promocion" DataSetColumn="promocion" />
+              <Mapping SourceColumn="fecha_compra" DataSetColumn="fecha_compra" />
+              <Mapping SourceColumn="estado" DataSetColumn="estado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GD2C2012DataSetHistorialCupones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="GD2C2012DataSetHistorialCupones" msprop:Generator_UserDSName="GD2C2012DataSetHistorialCupones" msprop:EnableTableAdapterManager="True">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="viewcupones" msprop:Generator_UserTableName="viewcupones" msprop:Generator_RowDeletedName="viewcuponesRowDeleted" msprop:Generator_TableClassName="viewcuponesDataTable" msprop:Generator_RowChangedName="viewcuponesRowChanged" msprop:Generator_RowClassName="viewcuponesRow" msprop:Generator_RowChangingName="viewcuponesRowChanging" msprop:Generator_RowEvArgName="viewcuponesRowChangeEvent" msprop:Generator_RowEvHandlerName="viewcuponesRowChangeEventHandler" msprop:Generator_TablePropName="viewcupones" msprop:Generator_TableVarName="tableviewcupones" msprop:Generator_RowDeletingName="viewcuponesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_cupon" msprop:Generator_UserColumnName="id_cupon" msprop:Generator_ColumnPropNameInRow="id_cupon" msprop:Generator_ColumnVarNameInTable="columnid_cupon" msprop:Generator_ColumnPropNameInTable="id_cuponColumn" type="xs:long" />
+              <xs:element name="promocion" msdata:ReadOnly="true" msprop:Generator_UserColumnName="promocion" msprop:Generator_ColumnPropNameInRow="promocion" msprop:Generator_ColumnVarNameInTable="columnpromocion" msprop:Generator_ColumnPropNameInTable="promocionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fecha_compra" msprop:Generator_UserColumnName="fecha_compra" msprop:Generator_ColumnPropNameInRow="fecha_compra" msprop:Generator_ColumnVarNameInTable="columnfecha_compra" msprop:Generator_ColumnPropNameInTable="fecha_compraColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="estado" msdata:ReadOnly="true" msprop:Generator_UserColumnName="estado" msprop:Generator_ColumnPropNameInRow="estado" msprop:Generator_ColumnVarNameInTable="columnestado" msprop:Generator_ColumnPropNameInTable="estadoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:viewcupones" />
+      <xs:field xpath="mstns:id_cupon" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
