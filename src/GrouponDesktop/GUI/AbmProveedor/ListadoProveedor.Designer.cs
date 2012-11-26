@@ -39,24 +39,24 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridProveedores = new System.Windows.Forms.DataGridView();
-            this.gD2C2012DataSet7 = new GrouponDesktop.GD2C2012DataSet7();
-            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSet7TableAdapters.viewproveedoresTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razonsocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cuitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rubroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombrecontactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet7 = new GrouponDesktop.GD2C2012DataSet7();
+            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSet7TableAdapters.viewproveedoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet7)).BeginInit();
             this.SuspendLayout();
             // 
             // CUIT
             // 
-            this.CUIT.Location = new System.Drawing.Point(333, 19);
+            this.CUIT.Location = new System.Drawing.Point(716, 23);
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(135, 20);
             this.CUIT.TabIndex = 26;
@@ -65,7 +65,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 22);
+            this.label4.Location = new System.Drawing.Point(636, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 25;
@@ -83,7 +83,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(496, 129);
+            this.groupBox1.Size = new System.Drawing.Size(876, 129);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -107,7 +107,7 @@
             // 
             // Buscar
             // 
-            this.Buscar.Location = new System.Drawing.Point(393, 94);
+            this.Buscar.Location = new System.Drawing.Point(776, 98);
             this.Buscar.Name = "Buscar";
             this.Buscar.Size = new System.Drawing.Size(75, 23);
             this.Buscar.TabIndex = 20;
@@ -156,23 +156,9 @@
             this.dataGridProveedores.DataSource = this.viewproveedoresBindingSource;
             this.dataGridProveedores.Location = new System.Drawing.Point(13, 147);
             this.dataGridProveedores.Name = "dataGridProveedores";
-            this.dataGridProveedores.Size = new System.Drawing.Size(495, 308);
+            this.dataGridProveedores.Size = new System.Drawing.Size(875, 308);
             this.dataGridProveedores.TabIndex = 3;
             this.dataGridProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellClick);
-            // 
-            // gD2C2012DataSet7
-            // 
-            this.gD2C2012DataSet7.DataSetName = "GD2C2012DataSet7";
-            this.gD2C2012DataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewproveedoresBindingSource
-            // 
-            this.viewproveedoresBindingSource.DataMember = "viewproveedores";
-            this.viewproveedoresBindingSource.DataSource = this.gD2C2012DataSet7;
-            // 
-            // viewproveedoresTableAdapter
-            // 
-            this.viewproveedoresTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -213,11 +199,25 @@
             this.nombrecontactoDataGridViewTextBoxColumn.Name = "nombrecontactoDataGridViewTextBoxColumn";
             this.nombrecontactoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // viewproveedoresBindingSource
+            // 
+            this.viewproveedoresBindingSource.DataMember = "viewproveedores";
+            this.viewproveedoresBindingSource.DataSource = this.gD2C2012DataSet7;
+            // 
+            // gD2C2012DataSet7
+            // 
+            this.gD2C2012DataSet7.DataSetName = "GD2C2012DataSet7";
+            this.gD2C2012DataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewproveedoresTableAdapter
+            // 
+            this.viewproveedoresTableAdapter.ClearBeforeFill = true;
+            // 
             // ListadoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 467);
+            this.ClientSize = new System.Drawing.Size(900, 467);
             this.Controls.Add(this.dataGridProveedores);
             this.Controls.Add(this.groupBox1);
             this.Name = "ListadoProveedor";
@@ -226,8 +226,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet7)).EndInit();
             this.ResumeLayout(false);
 
         }

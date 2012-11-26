@@ -121,6 +121,17 @@ namespace GrouponDesktop.GUI.AbmProveedor
             new_form.Show();
         }
 
+        private void Limpiar_Click_1(object sender, EventArgs e)
+        {
+            this.NombreContacto.Text = "";
+            this.RazonSocial.Text = "";
+            this.MailP.Text = "";
+            this.Direccion.Text = "";
+            this.TelefonoP.Text = "";
+            this.CodigoPostalP.Text = "";
+            this.CUIT.Text = "";
+        }
+
 
        
     }

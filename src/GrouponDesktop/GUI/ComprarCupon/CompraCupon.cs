@@ -29,6 +29,14 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
             this.cuponesDisponibles.DataSource = r.result;
 
+            this.cuponesDisponibles.ReadOnly = true;
+
+            DataGridViewButtonColumn comprar = new DataGridViewButtonColumn();
+            comprar.Name = "comprar";
+            comprar.HeaderText = "Comprar";
+            this.cuponesDisponibles.Columns.Add(comprar);
+            this.cuponesDisponibles.Columns["comprar"].ReadOnly = false;
+
         }
 
         private void Cerrar_Click(object sender, EventArgs e)
@@ -36,28 +44,25 @@ namespace GrouponDesktop.GUI.ComprarCupon
             this.Hide();
         }
 
-        private void Guardar_Click(object sender, EventArgs e)
+        private void cuponesDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.cuponesDisponibles.SelectedRows.Count != 1 )
+            String columna_seleccionada = this.cuponesDisponibles.Columns[e.ColumnIndex].Name;
+
+            if (columna_seleccionada == "comprar")
             {
 
-                MessageBox.Show("Seleccione una fila de cupón para la compra");
-                return;
-           }
+                if (this.cuponesDisponibles.Rows.Count == 1)
+                {
 
+                    MessageBox.Show("No hay cupones para comprar");
+                    return;
+                }
 
-            try
-            {
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarCupon");
 
-                ParamSet ps = new ParamSet();
-                ps.NombreSP("GESTION_DE_PATOS.ComprarCupon");
-
-                Dictionary<String, Object> d = new Dictionary<string, object>();
-                d.Add("@id_promocion", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
-                d.Add("@fecha", Core.Properties.getProperty("fecha"));
-                d.Add("@username", s.username);
-                ps.Parametros(d);
-
+                ps.AddParameter("@id_promocion", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+                ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
+                ps.AddParameter("@username", s.username);
                 SqlParameter retval = ps.execSP();
                 String ret = retval.Value.ToString();
 
@@ -72,13 +77,7 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
                     default: MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
                         return;
-
-
                 }
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("No hay cupones para comprar");
             }
         }
     }

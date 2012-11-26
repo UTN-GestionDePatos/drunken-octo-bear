@@ -41,18 +41,18 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridClientes = new System.Windows.Forms.DataGridView();
-            this.gD2C2012DataSet6 = new GrouponDesktop.GD2C2012DataSet6();
-            this.viewclientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewclientesTableAdapter = new GrouponDesktop.GD2C2012DataSet6TableAdapters.viewclientesTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewclientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet6 = new GrouponDesktop.GD2C2012DataSet6();
+            this.viewclientesTableAdapter = new GrouponDesktop.GD2C2012DataSet6TableAdapters.viewclientesTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewclientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet6)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -69,14 +69,14 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(496, 122);
+            this.groupBox1.Size = new System.Drawing.Size(773, 122);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
             // 
             // Apellido
             // 
-            this.Apellido.Location = new System.Drawing.Point(333, 19);
+            this.Apellido.Location = new System.Drawing.Point(632, 19);
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
@@ -85,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 22);
+            this.label4.Location = new System.Drawing.Point(552, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 25;
@@ -127,7 +127,7 @@
             // 
             // Buscar
             // 
-            this.Buscar.Location = new System.Drawing.Point(393, 89);
+            this.Buscar.Location = new System.Drawing.Point(692, 89);
             this.Buscar.Name = "Buscar";
             this.Buscar.Size = new System.Drawing.Size(75, 23);
             this.Buscar.TabIndex = 20;
@@ -147,7 +147,7 @@
             // 
             // Mail
             // 
-            this.Mail.Location = new System.Drawing.Point(333, 59);
+            this.Mail.Location = new System.Drawing.Point(632, 59);
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(135, 20);
             this.Mail.TabIndex = 19;
@@ -156,7 +156,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(253, 62);
+            this.label5.Location = new System.Drawing.Point(552, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -175,23 +175,9 @@
             this.dataGridClientes.DataSource = this.viewclientesBindingSource;
             this.dataGridClientes.Location = new System.Drawing.Point(13, 142);
             this.dataGridClientes.Name = "dataGridClientes";
-            this.dataGridClientes.Size = new System.Drawing.Size(490, 241);
+            this.dataGridClientes.Size = new System.Drawing.Size(766, 241);
             this.dataGridClientes.TabIndex = 2;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
-            // 
-            // gD2C2012DataSet6
-            // 
-            this.gD2C2012DataSet6.DataSetName = "GD2C2012DataSet6";
-            this.gD2C2012DataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewclientesBindingSource
-            // 
-            this.viewclientesBindingSource.DataMember = "viewclientes";
-            this.viewclientesBindingSource.DataSource = this.gD2C2012DataSet6;
-            // 
-            // viewclientesTableAdapter
-            // 
-            this.viewclientesTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -224,11 +210,25 @@
             this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
             this.mailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // viewclientesBindingSource
+            // 
+            this.viewclientesBindingSource.DataMember = "viewclientes";
+            this.viewclientesBindingSource.DataSource = this.gD2C2012DataSet6;
+            // 
+            // gD2C2012DataSet6
+            // 
+            this.gD2C2012DataSet6.DataSetName = "GD2C2012DataSet6";
+            this.gD2C2012DataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewclientesTableAdapter
+            // 
+            this.viewclientesTableAdapter.ClearBeforeFill = true;
+            // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 403);
+            this.ClientSize = new System.Drawing.Size(796, 396);
             this.Controls.Add(this.dataGridClientes);
             this.Controls.Add(this.groupBox1);
             this.Name = "ListadoCliente";
@@ -237,8 +237,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewclientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet6)).EndInit();
             this.ResumeLayout(false);
 
         }

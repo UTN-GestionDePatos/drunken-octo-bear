@@ -104,6 +104,11 @@ namespace GrouponDesktop.GUI.AbmProveedor
             eliminar.Name = "eliminar";
             eliminar.HeaderText = "Eliminar";
             this.dataGridProveedores.Columns.Add(eliminar);
+
+            this.dataGridProveedores.ReadOnly = true;
+            this.dataGridProveedores.Columns["modificar"].ReadOnly = false;
+            this.dataGridProveedores.Columns["eliminar"].ReadOnly = false;
+
         }
 
         private bool validarTextBox(TextBox textBox)

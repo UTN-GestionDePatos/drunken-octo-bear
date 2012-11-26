@@ -40,16 +40,14 @@ namespace GrouponDesktop.GUI.PublicarCupon
             }
             this.Proveedores.SelectedIndex = 0;
 
+            this.cupones.ReadOnly = true;
+
+
         }
 
         private void VerCupones_Click(object sender, EventArgs e)
         {
             String proveedor = this.Proveedores.SelectedItem.ToString();
-
-            DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
-            boton.HeaderText = "Publicar";
-            boton.Name = "Publicar";
-            boton.UseColumnTextForButtonValue = true;
 
             if ( proveedor == "")
             {
@@ -70,8 +68,13 @@ namespace GrouponDesktop.GUI.PublicarCupon
 
             }
 
+
+            DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
+            boton.HeaderText = "Publicar";
+            boton.Name = "Publicar";
             cupones.Columns.Add(boton);
-            
+
+            this.cupones.Columns["Publicar"].ReadOnly = false;
 
            
         }

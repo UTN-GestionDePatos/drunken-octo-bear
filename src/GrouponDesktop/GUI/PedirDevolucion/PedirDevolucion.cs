@@ -44,38 +44,40 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 {
                     case "1": MessageBox.Show("El cupón no existe o el usuario no es el dueño");
                         return;
-                    case "2": MessageBox.Show("El cupón está canjeado o ya devuelto");
+                    case "4": MessageBox.Show("El cupón está canjeado o ya devuelto");
                         return;
                     case "3": MessageBox.Show("El cupón expiró");
                         return;
-
-
-                }
+                      }
             }
             catch (FormatException) {
                 MessageBox.Show("Ingrese un valor numérico de cupón");
                 return;
             }
 
-            Devolucion dev = new Devolucion();
-            
             DBManager manager = (DBManager)AppContext.getObject(typeof(DBManager));
             SQLResponse response = manager.executeQuery("select c.id_cupon, c.id_promocion, gc.descripcion from GESTION_DE_PATOS.Cupones c join GESTION_DE_PATOS.Promociones gc on c.id_promocion = gc.id_promocion where c.id_cupon = " + Cupon.Text);
 
-            foreach (DataRow r in response.result.Rows)
+            if (MessageBox.Show("¿Esta seguro que quiere devolver el cupón?\n\nID CUPON: " + this.Cupon.Text + " \nPROMOCIÓN: " + response.result.Rows[0][1].ToString() + "\nDESCRIPCIÓN: "+ response.result.Rows[0][2].ToString() ,"Devolver cupón", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                dev.SetDatos("ID CUPON: " + r[0] + "  \n");
-                dev.SetDatos("PROMOCIÓN: " + r[1] + "  \n");
-                dev.SetDatos("DESCRIPCIÓN: " + r[2] + "  \n");
+                Session s = (Session)AppContext.getObject(typeof(Session));
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ConfirmarDevolucion");
+                ps.AddParameter("@idCupon", Int64.Parse(this.Cupon.Text));
+                ps.AddParameter("@fecha_actual", Core.Properties.getProperty("fecha"));
+                ps.AddParameter("@motivo", this.Motivo.Text);
 
-                dev.idCupon = Int32.Parse(r[0].ToString());
-                dev.idGrupo = r[1].ToString();
-                
+                SqlParameter retval = ps.execSP();
+                switch (retval.Value.ToString())
+                {
+                    case "0": MessageBox.Show("Devolución exitosa");
+                        return;
+
+                    case "1": MessageBox.Show("El cupón ya está devuelto");
+                        return;
+
+
+                }
             }
-
-            dev.motivo = this.Motivo.Text;
-            dev.Show();
-
             
         }
     }

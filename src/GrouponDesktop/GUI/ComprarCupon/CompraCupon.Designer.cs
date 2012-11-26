@@ -30,7 +30,6 @@
         {
             this.Nombre = new System.Windows.Forms.Label();
             this.cuponesDisponibles = new System.Windows.Forms.DataGridView();
-            this.Guardar = new System.Windows.Forms.Button();
             this.Cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cuponesDisponibles)).BeginInit();
             this.SuspendLayout();
@@ -38,7 +37,7 @@
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(141, 9);
+            this.Nombre.Location = new System.Drawing.Point(206, 9);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(298, 13);
             this.Nombre.TabIndex = 19;
@@ -49,24 +48,15 @@
             this.cuponesDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cuponesDisponibles.Location = new System.Drawing.Point(29, 42);
             this.cuponesDisponibles.Name = "cuponesDisponibles";
-            this.cuponesDisponibles.Size = new System.Drawing.Size(519, 200);
+            this.cuponesDisponibles.Size = new System.Drawing.Size(646, 200);
             this.cuponesDisponibles.TabIndex = 25;
-            // 
-            // Guardar
-            // 
-            this.Guardar.Location = new System.Drawing.Point(29, 265);
-            this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(75, 23);
-            this.Guardar.TabIndex = 24;
-            this.Guardar.Text = "Comprar";
-            this.Guardar.UseVisualStyleBackColor = true;
-            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
+            this.cuponesDisponibles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cuponesDisponibles_CellClick);
             // 
             // Cerrar
             // 
-            this.Cerrar.Location = new System.Drawing.Point(473, 265);
+            this.Cerrar.Location = new System.Drawing.Point(586, 265);
             this.Cerrar.Name = "Cerrar";
-            this.Cerrar.Size = new System.Drawing.Size(75, 23);
+            this.Cerrar.Size = new System.Drawing.Size(89, 23);
             this.Cerrar.TabIndex = 26;
             this.Cerrar.Text = "Cerrar";
             this.Cerrar.UseVisualStyleBackColor = true;
@@ -76,10 +66,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 300);
+            this.ClientSize = new System.Drawing.Size(677, 300);
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.cuponesDisponibles);
-            this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Nombre);
             this.Name = "CompraCupon";
             this.Text = "CompraCupon";
@@ -94,7 +83,6 @@
 
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.DataGridView cuponesDisponibles;
-        private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Cerrar;
     }
 }

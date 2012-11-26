@@ -46,6 +46,10 @@ namespace GrouponDesktop.GUI.AbmCliente
             eliminar.HeaderText = "Eliminar";
             this.dataGridClientes.Columns.Add(eliminar);
 
+            this.dataGridClientes.ReadOnly = true;
+            this.dataGridClientes.Columns["modificar"].ReadOnly = false;
+            this.dataGridClientes.Columns["eliminar"].ReadOnly = false;
+
         }
 
         private void dataGridClientes_CellClick(object sender, DataGridViewCellEventArgs e)

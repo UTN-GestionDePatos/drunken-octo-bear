@@ -58,12 +58,10 @@ namespace GrouponDesktop.GUI.AbmCliente
             foreach (DataRow row in ciudades.result.Rows)
             {
                 this.ListaZonas.Items.Add(row[0]);
-    /*
-                if (response.result.Rows.Contains(row[0].ToString()))
-                {
-                    this.ListaZonas.SelectedItems.Add(row[0]);
-                }
-     */
+            }
+
+            foreach (DataRow r in response.result.Rows) {
+                ListaZonas.SetItemChecked(ListaZonas.Items.IndexOf(r[0]), true);
             }
         }
 
@@ -78,6 +76,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             DNICliente.Text = "";
             DireccionC.Text = "";
             CodigoPostal.Text = "";
+            for (int i = 0; i < ListaZonas.Items.Count; i++) ListaZonas.SetItemChecked(i, false);
         }
 
         private void Guardar_Click(object sender, EventArgs e)

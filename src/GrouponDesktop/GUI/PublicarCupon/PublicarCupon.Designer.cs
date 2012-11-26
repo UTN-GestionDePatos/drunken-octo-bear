@@ -65,7 +65,7 @@
             // 
             // VerCupones
             // 
-            this.VerCupones.Location = new System.Drawing.Point(527, 51);
+            this.VerCupones.Location = new System.Drawing.Point(591, 53);
             this.VerCupones.Name = "VerCupones";
             this.VerCupones.Size = new System.Drawing.Size(95, 23);
             this.VerCupones.TabIndex = 6;
@@ -78,16 +78,15 @@
             this.cupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cupones.Location = new System.Drawing.Point(42, 150);
             this.cupones.Name = "cupones";
-            this.cupones.Size = new System.Drawing.Size(580, 66);
+            this.cupones.Size = new System.Drawing.Size(644, 66);
             this.cupones.TabIndex = 7;
             this.cupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cupones_CellClick);
-            
             // 
             // PublicarCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 312);
+            this.ClientSize = new System.Drawing.Size(698, 312);
             this.Controls.Add(this.cupones);
             this.Controls.Add(this.VerCupones);
             this.Controls.Add(this.Proveedores);
