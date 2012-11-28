@@ -921,8 +921,8 @@ BEGIN
 		 set @ret = 1
 	END
 END
-
 GO
+
 --ELIMINAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.EliminarUsuario(@user varchar(30), @ret int output)
 AS
@@ -1060,9 +1060,44 @@ BEGIN
 	
 	
 END	
-
 GO
 
+-- Funciones de TOP 5
+CREATE FUNCTION GESTION_DE_PATOS.top_giftcards(@fecha_inicio DATETIME, @fecha_fin DATETIME)
+RETURNS TABLE
+AS RETURN	(SELECT TOP(5) u.username, c.nombre, c.apellido, COUNT(gift.id_giftcard) AS cantidad_giftcards FROM GESTION_DE_PATOS.Usuarios u
+			LEFT JOIN GESTION_DE_PATOS.Clientes c ON u.username = c.username
+			LEFT JOIN GESTION_DE_PATOS.Giftcards gift ON  gift.cliente_destino = c.username
+			WHERE gift.fecha BETWEEN @fecha_inicio AND @fecha_fin
+			GROUP BY u.username, c.nombre, c.apellido
+			ORDER BY COUNT(gift.id_giftcard) DESC)
+GO
+
+CREATE FUNCTION GESTION_DE_PATOS.top_devoluciones(@fecha_inicio DATETIME, @fecha_fin DATETIME)
+RETURNS TABLE
+AS RETURN
+SELECT TOP(5) p.username, p.razon_social, COUNT(d.id_cupon)*100/(
+	SELECT COUNT(c.id_cupon)
+	FROM GESTION_DE_PATOS.Proveedores prov
+	LEFT JOIN GESTION_DE_PATOS.Promociones prom ON prom.proveedor = prov.username
+	LEFT JOIN GESTION_DE_PATOS.Cupones c ON c.id_promocion = prom.id_promocion
+	WHERE prov.username = p.username AND c.fecha_compra BETWEEN @fecha_inicio AND @fecha_fin
+) AS porcentaje_devueltos
+FROM GESTION_DE_PATOS.Proveedores p
+LEFT JOIN GESTION_DE_PATOS.Promociones prom ON prom.proveedor = p.username
+LEFT JOIN GESTION_DE_PATOS.Cupones c ON c.id_promocion = prom.id_promocion
+LEFT JOIN GESTION_DE_PATOS.Devoluciones d ON d.id_cupon = c.id_cupon
+WHERE c.fecha_compra BETWEEN @fecha_inicio AND @fecha_fin
+GROUP BY p.username, p.razon_social
+ORDER BY COUNT(d.id_cupon)*100/(
+	SELECT COUNT(c.id_cupon)
+	FROM GESTION_DE_PATOS.Proveedores prov
+	LEFT JOIN GESTION_DE_PATOS.Promociones prom ON prom.proveedor = prov.username
+	LEFT JOIN GESTION_DE_PATOS.Cupones c ON c.id_promocion = prom.id_promocion
+	WHERE prov.username = p.username AND c.fecha_compra BETWEEN @fecha_inicio AND @fecha_fin
+
+) DESC
+GO
 
 /*
 	=============================================
