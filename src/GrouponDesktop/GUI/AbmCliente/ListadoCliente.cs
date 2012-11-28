@@ -30,7 +30,7 @@ namespace GrouponDesktop.GUI.AbmCliente
         {
             SQLResponse r;
             
-            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.EstadosUsuarios e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
+            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
             this.SetDataGridView(r.result);
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
@@ -105,7 +105,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             DNI.Text = "";
             Mail.Text = "";
 
-            SQLResponse r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.EstadosUsuarios e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
+            SQLResponse r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
             this.SetDataGridView(r.result);
         }
 

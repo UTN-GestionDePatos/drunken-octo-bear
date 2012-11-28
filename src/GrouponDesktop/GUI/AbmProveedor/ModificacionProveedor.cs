@@ -53,7 +53,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             ciudadP.SelectedItem = response.result.Rows[0][1].ToString();
 
-            response = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.EstadosUsuarios e ON u.estado = e.id_estado WHERE u.username = '" + UsernameP.Text + "'");
+            response = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.Estados e ON u.estado = e.id_estado WHERE u.username = '" + UsernameP.Text + "'");
 
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
