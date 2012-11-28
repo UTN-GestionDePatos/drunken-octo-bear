@@ -341,7 +341,7 @@ BEGIN
 	
 	if exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
 	begin
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.ididEstado('Deshabilitado')
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstado('Deshabilitado')
 		begin
 			set @ret = 4
 			return
@@ -351,7 +351,7 @@ BEGIN
 			set @ret = 4
 			return
 		end
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.ididEstado('Eliminado')
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstado('Eliminado')
 		begin
 			set @ret = 5
 			return
@@ -370,7 +370,8 @@ BEGIN
           END
      ELSE
           BEGIN
-              set @ret = 0
+              Update GESTION_DE_PATOS.Usuarios set intentos_fallidos = 0 Where username = @user
+			  set @ret = 0
               return
           END
 	end
@@ -400,7 +401,7 @@ BEGIN
 	end
 	IF(@clienteOrigen<>@clienteDestino)
 		BEGIN
-			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.ididEstado('Habilitado')
+			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.idEstado('Habilitado')
 			BEGIN
 				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
 				set @ret = 0
@@ -651,7 +652,7 @@ BEGIN
 			If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 				BEGIN
-						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
 						insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 						SET @ret = 0
 						return
@@ -697,7 +698,7 @@ BEGIN
 							or mail = @mail or cuit = @cuit) and not exists(select * from GESTION_DE_PATOS.Clientes 
 							where telefono = @telefono or mail = @mail)
 				BEGIN
-						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
 						insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@rs,@mail,@telefono,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad)
 																		, GESTION_DE_PATOS.idRubro(@rubro), @contacto)
 						SET @ret = 0
@@ -823,7 +824,7 @@ BEGIN
 	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
 	BEGIN
 	
-		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Administrador', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
+		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Administrador', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
 		insert into GESTION_DE_PATOS.Administradores values (@user,@nombre,@apellido)
 		set @ret = 0
 		return
@@ -1229,6 +1230,13 @@ GO
 	=============================================
 */
 
+
+
+CREATE VIEW GESTION_DE_PATOS.viewroles AS
+SELECT nombre, GESTION_DE_PATOS.NombreEstado(estado) estado
+FROM GESTION_DE_PATOS.Roles
+
+GO
 
 CREATE VIEW GESTION_DE_PATOS.viewclientes AS
 SELECT username, nombre, apellido, dni, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail'
