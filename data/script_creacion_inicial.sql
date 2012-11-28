@@ -1099,6 +1099,15 @@ ORDER BY COUNT(d.id_cupon)*100/(
 ) DESC
 GO
 
+CREATE FUNCTION GESTION_DE_PATOS.NombreEstado(@id int)
+RETURNS VARCHAR(30)
+AS
+BEGIN
+	RETURN (SELECT nombre_estado FROM GESTION_DE_PATOS.Estados where id_estado = @id)
+END
+
+GO
+
 /*
 	=============================================
 					   TRIGGERS 

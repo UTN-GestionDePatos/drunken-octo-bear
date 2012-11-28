@@ -17,12 +17,14 @@ namespace GrouponDesktop.GUI.AbmRol
             InitializeComponent();
         }
 
+        DBManager m = (DBManager)AppContext.getObject(typeof(DBManager));
+            
+
         private void ListadoRol_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet8.Roles' Puede moverla o quitarla según sea necesario.
-            this.rolesTableAdapter.Fill(this.gD2C2012DataSet8.Roles);
-
-        }
+            Datos.DataSource = m.executeQuery("SELECT nombre, GESTION_DE_PATOS.Estado(estado) FROM GESTION_DE_PATOS.Roles").result;
+           
+            }
 
         private void Datos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -34,8 +36,7 @@ namespace GrouponDesktop.GUI.AbmRol
                     return;
                 }
 
-                DBManager m = (DBManager)AppContext.getObject(typeof(DBManager));
-                SQLResponse resp = m.executeQuery("select id_estado from GESTION_DE_PATOS.EstadosUsuarios where nombre_estado = 'Eliminado'");
+                SQLResponse resp = m.executeQuery("select id_estado from GESTION_DE_PATOS.Estados where nombre_estado = 'Eliminado'");
 
                 
                 DataGridViewCellCollection celdas = this.Datos.Rows[e.RowIndex].Cells;

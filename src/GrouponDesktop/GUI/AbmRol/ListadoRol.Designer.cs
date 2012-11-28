@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.AltaRol = new System.Windows.Forms.Button();
             this.Datos = new System.Windows.Forms.DataGridView();
-            this.gD2C2012DataSet8 = new GrouponDesktop.GD2C2012DataSet8();
-            this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rolesTableAdapter = new GrouponDesktop.GD2C2012DataSet8TableAdapters.RolesTableAdapter();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Borrar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet8 = new GrouponDesktop.GD2C2012DataSet8();
+            this.rolesTableAdapter = new GrouponDesktop.GD2C2012DataSet8TableAdapters.RolesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.Datos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet8)).BeginInit();
             this.SuspendLayout();
             // 
             // AltaRol
@@ -68,23 +68,9 @@
             this.Datos.Location = new System.Drawing.Point(12, 12);
             this.Datos.MultiSelect = false;
             this.Datos.Name = "Datos";
-            this.Datos.Size = new System.Drawing.Size(314, 168);
+            this.Datos.Size = new System.Drawing.Size(365, 168);
             this.Datos.TabIndex = 1;
             this.Datos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Datos_CellContentClick);
-            // 
-            // gD2C2012DataSet8
-            // 
-            this.gD2C2012DataSet8.DataSetName = "GD2C2012DataSet8";
-            this.gD2C2012DataSet8.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // rolesBindingSource
-            // 
-            this.rolesBindingSource.DataMember = "Roles";
-            this.rolesBindingSource.DataSource = this.gD2C2012DataSet8;
-            // 
-            // rolesTableAdapter
-            // 
-            this.rolesTableAdapter.ClearBeforeFill = true;
             // 
             // nombreDataGridViewTextBoxColumn
             // 
@@ -111,19 +97,33 @@
             this.Borrar.Text = "Borar";
             this.Borrar.Width = 60;
             // 
+            // rolesBindingSource
+            // 
+            this.rolesBindingSource.DataMember = "Roles";
+            this.rolesBindingSource.DataSource = this.gD2C2012DataSet8;
+            // 
+            // gD2C2012DataSet8
+            // 
+            this.gD2C2012DataSet8.DataSetName = "GD2C2012DataSet8";
+            this.gD2C2012DataSet8.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // rolesTableAdapter
+            // 
+            this.rolesTableAdapter.ClearBeforeFill = true;
+            // 
             // ListadoRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 217);
+            this.ClientSize = new System.Drawing.Size(376, 217);
             this.Controls.Add(this.AltaRol);
             this.Controls.Add(this.Datos);
             this.Name = "ListadoRol";
             this.Text = "Rol - Listado de selección";
             this.Load += new System.EventHandler(this.ListadoRol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Datos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet8)).EndInit();
             this.ResumeLayout(false);
 
         }
