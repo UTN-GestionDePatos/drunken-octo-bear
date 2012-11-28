@@ -140,6 +140,7 @@
             this.PasswordCliente.Name = "PasswordCliente";
             this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
             this.PasswordCliente.TabIndex = 47;
+            this.PasswordCliente.UseSystemPasswordChar = true;
             // 
             // label19
             // 

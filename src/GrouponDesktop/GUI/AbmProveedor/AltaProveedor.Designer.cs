@@ -173,6 +173,7 @@
             this.PassP.Name = "PassP";
             this.PassP.Size = new System.Drawing.Size(209, 20);
             this.PassP.TabIndex = 22;
+            this.PassP.UseSystemPasswordChar = true;
             // 
             // label8
             // 
