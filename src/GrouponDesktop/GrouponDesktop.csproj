@@ -294,12 +294,6 @@
     <Compile Include="GUI\HistorialCupones\HistorialCupones.Designer.cs">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\HistorialCupones\Listado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\HistorialCupones\Listado.Designer.cs">
-      <DependentUpon>Listado.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\ListadoEstadistico\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,9 +412,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HistorialCupones\HistorialCupones.resx">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\HistorialCupones\Listado.resx">
-      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ListadoEstadistico\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
