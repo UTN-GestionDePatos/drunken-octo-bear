@@ -73,7 +73,15 @@ namespace GrouponDesktop
                         break;
                     case "3": MessageBox.Show("Usuario incorrecto");
                         break;
-                    case "4": MessageBox.Show("Usted se encuentra inhabilitado, hable con un administrador");
+                    case "4":
+                        if (MessageBox.Show("Usted se encuentra inhabilitado, ¿Desea darse de baja?", "Login",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ps.NombreSP("GESTION_DE_PATOS.EliminarUsuario");
+                            ps.AddParameter("@user", usuario.Text);
+                            ps.execSP();
+                            MessageBox.Show("Usted ha sido dado de baja");
+                            Dispose();
+                        }
                         break;
                     case "5": MessageBox.Show("Usuario incorrecto");
                         break;
