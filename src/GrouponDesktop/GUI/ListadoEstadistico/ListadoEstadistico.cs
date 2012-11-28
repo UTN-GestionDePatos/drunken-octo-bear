@@ -55,22 +55,14 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
                 fechaHasta = new DateTime(Int32.Parse(Anio.Text), 12, 31, 23, 59, 59);
             }
 
+            Listado listado;
+
             switch (tipo)
             {
-
                 case "Top 5 Devoluciones":
 
-
-                    /*r = dbManager.executeQuery("select COUNT (*) from Cupones c where c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "'");
-                    if (Int32.Parse(r.result.Rows[0][0].ToString()) == 0) {
-                        MessageBox.Show("No hay cupones comprados el semestre solicitado");
-                        return;
-                    }*/
-
-                    Console.WriteLine(fechaDesde.ToString());
-
-                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_devoluciones('" + fechaDesde.ToString("yyyy'-'MM'-'dd HH':'mm':'ss") + "', '" + fechaHasta.ToString("yyyy'-'MM'-'dd HH':'mm':'ss") + "')");
-                    Listado listado = new Listado();
+                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_devoluciones('" + fechaDesde.ToString("yyyy'-'dd'-'MM HH':'mm':'ss") + "', '" + fechaHasta.ToString("yyyy'-'dd'-'MM HH':'mm':'ss") + "')");
+                    listado = new Listado();
                     listado.SetDataGridView(r.result);
                     listado.Show();
 
@@ -78,14 +70,10 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
 
                 case "Top 5 Acreditación de Giftcards":
 
-                    r = dbManager.executeQuery("select COUNT (*) from Giftcards fecha between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "'");
-                    if (Int32.Parse(r.result.Rows[0][0].ToString()) == 0)
-                    {
-                        MessageBox.Show("No hay acreditaciones asignados en el semestre solicitado");
-                        return;
-                    }
-
-
+                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_giftcards('" + fechaDesde.ToString("yyyy'-'dd'-'MM HH':'mm':'ss") + "', '" + fechaHasta.ToString("yyyy'-'dd'-'MM HH':'mm':'ss") + "')");
+                    listado = new Listado();
+                    listado.SetDataGridView(r.result);
+                    listado.Show();
 
                     return;
             }

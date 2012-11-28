@@ -36,14 +36,14 @@
             // ListadoGV
             // 
             this.ListadoGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListadoGV.Location = new System.Drawing.Point(12, 34);
+            this.ListadoGV.Location = new System.Drawing.Point(10, 12);
             this.ListadoGV.Name = "ListadoGV";
-            this.ListadoGV.Size = new System.Drawing.Size(262, 150);
+            this.ListadoGV.Size = new System.Drawing.Size(423, 209);
             this.ListadoGV.TabIndex = 7;
             // 
             // Cerrar
             // 
-            this.Cerrar.Location = new System.Drawing.Point(91, 214);
+            this.Cerrar.Location = new System.Drawing.Point(184, 227);
             this.Cerrar.Name = "Cerrar";
             this.Cerrar.Size = new System.Drawing.Size(75, 23);
             this.Cerrar.TabIndex = 8;
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(445, 257);
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.ListadoGV);
             this.Name = "Listado";
