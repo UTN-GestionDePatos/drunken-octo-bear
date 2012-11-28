@@ -44,7 +44,7 @@ namespace GrouponDesktop.GUI.ComprarCupon
             this.Hide();
         }
 
-        private void cuponesDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void cuponesDisponibles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             String columna_seleccionada = this.cuponesDisponibles.Columns[e.ColumnIndex].Name;
 
@@ -60,7 +60,9 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarCupon");
 
-                ps.AddParameter("@id_promocion", this.cuponesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+
+
+                ps.AddParameter("@id_promocion", this.cuponesDisponibles.Rows[e.RowIndex].Cells[0].Value.ToString());
                 ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
                 ps.AddParameter("@username", s.username);
                 SqlParameter retval = ps.execSP();

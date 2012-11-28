@@ -32,7 +32,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             MailCliente.Text = cliente.getDato("mailDataGridViewTextBoxColumn").ToString();
             DNICliente.Text = cliente.getDato("dniDataGridViewTextBoxColumn").ToString();
 
-            SQLResponse response = dbManager.executeQuery("SELECT fecha_nacimiento, telefono, direccion, codigo_postal, GESTION_DE_PATOS.localidad(ciudad) FROM GESTION_DE_PATOS.Clientes WHERE username = '" + UsernameCliente.Text + "' AND dni = " + DNICliente.Text);
+            SQLResponse response = dbManager.executeQuery("SELECT fecha_nacimiento, telefono, direccion, codigo_postal, GESTION_DE_PATOS.localidad(ciudad) FROM GESTION_DE_PATOS.Clientes WHERE username = '" + UsernameCliente.Text + "'");
 
             FchNacimientoCliente.Text = response.result.Rows[0][0].ToString();
             TelefonoCliente.Text = response.result.Rows[0][1].ToString();

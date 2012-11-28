@@ -50,7 +50,7 @@
             this.cuponesDisponibles.Name = "cuponesDisponibles";
             this.cuponesDisponibles.Size = new System.Drawing.Size(646, 200);
             this.cuponesDisponibles.TabIndex = 25;
-            this.cuponesDisponibles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cuponesDisponibles_CellClick);
+            this.cuponesDisponibles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cuponesDisponibles_CellContentClick);
             // 
             // Cerrar
             // 
