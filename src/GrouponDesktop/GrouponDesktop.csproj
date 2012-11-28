@@ -258,6 +258,12 @@
     <Compile Include="GUI\CambiarPassDesdeAdmin.Designer.cs">
       <DependentUpon>CambiarPassDesdeAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\CambiarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CambiarRol.Designer.cs">
+      <DependentUpon>CambiarRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,12 @@
     </Compile>
     <Compile Include="GUI\HistorialCupones\HistorialCupones.Designer.cs">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HistorialCupones\Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HistorialCupones\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ListadoEstadistico\Listado.cs">
       <SubType>Form</SubType>
@@ -389,6 +401,9 @@
     <EmbeddedResource Include="GUI\CambiarPassDesdeAdmin.resx">
       <DependentUpon>CambiarPassDesdeAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CambiarRol.resx">
+      <DependentUpon>CambiarRol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </EmbeddedResource>
@@ -403,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HistorialCupones\HistorialCupones.resx">
       <DependentUpon>HistorialCupones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HistorialCupones\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ListadoEstadistico\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
