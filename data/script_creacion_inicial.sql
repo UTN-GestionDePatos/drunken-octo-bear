@@ -140,7 +140,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		fecha_canje datetime
 	)
 
-	CREATE TABLE EstadosUsuarios ( 
+	CREATE TABLE Estados ( 
 		id_estado int identity(1,1) primary key,
 		nombre_estado varchar(20)
 	)
@@ -160,7 +160,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 
 	CREATE TABLE Roles ( 
 		nombre varchar(30) primary key,
-		estado int references EstadosUsuarios(id_estado)
+		estado int references Estados(id_estado)
 	)
 
 	CREATE TABLE Funcion_por_rol ( 
@@ -180,7 +180,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		username varchar(30) primary key,
 		passwd varchar(50),
 		rol varchar(30),
-		estado int references EstadosUsuarios(id_estado),
+		estado int references Estados(id_estado),
 		intentos_fallidos int
 	)
 GO
@@ -260,7 +260,7 @@ END
 
 GO
 
-CREATE FUNCTION GESTION_DE_PATOS.Estado(@estado varchar(30))
+CREATE FUNCTION GESTION_DE_PATOS.idEstado(@estado varchar(30))
 RETURNS int
 AS
 BEGIN
@@ -341,7 +341,7 @@ BEGIN
 	
 	if exists (select * from GESTION_DE_PATOS.Usuarios where username = @user)
 	begin
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.Estado('Deshabilitado')
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.ididEstado('Deshabilitado')
 		begin
 			set @ret = 4
 			return
@@ -351,7 +351,7 @@ BEGIN
 			set @ret = 4
 			return
 		end
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.Estado('Eliminado')
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.ididEstado('Eliminado')
 		begin
 			set @ret = 5
 			return
@@ -400,7 +400,7 @@ BEGIN
 	end
 	IF(@clienteOrigen<>@clienteDestino)
 		BEGIN
-			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.Estado('Habilitado')
+			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.ididEstado('Habilitado')
 			BEGIN
 				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
 				set @ret = 0
@@ -651,7 +651,7 @@ BEGIN
 			If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 				BEGIN
-						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.Estado('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
 						insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 						SET @ret = 0
 						return
@@ -697,7 +697,7 @@ BEGIN
 							or mail = @mail or cuit = @cuit) and not exists(select * from GESTION_DE_PATOS.Clientes 
 							where telefono = @telefono or mail = @mail)
 				BEGIN
-						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.Estado('Habilitado') ,0)
+						insert into GESTION_DE_PATOS.Usuarios values(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
 						insert into GESTION_DE_PATOS.Proveedores values (@user,@cuit,@rs,@mail,@telefono,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad)
 																		, GESTION_DE_PATOS.idRubro(@rubro), @contacto)
 						SET @ret = 0
@@ -823,7 +823,7 @@ BEGIN
 	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
 	BEGIN
 	
-		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Administrador', GESTION_DE_PATOS.Estado('Habilitado') ,0)
+		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Administrador', GESTION_DE_PATOS.ididEstado('Habilitado') ,0)
 		insert into GESTION_DE_PATOS.Administradores values (@user,@nombre,@apellido)
 		set @ret = 0
 		return
@@ -854,7 +854,7 @@ BEGIN
 		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 		BEGIN
-			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.Estado('Habilitado') ,0)
+			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
 			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 			set @ret = 0
 			return
@@ -905,7 +905,7 @@ BEGIN
 											 
 			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
 			BEGIN
-				UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.Estado(@estado) WHERE username = @user
+				UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
 			END						 
 			
 			set @ret = 0								 
@@ -930,14 +930,14 @@ BEGIN
 	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
 		
-		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.Estado('Eliminado')
+		if(select estado from GESTION_DE_PATOS.Usuarios where username = @user) = GESTION_DE_PATOS.idEstado('Eliminado')
 		begin
 			set @ret = 2
 			return
 			-- el usuario ya esta eliminado
 		end
 		
-		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.Estado('Eliminado')
+		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado('Eliminado')
 										 WHERE username = @user
 		
 		set @ret = 0
@@ -973,7 +973,7 @@ BEGIN
 								OR mail = @mail OR cuit = @cuit) AND NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes 
 								WHERE telefono = @telefono OR mail = @mail)
 		BEGIN
-			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.Estado('Habilitado') ,0)
+			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Proveedor', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
 			INSERT INTO GESTION_DE_PATOS.Proveedores VALUES(@user,@cuit,@razon_social,@mail,@telefono,@direccion,@codigo_postal,GESTION_DE_PATOS.idCiudad(@ciudad),GESTION_DE_PATOS.idRubro(@rubro),@nombre_contacto)
 			
 			set @ret = 0
@@ -1021,7 +1021,7 @@ BEGIN
 						
 			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
 			BEGIN
-				UPDATE GESTION_DE_PATOS.Usuarios SET estado= GESTION_DE_PATOS.Estado(@estado) WHERE username = @user
+				UPDATE GESTION_DE_PATOS.Usuarios SET estado= GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
 			END	
 					
 			set @ret = 0
@@ -1289,10 +1289,10 @@ BEGIN
 
 		--Roles
 
-		insert into GESTION_DE_PATOS.Roles values ('Administrador General', GESTION_DE_PATOS.Estado('Habilitado'))
-		insert into GESTION_DE_PATOS.Roles values ('Administrador',GESTION_DE_PATOS.Estado('Habilitado'))
-		insert into GESTION_DE_PATOS.Roles values ('Cliente',GESTION_DE_PATOS.Estado('Habilitado'))
-		insert into GESTION_DE_PATOS.Roles values ('Proveedor',GESTION_DE_PATOS.Estado('Habilitado'))
+		insert into GESTION_DE_PATOS.Roles values ('Administrador General', GESTION_DE_PATOS.idEstado('Habilitado'))
+		insert into GESTION_DE_PATOS.Roles values ('Administrador',GESTION_DE_PATOS.idEstado('Habilitado'))
+		insert into GESTION_DE_PATOS.Roles values ('Cliente',GESTION_DE_PATOS.idEstado('Habilitado'))
+		insert into GESTION_DE_PATOS.Roles values ('Proveedor',GESTION_DE_PATOS.idEstado('Habilitado'))
 
 		--Funcion por rol
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (1,'Administrador General')
@@ -1355,13 +1355,13 @@ BEGIN
 
 	--Usuarios
 	INSERT INTO GESTION_DE_PATOS.Usuarios
-		SELECT username,GESTION_DE_PATOS.SHA256(username),'Cliente',GESTION_DE_PATOS.Estado('Habilitado'),0
+		SELECT username,GESTION_DE_PATOS.SHA256(username),'Cliente',GESTION_DE_PATOS.idEstado('Habilitado'),0
 		FROM GESTION_DE_PATOS.Clientes
 	INSERT INTO GESTION_DE_PATOS.Usuarios
-		SELECT username, GESTION_DE_PATOS.SHA256(username),'Proveedor',GESTION_DE_PATOS.Estado('Habilitado'),0
+		SELECT username, GESTION_DE_PATOS.SHA256(username),'Proveedor',GESTION_DE_PATOS.idEstado('Habilitado'),0
 		FROM GESTION_DE_PATOS.Proveedores		
 	INSERT INTO GESTION_DE_PATOS.Usuarios
-		SELECT username, GESTION_DE_PATOS.SHA256(username),'Administrador',GESTION_DE_PATOS.Estado('Habilitado'),0
+		SELECT username, GESTION_DE_PATOS.SHA256(username),'Administrador',GESTION_DE_PATOS.idEstado('Habilitado'),0
 		FROM GESTION_DE_PATOS.Administradores
 		WHERE username != 'admin'
 
