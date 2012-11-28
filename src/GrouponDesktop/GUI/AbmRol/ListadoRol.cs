@@ -22,9 +22,7 @@ namespace GrouponDesktop.GUI.AbmRol
 
         private void ListadoRol_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet9.viewroles' Puede moverla o quitarla según sea necesario.
-            this.viewrolesTableAdapter.Fill(this.gD2C2012DataSet9.viewroles);
-            Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
+            Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles" ).result;
            
             }
 
@@ -46,12 +44,18 @@ namespace GrouponDesktop.GUI.AbmRol
                 builder.AddParameter("nombre_rol", celdas[0].Value.ToString());
                 builder.AddParameter("estado", resp.result.Rows[0][0]);
                 builder.executeNoReturn();
-               }
+                MessageBox.Show("Baja de rol exitosa");
+                Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
+
+            }
             // Índice 2 es modificar columna.
             else if (e.ColumnIndex == 2)
             {
                 new ModificacionRol(this.Datos.Rows[e.RowIndex].Cells[0].Value.ToString()).ShowDialog();
-               }
+                Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
+
+            }
+
         }
 
         private void Buscar_Click(object sender, EventArgs e)

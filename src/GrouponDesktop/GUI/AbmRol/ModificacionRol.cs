@@ -38,7 +38,7 @@ namespace GrouponDesktop.GUI.AbmRol
 
             respuesta = manager.executeQuery("SELECT id_estado, nombre_estado, "+
                 "(SELECT 1 FROM GESTION_DE_PATOS.Roles roles WHERE roles.estado = e.id_estado AND " +
-                " roles.nombre = '" + this.nombre + "') FROM GESTION_DE_PATOS.EstadosUsuarios e");
+                " roles.nombre = '" + this.nombre + "') FROM GESTION_DE_PATOS.Estados e");
             foreach (DataRow r in respuesta.result.Rows)
             {
                 this.Estado.Items.Add(r[0]+": "+ r[1]);
@@ -82,6 +82,7 @@ namespace GrouponDesktop.GUI.AbmRol
                 manager.executeQuery(query);
             }
             MessageBox.Show("Rol actualizado");
+          
         }
     }
 }
