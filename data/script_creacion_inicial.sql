@@ -392,6 +392,7 @@ BEGIN
 	1: cliente origen = cliente destino
 	2: cliente destino no habilitado
 	3: cliente destino no existe
+	4: cliente origen no tiene saldo suficiente
 */	
 
 	if not exists( select * from GESTION_DE_PATOS.Clientes where username = @clienteDestino)
@@ -401,6 +402,11 @@ BEGIN
 	end
 	IF(@clienteOrigen<>@clienteDestino)
 		BEGIN
+			IF(select saldo from GESTION_DE_PATOS.Clientes where username = @clienteOrigen) < @monto
+			begin
+				set @ret = 4
+				return
+			end
 			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.idEstado('Habilitado')
 			BEGIN
 				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
@@ -431,12 +437,20 @@ BEGIN
 	1: monto < $15
 	2: tarjeta incorrecta
 	3: cliente incorrecto
+	4: cliente no habilitado para la carga
 */
 	if not exists(select * from GESTION_DE_PATOS.Clientes where username = @username)
 	begin
 		set @ret = 3
 		return
 	end
+	
+	if(select GESTION_DE_PATOS.NombreEstado(estado) from GESTION_DE_PATOS.Usuarios where username = @username) <> 'Habilitado' 
+	begin
+		set @ret = 4
+		return
+	end
+	
 	IF (@monto>15)
 	BEGIN --ver si me tengo que fijar que exista la tarjeta o agregarla
 		declare @tipo int
@@ -549,6 +563,77 @@ BEGIN
 	set @ret = 0
 END
 GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarRolCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @ciudad varchar(50), @cp int, @ret int output) 
+/*
+	0: ok
+	2: hay clientes gemelos
+	
+*/
+AS
+BEGIN
+		
+		if exists(select * from GESTION_DE_PATOS.Clientes where username = @user)
+		begin
+		declare @ret2 int
+		exec GESTION_DE_PATOS.ModificarCliente @user, @nombre, @apellido, @mail, @tel, @fecha, @dni, @direccion, @cp, @ciudad, 'Habilitado', @ret2
+		set @ret = 0
+		return
+		end
+		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
+				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
+		BEGIN
+			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
+			set @ret = 0
+			return
+		END
+		ELSE
+		BEGIN
+			set @ret = 2
+			return
+		END
+	
+	END	
+		
+
+GO
+
+CREATE PROCEDURE GESTION_DE_PATOS.CambiarRolProveedor(@user varchar(30),@cuit nvarchar(20),@razon_social varchar(30),@mail varchar(30),
+@telefono bigint,@direccion varchar(100), @codigo_postal int, @ciudad varchar(30), @rubro varchar(30), @nombre_contacto varchar(30), @ret int output) 
+AS
+BEGIN
+/*
+	0: todo bien
+	2: datos duplicados
+*/
+		if exists (select * FROM GESTION_DE_PATOS.Proveedores where username = @user)
+		begin
+			DECLARE @ret2 int
+			exec GESTION_DE_PATOS.ModificarProveedor @user, @cuit, @razon_social, @mail, @telefono, @direccion,@codigo_postal, @ciudad, @rubro, @nombre_contacto, 'Habilitado', @ret2
+			set @ret = 0
+			return
+		end
+		
+		IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE razon_social = @razon_social OR telefono = @telefono
+								OR mail = @mail OR cuit = @cuit) AND NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes 
+								WHERE telefono = @telefono OR mail = @mail)
+		BEGIN
+			INSERT INTO GESTION_DE_PATOS.Proveedores VALUES(@user,@cuit,@razon_social,@mail,@telefono,@direccion,@codigo_postal,GESTION_DE_PATOS.idCiudad(@ciudad),GESTION_DE_PATOS.idRubro(@rubro),@nombre_contacto)
+			set @ret = 0
+			return
+		END
+		ELSE
+		BEGIN
+			set @ret = 2
+			return
+		END
+			
+	END
+
+
+GO
+
 
 CREATE PROCEDURE GESTION_DE_PATOS.EliminarFuncionalidadesDeRol(@nombre_rol varchar(30))
 AS
@@ -852,7 +937,7 @@ BEGIN
 	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
 	BEGIN
 	
-		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
+		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel or mail = @mail)
 				 and not exists (select * from GESTION_DE_PATOS.Proveedores where telefono = @tel or mail = @mail)
 		BEGIN
 			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstado('Habilitado') ,0)
@@ -890,7 +975,7 @@ AS
 BEGIN
 	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
-		IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE (dni = @dni OR telefono = @tel) AND @user <> username)
+		IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE (dni = @dni OR telefono = @tel or mail = @mail) AND @user <> username)
 				 AND NOT EXISTS (SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE (telefono = @tel OR mail = @mail) AND @user <> username) )
 		BEGIN		 
 			UPDATE GESTION_DE_PATOS.Clientes SET nombre = @nombre, 
@@ -902,6 +987,7 @@ BEGIN
 												 direccion = @direccion,
 												 codigo_postal = @codigo_postal,											 
 												 ciudad = GESTION_DE_PATOS.idCiudad(@ciudad)
+												 
 											 WHERE username = @user
 											 
 			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
@@ -1287,6 +1373,7 @@ BEGIN
 		insert into GESTION_DE_PATOS.Usuarios values('admin',GESTION_DE_PATOS.SHA256('w23e'),'Administrador General',1,0)
 		insert into GESTION_DE_PATOS.Administradores values('admin', 'Eurulio','Korsovich')
 		
+		
 		--Funcionalidades
 
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Rol')
@@ -1487,6 +1574,11 @@ ALTER TABLE GESTION_DE_PATOS.Administradores
 ADD FOREIGN KEY (username)
 REFERENCES GESTION_DE_PATOS.Usuarios(username)
 
+
+insert into GESTION_DE_PATOS.Clientes values('admin', 'Eurulio','Korsovich',null,null,null,null,null,null,null,0)
+insert into GESTION_DE_PATOS.Proveedores values('admin', '00-00000000-00',null,null,null,null,null,null,null,null)
+
+		
 commit tran
 
 /*
