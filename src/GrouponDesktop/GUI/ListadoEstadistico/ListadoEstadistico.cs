@@ -19,7 +19,8 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
 
         private void ListadoEstadistico_Load(object sender, EventArgs e)
         {
-            for (int a = 1900; a <= 2012; a++) {
+            for (int a = 2000; a <= DateTime.Now.Year; a++)
+            {
                 this.Anio.Items.Add(a.ToString());
             }
         }
@@ -57,13 +58,13 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
                 case "Top 5 Devoluciones" :
 
                     
-                    r = dbManager.executeQuery("select COUNT (*) from Cupones c where c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "'");
+                    /*r = dbManager.executeQuery("select COUNT (*) from Cupones c where c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "'");
                     if (Int32.Parse(r.result.Rows[0][0].ToString()) == 0) {
                         MessageBox.Show("No hay cupones comprados el semestre solicitado");
                         return;
-                    }
+                    }*/
 
-                    r = dbManager.executeQuery("select top(5) gc2.id_grupo, (100 * (select count (*) from Devoluciones d join Cupones c on d.id_cupon = c.id_cupon join GruposCupon gc on gc.id_grupo = c.id_grupo and gc.id_grupo = gc2.id_grupo  and c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "') / (select COUNT (*) from Cupones c where id_grupo =gc2.id_grupo and c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "')) porcentaje from GruposCupon gc2 group by gc2.id_grupo having (select COUNT (*) from Cupones c where id_grupo =gc2.id_grupo and c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "') > 0 order by porcentaje desc");
+                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_devoluciones("+fechaDesde.ToString()+ ", "+ fechaHasta.ToString()+")");
                     Listado listado = new Listado();
                     listado.SetDataGridView(r.result);
                     listado.Show();
