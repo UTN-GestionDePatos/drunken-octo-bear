@@ -105,8 +105,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             DNI.Text = "";
             Mail.Text = "";
 
-            String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
-            SQLResponse r = dbManager.executeQuery(query);
+            SQLResponse r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.EstadosUsuarios e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
             this.SetDataGridView(r.result);
         }
 

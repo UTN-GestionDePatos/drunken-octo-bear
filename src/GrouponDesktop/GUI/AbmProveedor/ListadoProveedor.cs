@@ -83,7 +83,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.viewproveedores");
+            r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.EstadosUsuarios e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
             this.SetDataGridView(r.result);
 
         }
