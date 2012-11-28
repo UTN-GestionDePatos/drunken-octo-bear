@@ -38,15 +38,19 @@ namespace GrouponDesktop.GUI
             }
             this.funcionalidades.SelectedIndex = 0;
 
-            if(!sesion.rol.Equals("Administrador General")){
+            if (!sesion.rol.Equals("Administrador General"))
+            {
                 //esto es para que cualquier rol que no sea administrador pueda cambiar la 
                 //pass y darse de baja. Para los administradores, esta funcionalidad se realiza
                 //en los ABM correspondientes
 
                 cambiarPass.Visible = true;
                 DarDeBaja.Visible = true;
-                
-           }
+
+            }
+            else {
+                this.funcionalidades.Items.Add("ABM Administrador");
+            }
 
 
         }
@@ -91,7 +95,9 @@ namespace GrouponDesktop.GUI
                     break;
                 case "Listado estadistico": new ListadoEstadistico.ListadoEstadistico().Show();
                     break;
-                
+
+                case "ABM Administrador": new AbmAdministrador.ABMAdministrador().Show();
+                    break;
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace GrouponDesktop.GUI.AbmAdministrador
 {
-    partial class Form1
+    partial class AltaAdministrador
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,11 @@
             this.datosClientes = new System.Windows.Forms.GroupBox();
             this.pass = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.user = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.apellido = new System.Windows.Forms.TextBox();
             this.nombreA = new System.Windows.Forms.TextBox();
+            this.user = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
@@ -76,31 +76,6 @@
             this.label12.TabIndex = 46;
             this.label12.Text = "Password";
             // 
-            // user
-            // 
-            this.user.Location = new System.Drawing.Point(122, 23);
-            this.user.Name = "user";
-            this.user.Size = new System.Drawing.Size(209, 20);
-            this.user.TabIndex = 39;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Username";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 120);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "Apellido";
-            // 
             // apellido
             // 
             this.apellido.Location = new System.Drawing.Point(122, 113);
@@ -114,6 +89,31 @@
             this.nombreA.Name = "nombreA";
             this.nombreA.Size = new System.Drawing.Size(209, 20);
             this.nombreA.TabIndex = 40;
+            // 
+            // user
+            // 
+            this.user.Location = new System.Drawing.Point(122, 23);
+            this.user.Name = "user";
+            this.user.Size = new System.Drawing.Size(209, 20);
+            this.user.TabIndex = 39;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(2, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Apellido";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Username";
             // 
             // Nombre
             // 
@@ -144,7 +144,7 @@
             this.Limpiar.UseVisualStyleBackColor = true;
             this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
-            // Form1
+            // AltaAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,7 +152,7 @@
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.datosClientes);
-            this.Name = "Form1";
+            this.Name = "AltaAdministrador";
             this.Text = "Alta Administrador";
             this.datosClientes.ResumeLayout(false);
             this.datosClientes.PerformLayout();

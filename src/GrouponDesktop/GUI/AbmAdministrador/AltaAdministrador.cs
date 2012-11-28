@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace GrouponDesktop.GUI.AbmAdministrador
 {
-    public partial class Form1 : Form
+    public partial class AltaAdministrador : Form
     {
-        public Form1()
+        public AltaAdministrador()
         {
             InitializeComponent();
         }
@@ -35,18 +35,21 @@ namespace GrouponDesktop.GUI.AbmAdministrador
 
             }
 
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarAdministrador");
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaAdministrador");
             ps.AddParameter("@user", user.Text);
-          
+            ps.AddParameter("@nombre", nombreA.Text);
+            ps.AddParameter("@apellido", apellido.Text);
+            ps.AddParameter("@pass", pass.Text);
+
             switch (ps.execSP().Value.ToString()) { 
             
                 case "0":
-                    MessageBox.Show("Baja realizada con éxito");
+                    MessageBox.Show("Alta realizada con éxito");
                     return;
                 case "1":
-                    MessageBox.Show("El username no existe");
+                    MessageBox.Show("El username ya existe");
                     return;
-            
+             
             }
 
         }

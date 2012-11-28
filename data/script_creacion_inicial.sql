@@ -823,38 +823,19 @@ BEGIN
 	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
 	BEGIN
 	
-		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
-		insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido)
+		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Administrador', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
+		insert into GESTION_DE_PATOS.Administradores values (@user,@nombre,@apellido)
 		set @ret = 0
 		return
 	END	
-	ELSE	
-	BEGIN
-		set @ret = 1
-		return
-	END
-		
+	
+	set @ret = 1
+	return
+	
 END
 
 GO
 
---ELIMINAR PROVEEDOR
-
-CREATE PROCEDURE GESTION_DE_PATOS.EliminarAdministrador(@user varchar(30), @ret int output)
-AS
-BEGIN
-	if not exists (select * from GESTION_DE_PATOS.Administradores where username = @user)
-	begin
-		set @ret = 1
-		return
-	end
-	
-	update GESTION_DE_PATOS.Usuarios set estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado') where username = @user
-	set @ret = 0
-	return
-	
-
-END
 
 --CREAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.AltaCliente(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
@@ -943,7 +924,7 @@ END
 
 GO
 --ELIMINAR CLIENTE
-CREATE PROCEDURE GESTION_DE_PATOS.EliminarCliente(@user varchar(30), @ret int output)
+CREATE PROCEDURE GESTION_DE_PATOS.EliminarUsuario(@user varchar(30), @ret int output)
 AS
 BEGIN
 	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
@@ -953,7 +934,7 @@ BEGIN
 		begin
 			set @ret = 2
 			return
-		
+			-- el usuario ya esta eliminado
 		end
 		
 		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
@@ -961,12 +942,12 @@ BEGIN
 		
 		set @ret = 0
 		return
-		--Cliente eliminado								 
+		--Usuario eliminado								 
 	END
 	
 	set @ret = 1
 	return
-	--El cliente no existe
+	--El usuario no existe
 END
 
 GO
@@ -1058,28 +1039,6 @@ END
 
 GO
 
---ELIMINAR PROVEEDOR
-
-CREATE PROCEDURE GESTION_DE_PATOS.EliminarProveedor(@user varchar(30), @ret int output)
-AS
-BEGIN
-	IF EXISTS(SELECT * FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
-	BEGIN
-	
-		UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado')
-										 WHERE username = @user
-		
-		set @ret = 0
-		--Proveedor eliminado								 
-	END
-	ELSE
-	BEGIN
-		set @ret = 1
-	END
-	--El proveedor no existe
-END
-
-GO
 
 CREATE PROCEDURE GESTION_DE_PATOS.FacturarProveedor (@proveedor varchar(30), @fecha_desde datetime, @fecha_hasta datetime, @monto float,@ret int output)
 AS
@@ -1271,7 +1230,7 @@ BEGIN
 		insert into GESTION_DE_PATOS.Tipos_pago (descripcion) values ('Crédito')
 		insert into GESTION_DE_PATOS.Tipos_pago (descripcion) values ('Débito')
 
-		--Administrador (el general y otro más)
+		--Administrador 
 
 		insert into GESTION_DE_PATOS.Usuarios values('admin',GESTION_DE_PATOS.SHA256('w23e'),'Administrador General',1,0)
 		insert into GESTION_DE_PATOS.Administradores values('admin', 'Eurulio','Korsovich')

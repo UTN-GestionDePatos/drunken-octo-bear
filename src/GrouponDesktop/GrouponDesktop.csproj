@@ -150,6 +150,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AbmAdministrador\ABMAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmAdministrador\ABMAdministrador.Designer.cs">
+      <DependentUpon>ABMAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmAdministrador\AltaAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmAdministrador\Form1.Designer.cs">
+      <DependentUpon>AltaAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmAdministrador\BajaAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmAdministrador\BajaAdministrador.Designer.cs">
+      <DependentUpon>BajaAdministrador.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AbmCliente\ABMCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +339,15 @@
     </Compile>
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\AbmAdministrador\ABMAdministrador.resx">
+      <DependentUpon>ABMAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmAdministrador\AltaAdministrador.resx">
+      <DependentUpon>AltaAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmAdministrador\BajaAdministrador.resx">
+      <DependentUpon>BajaAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmCliente\ABMCliente.resx">
       <DependentUpon>ABMCliente.cs</DependentUpon>
     </EmbeddedResource>

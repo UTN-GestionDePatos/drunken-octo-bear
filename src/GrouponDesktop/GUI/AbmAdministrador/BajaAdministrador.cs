@@ -24,7 +24,22 @@ namespace GrouponDesktop.GUI.AbmAdministrador
                 return;
             }
 
-            ParamSet ps 
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarAdministrador");
+            ps.AddParameter("@user", user.Text);
+
+            switch (ps.execSP().Value.ToString()) { 
+            
+                case "0":
+                    MessageBox.Show("Baja realizada con éxito");
+                    return;
+                case "1":
+                    MessageBox.Show("El usuario no existe");
+                    return;
+                case "2":
+                    MessageBox.Show("El usuario ya se encuentra dado de baja");
+                    return;
+            
+            }
         }
     }
 }
