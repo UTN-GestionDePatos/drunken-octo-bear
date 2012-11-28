@@ -81,6 +81,12 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
+            if (UsernameCliente.Text == "" || NombreCliente.Text == "" || ApellidoCliente.Text == "" || TelefonoCliente.Text == "" || DNICliente.Text == "")
+            {
+                MessageBox.Show("Hay campos obligatorios que están vacíos", "Modificar cliente");
+                return;
+            }
+
             try
             {
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarCliente");
@@ -89,11 +95,11 @@ namespace GrouponDesktop.GUI.AbmCliente
                 ps.AddParameter("@nombre", NombreCliente.Text);
                 ps.AddParameter("@apellido", ApellidoCliente.Text);
                 ps.AddParameter("@mail", MailCliente.Text);
-                ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
+                ps.AddParameter("@tel", TelefonoCliente.Text);
                 ps.AddParameter("@fecha", DateTime.Parse(FchNacimientoCliente.Text));
-                ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
+                ps.AddParameter("@dni", DNICliente.Text);
                 ps.AddParameter("@direccion", DireccionC.Text);
-                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostal.Text));
+                ps.AddParameter("@codigo_postal", CodigoPostal.Text);
                 ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
                 ps.AddParameter("@estado", Estado.SelectedItem.ToString());
 
@@ -115,6 +121,7 @@ namespace GrouponDesktop.GUI.AbmCliente
                         }
 
                         MessageBox.Show("Registro modificado con éxito", "Modificar cliente");
+                        this.Hide();
                         break;
                     case "1": MessageBox.Show("El cliente no existe", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;

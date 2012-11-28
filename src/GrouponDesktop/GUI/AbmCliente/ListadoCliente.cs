@@ -28,12 +28,9 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'gD2C2012DataSet6.viewclientes' Puede moverla o quitarla según sea necesario.
-            //this.viewclientesTableAdapter.Fill(this.gD2C2012DataSet6.viewclientes);
-
             SQLResponse r;
             
-            r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.viewclientes");
+            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.EstadosUsuarios e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
             this.SetDataGridView(r.result);
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
