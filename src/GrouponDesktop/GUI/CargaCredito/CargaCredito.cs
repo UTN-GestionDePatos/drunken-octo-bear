@@ -78,6 +78,8 @@ namespace GrouponDesktop.GUI.CargaCredito
                     break;
                 case "3": MessageBox.Show("Cliente incorrecto");
                     break;
+                case "4": MessageBox.Show("El cliente no está habilitado para la carga de crédito");
+                    break;
             }
 
         }

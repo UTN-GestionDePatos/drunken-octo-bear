@@ -8,14 +8,26 @@ using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.Core;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace GrouponDesktop.AbmCliente
 {
     public partial class AltaProveedor : Form
     {
+        
         public AltaProveedor()
         {
             InitializeComponent();
+        }
+
+        public AltaProveedor(String user)
+        {
+            InitializeComponent();
+            UsernameP.Text = user;
+            PassP.Text = "sumbudrule";
+            PassP.Enabled = false;
+            UsernameP.Enabled = false;
+            
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -42,13 +54,14 @@ namespace GrouponDesktop.AbmCliente
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (UsernameP.Text == "" || PassP.Text == "" ||
+
+            if ((UsernameP.Text == "" && UsernameP.Enabled == true) || PassP.Text == "" ||
                        RazonSocial.Text == "" || CUIT.Text == "" ||
                        MailP.Text == "" || TelefonoP.Text == "" ||
                        Direccion.Text == "" || NombreContacto.Text == "" ||
-                       ciudadP.SelectedItem.ToString() == "" ||
+                       ciudadP.SelectedItem == null ||
                        CodigoPostalP.Text == "" ||
-                       RubroP.SelectedItem.ToString() == "")
+                       RubroP.SelectedItem  == null)
             {
 
                 MessageBox.Show("Faltan datos");
@@ -57,19 +70,29 @@ namespace GrouponDesktop.AbmCliente
 
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaProveedor");
             ps.AddParameter("@user", UsernameP.Text);
-            ps.AddParameter("@pass", PassP.Text);
-            ps.AddParameter("@cuit", CUIT.Text);
-            ps.AddParameter("@razon_social", RazonSocial.Text);
-            ps.AddParameter("@mail", MailP.Text);
-            ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
-            ps.AddParameter("@direccion", Direccion.Text);
-            ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
-            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
-            ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
-            ps.AddParameter("@nombre_contacto", NombreContacto.Text);
+
+            if (UsernameP.Enabled == true)
+            {
+                ps.AddParameter("@pass", PassP.Text);
+            }
+            else
+            {
+                ps.NombreSP("GESTION_DE_PATOS.CambiarRolProveedor");
+            }
 
             try
             {
+                ps.AddParameter("@cuit", CUIT.Text);
+                ps.AddParameter("@razon_social", RazonSocial.Text);
+                ps.AddParameter("@mail", MailP.Text);
+                ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
+                ps.AddParameter("@direccion", Direccion.Text);
+                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
+                ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
+                ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
+                ps.AddParameter("@nombre_contacto", NombreContacto.Text);
+
+
                 SqlParameter ret = ps.execSP();
                 switch (ret.Value.ToString())
                 {
@@ -78,11 +101,11 @@ namespace GrouponDesktop.AbmCliente
                         return;
 
                     case "2":
-                        MessageBox.Show("El usuario ya existe");
+                        MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
                         return;
 
                     case "1":
-                        MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
+                        MessageBox.Show("El usuario ya existe");
                         return;
 
                 }
@@ -90,16 +113,15 @@ namespace GrouponDesktop.AbmCliente
                 return;
 
             }
-            catch (SqlException)
+            catch (FormatException)
             {
                 MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
             }
 
             return;
-
-
-
         }
+
+ 
 
         private void AltaProveedor_Load(object sender, EventArgs e)
         {

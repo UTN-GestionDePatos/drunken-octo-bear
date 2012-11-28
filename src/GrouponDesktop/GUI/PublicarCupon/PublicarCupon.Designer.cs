@@ -39,7 +39,7 @@
             // fecha
             // 
             this.fecha.AutoSize = true;
-            this.fecha.Location = new System.Drawing.Point(9, 9);
+            this.fecha.Location = new System.Drawing.Point(39, 9);
             this.fecha.Name = "fecha";
             this.fecha.Size = new System.Drawing.Size(186, 13);
             this.fecha.TabIndex = 3;
@@ -48,7 +48,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 58);
+            this.label1.Location = new System.Drawing.Point(39, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 4;
@@ -58,7 +58,7 @@
             // 
             this.Proveedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Proveedores.FormattingEnabled = true;
-            this.Proveedores.Location = new System.Drawing.Point(108, 55);
+            this.Proveedores.Location = new System.Drawing.Point(135, 53);
             this.Proveedores.Name = "Proveedores";
             this.Proveedores.Size = new System.Drawing.Size(272, 21);
             this.Proveedores.TabIndex = 5;
@@ -76,9 +76,9 @@
             // cupones
             // 
             this.cupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cupones.Location = new System.Drawing.Point(12, 82);
+            this.cupones.Location = new System.Drawing.Point(42, 150);
             this.cupones.Name = "cupones";
-            this.cupones.Size = new System.Drawing.Size(674, 218);
+            this.cupones.Size = new System.Drawing.Size(644, 66);
             this.cupones.TabIndex = 7;
             this.cupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cupones_CellClick);
             // 

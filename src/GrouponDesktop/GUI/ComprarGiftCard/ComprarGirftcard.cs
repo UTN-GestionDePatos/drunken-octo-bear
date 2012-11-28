@@ -46,6 +46,8 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                     break;
                 case "3": MessageBox.Show("Cliente destino incorrecto");
                     break;
+                case "4": MessageBox.Show("Usted no tiene saldo suficiente para comprar el giftcard requerido");
+                    break;
             }
         }
 

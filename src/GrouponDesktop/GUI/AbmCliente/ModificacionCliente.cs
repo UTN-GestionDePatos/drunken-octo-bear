@@ -63,6 +63,8 @@ namespace GrouponDesktop.GUI.AbmCliente
             foreach (DataRow r in response.result.Rows) {
                 ListaZonas.SetItemChecked(ListaZonas.Items.IndexOf(r[0]), true);
             }
+
+           
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -148,6 +150,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             CambiarPassDesdeAdmin new_form = new CambiarPassDesdeAdmin(UsernameCliente.Text);
             new_form.Show();
 
+        }
+
+        private void CambiarRol_Click(object sender, EventArgs e)
+        {
+            new CambiarRol(UsernameCliente.Text).Show();
         }
 
 

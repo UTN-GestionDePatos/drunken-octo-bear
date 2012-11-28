@@ -155,21 +155,22 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                     }
 
 
-                    ps.NombreSP("GESTION_DE_PATOS.RegistrarProveedor");
-                    ps.AddParameter("@user", UsernameP.Text);
-                    ps.AddParameter("@pass", PassP.Text);
-                    ps.AddParameter("@rs", RazonSocial.Text);
-                    ps.AddParameter("@cuit", CUIT.Text);
-                    ps.AddParameter("@mail", MailP.Text);
-                    ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
-                    ps.AddParameter("@direccion", Direccion.Text);
-                    ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
-                    ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
-                    ps.AddParameter("@contacto", NombreContacto.Text);
-                    ps.AddParameter("@cp", Int64.Parse(CodigoPostalP.Text));
-
+                    
 
                     try{
+                        ps.NombreSP("GESTION_DE_PATOS.RegistrarProveedor");
+                        ps.AddParameter("@user", UsernameP.Text);
+                        ps.AddParameter("@pass", PassP.Text);
+                        ps.AddParameter("@rs", RazonSocial.Text);
+                        ps.AddParameter("@cuit", CUIT.Text);
+                        ps.AddParameter("@mail", MailP.Text);
+                        ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
+                        ps.AddParameter("@direccion", Direccion.Text);
+                        ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
+                        ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
+                        ps.AddParameter("@contacto", NombreContacto.Text);
+                        ps.AddParameter("@cp", Int64.Parse(CodigoPostalP.Text));
+
                         ret = ps.execSP();
                         switch (ret.Value.ToString())
                         {
@@ -190,7 +191,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         return;
     
                 }
-                 catch(SqlException){
+                 catch(FormatException){
                     MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
                  }
 

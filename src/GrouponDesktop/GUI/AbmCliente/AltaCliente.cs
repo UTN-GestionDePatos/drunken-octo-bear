@@ -17,6 +17,15 @@ namespace GrouponDesktop.AbmCliente
         {
             InitializeComponent();
         }
+        public AltaCliente(String user)
+        {
+            InitializeComponent();
+            UsernameCliente.Text = user;
+            UsernameCliente.Enabled = false;
+            PasswordCliente.Text = "sumbudrule";
+            PasswordCliente.Enabled = false;
+
+        }
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
@@ -38,7 +47,7 @@ namespace GrouponDesktop.AbmCliente
         {
             try
             {
-                if (UsernameCliente.Text == "" || PasswordCliente.Text == "" ||
+                if ((UsernameCliente.Text == "" && UsernameCliente.Enabled == true) || PasswordCliente.Text == "" ||
                        NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
                        MailCliente.Text == "" || TelefonoCliente.Text == "" ||
                        FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
@@ -53,7 +62,14 @@ namespace GrouponDesktop.AbmCliente
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
 
                 ps.AddParameter("@user", UsernameCliente.Text);
-                ps.AddParameter("@pass", PasswordCliente.Text);
+                if (UsernameCliente.Enabled == true)
+                {
+                    ps.AddParameter("@pass", PasswordCliente.Text);
+                }
+                else {
+                    ps.NombreSP("GESTION_DE_PATOS.CambiarRolCliente");
+                }
+
                 ps.AddParameter("@nombre", NombreCliente.Text);
                 ps.AddParameter("@apellido", ApellidoCliente.Text);
                 ps.AddParameter("@dni", Int64.Parse(DNICliente.Text));
@@ -61,7 +77,7 @@ namespace GrouponDesktop.AbmCliente
                 ps.AddParameter("@mail", MailCliente.Text);
                 ps.AddParameter("@tel", Int64.Parse(TelefonoCliente.Text));
                 ps.AddParameter("@direccion", DireccionC.Text);
-                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostal.Text));
+                ps.AddParameter("@cp", Int64.Parse(CodigoPostal.Text));
                 ps.AddParameter("@ciudad", ciudadCliente.SelectedItem.ToString());
                 SqlParameter retval = ps.execSP();
 
@@ -77,6 +93,7 @@ namespace GrouponDesktop.AbmCliente
                         }
 
                         MessageBox.Show("Registro realizado con éxito","Alta cliente");
+
                         return;
 
                     case "1": MessageBox.Show("El cliente ya existe", "Alta cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -85,7 +102,7 @@ namespace GrouponDesktop.AbmCliente
                         break;
                 }
             }
-            catch (SqlException) {
+            catch (FormatException) {
                 MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento");
                 return;
             }

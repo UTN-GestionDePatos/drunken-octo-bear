@@ -58,6 +58,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
             Estado.Text = response.result.Rows[0][0].ToString();
+
+            response = dbManager.executeQuery("SELECT nombre FROM GESTION_DE_PATOS.Roles");
+
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -74,31 +77,41 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarProveedor");
 
-            ps.AddParameter("@user", UsernameP.Text);
-            ps.AddParameter("@cuit", CUIT.Text);
-            ps.AddParameter("@razon_social", RazonSocial.Text);
-            ps.AddParameter("@mail", MailP.Text);
-            ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
-            ps.AddParameter("@direccion", Direccion.Text);
-            ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
-            ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
-            ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
-            ps.AddParameter("@nombre_contacto", NombreContacto.Text);
-            ps.AddParameter("@estado", Estado.Text);
-
-            SqlParameter retval = ps.execSP();
-
-            switch (retval.Value.ToString())
+            try
             {
-                case "0":
-                    MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK);
-                    break;
-                case "1": MessageBox.Show("El proveedor no existe", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-                case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ModificarProveedor");
+
+                ps.AddParameter("@user", UsernameP.Text);
+                ps.AddParameter("@cuit", CUIT.Text);
+                ps.AddParameter("@razon_social", RazonSocial.Text);
+                ps.AddParameter("@mail", MailP.Text);
+                ps.AddParameter("@telefono", Int64.Parse(TelefonoP.Text));
+                ps.AddParameter("@direccion", Direccion.Text);
+                ps.AddParameter("@codigo_postal", Int64.Parse(CodigoPostalP.Text));
+                ps.AddParameter("@ciudad", ciudadP.SelectedItem.ToString());
+                ps.AddParameter("@rubro", RubroP.SelectedItem.ToString());
+                ps.AddParameter("@nombre_contacto", NombreContacto.Text);
+                ps.AddParameter("@estado", Estado.Text);
+
+                SqlParameter retval = ps.execSP();
+
+                switch (retval.Value.ToString())
+                {
+                    case "0":
+                        MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK);
+                        this.Hide();
+                        break;
+                    case "1": MessageBox.Show("El proveedor no existe", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case "2": MessageBox.Show("Los datos ingresados corresponden a un usuario ya registrado", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                }
+
+
+            }
+            catch (FormatException) {
+                MessageBox.Show("Ingrese un valor numérico para código postal y teléfono ");
             }
         }
 
@@ -130,6 +143,11 @@ namespace GrouponDesktop.GUI.AbmProveedor
             this.TelefonoP.Text = "";
             this.CodigoPostalP.Text = "";
             this.CUIT.Text = "";
+        }
+
+        private void CambiarRol_Click(object sender, EventArgs e)
+        {
+            new CambiarRol(UsernameP.Text).Show();
         }
 
 

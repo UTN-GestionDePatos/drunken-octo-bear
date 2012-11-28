@@ -30,7 +30,7 @@ namespace GrouponDesktop.GUI.AbmCliente
         {
             SQLResponse r;
             
-            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
+            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
             this.SetDataGridView(r.result);
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
@@ -68,12 +68,17 @@ namespace GrouponDesktop.GUI.AbmCliente
 
                 ModificacionCliente mc = new ModificacionCliente(cliente);
                 mc.Show();
+
+                SQLResponse r2 = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
+                this.SetDataGridView(r2.result);
+
+                
             }
             else if (columna_seleccionada == "eliminar")
             {
                 if (MessageBox.Show("¿Esta seguro que quiere eliminar este cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarCliente");
+                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarUsuario");
                     int columna = dataGridClientes.Columns["usernameDataGridViewTextBoxColumn"].Index;
                     int fila = dataGridClientes.CurrentCell.RowIndex;
 
@@ -85,6 +90,8 @@ namespace GrouponDesktop.GUI.AbmCliente
                     switch (retval.Value.ToString())
                     {
                         case "0": MessageBox.Show("Registro eliminado");
+                            SQLResponse r2 = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
+                            this.SetDataGridView(r2.result);
                             break;
                         case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar cliente");
                             break;
@@ -93,6 +100,9 @@ namespace GrouponDesktop.GUI.AbmCliente
 
 
                     }
+
+                   
+
                 }
             }
             

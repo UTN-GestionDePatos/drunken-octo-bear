@@ -45,7 +45,7 @@
             // 
             // AltaRol
             // 
-            this.AltaRol.Location = new System.Drawing.Point(12, 186);
+            this.AltaRol.Location = new System.Drawing.Point(306, 186);
             this.AltaRol.Name = "AltaRol";
             this.AltaRol.Size = new System.Drawing.Size(69, 24);
             this.AltaRol.TabIndex = 2;

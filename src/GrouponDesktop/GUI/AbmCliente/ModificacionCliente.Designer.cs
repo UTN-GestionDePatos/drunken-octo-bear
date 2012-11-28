@@ -58,13 +58,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CambiarRol = new System.Windows.Forms.Button();
             this.datosClientes.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(624, 449);
+            this.Guardar.Location = new System.Drawing.Point(624, 472);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
             this.Guardar.TabIndex = 7;
@@ -74,7 +77,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(17, 447);
+            this.Limpiar.Location = new System.Drawing.Point(17, 472);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 6;
@@ -342,11 +345,32 @@
             this.label13.TabIndex = 21;
             this.label13.Text = "Estado";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.CambiarRol);
+            this.groupBox1.Location = new System.Drawing.Point(367, 392);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(350, 45);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rol";
+            // 
+            // CambiarRol
+            // 
+            this.CambiarRol.Location = new System.Drawing.Point(10, 16);
+            this.CambiarRol.Name = "CambiarRol";
+            this.CambiarRol.Size = new System.Drawing.Size(322, 23);
+            this.CambiarRol.TabIndex = 0;
+            this.CambiarRol.Text = "Cambiar Rol";
+            this.CambiarRol.UseVisualStyleBackColor = true;
+            this.CambiarRol.Click += new System.EventHandler(this.CambiarRol_Click);
+            // 
             // ModificacionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 484);
+            this.ClientSize = new System.Drawing.Size(719, 507);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.zonas);
             this.Controls.Add(this.ListaZonas);
@@ -361,6 +385,7 @@
             this.datosClientes.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,5 +423,7 @@
         private System.Windows.Forms.ComboBox Estado;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button CambiarPassword;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button CambiarRol;
     }
 }

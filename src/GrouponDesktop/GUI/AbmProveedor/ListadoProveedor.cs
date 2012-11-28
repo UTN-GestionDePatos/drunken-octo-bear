@@ -46,12 +46,14 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
                 ModificacionProveedor mc = new ModificacionProveedor(proveedor);
                 mc.Show();
+                SQLResponse  r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
+                this.SetDataGridView(r.result);
             }
             else if (columna_seleccionada == "eliminar")
             {
                 if (MessageBox.Show("¿Esta seguro que quiere eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarProveedor");
+                    ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarUsuario");
                     int columna = dataGridProveedores.Columns["usernameDataGridViewTextBoxColumn"].Index;
                     int fila = dataGridProveedores.CurrentCell.RowIndex;
 
@@ -63,6 +65,8 @@ namespace GrouponDesktop.GUI.AbmProveedor
                     switch (retval.Value.ToString())
                     {
                         case "0": MessageBox.Show("Registro eliminado","Eliminar proveedor");
+                            SQLResponse r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
+                            this.SetDataGridView(r.result);
                             break;
                         case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar proveedor");
                             break;
@@ -92,7 +96,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
         {
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado'");
+            r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
             this.SetDataGridView(r.result);
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();

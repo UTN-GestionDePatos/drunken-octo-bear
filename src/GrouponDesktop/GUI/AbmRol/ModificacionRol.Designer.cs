@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Estado = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
             this.ListaFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.NombreRol = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Estado = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,24 @@
             this.groupBox1.Size = new System.Drawing.Size(356, 245);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Personales";
+            this.groupBox1.Text = "Datos";
+            // 
+            // Estado
+            // 
+            this.Estado.FormattingEnabled = true;
+            this.Estado.Location = new System.Drawing.Point(102, 178);
+            this.Estado.Name = "Estado";
+            this.Estado.Size = new System.Drawing.Size(233, 21);
+            this.Estado.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Estado";
             // 
             // Guardar
             // 
@@ -109,23 +126,6 @@
             this.Nombre.Size = new System.Drawing.Size(84, 13);
             this.Nombre.TabIndex = 9;
             this.Nombre.Text = "Funcionalidades";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 180);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Estado";
-            // 
-            // Estado
-            // 
-            this.Estado.FormattingEnabled = true;
-            this.Estado.Location = new System.Drawing.Point(102, 178);
-            this.Estado.Name = "Estado";
-            this.Estado.Size = new System.Drawing.Size(233, 21);
-            this.Estado.TabIndex = 20;
             // 
             // ModificacionRol
             // 
