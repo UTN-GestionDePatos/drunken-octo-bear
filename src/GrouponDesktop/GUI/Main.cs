@@ -38,7 +38,7 @@ namespace GrouponDesktop.GUI
             }
             this.funcionalidades.SelectedIndex = 0;
 
-            if(!sesion.rol.Equals("Administrador General") && !sesion.rol.Equals("Administrador")){
+            if(!sesion.rol.Equals("Administrador General")){
                 //esto es para que cualquier rol que no sea administrador pueda cambiar la 
                 //pass y darse de baja. Para los administradores, esta funcionalidad se realiza
                 //en los ABM correspondientes

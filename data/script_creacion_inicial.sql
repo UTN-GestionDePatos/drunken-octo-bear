@@ -37,8 +37,6 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		username varchar(30) primary key ,
 		nombre varchar(30),
 		apellido varchar(30),
-		mail varchar(30),
-		telefono bigint unique
 	)
 
 	CREATE TABLE Localidades(
@@ -814,19 +812,62 @@ BEGIN
 END
 
 GO
+--CREAR ADMINISTRADOR
+CREATE PROCEDURE GESTION_DE_PATOS.AltaAdministrador(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @ret int output) 
+/*
+	0: ok
+	1: el user ya existe
+*/
+AS
+BEGIN
+	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
+	BEGIN
+	
+		INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
+		insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido)
+		set @ret = 0
+		return
+	END	
+	ELSE	
+	BEGIN
+		set @ret = 1
+		return
+	END
+		
+END
+
+GO
+
+--ELIMINAR PROVEEDOR
+
+CREATE PROCEDURE GESTION_DE_PATOS.EliminarAdministrador(@user varchar(30), @ret int output)
+AS
+BEGIN
+	if not exists (select * from GESTION_DE_PATOS.Administradores where username = @user)
+	begin
+		set @ret = 1
+		return
+	end
+	
+	update GESTION_DE_PATOS.Usuarios set estado = GESTION_DE_PATOS.idEstadoUsuario('Eliminado') where username = @user
+	set @ret = 0
+	return
+	
+
+END
 
 --CREAR CLIENTE
 CREATE PROCEDURE GESTION_DE_PATOS.AltaCliente(@user varchar(30),@pass varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
 @tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @ciudad varchar(50), @cp int, @ret int output) 
 /*
 	0: ok
-	1: el cliente ya existe
+	1: el user ya existe
 	2: hay clientes gemelos
 	
 */
 AS
 BEGIN
-	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE username = @user ))
+	IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user ))
 	BEGIN
 	
 		If not exists(select * from GESTION_DE_PATOS.Clientes where dni = @dni or telefono = @tel)
@@ -835,16 +876,19 @@ BEGIN
 			INSERT INTO GESTION_DE_PATOS.Usuarios VALUES(@user,GESTION_DE_PATOS.SHA256(@pass),'Cliente', GESTION_DE_PATOS.idEstadoUsuario('Habilitado') ,0)
 			insert into GESTION_DE_PATOS.Clientes values (@user,@nombre,@apellido,@dni,@fecha,@mail,@tel,@direccion,@cp,GESTION_DE_PATOS.idCiudad(@ciudad),10)
 			set @ret = 0
+			return
 		END
 		ELSE
 		BEGIN
 			set @ret = 2
+			return
 		END
 	
 	END	
 	ELSE	
 	BEGIN
 		set @ret = 1
+		return
 	END
 		
 END
@@ -942,7 +986,7 @@ CREATE PROCEDURE GESTION_DE_PATOS.AltaProveedor(@user varchar(30),@pass varchar(
 @telefono bigint,@direccion varchar(100), @codigo_postal int, @ciudad varchar(30), @rubro varchar(30), @nombre_contacto varchar(30), @ret int output) 
 AS
 BEGIN
-	IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE username = @user)
+	IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
 	BEGIN
 		IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE razon_social = @razon_social OR telefono = @telefono
 								OR mail = @mail OR cuit = @cuit) AND NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes 
@@ -952,16 +996,19 @@ BEGIN
 			INSERT INTO GESTION_DE_PATOS.Proveedores VALUES(@user,@cuit,@razon_social,@mail,@telefono,@direccion,@codigo_postal,GESTION_DE_PATOS.idCiudad(@ciudad),GESTION_DE_PATOS.idRubro(@rubro),@nombre_contacto)
 			
 			set @ret = 0
+			return
 		END
 		ELSE
 		BEGIN
 			set @ret = 2
+			return
 		END
 			
 	END
 	ELSE
 	BEGIN
 		set @ret = 1
+		return
 	END
 
 END
@@ -1227,7 +1274,7 @@ BEGIN
 		--Administrador (el general y otro más)
 
 		insert into GESTION_DE_PATOS.Usuarios values('admin',GESTION_DE_PATOS.SHA256('w23e'),'Administrador General',1,0)
-		insert into GESTION_DE_PATOS.Administradores values('admin', 'Eurulio','Korsovich','e.korsovich@gmail.com',45554444)
+		insert into GESTION_DE_PATOS.Administradores values('admin', 'Eurulio','Korsovich')
 		
 		--Funcionalidades
 
