@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GrouponDesktop.Core;
+using System.Globalization;
 
 namespace GrouponDesktop.GUI.ListadoEstadistico
 {
@@ -32,7 +33,8 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
 
         private void Ver_Click(object sender, EventArgs e)
         {
-            if (Anio.SelectedItem == null || Semestre.SelectedItem == null || TipoListado.SelectedItem == null) {
+            if (Anio.SelectedItem == null || Semestre.SelectedItem == null || TipoListado.SelectedItem == null)
+            {
                 MessageBox.Show("Faltan Datos");
                 return;
             }
@@ -44,31 +46,34 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
             DateTime fechaHasta;
             if (Semestre.SelectedItem.ToString() == "1")
             {
-                fechaDesde = new DateTime(Int32.Parse(Anio.Text), 1, 1);
-                fechaHasta = new DateTime(Int32.Parse(Anio.Text), 6, 30);
+                fechaDesde = new DateTime(Int32.Parse(Anio.Text), 1, 1, 0, 0, 0);
+                fechaHasta = new DateTime(Int32.Parse(Anio.Text), 6, 30, 23, 59, 59);
             }
             else
             {
-                fechaDesde = new DateTime(Int32.Parse(Anio.Text), 7, 1);
-                fechaHasta = new DateTime(Int32.Parse(Anio.Text), 12, 31);
+                fechaDesde = new DateTime(Int32.Parse(Anio.Text), 7, 1, 0, 0, 0);
+                fechaHasta = new DateTime(Int32.Parse(Anio.Text), 12, 31, 23, 59, 59);
             }
 
-            switch (tipo) { 
- 
-                case "Top 5 Devoluciones" :
+            switch (tipo)
+            {
 
-                    
+                case "Top 5 Devoluciones":
+
+
                     /*r = dbManager.executeQuery("select COUNT (*) from Cupones c where c.fecha_compra between '" + fechaDesde.ToShortDateString() + "' and '" + fechaHasta.ToShortDateString() + "'");
                     if (Int32.Parse(r.result.Rows[0][0].ToString()) == 0) {
                         MessageBox.Show("No hay cupones comprados el semestre solicitado");
                         return;
                     }*/
 
-                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_devoluciones("+fechaDesde.ToString()+ ", "+ fechaHasta.ToString()+")");
+                    Console.WriteLine(fechaDesde.ToString());
+
+                    r = dbManager.executeQuery("SELECT * FROM GESTION_DE_PATOS.top_devoluciones('" + fechaDesde.ToString("yyyy'-'MM'-'dd HH':'mm':'ss") + "', '" + fechaHasta.ToString("yyyy'-'MM'-'dd HH':'mm':'ss") + "')");
                     Listado listado = new Listado();
                     listado.SetDataGridView(r.result);
                     listado.Show();
-                    
+
                     return;
 
                 case "Top 5 Acreditación de Giftcards":
@@ -80,12 +85,12 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
                         return;
                     }
 
-               
+
 
                     return;
             }
 
-           
+
         }
     }
 }
