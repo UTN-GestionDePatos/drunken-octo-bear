@@ -164,7 +164,7 @@ namespace GrouponDesktop.GUI.AbmCliente
         private void CambiarPassword_Click(object sender, EventArgs e)
         {
             CambiarPassDesdeAdmin new_form = new CambiarPassDesdeAdmin(UsernameCliente.Text);
-            new_form.ShowDialog();
+            new_form.Show();
 
         }
 
