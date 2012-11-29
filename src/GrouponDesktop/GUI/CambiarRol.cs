@@ -60,6 +60,12 @@ namespace GrouponDesktop.GUI
                 AltaCliente ac = new AltaCliente(user, actual, listado);
                 ac.Show();
             }
+            else if (this.Rol.SelectedItem.ToString() == "Administrador" || this.Rol.SelectedItem.ToString() == "Administrador General")
+            {
+                db.executeQuery("INSERT INTO GESTION_DE_PATOS.Administradores VALUES('" + user + "', null, null)");
+            
+            }
+
 
             db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol + "' where username = '" + user + "'");
             MessageBox.Show("Nuevo rol asignado correctamente", "Cambiar rol");
