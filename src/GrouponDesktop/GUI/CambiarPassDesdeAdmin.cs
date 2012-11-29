@@ -40,6 +40,7 @@ namespace GrouponDesktop.GUI
 
                 case "0":
                     MessageBox.Show("Contraseña cambiada con éxito");
+                    this.Hide();
                     return;
 
                 case "1":
