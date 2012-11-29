@@ -29,12 +29,8 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            SQLResponse r;
-            
-            r = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
-            this.SetDataGridView(r.result);
-
-            listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
+            this.listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente'");
+            this.listado.actualizar_datagridview();
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
             modificar.Name = "modificar";
@@ -159,16 +155,25 @@ namespace GrouponDesktop.GUI.AbmCliente
             if (validarTextBox(Mail))
                 where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
 
-
-            //Formación de query final
-            String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' AND u.rol = 'Cliente' ";
-            if (!string.Equals(where,""))
+            try
             {
-                query = query + where;
+                //Formación de query final
+                String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente' ";
+                if (!string.Equals(where, ""))
+                {
+                    query = query + where;
+                }
+
+                SQLResponse r = dbManager.executeQuery(query);
+                this.SetDataGridView(r.result);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Ingrese datos correctos", "Listado Cliente");
+                return;
             }
 
-            SQLResponse r = dbManager.executeQuery(query);
-            this.SetDataGridView(r.result);
+
         }
 
         private void Nombre_KeyPress(object sender, KeyPressEventArgs e)

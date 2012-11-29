@@ -45,12 +45,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
                     proveedor.addDato(nombre, value);
                 }
 
-                listado = new Listado(dataGridProveedores, "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
-
                 ModificacionProveedor mc = new ModificacionProveedor(proveedor,listado);
                 mc.Show();
-                SQLResponse  r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
-                this.SetDataGridView(r.result);
+                this.listado.actualizar_datagridview();
             }
             else if (columna_seleccionada == "eliminar")
             {
@@ -97,10 +94,8 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void ListadoProveedor_Load(object sender, EventArgs e)
         {
-            SQLResponse r;
-
-            r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
-            this.SetDataGridView(r.result);
+            listado = new Listado(dataGridProveedores, "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Proveedor'");
+            this.listado.actualizar_datagridview();
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
             modificar.Name = "modificar";
@@ -157,16 +152,23 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             if (validarTextBox(Mail))
                 where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
-
-            //Formación de query final
-            String query = "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor' ";
-            if (!string.Equals(where, ""))
+            try
             {
-                query = query + where;
-            }
+                //Formación de query final
+                String query = "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Proveedor' ";
+                if (!string.Equals(where, ""))
+                {
+                    query = query + where;
+                }
 
-            SQLResponse r = dbManager.executeQuery(query);
-            this.SetDataGridView(r.result);
+                SQLResponse r = dbManager.executeQuery(query);
+                this.SetDataGridView(r.result);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Ingrese datos correctos", "Listado Proveedor");
+                return;
+            }
         }
 
         private void RazonSocial_KeyPress(object sender, KeyPressEventArgs e)
