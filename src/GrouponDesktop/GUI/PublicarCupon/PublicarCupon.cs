@@ -32,8 +32,8 @@ namespace GrouponDesktop.GUI.PublicarCupon
             this.Proveedores.Items.Clear();
             this.Proveedores.Items.Add("");
 
-                
-            r = dbManager.executeQuery("SELECT cuit FROM GESTION_DE_PATOS.Proveedores");
+
+            r = dbManager.executeQuery("SELECT p.username FROM GESTION_DE_PATOS.Proveedores p JOIN GESTION_DE_PATOS.Usuarios u on p.username = u.username and u.rol = 'Proveedor'");
             foreach (DataRow row in r.result.Rows)
             {
                 this.Proveedores.Items.Add(row[0]);

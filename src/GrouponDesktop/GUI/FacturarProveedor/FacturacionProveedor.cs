@@ -26,7 +26,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             this.proveedores.Items.Clear();
             Session s = (Session)AppContext.getObject(typeof(Session));
             
-            SQLResponse r = dbManager.executeQuery("SELECT username FROM GESTION_DE_PATOS.Proveedores");
+            SQLResponse r = dbManager.executeQuery("SELECT p.username FROM GESTION_DE_PATOS.Proveedores p JOIN GESTION_DE_PATOS.Usuarios u on p.username = u.username and u.rol = 'Proveedor'");
             foreach (DataRow row in r.result.Rows)
             {
                 this.proveedores.Items.Add(row[0]);

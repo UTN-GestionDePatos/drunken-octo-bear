@@ -81,6 +81,7 @@ namespace GrouponDesktop.ArmarCupon
             }
 
             MessageBox.Show("Promoción armada exitosamente \nCódigo de promoción: " + idPromo);
+            this.Hide();
             }
             catch (FormatException)
             {

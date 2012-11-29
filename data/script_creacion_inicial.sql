@@ -1135,7 +1135,9 @@ BEGIN
 	idfactura: ok
 	1: se overlapean los intervalos --> cupones ya facturados
 */
-	if exists (select * from GESTION_DE_PATOS.Facturas where proveedor = @proveedor and (fecha_desde between @fecha_desde and @fecha_hasta or fecha_hasta between @fecha_desde and @fecha_hasta))
+	if exists (select * from GESTION_DE_PATOS.Facturas where proveedor = @proveedor and 
+	(	@fecha_desde between fecha_desde and fecha_hasta or @fecha_hasta between fecha_desde and fecha_hasta
+		or fecha_desde between @fecha_desde and @fecha_hasta or fecha_hasta between @fecha_desde and @fecha_hasta))
 		begin
 			set @ret = 1
 			return
