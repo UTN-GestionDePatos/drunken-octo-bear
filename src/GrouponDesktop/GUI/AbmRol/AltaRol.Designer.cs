@@ -116,6 +116,7 @@
             this.Name = "AltaRol";
             this.Text = "Rol - Alta";
             this.Load += new System.EventHandler(this.AltaRol_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaRol_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

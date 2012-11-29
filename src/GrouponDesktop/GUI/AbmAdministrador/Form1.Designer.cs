@@ -154,6 +154,7 @@
             this.Controls.Add(this.datosClientes);
             this.Name = "AltaAdministrador";
             this.Text = "Alta Administrador";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaAdministrador_FormClosing);
             this.datosClientes.ResumeLayout(false);
             this.datosClientes.PerformLayout();
             this.ResumeLayout(false);

@@ -45,6 +45,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
             
                 case "0":
                     MessageBox.Show("Alta realizada con éxito");
+                    this.Hide();
                     return;
                 case "1":
                     MessageBox.Show("El username ya existe");
@@ -52,6 +53,14 @@ namespace GrouponDesktop.GUI.AbmAdministrador
              
             }
 
+        }
+
+        private void AltaAdministrador_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta administrador", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

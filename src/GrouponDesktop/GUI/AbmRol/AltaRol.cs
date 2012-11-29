@@ -76,5 +76,13 @@ namespace GrouponDesktop.GUI.AbmRol
             return;
         }
 
+        private void AltaRol_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta rol", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
     }
 }
