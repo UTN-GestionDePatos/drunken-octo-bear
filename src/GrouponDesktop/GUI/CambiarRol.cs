@@ -53,7 +53,8 @@ namespace GrouponDesktop.GUI
                 return;
             }
 
-           
+            MessageBox.Show("Nuevo rol asignado correctamente", "Cambiar rol");
+          
             if (this.Rol.SelectedItem.ToString() == "Proveedor")
             {
                 AltaProveedor ap = new AltaProveedor(user, actual, listado);
@@ -72,7 +73,7 @@ namespace GrouponDesktop.GUI
 
 
             db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol + "' where username = '" + user + "'");
-            MessageBox.Show("Nuevo rol asignado correctamente", "Cambiar rol");
+
             this.listado.actualizar_datagridview();
             this.Hide();
         }

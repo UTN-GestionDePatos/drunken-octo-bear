@@ -29,7 +29,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
 
         private void BajaAdministrador_Load(object sender, EventArgs e)
         {
-            this.listado = new Listado(administradores, "SELECT * FROM GESTION_DE_PATOS.viewadministradores");
+            this.listado = new Listado(administradores, "SELECT * FROM GESTION_DE_PATOS.viewadministradores WHERE username != 'admin'");
             this.listado.actualizar_datagridview();
             this.administradores.ReadOnly = true;
             this.administradores.Columns[4].ReadOnly = false;
