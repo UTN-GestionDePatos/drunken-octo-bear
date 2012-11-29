@@ -90,7 +90,8 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 
 	CREATE TABLE Tarjetas ( 
 		numero bigint primary key,
-		username varchar(30) references Clientes(username)
+		username varchar(30) references Clientes(username),
+		tipo int
 	)
 
 	CREATE TABLE Cargas ( 
@@ -459,13 +460,13 @@ BEGIN
 		if @tipo in (2,3)
 		begin
 			--validacion tarjeta
-			if not exists (select * from GESTION_DE_PATOS.Tarjetas where username = @username)
+			if not exists (select * from GESTION_DE_PATOS.Tarjetas where username = @username and tipo = @tipo)
 				begin
-					insert into GESTION_DE_PATOS.Tarjetas (numero,username) values (@numeroTarjeta, @username)
+					insert into GESTION_DE_PATOS.Tarjetas (numero,username,tipo) values (@numeroTarjeta, @username, @tipo)
 				end
 			else
 				begin
-					if (select numero from GESTION_DE_PATOS.Tarjetas where username = @username) != @numeroTarjeta
+					if (select numero from GESTION_DE_PATOS.Tarjetas where username = @username and tipo = @tipo) != @numeroTarjeta
 					begin
 						set @ret = 2
 						return

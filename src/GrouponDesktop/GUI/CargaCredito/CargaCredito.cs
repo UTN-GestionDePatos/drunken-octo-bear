@@ -35,6 +35,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                 MessageBox.Show("Faltan datos");
                 return;
             }
+            
             try
             {
                 Int64.Parse(Monto.Text);
