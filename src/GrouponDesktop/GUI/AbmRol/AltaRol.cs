@@ -72,6 +72,8 @@ namespace GrouponDesktop.GUI.AbmRol
                 ps.execSP();
             }
             MessageBox.Show("Alta correcta");
+            this.Hide();
+            return;
         }
 
     }

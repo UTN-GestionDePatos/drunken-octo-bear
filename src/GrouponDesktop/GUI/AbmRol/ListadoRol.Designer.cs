@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.AltaRol = new System.Windows.Forms.Button();
             this.Datos = new System.Windows.Forms.DataGridView();
-            this.gD2C2012DataSet9 = new GrouponDesktop.GD2C2012DataSet9();
             this.viewrolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet9 = new GrouponDesktop.GD2C2012DataSet9();
             this.viewrolesTableAdapter = new GrouponDesktop.GD2C2012DataSet9TableAdapters.viewrolesTableAdapter();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Borrar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Datos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewrolesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet9)).BeginInit();
             this.SuspendLayout();
             // 
             // AltaRol
@@ -72,15 +72,15 @@
             this.Datos.TabIndex = 1;
             this.Datos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Datos_CellContentClick);
             // 
-            // gD2C2012DataSet9
-            // 
-            this.gD2C2012DataSet9.DataSetName = "GD2C2012DataSet9";
-            this.gD2C2012DataSet9.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // viewrolesBindingSource
             // 
             this.viewrolesBindingSource.DataMember = "viewroles";
             this.viewrolesBindingSource.DataSource = this.gD2C2012DataSet9;
+            // 
+            // gD2C2012DataSet9
+            // 
+            this.gD2C2012DataSet9.DataSetName = "GD2C2012DataSet9";
+            this.gD2C2012DataSet9.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // viewrolesTableAdapter
             // 
@@ -89,13 +89,13 @@
             // nombreDataGridViewTextBoxColumn
             // 
             this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
             this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
             // 
             // estadoDataGridViewTextBoxColumn
             // 
             this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -123,8 +123,8 @@
             this.Text = "Rol - Listado de selección";
             this.Load += new System.EventHandler(this.ListadoRol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Datos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewrolesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSet9)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -58,14 +58,11 @@ namespace GrouponDesktop.GUI.AbmRol
 
         }
 
-        private void Buscar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void AltaRol_Click(object sender, EventArgs e)
         {
-            new AltaRol().Show();
+            new AltaRol().ShowDialog();
+            Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
+
         }
     }
 }
