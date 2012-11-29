@@ -180,6 +180,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             Fecha.Visible = false;
         }
 
+        private void Seleccionar_Click(object sender, EventArgs e)
+        {
+            Fecha.Visible = true;
+        }
+
 
 
       

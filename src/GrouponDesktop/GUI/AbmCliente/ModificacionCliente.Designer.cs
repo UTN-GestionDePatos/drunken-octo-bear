@@ -124,7 +124,7 @@
             // 
             // Fecha
             // 
-            this.Fecha.Location = new System.Drawing.Point(180, 145);
+            this.Fecha.Location = new System.Drawing.Point(180, 151);
             this.Fecha.Name = "Fecha";
             this.Fecha.TabIndex = 56;
             this.Fecha.Visible = false;
@@ -138,6 +138,7 @@
             this.Seleccionar.TabIndex = 55;
             this.Seleccionar.Text = "Seleccionar";
             this.Seleccionar.UseVisualStyleBackColor = true;
+            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
             // 
             // CambiarPassword
             // 
