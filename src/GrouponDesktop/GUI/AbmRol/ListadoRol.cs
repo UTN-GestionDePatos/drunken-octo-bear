@@ -23,7 +23,10 @@ namespace GrouponDesktop.GUI.AbmRol
         private void ListadoRol_Load(object sender, EventArgs e)
         {
             Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles" ).result;
-           
+            Datos.ReadOnly = true;
+            Datos.Columns[2].ReadOnly = false;
+            Datos.Columns[3].ReadOnly = false;
+
             }
 
         private void Datos_CellContentClick(object sender, DataGridViewCellEventArgs e)

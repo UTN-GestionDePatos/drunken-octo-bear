@@ -1383,7 +1383,6 @@ BEGIN
 		--Funcionalidades
 
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Rol')
-		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Registro Usuario')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Clientes')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('ABM Proveedores')
 		insert into GESTION_DE_PATOS.Funcionalidades (descripcion) values('Carga de credito')
@@ -1418,23 +1417,19 @@ BEGIN
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (11,'Administrador General')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (12,'Administrador General')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (13,'Administrador General')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (14,'Administrador General')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (1,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (2,'Administrador')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (2,'Cliente')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (2,'Proveedor')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (3,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (4,'Administrador')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (5,'Administrador')
+		insert into GESTION_DE_PATOS.Funcion_por_rol values (5,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (6,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (7,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (8,'Cliente')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (9,'Cliente')
+		insert into GESTION_DE_PATOS.Funcion_por_rol values (9,'Proveedor')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (10,'Proveedor')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (11,'Proveedor')
+		insert into GESTION_DE_PATOS.Funcion_por_rol values (11,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (12,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (13,'Administrador')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (14,'Administrador')
 
 END
 GO

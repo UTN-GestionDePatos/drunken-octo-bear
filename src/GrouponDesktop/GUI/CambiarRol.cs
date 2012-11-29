@@ -37,6 +37,10 @@ namespace GrouponDesktop.GUI
             {
                 Rol.Items.Add(r[0]);
             } 
+            Session s = (Session)AppContext.getObject(typeof(Session));
+           
+            Rol.Items.Remove("Administrador General");
+            
  
         }
 
@@ -60,7 +64,7 @@ namespace GrouponDesktop.GUI
                 AltaCliente ac = new AltaCliente(user, actual, listado);
                 ac.Show();
             }
-            else if (this.Rol.SelectedItem.ToString() == "Administrador" || this.Rol.SelectedItem.ToString() == "Administrador General")
+            else if (this.Rol.SelectedItem.ToString() == "Administrador General" || this.Rol.SelectedItem.ToString() == "Administrador") 
             {
                 db.executeQuery("INSERT INTO GESTION_DE_PATOS.Administradores VALUES('" + user + "', null, null)");
             

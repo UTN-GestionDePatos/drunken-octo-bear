@@ -31,6 +31,11 @@ namespace GrouponDesktop.GUI.AbmAdministrador
         {
             this.listado = new Listado(administradores, "SELECT * FROM GESTION_DE_PATOS.viewadministradores");
             this.listado.actualizar_datagridview();
+            this.administradores.ReadOnly = true;
+            this.administradores.Columns[4].ReadOnly = false;
+            this.administradores.Columns[5].ReadOnly = false;
+            this.administradores.Columns[6].ReadOnly = false;
+
         }
 
         private void administradores_CellClick(object sender, DataGridViewCellEventArgs e)
