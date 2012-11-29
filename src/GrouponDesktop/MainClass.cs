@@ -23,6 +23,7 @@ namespace GrouponDesktop
             if (s != null)
             {
                 Application.Run(new Main());
+                
             }
         }
     }

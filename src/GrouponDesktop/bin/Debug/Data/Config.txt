@@ -1,4 +1,4 @@
-﻿fecha=2012-04-04
+﻿fecha=2012-06-06
 dbuser=gd
 dbpasswd=gd2012
 dburl=localhost\SQLSERVER2008

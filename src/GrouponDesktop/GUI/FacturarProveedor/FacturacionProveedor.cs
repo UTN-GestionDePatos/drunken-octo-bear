@@ -115,10 +115,10 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.FacturarProveedor");
             
             float monto = float.Parse(montoFactura().ToString());
-            ps.AddParameter("@proveedor", proveedores.SelectedItem);
+            ps.AddParameter("@proveedor", proveedores.SelectedItem.ToString());
             ps.AddParameter("@fecha_desde", FechaDesde.Text);
             ps.AddParameter("@fecha_hasta", FechaHasta.Text);
-            ps.AddParameter("@monto", monto);
+            ps.AddParameter("@monto", monto*0.5);
 
             SqlParameter retval = ps.execSP();
             
@@ -127,7 +127,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             {
                 case "1": MessageBox.Show("Ya hay cupones facturados para el intervalo ingresado.");
                     return;
-                default: MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + monto.ToString());
+                default: MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + (monto*0.5).ToString());
                     return;
                
                

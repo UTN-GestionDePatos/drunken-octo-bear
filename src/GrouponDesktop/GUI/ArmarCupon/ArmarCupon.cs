@@ -18,14 +18,10 @@ namespace GrouponDesktop.ArmarCupon
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (codigoGrupo.Text == "" || PrecioFicticio.Text == "" || PrecioReal.Text  == ""
+            if (PrecioFicticio.Text == "" || PrecioReal.Text  == ""
                 || VencimientoOferta.Text == "" || VencimientoCanje.Text == "" || Stock.Text  == "" ||
                 LimitePorUsuario.Text  == "" || DescripcionCupon.Text  == "" || ListaZonas.CheckedItems.Count == 0)
             {
@@ -35,9 +31,22 @@ namespace GrouponDesktop.ArmarCupon
 
             try{
             Session s = (Session)AppContext.getObject(typeof(Session));
-            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ArmarCupon");
+            DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
             
-            ps.AddParameter("@codigoGrupo",codigoGrupo.Text);
+            
+            Random promo = new Random();
+            String idPromo = promo.Next(999999999).ToString();
+
+            SQLResponse res = db.executeQuery("select id_promocion from GESTION_DE_PATOS.Promociones where id_promocion = '" + idPromo + "'");
+            while (res.rowsAffected != 0) {
+                idPromo = promo.Next(999999999).ToString();
+                res = db.executeQuery("select id_promocion from GESTION_DE_PATOS.Promociones where id_promocion = '" + idPromo + "'");
+            }
+               
+            ParamSet ps = new ParamSet("GESTION_DE_PATOS.ArmarCupon");
+
+            
+            ps.AddParameter("@codigoGrupo",idPromo);
             ps.AddParameter("@descripcion", DescripcionCupon.Text);
             ps.AddParameter("@fechaSistema", Core.Properties.getProperty("fecha"));
             ps.AddParameter("@fechaVencimientoCanje", VencimientoCanje.Text);
@@ -67,11 +76,11 @@ namespace GrouponDesktop.ArmarCupon
             foreach (Object item in ListaZonas.CheckedItems)
             {
                 ps.AddParameter("@localidad", item.ToString());
-                ps.AddParameter("@grupo", codigoGrupo.Text);
+                ps.AddParameter("@grupo", idPromo);
                 ps.execSP();
             }
 
-            MessageBox.Show("Grupo de cupon armado exitosamente");
+            MessageBox.Show("Promoción armada exitosamente \nCódigo de promoción: " + idPromo);
             }
             catch (FormatException)
             {

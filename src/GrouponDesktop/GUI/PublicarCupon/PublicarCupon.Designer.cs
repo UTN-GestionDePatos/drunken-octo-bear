@@ -78,7 +78,7 @@
             this.cupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cupones.Location = new System.Drawing.Point(42, 150);
             this.cupones.Name = "cupones";
-            this.cupones.Size = new System.Drawing.Size(644, 66);
+            this.cupones.Size = new System.Drawing.Size(644, 121);
             this.cupones.TabIndex = 7;
             this.cupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cupones_CellClick);
             // 

@@ -23,7 +23,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
         DBManager dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
         Session s = (Session)AppContext.getObject(typeof(Session));
         SQLResponse r;
-
+        
         private void PublicarCupon_Load(object sender, EventArgs e)
         {
             
@@ -45,11 +45,10 @@ namespace GrouponDesktop.GUI.PublicarCupon
 
         }
 
-        private void VerCupones_Click(object sender, EventArgs e)
-        {
-            String proveedor = this.Proveedores.SelectedItem.ToString();
+        private void setDataGridView(){
+            String proveedor = Proveedores.SelectedItem.ToString();
 
-            if ( proveedor == "")
+            if (proveedor == "")
             {
                 this.cupones.Columns.Clear();
                 //todos los proveedores
@@ -58,11 +57,12 @@ namespace GrouponDesktop.GUI.PublicarCupon
                 cupones.Columns[2].Width = 300;
 
             }
-            else {
+            else
+            {
                 //un proveedor en particular
                 this.cupones.Columns.Clear();
 
-                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where estado = 'A publicar' and proveedor = '" + proveedor +"'");
+                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where estado = 'A publicar' and proveedor = '" + proveedor + "'");
                 cupones.DataSource = r.result;
                 cupones.Columns[2].Width = 300;
 
@@ -76,6 +76,11 @@ namespace GrouponDesktop.GUI.PublicarCupon
 
             this.cupones.Columns["Publicar"].ReadOnly = false;
 
+        }
+
+        private void VerCupones_Click(object sender, EventArgs e)
+        {
+            setDataGridView();
            
         }
 
@@ -97,6 +102,12 @@ namespace GrouponDesktop.GUI.PublicarCupon
                 ps.executeNoReturn();
 
                 MessageBox.Show("Promoción publicada");
+
+                setDataGridView();
+                
+            }
+
+
                 return;
             }
 
@@ -104,4 +115,4 @@ namespace GrouponDesktop.GUI.PublicarCupon
 
 
        }
-}
+
