@@ -42,6 +42,10 @@ namespace GrouponDesktop.GUI.HistorialCupones
             String cliente = s.username;
             SQLResponse r = dbManager.executeQuery("SELECT id_cupon, promocion, fecha_compra, estado FROM GESTION_DE_PATOS.viewcupones WHERE cliente = '" + cliente + "' AND fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' ORDER BY 4");
             this.SetDataGridView(r.result);
+            if (r.result.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay cupones en su historial en esas fechas", "Historial cupones");
+            }
 
         }
 

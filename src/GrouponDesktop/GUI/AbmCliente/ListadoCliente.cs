@@ -95,13 +95,9 @@ namespace GrouponDesktop.GUI.AbmCliente
                             break;
                         case "1": MessageBox.Show("Se produció un error. El nombre de usuario no existe", "Eliminar cliente");
                             break;
-                        case "2": MessageBox.Show("El cliente ya se encuentra eliminado");
+                        case "2": MessageBox.Show("El cliente ya se encuentra eliminado","Eliminar cliente");
                             break;
-
-
-                    }
-
-                   
+                    }              
 
                 }
             }

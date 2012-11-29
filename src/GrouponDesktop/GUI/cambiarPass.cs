@@ -24,9 +24,19 @@ namespace GrouponDesktop.GUI
             return;
         }
 
-        private void Confirmar_Click(object sender, EventArgs e)
+
+        private void cambiarPass_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (passV.Text == "" || passN.Text == "" || passN2.Text == "") {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Cambiar password", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Confirmar_Click_1(object sender, EventArgs e)
+        {
+            if (passV.Text == "" || passN.Text == "" || passN2.Text == "")
+            {
                 MessageBox.Show("Faltan datos");
                 return;
             }
@@ -39,8 +49,9 @@ namespace GrouponDesktop.GUI
             ps.AddParameter("@passNueva2", passN2.Text);
             SqlParameter ret = ps.execSP();
 
-            switch (ret.Value.ToString()) { 
-                
+            switch (ret.Value.ToString())
+            {
+
                 case "0":
                     MessageBox.Show("Contraseña cambiada con éxito");
                     this.Hide();
@@ -53,14 +64,6 @@ namespace GrouponDesktop.GUI
                 case "2":
                     MessageBox.Show("La confirmación de la nueva contraseña no coincide con la ingresada");
                     return;
-            }
-        }
-
-        private void cambiarPass_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("¿Desea rechazar los cambios?", "Cambiar password", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            {
-                e.Cancel = true;
             }
         }
     }

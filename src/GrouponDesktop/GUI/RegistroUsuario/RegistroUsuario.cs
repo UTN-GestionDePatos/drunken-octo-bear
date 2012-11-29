@@ -69,7 +69,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
         {
             Object elRol = this.Rol.SelectedItem;
             if (elRol == null) {
-                MessageBox.Show("Seleccione un rol");
+                MessageBox.Show("Seleccione un rol", "Registro de usuario");
                 return;
             }
 
@@ -118,22 +118,23 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                                     ps.executeNoReturn();
                                 }
 
-                                MessageBox.Show("Registro realizado con éxito");
+                                MessageBox.Show("Registro realizado con éxito","Registro de usuario",MessageBoxButtons.OK);
+                                this.Hide();
                                 return;
                             
                             case "1":
-                                MessageBox.Show("El usuario ya existe");
+                                MessageBox.Show("El usuario ya existe","Registro de usuario");
                                 return;
 
                             case "2":
-                                MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
+                                MessageBox.Show("Los datos ingresados corresponden a un usuario existente", "Registro de usuario");
                                 return;
 
                             }
                     }
                     
                     catch(SqlException){
-                        MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento");
+                        MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento", "Registro de usuario");
                         return;
                     }
 
@@ -150,7 +151,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         RubroP.SelectedItem.ToString() == "")
                     {
 
-                        MessageBox.Show("Faltan datos");
+                        MessageBox.Show("Faltan datos", "Registro de usuario");
                         return;
                     }
 
@@ -175,15 +176,16 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         switch (ret.Value.ToString())
                         {
                             case "0":
-                                MessageBox.Show("Registro realizado con éxito");
+                                MessageBox.Show("Registro realizado con éxito", "Registro de usuario",MessageBoxButtons.OK);
+                                this.Hide();
                                 return;
 
                             case "1":
-                                MessageBox.Show("El usuario ya existe");
+                                MessageBox.Show("El usuario ya existe", "Registro de usuario");
                                 return;
 
                             case "2":
-                                MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
+                                MessageBox.Show("Los datos ingresados corresponden a un usuario existente", "Registro de usuario");
                                 return;
 
                           }

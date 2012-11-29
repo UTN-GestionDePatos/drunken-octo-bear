@@ -13,17 +13,21 @@ namespace GrouponDesktop.AbmCliente
 {
     public partial class AltaCliente : Form
     {
+        private String rol_anterior = "";
+        static DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
+
         public AltaCliente()
         {
             InitializeComponent();
         }
-        public AltaCliente(String user)
+        public AltaCliente(String user, String rol)
         {
             InitializeComponent();
             UsernameCliente.Text = user;
             UsernameCliente.Enabled = false;
             PasswordCliente.Text = "sumbudrule";
             PasswordCliente.Enabled = false;
+            this.rol_anterior = rol;
 
         }
 
@@ -56,7 +60,7 @@ namespace GrouponDesktop.AbmCliente
                        ciudadCliente.SelectedItem.ToString() == "")
                 {
 
-                    MessageBox.Show("Faltan datos");
+                    MessageBox.Show("Faltan datos","Alta cliente");
                     return;
                 }
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
@@ -103,7 +107,7 @@ namespace GrouponDesktop.AbmCliente
                 }
             }
             catch (FormatException) {
-                MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento");
+                MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento","Alta cliente");
                 return;
             }
         }
@@ -113,6 +117,12 @@ namespace GrouponDesktop.AbmCliente
             if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+            else if(!String.Equals(rol_anterior,""))
+            {
+                db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol_anterior + "' where username = '" + UsernameCliente.Text + "'");
+                MessageBox.Show("Cancelación de alta. Este usuario vuelve a tener el rol anterior", "Cambiar rol");
+                this.Hide();
             }
         }
 

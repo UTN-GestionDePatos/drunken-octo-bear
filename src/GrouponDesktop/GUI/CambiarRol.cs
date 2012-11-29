@@ -13,9 +13,7 @@ namespace GrouponDesktop.GUI
 {
     public partial class CambiarRol : Form
     {
-        
 
-        
         static DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
         static Session sesion = (Session)AppContext.getObject(typeof(Session));
         String user;
@@ -51,12 +49,12 @@ namespace GrouponDesktop.GUI
            
             if (this.Rol.SelectedItem.ToString() == "Proveedor")
             {
-                AltaProveedor ap = new AltaProveedor(user);
+                AltaProveedor ap = new AltaProveedor(user, actual);
                 ap.Show();
             }
             else if (this.Rol.SelectedItem.ToString() == "Cliente")
             {
-                AltaCliente ac = new AltaCliente(user);
+                AltaCliente ac = new AltaCliente(user, actual);
                 ac.Show();
             }
 

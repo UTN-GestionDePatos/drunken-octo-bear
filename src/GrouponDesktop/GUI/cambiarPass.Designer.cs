@@ -74,6 +74,7 @@
             this.Confirmar.TabIndex = 14;
             this.Confirmar.Text = "Confirmar";
             this.Confirmar.UseVisualStyleBackColor = true;
+            this.Confirmar.Click += new System.EventHandler(this.Confirmar_Click_1);
             // 
             // passN2
             // 

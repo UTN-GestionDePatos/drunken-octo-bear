@@ -14,20 +14,24 @@ namespace GrouponDesktop.AbmCliente
 {
     public partial class AltaProveedor : Form
     {
-        
+
+        private String rol_anterior = "";
+        static DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
+
         public AltaProveedor()
         {
             InitializeComponent();
         }
 
-        public AltaProveedor(String user)
+        public AltaProveedor(String user, String rol)
         {
             InitializeComponent();
             UsernameP.Text = user;
             PassP.Text = "sumbudrule";
             PassP.Enabled = false;
             UsernameP.Enabled = false;
-            
+            this.rol_anterior = rol;
+          
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
@@ -49,6 +53,12 @@ namespace GrouponDesktop.AbmCliente
             if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+            else if (!String.Equals(rol_anterior, ""))
+            {
+                db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol_anterior + "' where username = '" + UsernameP.Text + "'");
+                MessageBox.Show("Cancelación de alta. Este usuario vuelve a tener el rol anterior", "Cambiar rol");
+                this.Hide();
             }
         }
 
@@ -97,15 +107,16 @@ namespace GrouponDesktop.AbmCliente
                 switch (ret.Value.ToString())
                 {
                     case "0":
-                        MessageBox.Show("Registro realizado con éxito");
+                        MessageBox.Show("Registro realizado con éxito", "Alta proveedor");
+                        this.Hide();
                         return;
 
                     case "2":
-                        MessageBox.Show("Los datos ingresados corresponden a un usuario existente");
+                        MessageBox.Show("Los datos ingresados corresponden a un usuario existente", "Alta proveedor");
                         return;
 
                     case "1":
-                        MessageBox.Show("El usuario ya existe");
+                        MessageBox.Show("El usuario ya existe", "Alta proveedor");
                         return;
 
                 }
@@ -115,7 +126,7 @@ namespace GrouponDesktop.AbmCliente
             }
             catch (FormatException)
             {
-                MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
+                MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal", "Alta proveedor");
             }
 
             return;
