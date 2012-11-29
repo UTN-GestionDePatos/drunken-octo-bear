@@ -148,55 +148,24 @@ namespace GrouponDesktop.GUI.AbmCliente
             }
 
             //Clausula WHERE para filtrar la búsqueda
-            String where = "WHERE";
-            bool es_primero = true;
+            String where = "";
 
             if (validarTextBox(Nombre))
-            {
-                where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
-                es_primero = false;
-            }
+                where = where + " AND nombre like '" + Nombre.Text.ToString() + "%'";
 
             if (validarTextBox(Apellido))
-            {
-                if (es_primero)
-                {
-                    where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
-                    es_primero = false;
-                }
-                else
-                    where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
-
-            }
+                where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
 
             if (validarTextBox(DNI))
-            {
-                if (es_primero)
-                {
-                    where = where + " dni like '" + DNI.Text.ToString() + "%'";
-                    es_primero = false;
-                }
-                else
-                    where = where + " AND dni like '" + DNI.Text.ToString() + "%'";
-
-            }
+                where = where + " AND dni = '" + DNI.Text.ToString() + "'";
 
             if (validarTextBox(Mail))
-            {
-                if (es_primero)
-                {
-                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
-                    es_primero = false;
-                }
-                else
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
-
-            }
+                where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
 
 
             //Formación de query final
-            String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
-            if (!string.Equals(where,"WHERE"))
+            String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' AND u.rol = 'Cliente' ";
+            if (!string.Equals(where,""))
             {
                 query = query + where;
             }

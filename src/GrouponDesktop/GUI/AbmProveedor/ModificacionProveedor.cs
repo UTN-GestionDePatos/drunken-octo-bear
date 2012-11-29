@@ -122,7 +122,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void ModificacionProveedor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea rechazar los cambios?", "Modificar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show("¿Desea salir del formulario?", "Modificar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -148,6 +148,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
         private void CambiarRol_Click(object sender, EventArgs e)
         {
             new CambiarRol(UsernameP.Text).Show();
+            this.Hide();
         }
 
 

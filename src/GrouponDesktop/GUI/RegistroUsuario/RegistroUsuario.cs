@@ -50,15 +50,15 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             if (this.Rol.SelectedItem.ToString() == "Proveedor")
             {
                 this.ListaZonas.Visible = false;
-                this.zonas.Visible = false;
                 this.datosClientes.Visible = false;
+                this.zonas.Visible = false;
                 this.datosProveedor.Visible = true;
                 
             }
             else
             {
-                this.ListaZonas.Visible = true;
                 this.zonas.Visible = true;
+                this.ListaZonas.Visible = true;
                 this.datosProveedor.Visible = false;
                 this.datosClientes.Visible = true;
 
@@ -224,6 +224,21 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             CodigoPostalP.Text = "";
 
 
+        }
+
+        private void Seleccionar_Click(object sender, EventArgs e)
+        {
+            Fecha.Visible = true;
+        }
+
+        private void Fecha_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime date = Fecha.SelectionStart;
+            string fechaStr = date.Date.ToShortDateString();
+
+            FchNacimientoCliente.Text = fechaStr;
+
+            Fecha.Visible = false;
         }
     }
 }

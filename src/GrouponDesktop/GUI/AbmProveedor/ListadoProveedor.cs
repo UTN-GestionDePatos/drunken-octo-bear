@@ -144,42 +144,20 @@ namespace GrouponDesktop.GUI.AbmProveedor
             }
 
             //Clausula WHERE para filtrar la búsqueda
-            String where = "WHERE";
-            bool es_primero = true;
+            String where = "";
 
             if (validarTextBox(RazonSocial))
-            {
-                where = where + " razon_social like '" + RazonSocial.Text.ToString() + "%'";
-                es_primero = false;
-            }
+                where = where + " AND razon_social like '" + RazonSocial.Text.ToString() + "%'";
 
             if (validarTextBox(CUIT))
-            {
-                if (es_primero)
-                {
-                    where = where + " cuit like '" + CUIT.Text.ToString() + "'";
-                    es_primero = false;
-                }
-                else
-                    where = where + " AND cuit like '" + CUIT.Text.ToString() + "'";
-
-            }
+                where = where + " AND cuit = '" + CUIT.Text.ToString() + "'";
 
             if (validarTextBox(Mail))
-            {
-                if (es_primero)
-                {
-                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
-                    es_primero = false;
-                }
-                else
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
-
-            }
+                where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
 
             //Formación de query final
-            String query = "SELECT * FROM GESTION_DE_PATOS.viewproveedores ";
-            if (!string.Equals(where, "WHERE"))
+            String query = "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor' ";
+            if (!string.Equals(where, ""))
             {
                 query = query + where;
             }

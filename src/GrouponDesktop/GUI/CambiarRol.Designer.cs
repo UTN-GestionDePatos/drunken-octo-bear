@@ -28,59 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Confirmar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Rol = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // Confirmar
+            // 
+            this.Confirmar.Location = new System.Drawing.Point(244, 99);
+            this.Confirmar.Name = "Confirmar";
+            this.Confirmar.Size = new System.Drawing.Size(75, 23);
+            this.Confirmar.TabIndex = 33;
+            this.Confirmar.Text = "Confirmar";
+            this.Confirmar.UseVisualStyleBackColor = true;
+            this.Confirmar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Rol);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(306, 80);
+            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Cambio de rol";
             // 
             // Rol
             // 
             this.Rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Rol.FormattingEnabled = true;
-            this.Rol.Location = new System.Drawing.Point(128, 21);
+            this.Rol.Location = new System.Drawing.Point(69, 25);
             this.Rol.Name = "Rol";
             this.Rol.Size = new System.Drawing.Size(209, 21);
-            this.Rol.TabIndex = 32;
+            this.Rol.TabIndex = 34;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 29);
+            this.label13.Location = new System.Drawing.Point(21, 30);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(23, 13);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Rol";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(262, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label13.Size = new System.Drawing.Size(26, 13);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Rol:";
             // 
             // CambiarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 91);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.Rol);
-            this.Controls.Add(this.label13);
+            this.ClientSize = new System.Drawing.Size(330, 135);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.Confirmar);
             this.Name = "CambiarRol";
-            this.Text = "CambiarRol";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.Text = "Cambio de Rol";
             this.Load += new System.EventHandler(this.CambiarRol_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
+        private System.Windows.Forms.Button Confirmar;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox Rol;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button1;
     }
 }

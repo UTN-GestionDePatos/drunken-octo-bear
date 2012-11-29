@@ -30,8 +30,6 @@
         {
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
-            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
-            this.zonas = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Rol = new System.Windows.Forms.ComboBox();
             this.datosProveedor = new System.Windows.Forms.GroupBox();
@@ -80,8 +78,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.zonas = new System.Windows.Forms.GroupBox();
+            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
+            this.Seleccionar = new System.Windows.Forms.Button();
+            this.Fecha = new System.Windows.Forms.MonthCalendar();
             this.datosProveedor.SuspendLayout();
             this.datosClientes.SuspendLayout();
+            this.zonas.SuspendLayout();
             this.SuspendLayout();
             // 
             // Guardar
@@ -103,25 +106,6 @@
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
             this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
-            // 
-            // ListaZonas
-            // 
-            this.ListaZonas.FormattingEnabled = true;
-            this.ListaZonas.Location = new System.Drawing.Point(397, 58);
-            this.ListaZonas.Name = "ListaZonas";
-            this.ListaZonas.Size = new System.Drawing.Size(217, 244);
-            this.ListaZonas.TabIndex = 7;
-            this.ListaZonas.Visible = false;
-            // 
-            // zonas
-            // 
-            this.zonas.AutoSize = true;
-            this.zonas.Location = new System.Drawing.Point(394, 20);
-            this.zonas.Name = "zonas";
-            this.zonas.Size = new System.Drawing.Size(109, 13);
-            this.zonas.TabIndex = 8;
-            this.zonas.Text = "Zonas de Preferencia";
-            this.zonas.Visible = false;
             // 
             // label4
             // 
@@ -361,6 +345,8 @@
             // 
             // datosClientes
             // 
+            this.datosClientes.Controls.Add(this.Fecha);
+            this.datosClientes.Controls.Add(this.Seleccionar);
             this.datosClientes.Controls.Add(this.CodigoPostalC);
             this.datosClientes.Controls.Add(this.label21);
             this.datosClientes.Controls.Add(this.ciudadCliente);
@@ -385,7 +371,7 @@
             this.datosClientes.Controls.Add(this.Nombre);
             this.datosClientes.Location = new System.Drawing.Point(12, 52);
             this.datosClientes.Name = "datosClientes";
-            this.datosClientes.Size = new System.Drawing.Size(332, 385);
+            this.datosClientes.Size = new System.Drawing.Size(379, 385);
             this.datosClientes.TabIndex = 27;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
@@ -467,9 +453,10 @@
             // 
             // FchNacimientoCliente
             // 
+            this.FchNacimientoCliente.Enabled = false;
             this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
             this.FchNacimientoCliente.Name = "FchNacimientoCliente";
-            this.FchNacimientoCliente.Size = new System.Drawing.Size(209, 20);
+            this.FchNacimientoCliente.Size = new System.Drawing.Size(109, 20);
             this.FchNacimientoCliente.TabIndex = 44;
             // 
             // TelefonoCliente
@@ -570,17 +557,54 @@
             this.Nombre.TabIndex = 33;
             this.Nombre.Text = "Nombre";
             // 
+            // zonas
+            // 
+            this.zonas.Controls.Add(this.ListaZonas);
+            this.zonas.Location = new System.Drawing.Point(426, 70);
+            this.zonas.Name = "zonas";
+            this.zonas.Size = new System.Drawing.Size(253, 287);
+            this.zonas.TabIndex = 28;
+            this.zonas.TabStop = false;
+            this.zonas.Text = "Zonas de Preferencia";
+            this.zonas.Visible = false;
+            // 
+            // ListaZonas
+            // 
+            this.ListaZonas.FormattingEnabled = true;
+            this.ListaZonas.Location = new System.Drawing.Point(16, 23);
+            this.ListaZonas.Name = "ListaZonas";
+            this.ListaZonas.Size = new System.Drawing.Size(217, 244);
+            this.ListaZonas.TabIndex = 8;
+            this.ListaZonas.Visible = false;
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Location = new System.Drawing.Point(238, 211);
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
+            this.Seleccionar.TabIndex = 54;
+            this.Seleccionar.Text = "Seleccionar";
+            this.Seleccionar.UseVisualStyleBackColor = true;
+            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
+            // 
+            // Fecha
+            // 
+            this.Fecha.Location = new System.Drawing.Point(140, 154);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.TabIndex = 55;
+            this.Fecha.Visible = false;
+            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 484);
+            this.ClientSize = new System.Drawing.Size(704, 484);
+            this.Controls.Add(this.zonas);
             this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.datosProveedor);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Rol);
-            this.Controls.Add(this.zonas);
-            this.Controls.Add(this.ListaZonas);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "RegistroUsuario";
@@ -590,6 +614,7 @@
             this.datosProveedor.PerformLayout();
             this.datosClientes.ResumeLayout(false);
             this.datosClientes.PerformLayout();
+            this.zonas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -599,8 +624,6 @@
 
         private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Limpiar;
-        private System.Windows.Forms.CheckedListBox ListaZonas;
-        private System.Windows.Forms.Label zonas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Rol;
         private System.Windows.Forms.GroupBox datosProveedor;
@@ -649,6 +672,10 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox CodigoPostalP;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button Seleccionar;
+        private System.Windows.Forms.GroupBox zonas;
+        private System.Windows.Forms.CheckedListBox ListaZonas;
+        private System.Windows.Forms.MonthCalendar Fecha;
 
     }
 }

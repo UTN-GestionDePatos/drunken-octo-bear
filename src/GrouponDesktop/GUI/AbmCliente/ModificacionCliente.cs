@@ -139,7 +139,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ModificacionCliente_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea rechazar los cambios?", "Modificar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show("¿Desea salir del formulario?", "Modificar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -155,6 +155,7 @@ namespace GrouponDesktop.GUI.AbmCliente
         private void CambiarRol_Click(object sender, EventArgs e)
         {
             new CambiarRol(UsernameCliente.Text).Show();
+            this.Hide();
         }
 
         private void Fecha_DateSelected(object sender, DateRangeEventArgs e)

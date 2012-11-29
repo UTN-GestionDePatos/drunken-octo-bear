@@ -61,7 +61,8 @@ namespace GrouponDesktop.GUI
             }
 
             db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol + "' where username = '" + user + "'");
-
+            MessageBox.Show("Nuevo rol asignado correctamente", "Cambiar rol");
+            this.Hide();
         }
 
         private void CambiarRol_Load()

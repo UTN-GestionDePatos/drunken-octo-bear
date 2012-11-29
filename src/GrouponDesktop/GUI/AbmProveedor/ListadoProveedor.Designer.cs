@@ -39,15 +39,15 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridProveedores = new System.Windows.Forms.DataGridView();
+            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet7 = new GrouponDesktop.GD2C2012DataSet7();
+            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSet7TableAdapters.viewproveedoresTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razonsocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cuitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rubroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombrecontactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSet7 = new GrouponDesktop.GD2C2012DataSet7();
-            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSet7TableAdapters.viewproveedoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).BeginInit();
@@ -160,45 +160,6 @@
             this.dataGridProveedores.TabIndex = 3;
             this.dataGridProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellClick);
             // 
-            // usernameDataGridViewTextBoxColumn
-            // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            // 
-            // razonsocialDataGridViewTextBoxColumn
-            // 
-            this.razonsocialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
-            this.razonsocialDataGridViewTextBoxColumn.HeaderText = "razon_social";
-            this.razonsocialDataGridViewTextBoxColumn.Name = "razonsocialDataGridViewTextBoxColumn";
-            // 
-            // cuitDataGridViewTextBoxColumn
-            // 
-            this.cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
-            this.cuitDataGridViewTextBoxColumn.HeaderText = "cuit";
-            this.cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
-            // 
-            // rubroDataGridViewTextBoxColumn
-            // 
-            this.rubroDataGridViewTextBoxColumn.DataPropertyName = "rubro";
-            this.rubroDataGridViewTextBoxColumn.HeaderText = "rubro";
-            this.rubroDataGridViewTextBoxColumn.Name = "rubroDataGridViewTextBoxColumn";
-            this.rubroDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mailDataGridViewTextBoxColumn
-            // 
-            this.mailDataGridViewTextBoxColumn.DataPropertyName = "mail";
-            this.mailDataGridViewTextBoxColumn.HeaderText = "mail";
-            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
-            this.mailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nombrecontactoDataGridViewTextBoxColumn
-            // 
-            this.nombrecontactoDataGridViewTextBoxColumn.DataPropertyName = "nombre_contacto";
-            this.nombrecontactoDataGridViewTextBoxColumn.HeaderText = "nombre_contacto";
-            this.nombrecontactoDataGridViewTextBoxColumn.Name = "nombrecontactoDataGridViewTextBoxColumn";
-            this.nombrecontactoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // viewproveedoresBindingSource
             // 
             this.viewproveedoresBindingSource.DataMember = "viewproveedores";
@@ -213,6 +174,45 @@
             // 
             this.viewproveedoresTableAdapter.ClearBeforeFill = true;
             // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // razonsocialDataGridViewTextBoxColumn
+            // 
+            this.razonsocialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
+            this.razonsocialDataGridViewTextBoxColumn.HeaderText = "Razón Social";
+            this.razonsocialDataGridViewTextBoxColumn.Name = "razonsocialDataGridViewTextBoxColumn";
+            // 
+            // cuitDataGridViewTextBoxColumn
+            // 
+            this.cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
+            this.cuitDataGridViewTextBoxColumn.HeaderText = "CUIT";
+            this.cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
+            // 
+            // rubroDataGridViewTextBoxColumn
+            // 
+            this.rubroDataGridViewTextBoxColumn.DataPropertyName = "rubro";
+            this.rubroDataGridViewTextBoxColumn.HeaderText = "Rubro";
+            this.rubroDataGridViewTextBoxColumn.Name = "rubroDataGridViewTextBoxColumn";
+            this.rubroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mailDataGridViewTextBoxColumn
+            // 
+            this.mailDataGridViewTextBoxColumn.DataPropertyName = "mail";
+            this.mailDataGridViewTextBoxColumn.HeaderText = "E-Mail";
+            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
+            this.mailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombrecontactoDataGridViewTextBoxColumn
+            // 
+            this.nombrecontactoDataGridViewTextBoxColumn.DataPropertyName = "nombre_contacto";
+            this.nombrecontactoDataGridViewTextBoxColumn.HeaderText = "Nombre de Contacto";
+            this.nombrecontactoDataGridViewTextBoxColumn.Name = "nombrecontactoDataGridViewTextBoxColumn";
+            this.nombrecontactoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // ListadoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +221,7 @@
             this.Controls.Add(this.dataGridProveedores);
             this.Controls.Add(this.groupBox1);
             this.Name = "ListadoProveedor";
-            this.Text = "ListadoProveedor";
+            this.Text = "Proveedor - Listado de selección";
             this.Load += new System.EventHandler(this.ListadoProveedor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
