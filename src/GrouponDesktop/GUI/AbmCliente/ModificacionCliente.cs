@@ -50,10 +50,15 @@ namespace GrouponDesktop.GUI.AbmCliente
             ciudadCliente.SelectedItem = response.result.Rows[0][4].ToString();
 
             response = dbManager.executeQuery("SELECT e.nombre_estado FROM GESTION_DE_PATOS.Usuarios u JOIN GESTION_DE_PATOS.Estados e ON u.estado = e.id_estado WHERE u.username = '" + UsernameCliente.Text + "'");
-            
+            //tengo que poner que este eliminado si es que lo esta
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
-            Estado.Text = response.result.Rows[0][0].ToString();
+
+            String estado_actual = response.result.Rows[0][0].ToString();
+            if(!Estado.Items.Contains(estado_actual))
+                Estado.Items.Add(estado_actual);
+
+            Estado.SelectedItem = estado_actual;
 
             response = dbManager.executeQuery("SELECT GESTION_DE_PATOS.localidad(id_localidad) AS 'localidad' FROM GESTION_DE_PATOS.Localidad_por_usuario WHERE username = '" + UsernameCliente.Text + "'");
  
@@ -165,7 +170,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void CambiarRol_Click(object sender, EventArgs e)
         {
-            new CambiarRol(UsernameCliente.Text, listado).ShowDialog();
+            new CambiarRol(UsernameCliente.Text, listado).Show();
             listado.actualizar_datagridview();
             this.Hide();
         }

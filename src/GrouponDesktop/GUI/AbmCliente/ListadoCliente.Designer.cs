@@ -49,6 +49,7 @@
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewclientesBindingSource)).BeginInit();
@@ -171,7 +172,8 @@
             this.nombreDataGridViewTextBoxColumn,
             this.apellidoDataGridViewTextBoxColumn,
             this.dniDataGridViewTextBoxColumn,
-            this.mailDataGridViewTextBoxColumn});
+            this.mailDataGridViewTextBoxColumn,
+            this.estado});
             this.dataGridClientes.DataSource = this.viewclientesBindingSource;
             this.dataGridClientes.Location = new System.Drawing.Point(13, 142);
             this.dataGridClientes.Name = "dataGridClientes";
@@ -228,6 +230,12 @@
             this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
             this.mailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +280,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dniDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
 
     }
 }

@@ -29,7 +29,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            this.listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente'");
+            this.listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail, GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado' FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente'");
             this.listado.actualizar_datagridview();
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
@@ -158,7 +158,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             try
             {
                 //Formación de query final
-                String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente' ";
+                String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail, GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado' FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente' ";
                 if (!string.Equals(where, ""))
                 {
                     query = query + where;
