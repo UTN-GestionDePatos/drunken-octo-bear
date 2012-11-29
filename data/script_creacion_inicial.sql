@@ -91,7 +91,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 	CREATE TABLE Tarjetas ( 
 		numero bigint primary key,
 		username varchar(30) references Clientes(username),
-		tipo int
+		tipo int references Tipos_Pago(id_pago)
 	)
 
 	CREATE TABLE Cargas ( 
