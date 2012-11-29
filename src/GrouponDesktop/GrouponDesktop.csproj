@@ -155,15 +155,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSetProveedoresView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetProveedoresView.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSetviewAdministradores.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GD2C2012DataSetViewProveedores.Designer.cs">
+    <Compile Include="GD2C2012DataSetviewclientes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
+      <DependentUpon>GD2C2012DataSetviewclientes.xsd</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmAdministrador\ABMAdministrador.cs">
       <SubType>Form</SubType>
@@ -642,6 +647,17 @@
     <None Include="GD2C2012DataSetHistorialCupones.xss">
       <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
     </None>
+    <None Include="GD2C2012DataSetProveedoresView.xsc">
+      <DependentUpon>GD2C2012DataSetProveedoresView.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetProveedoresView.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetProveedoresView.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetProveedoresView.xss">
+      <DependentUpon>GD2C2012DataSetProveedoresView.xsd</DependentUpon>
+    </None>
     <None Include="GD2C2012DataSetviewAdministradores.xsc">
       <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
     </None>
@@ -653,16 +669,16 @@
     <None Include="GD2C2012DataSetviewAdministradores.xss">
       <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
     </None>
-    <None Include="GD2C2012DataSetViewProveedores.xsc">
-      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
+    <None Include="GD2C2012DataSetviewclientes.xsc">
+      <DependentUpon>GD2C2012DataSetviewclientes.xsd</DependentUpon>
     </None>
-    <None Include="GD2C2012DataSetViewProveedores.xsd">
+    <None Include="GD2C2012DataSetviewclientes.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GD2C2012DataSetViewProveedores.Designer.cs</LastGenOutput>
+      <LastGenOutput>GD2C2012DataSetviewclientes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="GD2C2012DataSetViewProveedores.xss">
-      <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>
+    <None Include="GD2C2012DataSetviewclientes.xss">
+      <DependentUpon>GD2C2012DataSetviewclientes.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

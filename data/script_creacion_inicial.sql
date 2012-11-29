@@ -1332,14 +1332,16 @@ FROM GESTION_DE_PATOS.Roles
 GO
 
 CREATE VIEW GESTION_DE_PATOS.viewclientes AS
-SELECT username, nombre, apellido, dni, CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail'
-FROM GESTION_DE_PATOS.Clientes
+SELECT c.username, c.nombre, c.apellido, c.dni, CASE WHEN c.mail is not null THEN c.mail ELSE '-' END AS 'mail', GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado'
+FROM GESTION_DE_PATOS.Clientes c JOIN GESTION_DE_PATOS.Usuarios u ON c.username = u.username
+WHERE u.rol = 'Cliente'
 
 GO
 
 CREATE VIEW GESTION_DE_PATOS.viewproveedores AS
-SELECT username, razon_social, cuit, GESTION_DE_PATOS.rubro(id_rubro) AS 'rubro', CASE WHEN mail is not null THEN mail ELSE '-' END AS 'mail', CASE WHEN nombre_contacto is not null THEN nombre_contacto ELSE '-' END AS 'nombre_contacto' 
-FROM GESTION_DE_PATOS.Proveedores
+SELECT p.username, p.razon_social, p.cuit, GESTION_DE_PATOS.rubro(p.id_rubro) AS 'rubro', CASE WHEN p.mail is not null THEN p.mail ELSE '-' END AS 'mail', CASE WHEN p.nombre_contacto is not null THEN p.nombre_contacto ELSE '-' END AS 'nombre_contacto', GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado' 
+FROM GESTION_DE_PATOS.Proveedores p JOIN GESTION_DE_PATOS.Usuarios u ON p.username = u.username
+WHERE u.rol = 'Proveedor'
 
 GO
 

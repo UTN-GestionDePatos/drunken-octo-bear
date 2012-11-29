@@ -21,16 +21,16 @@ namespace GrouponDesktop {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("GD2C2012DataSetViewProveedores")]
+    [global::System.Xml.Serialization.XmlRootAttribute("GD2C2012DataSetviewclientes")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class GD2C2012DataSetViewProveedores : global::System.Data.DataSet {
+    public partial class GD2C2012DataSetviewclientes : global::System.Data.DataSet {
         
-        private viewproveedoresDataTable tableviewproveedores;
+        private viewclientesDataTable tableviewclientes;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public GD2C2012DataSetViewProveedores() {
+        public GD2C2012DataSetviewclientes() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -40,7 +40,7 @@ namespace GrouponDesktop {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected GD2C2012DataSetViewProveedores(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected GD2C2012DataSetviewclientes(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -53,8 +53,8 @@ namespace GrouponDesktop {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["viewproveedores"] != null)) {
-                    base.Tables.Add(new viewproveedoresDataTable(ds.Tables["viewproveedores"]));
+                if ((ds.Tables["viewclientes"] != null)) {
+                    base.Tables.Add(new viewclientesDataTable(ds.Tables["viewclientes"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -77,9 +77,9 @@ namespace GrouponDesktop {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public viewproveedoresDataTable viewproveedores {
+        public viewclientesDataTable viewclientes {
             get {
-                return this.tableviewproveedores;
+                return this.tableviewclientes;
             }
         }
         
@@ -120,7 +120,7 @@ namespace GrouponDesktop {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public override global::System.Data.DataSet Clone() {
-            GD2C2012DataSetViewProveedores cln = ((GD2C2012DataSetViewProveedores)(base.Clone()));
+            GD2C2012DataSetviewclientes cln = ((GD2C2012DataSetviewclientes)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -142,8 +142,8 @@ namespace GrouponDesktop {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["viewproveedores"] != null)) {
-                    base.Tables.Add(new viewproveedoresDataTable(ds.Tables["viewproveedores"]));
+                if ((ds.Tables["viewclientes"] != null)) {
+                    base.Tables.Add(new viewclientesDataTable(ds.Tables["viewclientes"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -175,27 +175,27 @@ namespace GrouponDesktop {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableviewproveedores = ((viewproveedoresDataTable)(base.Tables["viewproveedores"]));
+            this.tableviewclientes = ((viewclientesDataTable)(base.Tables["viewclientes"]));
             if ((initTable == true)) {
-                if ((this.tableviewproveedores != null)) {
-                    this.tableviewproveedores.InitVars();
+                if ((this.tableviewclientes != null)) {
+                    this.tableviewclientes.InitVars();
                 }
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitClass() {
-            this.DataSetName = "GD2C2012DataSetViewProveedores";
+            this.DataSetName = "GD2C2012DataSetviewclientes";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/GD2C2012DataSetViewProveedores.xsd";
+            this.Namespace = "http://tempuri.org/GD2C2012DataSetviewclientes.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableviewproveedores = new viewproveedoresDataTable();
-            base.Tables.Add(this.tableviewproveedores);
+            this.tableviewclientes = new viewclientesDataTable();
+            base.Tables.Add(this.tableviewclientes);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeviewproveedores() {
+        private bool ShouldSerializeviewclientes() {
             return false;
         }
         
@@ -208,7 +208,7 @@ namespace GrouponDesktop {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            GD2C2012DataSetViewProveedores ds = new GD2C2012DataSetViewProveedores();
+            GD2C2012DataSetviewclientes ds = new GD2C2012DataSetviewclientes();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -252,7 +252,7 @@ namespace GrouponDesktop {
             return type;
         }
         
-        public delegate void viewproveedoresRowChangeEventHandler(object sender, viewproveedoresRowChangeEvent e);
+        public delegate void viewclientesRowChangeEventHandler(object sender, viewclientesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -260,28 +260,30 @@ namespace GrouponDesktop {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class viewproveedoresDataTable : global::System.Data.TypedTableBase<viewproveedoresRow> {
+        public partial class viewclientesDataTable : global::System.Data.TypedTableBase<viewclientesRow> {
             
             private global::System.Data.DataColumn columnusername;
             
-            private global::System.Data.DataColumn columnrazon_social;
+            private global::System.Data.DataColumn columnnombre;
             
-            private global::System.Data.DataColumn columncuit;
+            private global::System.Data.DataColumn columnapellido;
+            
+            private global::System.Data.DataColumn columndni;
             
             private global::System.Data.DataColumn columnmail;
             
-            private global::System.Data.DataColumn columnnombre_contacto;
+            private global::System.Data.DataColumn columnestado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresDataTable() {
-                this.TableName = "viewproveedores";
+            public viewclientesDataTable() {
+                this.TableName = "viewclientes";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal viewproveedoresDataTable(global::System.Data.DataTable table) {
+            internal viewclientesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -297,7 +299,7 @@ namespace GrouponDesktop {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected viewproveedoresDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected viewclientesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -310,16 +312,23 @@ namespace GrouponDesktop {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn razon_socialColumn {
+            public global::System.Data.DataColumn nombreColumn {
                 get {
-                    return this.columnrazon_social;
+                    return this.columnnombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn cuitColumn {
+            public global::System.Data.DataColumn apellidoColumn {
                 get {
-                    return this.columncuit;
+                    return this.columnapellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn dniColumn {
+                get {
+                    return this.columndni;
                 }
             }
             
@@ -331,9 +340,9 @@ namespace GrouponDesktop {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn nombre_contactoColumn {
+            public global::System.Data.DataColumn estadoColumn {
                 get {
-                    return this.columnnombre_contacto;
+                    return this.columnestado;
                 }
             }
             
@@ -346,140 +355,144 @@ namespace GrouponDesktop {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRow this[int index] {
+            public viewclientesRow this[int index] {
                 get {
-                    return ((viewproveedoresRow)(this.Rows[index]));
+                    return ((viewclientesRow)(this.Rows[index]));
                 }
             }
             
-            public event viewproveedoresRowChangeEventHandler viewproveedoresRowChanging;
+            public event viewclientesRowChangeEventHandler viewclientesRowChanging;
             
-            public event viewproveedoresRowChangeEventHandler viewproveedoresRowChanged;
+            public event viewclientesRowChangeEventHandler viewclientesRowChanged;
             
-            public event viewproveedoresRowChangeEventHandler viewproveedoresRowDeleting;
+            public event viewclientesRowChangeEventHandler viewclientesRowDeleting;
             
-            public event viewproveedoresRowChangeEventHandler viewproveedoresRowDeleted;
+            public event viewclientesRowChangeEventHandler viewclientesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddviewproveedoresRow(viewproveedoresRow row) {
+            public void AddviewclientesRow(viewclientesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRow AddviewproveedoresRow(string username, string razon_social, string cuit, string mail, string nombre_contacto) {
-                viewproveedoresRow rowviewproveedoresRow = ((viewproveedoresRow)(this.NewRow()));
+            public viewclientesRow AddviewclientesRow(string username, string nombre, string apellido, long dni, string mail, string estado) {
+                viewclientesRow rowviewclientesRow = ((viewclientesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         username,
-                        razon_social,
-                        cuit,
+                        nombre,
+                        apellido,
+                        dni,
                         mail,
-                        nombre_contacto};
-                rowviewproveedoresRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowviewproveedoresRow);
-                return rowviewproveedoresRow;
+                        estado};
+                rowviewclientesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowviewclientesRow);
+                return rowviewclientesRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRow FindByusername(string username) {
-                return ((viewproveedoresRow)(this.Rows.Find(new object[] {
+            public viewclientesRow FindByusername(string username) {
+                return ((viewclientesRow)(this.Rows.Find(new object[] {
                             username})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                viewproveedoresDataTable cln = ((viewproveedoresDataTable)(base.Clone()));
+                viewclientesDataTable cln = ((viewclientesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new viewproveedoresDataTable();
+                return new viewclientesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
                 this.columnusername = base.Columns["username"];
-                this.columnrazon_social = base.Columns["razon_social"];
-                this.columncuit = base.Columns["cuit"];
+                this.columnnombre = base.Columns["nombre"];
+                this.columnapellido = base.Columns["apellido"];
+                this.columndni = base.Columns["dni"];
                 this.columnmail = base.Columns["mail"];
-                this.columnnombre_contacto = base.Columns["nombre_contacto"];
+                this.columnestado = base.Columns["estado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
                 this.columnusername = new global::System.Data.DataColumn("username", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusername);
-                this.columnrazon_social = new global::System.Data.DataColumn("razon_social", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnrazon_social);
-                this.columncuit = new global::System.Data.DataColumn("cuit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncuit);
+                this.columnnombre = new global::System.Data.DataColumn("nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombre);
+                this.columnapellido = new global::System.Data.DataColumn("apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnapellido);
+                this.columndni = new global::System.Data.DataColumn("dni", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndni);
                 this.columnmail = new global::System.Data.DataColumn("mail", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmail);
-                this.columnnombre_contacto = new global::System.Data.DataColumn("nombre_contacto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnombre_contacto);
+                this.columnestado = new global::System.Data.DataColumn("estado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnestado);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnusername}, true));
                 this.columnusername.AllowDBNull = false;
                 this.columnusername.Unique = true;
                 this.columnusername.MaxLength = 30;
-                this.columnrazon_social.MaxLength = 30;
-                this.columncuit.MaxLength = 20;
+                this.columnnombre.MaxLength = 30;
+                this.columnapellido.MaxLength = 30;
                 this.columnmail.ReadOnly = true;
                 this.columnmail.MaxLength = 30;
-                this.columnnombre_contacto.ReadOnly = true;
-                this.columnnombre_contacto.MaxLength = 30;
+                this.columnestado.ReadOnly = true;
+                this.columnestado.MaxLength = 30;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRow NewviewproveedoresRow() {
-                return ((viewproveedoresRow)(this.NewRow()));
+            public viewclientesRow NewviewclientesRow() {
+                return ((viewclientesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new viewproveedoresRow(builder);
+                return new viewclientesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(viewproveedoresRow);
+                return typeof(viewclientesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.viewproveedoresRowChanged != null)) {
-                    this.viewproveedoresRowChanged(this, new viewproveedoresRowChangeEvent(((viewproveedoresRow)(e.Row)), e.Action));
+                if ((this.viewclientesRowChanged != null)) {
+                    this.viewclientesRowChanged(this, new viewclientesRowChangeEvent(((viewclientesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.viewproveedoresRowChanging != null)) {
-                    this.viewproveedoresRowChanging(this, new viewproveedoresRowChangeEvent(((viewproveedoresRow)(e.Row)), e.Action));
+                if ((this.viewclientesRowChanging != null)) {
+                    this.viewclientesRowChanging(this, new viewclientesRowChangeEvent(((viewclientesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.viewproveedoresRowDeleted != null)) {
-                    this.viewproveedoresRowDeleted(this, new viewproveedoresRowChangeEvent(((viewproveedoresRow)(e.Row)), e.Action));
+                if ((this.viewclientesRowDeleted != null)) {
+                    this.viewclientesRowDeleted(this, new viewclientesRowChangeEvent(((viewclientesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.viewproveedoresRowDeleting != null)) {
-                    this.viewproveedoresRowDeleting(this, new viewproveedoresRowChangeEvent(((viewproveedoresRow)(e.Row)), e.Action));
+                if ((this.viewclientesRowDeleting != null)) {
+                    this.viewclientesRowDeleting(this, new viewclientesRowChangeEvent(((viewclientesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveviewproveedoresRow(viewproveedoresRow row) {
+            public void RemoveviewclientesRow(viewclientesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -487,7 +500,7 @@ namespace GrouponDesktop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GD2C2012DataSetViewProveedores ds = new GD2C2012DataSetViewProveedores();
+                GD2C2012DataSetviewclientes ds = new GD2C2012DataSetviewclientes();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -505,7 +518,7 @@ namespace GrouponDesktop {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "viewproveedoresDataTable";
+                attribute2.FixedValue = "viewclientesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -550,53 +563,68 @@ namespace GrouponDesktop {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class viewproveedoresRow : global::System.Data.DataRow {
+        public partial class viewclientesRow : global::System.Data.DataRow {
             
-            private viewproveedoresDataTable tableviewproveedores;
+            private viewclientesDataTable tableviewclientes;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal viewproveedoresRow(global::System.Data.DataRowBuilder rb) : 
+            internal viewclientesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableviewproveedores = ((viewproveedoresDataTable)(this.Table));
+                this.tableviewclientes = ((viewclientesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string username {
                 get {
-                    return ((string)(this[this.tableviewproveedores.usernameColumn]));
+                    return ((string)(this[this.tableviewclientes.usernameColumn]));
                 }
                 set {
-                    this[this.tableviewproveedores.usernameColumn] = value;
+                    this[this.tableviewclientes.usernameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string razon_social {
+            public string nombre {
                 get {
                     try {
-                        return ((string)(this[this.tableviewproveedores.razon_socialColumn]));
+                        return ((string)(this[this.tableviewclientes.nombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'razon_social\' de la tabla \'viewproveedores\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre\' de la tabla \'viewclientes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableviewproveedores.razon_socialColumn] = value;
+                    this[this.tableviewclientes.nombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string cuit {
+            public string apellido {
                 get {
                     try {
-                        return ((string)(this[this.tableviewproveedores.cuitColumn]));
+                        return ((string)(this[this.tableviewclientes.apellidoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'cuit\' de la tabla \'viewproveedores\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'apellido\' de la tabla \'viewclientes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableviewproveedores.cuitColumn] = value;
+                    this[this.tableviewclientes.apellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public long dni {
+                get {
+                    try {
+                        return ((long)(this[this.tableviewclientes.dniColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'dni\' de la tabla \'viewclientes\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewclientes.dniColumn] = value;
                 }
             }
             
@@ -604,71 +632,80 @@ namespace GrouponDesktop {
             public string mail {
                 get {
                     try {
-                        return ((string)(this[this.tableviewproveedores.mailColumn]));
+                        return ((string)(this[this.tableviewclientes.mailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'mail\' de la tabla \'viewproveedores\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'mail\' de la tabla \'viewclientes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableviewproveedores.mailColumn] = value;
+                    this[this.tableviewclientes.mailColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string nombre_contacto {
+            public string estado {
                 get {
                     try {
-                        return ((string)(this[this.tableviewproveedores.nombre_contactoColumn]));
+                        return ((string)(this[this.tableviewclientes.estadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_contacto\' de la tabla \'viewproveedores\' es DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'estado\' de la tabla \'viewclientes\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableviewproveedores.nombre_contactoColumn] = value;
+                    this[this.tableviewclientes.estadoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Israzon_socialNull() {
-                return this.IsNull(this.tableviewproveedores.razon_socialColumn);
+            public bool IsnombreNull() {
+                return this.IsNull(this.tableviewclientes.nombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setrazon_socialNull() {
-                this[this.tableviewproveedores.razon_socialColumn] = global::System.Convert.DBNull;
+            public void SetnombreNull() {
+                this[this.tableviewclientes.nombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IscuitNull() {
-                return this.IsNull(this.tableviewproveedores.cuitColumn);
+            public bool IsapellidoNull() {
+                return this.IsNull(this.tableviewclientes.apellidoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetcuitNull() {
-                this[this.tableviewproveedores.cuitColumn] = global::System.Convert.DBNull;
+            public void SetapellidoNull() {
+                this[this.tableviewclientes.apellidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsdniNull() {
+                return this.IsNull(this.tableviewclientes.dniColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetdniNull() {
+                this[this.tableviewclientes.dniColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsmailNull() {
-                return this.IsNull(this.tableviewproveedores.mailColumn);
+                return this.IsNull(this.tableviewclientes.mailColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetmailNull() {
-                this[this.tableviewproveedores.mailColumn] = global::System.Convert.DBNull;
+                this[this.tableviewclientes.mailColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Isnombre_contactoNull() {
-                return this.IsNull(this.tableviewproveedores.nombre_contactoColumn);
+            public bool IsestadoNull() {
+                return this.IsNull(this.tableviewclientes.estadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setnombre_contactoNull() {
-                this[this.tableviewproveedores.nombre_contactoColumn] = global::System.Convert.DBNull;
+            public void SetestadoNull() {
+                this[this.tableviewclientes.estadoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -676,20 +713,20 @@ namespace GrouponDesktop {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class viewproveedoresRowChangeEvent : global::System.EventArgs {
+        public class viewclientesRowChangeEvent : global::System.EventArgs {
             
-            private viewproveedoresRow eventRow;
+            private viewclientesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRowChangeEvent(viewproveedoresRow row, global::System.Data.DataRowAction action) {
+            public viewclientesRowChangeEvent(viewclientesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public viewproveedoresRow Row {
+            public viewclientesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -704,7 +741,7 @@ namespace GrouponDesktop {
         }
     }
 }
-namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
+namespace GrouponDesktop.GD2C2012DataSetviewclientesTableAdapters {
     
     
     /// <summary>
@@ -717,7 +754,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class viewproveedoresTableAdapter : global::System.ComponentModel.Component {
+    public partial class viewclientesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -730,7 +767,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         private bool _clearBeforeFill;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public viewproveedoresTableAdapter() {
+        public viewclientesTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -821,12 +858,13 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "viewproveedores";
+            tableMapping.DataSetTable = "viewclientes";
             tableMapping.ColumnMappings.Add("username", "username");
-            tableMapping.ColumnMappings.Add("razon_social", "razon_social");
-            tableMapping.ColumnMappings.Add("cuit", "cuit");
+            tableMapping.ColumnMappings.Add("nombre", "nombre");
+            tableMapping.ColumnMappings.Add("apellido", "apellido");
+            tableMapping.ColumnMappings.Add("dni", "dni");
             tableMapping.ColumnMappings.Add("mail", "mail");
-            tableMapping.ColumnMappings.Add("nombre_contacto", "nombre_contacto");
+            tableMapping.ColumnMappings.Add("estado", "estado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -841,15 +879,15 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT username, razon_social, cuit, mail, nombre_contacto FROM GESTION_DE_PATOS." +
-                "viewproveedores";
+            this._commandCollection[0].CommandText = "SELECT username, nombre, apellido, dni, mail, estado FROM GESTION_DE_PATOS.viewcl" +
+                "ientes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GD2C2012DataSetViewProveedores.viewproveedoresDataTable dataTable) {
+        public virtual int Fill(GD2C2012DataSetviewclientes.viewclientesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -861,9 +899,9 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GD2C2012DataSetViewProveedores.viewproveedoresDataTable GetData() {
+        public virtual GD2C2012DataSetviewclientes.viewclientesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            GD2C2012DataSetViewProveedores.viewproveedoresDataTable dataTable = new GD2C2012DataSetViewProveedores.viewproveedoresDataTable();
+            GD2C2012DataSetviewclientes.viewclientesDataTable dataTable = new GD2C2012DataSetviewclientes.viewclientesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -933,7 +971,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         ///Update rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateUpdatedRows(GD2C2012DataSetViewProveedores dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(GD2C2012DataSetviewclientes dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -942,7 +980,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         ///Insert rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateInsertedRows(GD2C2012DataSetViewProveedores dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(GD2C2012DataSetviewclientes dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -951,7 +989,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         ///Delete rows in bottom-up order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateDeletedRows(GD2C2012DataSetViewProveedores dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(GD2C2012DataSetviewclientes dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -983,7 +1021,7 @@ namespace GrouponDesktop.GD2C2012DataSetViewProveedoresTableAdapters {
         ///Update all changes to the dataset.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public virtual int UpdateAll(GD2C2012DataSetViewProveedores dataSet) {
+        public virtual int UpdateAll(GD2C2012DataSetviewclientes dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

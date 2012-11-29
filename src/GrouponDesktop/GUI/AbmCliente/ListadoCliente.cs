@@ -29,7 +29,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            this.listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail, GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado' FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente'");
+            this.listado = new Listado(dataGridClientes, "SELECT * FROM GESTION_DE_PATOS.viewclientes");
             this.listado.actualizar_datagridview();
 
             DataGridViewButtonColumn modificar = new DataGridViewButtonColumn();
@@ -141,25 +141,56 @@ namespace GrouponDesktop.GUI.AbmCliente
             }
 
             //Clausula WHERE para filtrar la búsqueda
-            String where = "";
+            String where = "WHERE";
+            bool es_primero = true;
 
             if (validarTextBox(Nombre))
-                where = where + " AND nombre like '" + Nombre.Text.ToString() + "%'";
+            {
+                where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
+                es_primero = false;             
+            }
 
             if (validarTextBox(Apellido))
-                where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
+            {
+                if (es_primero)
+                {
+                    where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
+
+            }
 
             if (validarTextBox(DNI))
-                where = where + " AND dni = '" + DNI.Text.ToString() + "'";
+            {
+                if (es_primero)
+                {
+                    where = where + " dni = '" + DNI.Text.ToString() + "'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND dni = '" + DNI.Text.ToString() + "'";
+              
+            }
 
             if (validarTextBox(Mail))
-                where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+            {
+                if (es_primero)
+                {
+                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
+                    es_primero = false;
+                }
+                else
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+                
+            }
 
             try
             {
                 //Formación de query final
-                String query = "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail, GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado' FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username WHERE u.rol = 'Cliente' ";
-                if (!string.Equals(where, ""))
+                String query = "SELECT * FROM GESTION_DE_PATOS.viewclientes ";
+                if (!string.Equals(where, "WHERE"))
                 {
                     query = query + where;
                 }

@@ -59,7 +59,12 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
             Estado.Items.Add("Habilitado");
             Estado.Items.Add("Deshabilitado");
-            Estado.Text = response.result.Rows[0][0].ToString();
+
+            String estado_actual = response.result.Rows[0][0].ToString();
+            if (!Estado.Items.Contains(estado_actual))
+                Estado.Items.Add(estado_actual);
+
+            Estado.SelectedItem = estado_actual;
 
             response = dbManager.executeQuery("SELECT nombre FROM GESTION_DE_PATOS.Roles");
 
