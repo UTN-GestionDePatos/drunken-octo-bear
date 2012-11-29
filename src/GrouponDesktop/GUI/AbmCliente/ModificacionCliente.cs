@@ -157,6 +157,16 @@ namespace GrouponDesktop.GUI.AbmCliente
             new CambiarRol(UsernameCliente.Text).Show();
         }
 
+        private void Fecha_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime date = Fecha.SelectionStart;
+            string fechaStr = date.Date.ToShortDateString();
+
+            FchNacimientoCliente.Text = fechaStr;
+
+            Fecha.Visible = false;
+        }
+
 
 
       

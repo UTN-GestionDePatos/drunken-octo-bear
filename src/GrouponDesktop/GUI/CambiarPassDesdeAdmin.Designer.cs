@@ -51,7 +51,7 @@
             this.groupBox1.Size = new System.Drawing.Size(340, 138);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Password";
+            this.groupBox1.Text = "Password:";
             // 
             // Cancelar
             // 
@@ -116,8 +116,9 @@
             this.ClientSize = new System.Drawing.Size(366, 167);
             this.Controls.Add(this.groupBox1);
             this.Name = "CambiarPassDesdeAdmin";
-            this.Text = "Cambiar contraseña";
+            this.Text = "Cambiar Password";
             this.Load += new System.EventHandler(this.CambiarPassDesdeAdmin_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CambiarPassDesdeAdmin_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

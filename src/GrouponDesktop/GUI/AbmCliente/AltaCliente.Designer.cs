@@ -31,6 +31,8 @@
             this.Limpiar = new System.Windows.Forms.Button();
             this.Guardar = new System.Windows.Forms.Button();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.Fecha = new System.Windows.Forms.MonthCalendar();
+            this.Seleccionar = new System.Windows.Forms.Button();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ciudadCliente = new System.Windows.Forms.ComboBox();
@@ -40,6 +42,7 @@
             this.DireccionC = new System.Windows.Forms.TextBox();
             this.DNICliente = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.FchNacimientoCliente = new System.Windows.Forms.TextBox();
             this.TelefonoCliente = new System.Windows.Forms.TextBox();
             this.ApellidoCliente = new System.Windows.Forms.TextBox();
             this.NombreCliente = new System.Windows.Forms.TextBox();
@@ -53,10 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
-            this.FchNacimientoCliente = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Seleccionar = new System.Windows.Forms.Button();
-            this.Fecha = new System.Windows.Forms.MonthCalendar();
             this.datosClientes.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +113,24 @@
             this.datosClientes.TabIndex = 28;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
+            // 
+            // Fecha
+            // 
+            this.Fecha.Location = new System.Drawing.Point(182, 140);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.TabIndex = 55;
+            this.Fecha.Visible = false;
+            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Location = new System.Drawing.Point(255, 211);
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
+            this.Seleccionar.TabIndex = 54;
+            this.Seleccionar.Text = "Seleccionar";
+            this.Seleccionar.UseVisualStyleBackColor = true;
+            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
             // 
             // CodigoPostal
             // 
@@ -187,6 +205,14 @@
             this.label20.Size = new System.Drawing.Size(52, 13);
             this.label20.TabIndex = 48;
             this.label20.Text = "Direccion";
+            // 
+            // FchNacimientoCliente
+            // 
+            this.FchNacimientoCliente.Enabled = false;
+            this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
+            this.FchNacimientoCliente.Name = "FchNacimientoCliente";
+            this.FchNacimientoCliente.Size = new System.Drawing.Size(127, 20);
+            this.FchNacimientoCliente.TabIndex = 44;
             // 
             // TelefonoCliente
             // 
@@ -294,14 +320,6 @@
             this.ListaZonas.Size = new System.Drawing.Size(217, 244);
             this.ListaZonas.TabIndex = 29;
             // 
-            // FchNacimientoCliente
-            // 
-            this.FchNacimientoCliente.Enabled = false;
-            this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
-            this.FchNacimientoCliente.Name = "FchNacimientoCliente";
-            this.FchNacimientoCliente.Size = new System.Drawing.Size(127, 20);
-            this.FchNacimientoCliente.TabIndex = 44;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ListaZonas);
@@ -311,24 +329,6 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Zonas de Preferencia";
-            // 
-            // Seleccionar
-            // 
-            this.Seleccionar.Location = new System.Drawing.Point(255, 211);
-            this.Seleccionar.Name = "Seleccionar";
-            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
-            this.Seleccionar.TabIndex = 54;
-            this.Seleccionar.Text = "Seleccionar";
-            this.Seleccionar.UseVisualStyleBackColor = true;
-            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
-            // 
-            // Fecha
-            // 
-            this.Fecha.Location = new System.Drawing.Point(182, 156);
-            this.Fecha.Name = "Fecha";
-            this.Fecha.TabIndex = 55;
-            this.Fecha.Visible = false;
-            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
             // 
             // AltaCliente
             // 

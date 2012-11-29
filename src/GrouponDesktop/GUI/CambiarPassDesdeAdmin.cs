@@ -59,5 +59,13 @@ namespace GrouponDesktop.GUI
 
         }
 
+        private void CambiarPassDesdeAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Cambiar password", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
     }
 }

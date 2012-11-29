@@ -30,9 +30,9 @@
         {
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
-            this.zonas = new System.Windows.Forms.Label();
-            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.Fecha = new System.Windows.Forms.MonthCalendar();
+            this.Seleccionar = new System.Windows.Forms.Button();
             this.CambiarPassword = new System.Windows.Forms.Button();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,10 +59,14 @@
             this.Estado = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.CambiarRol = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.datosClientes.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Guardar
@@ -85,26 +89,10 @@
             this.Limpiar.UseVisualStyleBackColor = true;
             this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
-            // zonas
-            // 
-            this.zonas.AutoSize = true;
-            this.zonas.Location = new System.Drawing.Point(374, 33);
-            this.zonas.Name = "zonas";
-            this.zonas.Size = new System.Drawing.Size(109, 13);
-            this.zonas.TabIndex = 33;
-            this.zonas.Text = "Zonas de Preferencia";
-            this.zonas.Visible = false;
-            // 
-            // ListaZonas
-            // 
-            this.ListaZonas.FormattingEnabled = true;
-            this.ListaZonas.Location = new System.Drawing.Point(377, 76);
-            this.ListaZonas.Name = "ListaZonas";
-            this.ListaZonas.Size = new System.Drawing.Size(330, 244);
-            this.ListaZonas.TabIndex = 32;
-            // 
             // datosClientes
             // 
+            this.datosClientes.Controls.Add(this.Fecha);
+            this.datosClientes.Controls.Add(this.Seleccionar);
             this.datosClientes.Controls.Add(this.CambiarPassword);
             this.datosClientes.Controls.Add(this.CodigoPostal);
             this.datosClientes.Controls.Add(this.label4);
@@ -129,10 +117,27 @@
             this.datosClientes.Controls.Add(this.Nombre);
             this.datosClientes.Location = new System.Drawing.Point(17, 12);
             this.datosClientes.Name = "datosClientes";
-            this.datosClientes.Size = new System.Drawing.Size(335, 405);
+            this.datosClientes.Size = new System.Drawing.Size(413, 405);
             this.datosClientes.TabIndex = 31;
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
+            // 
+            // Fecha
+            // 
+            this.Fecha.Location = new System.Drawing.Point(180, 145);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.TabIndex = 56;
+            this.Fecha.Visible = false;
+            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Location = new System.Drawing.Point(257, 211);
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
+            this.Seleccionar.TabIndex = 55;
+            this.Seleccionar.Text = "Seleccionar";
+            this.Seleccionar.UseVisualStyleBackColor = true;
             // 
             // CambiarPassword
             // 
@@ -212,9 +217,10 @@
             // 
             // FchNacimientoCliente
             // 
+            this.FchNacimientoCliente.Enabled = false;
             this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
             this.FchNacimientoCliente.Name = "FchNacimientoCliente";
-            this.FchNacimientoCliente.Size = new System.Drawing.Size(209, 20);
+            this.FchNacimientoCliente.Size = new System.Drawing.Size(129, 20);
             this.FchNacimientoCliente.TabIndex = 44;
             // 
             // TelefonoCliente
@@ -320,9 +326,9 @@
             // 
             this.groupBox2.Controls.Add(this.Estado);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Location = new System.Drawing.Point(367, 341);
+            this.groupBox2.Location = new System.Drawing.Point(436, 307);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(350, 45);
+            this.groupBox2.Size = new System.Drawing.Size(263, 45);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Estado de Usuario";
@@ -331,49 +337,76 @@
             // 
             this.Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Estado.FormattingEnabled = true;
-            this.Estado.Location = new System.Drawing.Point(123, 12);
+            this.Estado.Location = new System.Drawing.Point(98, 16);
             this.Estado.Name = "Estado";
-            this.Estado.Size = new System.Drawing.Size(209, 21);
+            this.Estado.Size = new System.Drawing.Size(148, 21);
             this.Estado.TabIndex = 30;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 20);
+            this.label13.Location = new System.Drawing.Point(19, 19);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.Size = new System.Drawing.Size(43, 13);
             this.label13.TabIndex = 21;
-            this.label13.Text = "Estado";
+            this.label13.Text = "Estado:";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.CambiarRol);
-            this.groupBox1.Location = new System.Drawing.Point(367, 392);
+            this.groupBox1.Location = new System.Drawing.Point(436, 358);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 45);
+            this.groupBox1.Size = new System.Drawing.Size(263, 45);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rol";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(22, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Rol:";
+            // 
             // CambiarRol
             // 
-            this.CambiarRol.Location = new System.Drawing.Point(10, 16);
+            this.CambiarRol.Location = new System.Drawing.Point(98, 15);
             this.CambiarRol.Name = "CambiarRol";
-            this.CambiarRol.Size = new System.Drawing.Size(322, 23);
+            this.CambiarRol.Size = new System.Drawing.Size(120, 23);
             this.CambiarRol.TabIndex = 0;
             this.CambiarRol.Text = "Cambiar Rol";
             this.CambiarRol.UseVisualStyleBackColor = true;
             this.CambiarRol.Click += new System.EventHandler(this.CambiarRol_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.ListaZonas);
+            this.groupBox3.Location = new System.Drawing.Point(436, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(263, 263);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Zonas de Preferencia";
+            // 
+            // ListaZonas
+            // 
+            this.ListaZonas.FormattingEnabled = true;
+            this.ListaZonas.Location = new System.Drawing.Point(29, 33);
+            this.ListaZonas.Name = "ListaZonas";
+            this.ListaZonas.Size = new System.Drawing.Size(217, 199);
+            this.ListaZonas.TabIndex = 33;
             // 
             // ModificacionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 507);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.zonas);
-            this.Controls.Add(this.ListaZonas);
             this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
@@ -386,8 +419,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -395,8 +429,6 @@
 
         private System.Windows.Forms.Button Guardar;
         private System.Windows.Forms.Button Limpiar;
-        private System.Windows.Forms.Label zonas;
-        private System.Windows.Forms.CheckedListBox ListaZonas;
         private System.Windows.Forms.GroupBox datosClientes;
         private System.Windows.Forms.TextBox CodigoPostal;
         private System.Windows.Forms.Label label4;
@@ -425,5 +457,10 @@
         private System.Windows.Forms.Button CambiarPassword;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CambiarRol;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckedListBox ListaZonas;
+        private System.Windows.Forms.MonthCalendar Fecha;
+        private System.Windows.Forms.Button Seleccionar;
     }
 }

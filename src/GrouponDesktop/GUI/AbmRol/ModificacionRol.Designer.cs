@@ -136,6 +136,7 @@
             this.Name = "ModificacionRol";
             this.Text = "Rol - Modificacion";
             this.Load += new System.EventHandler(this.ModificacionRol_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionRol_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -43,6 +43,7 @@ namespace GrouponDesktop.GUI
                 
                 case "0":
                     MessageBox.Show("Contraseña cambiada con éxito");
+                    this.Hide();
                     return;
 
                 case "1":
@@ -52,6 +53,14 @@ namespace GrouponDesktop.GUI
                 case "2":
                     MessageBox.Show("La confirmación de la nueva contraseña no coincide con la ingresada");
                     return;
+            }
+        }
+
+        private void cambiarPass_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea rechazar los cambios?", "Cambiar password", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
     }
