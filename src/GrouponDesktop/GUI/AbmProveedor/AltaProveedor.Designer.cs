@@ -298,7 +298,7 @@
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "AltaProveedor";
-            this.Text = "AltaProveedor";
+            this.Text = "Proveedor - Alta";
             this.Load += new System.EventHandler(this.AltaProveedor_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaProveedor_FormClosing);
             this.datosProveedor.ResumeLayout(false);

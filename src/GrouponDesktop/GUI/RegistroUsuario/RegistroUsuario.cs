@@ -137,6 +137,10 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                         MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento", "Registro de usuario");
                         return;
                     }
+                    catch (OverflowException)
+                    {
+                        MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
                     return;
 
@@ -192,10 +196,14 @@ namespace GrouponDesktop.GUI.RegistroUsuario
 
                         return;
     
-                }
-                 catch(FormatException){
-                    MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
-                 }
+                    }
+                     catch(FormatException){
+                        MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal");
+                     }
+                    catch (OverflowException)
+                    {
+                        MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
                 return;
 

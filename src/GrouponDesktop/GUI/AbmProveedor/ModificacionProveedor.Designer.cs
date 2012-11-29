@@ -359,7 +359,7 @@
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "ModificacionProveedor";
-            this.Text = "ModificacionProveedor";
+            this.Text = "Proveedor - Modificación";
             this.Load += new System.EventHandler(this.ModificacionProveedor_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ModificacionProveedor_KeyPress);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionProveedor_FormClosing);

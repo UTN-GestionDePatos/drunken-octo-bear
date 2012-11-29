@@ -138,6 +138,10 @@ namespace GrouponDesktop.GUI.AbmCliente
                 MessageBox.Show("Ingrese valores correctos para el dni, teléfono, código postal y fecha de nacimiento");
                 return;
             }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ModificacionCliente_FormClosing(object sender, FormClosingEventArgs e)

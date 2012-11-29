@@ -340,7 +340,7 @@
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "AltaCliente";
-            this.Text = "AltaCliente";
+            this.Text = "Cliente - Alta";
             this.Load += new System.EventHandler(this.AltaCliente_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaCliente_FormClosing);
             this.datosClientes.ResumeLayout(false);

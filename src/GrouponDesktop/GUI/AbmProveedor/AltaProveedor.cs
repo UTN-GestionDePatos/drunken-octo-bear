@@ -132,6 +132,10 @@ namespace GrouponDesktop.AbmCliente
             {
                 MessageBox.Show("Ingrese un valor correcto para el teléfono o el código postal", "Alta proveedor");
             }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             return;
         }

@@ -116,6 +116,10 @@ namespace GrouponDesktop.GUI.AbmProveedor
             catch (FormatException) {
                 MessageBox.Show("Ingrese un valor numérico para código postal y teléfono ");
             }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ModificacionProveedor_KeyPress(object sender, KeyPressEventArgs e)

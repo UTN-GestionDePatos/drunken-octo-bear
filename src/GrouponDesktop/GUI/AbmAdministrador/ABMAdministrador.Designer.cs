@@ -71,7 +71,7 @@
             this.Controls.Add(this.Listado);
             this.Controls.Add(this.Alta);
             this.Name = "ABMAdministrador";
-            this.Text = "ABMAdministrador";
+            this.Text = "ABM Administrador";
             this.ResumeLayout(false);
             this.PerformLayout();
 

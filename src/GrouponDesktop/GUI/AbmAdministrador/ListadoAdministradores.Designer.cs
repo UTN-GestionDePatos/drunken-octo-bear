@@ -137,7 +137,7 @@
             this.ClientSize = new System.Drawing.Size(792, 248);
             this.Controls.Add(this.groupBox1);
             this.Name = "ListadoAdministradores";
-            this.Text = "Listado de Administradores";
+            this.Text = "Administradores - Listado de selección";
             this.Load += new System.EventHandler(this.BajaAdministrador_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.administradores)).EndInit();

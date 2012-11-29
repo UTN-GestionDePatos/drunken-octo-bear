@@ -71,7 +71,7 @@
             this.Controls.Add(this.Alta);
             this.Controls.Add(this.label1);
             this.Name = "ABMProveedor";
-            this.Text = "ABMProveedor";
+            this.Text = "ABM Proveedor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

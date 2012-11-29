@@ -56,6 +56,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.Fecha = new System.Windows.Forms.MonthCalendar();
+            this.Seleccionar = new System.Windows.Forms.Button();
             this.CodigoPostalC = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.ciudadCliente = new System.Windows.Forms.ComboBox();
@@ -80,8 +82,6 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.zonas = new System.Windows.Forms.GroupBox();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
-            this.Seleccionar = new System.Windows.Forms.Button();
-            this.Fecha = new System.Windows.Forms.MonthCalendar();
             this.datosProveedor.SuspendLayout();
             this.datosClientes.SuspendLayout();
             this.zonas.SuspendLayout();
@@ -377,6 +377,24 @@
             this.datosClientes.Text = "Datos Personales";
             this.datosClientes.Visible = false;
             // 
+            // Fecha
+            // 
+            this.Fecha.Location = new System.Drawing.Point(140, 154);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.TabIndex = 55;
+            this.Fecha.Visible = false;
+            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Location = new System.Drawing.Point(238, 211);
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
+            this.Seleccionar.TabIndex = 54;
+            this.Seleccionar.Text = "Seleccionar";
+            this.Seleccionar.UseVisualStyleBackColor = true;
+            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
+            // 
             // CodigoPostalC
             // 
             this.CodigoPostalC.Location = new System.Drawing.Point(121, 308);
@@ -577,24 +595,6 @@
             this.ListaZonas.TabIndex = 8;
             this.ListaZonas.Visible = false;
             // 
-            // Seleccionar
-            // 
-            this.Seleccionar.Location = new System.Drawing.Point(238, 211);
-            this.Seleccionar.Name = "Seleccionar";
-            this.Seleccionar.Size = new System.Drawing.Size(75, 23);
-            this.Seleccionar.TabIndex = 54;
-            this.Seleccionar.Text = "Seleccionar";
-            this.Seleccionar.UseVisualStyleBackColor = true;
-            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
-            // 
-            // Fecha
-            // 
-            this.Fecha.Location = new System.Drawing.Point(140, 154);
-            this.Fecha.Name = "Fecha";
-            this.Fecha.TabIndex = 55;
-            this.Fecha.Visible = false;
-            this.Fecha.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Fecha_DateSelected);
-            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,7 +608,7 @@
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "RegistroUsuario";
-            this.Text = "RegistroUsuario";
+            this.Text = "Registro de Usuario";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.datosProveedor.ResumeLayout(false);
             this.datosProveedor.PerformLayout();

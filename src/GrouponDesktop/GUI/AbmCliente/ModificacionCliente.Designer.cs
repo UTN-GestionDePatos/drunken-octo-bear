@@ -411,7 +411,7 @@
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
             this.Name = "ModificacionCliente";
-            this.Text = "Modificacion";
+            this.Text = "Cliente - Modificación";
             this.Load += new System.EventHandler(this.ModificacionCliente_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionCliente_FormClosing);
             this.datosClientes.ResumeLayout(false);
