@@ -44,7 +44,7 @@ namespace GrouponDesktop.GUI.AbmRol
                 builder.AddParameter("nombre_rol", celdas[0].Value.ToString());
                 builder.AddParameter("estado", resp.result.Rows[0][0]);
                 builder.executeNoReturn();
-                MessageBox.Show("Baja de rol exitosa");
+                MessageBox.Show("Baja de rol exitosa","Baja rol",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
 
             }
@@ -55,13 +55,6 @@ namespace GrouponDesktop.GUI.AbmRol
                 Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
 
             }
-
-        }
-
-        private void AltaRol_Click(object sender, EventArgs e)
-        {
-            new AltaRol().ShowDialog();
-            Datos.DataSource = m.executeQuery("SELECT * from GESTION_DE_PATOS.viewroles").result;
 
         }
     }

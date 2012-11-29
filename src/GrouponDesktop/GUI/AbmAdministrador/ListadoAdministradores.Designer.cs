@@ -1,6 +1,6 @@
 ﻿namespace GrouponDesktop.GUI.AbmAdministrador
 {
-    partial class BajaAdministrador
+    partial class ListadoAdministradores
     {
         /// <summary>
         /// Required designer variable.
@@ -34,14 +34,17 @@
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.administradoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSetAdministradores = new GrouponDesktop.GD2C2012DataSetAdministradores();
-            this.administradoresTableAdapter = new GrouponDesktop.GD2C2012DataSetAdministradoresTableAdapters.AdministradoresTableAdapter();
+            this.viewadministradoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetviewAdministradores = new GrouponDesktop.GD2C2012DataSetviewAdministradores();
+            this.viewadministradoresTableAdapter = new GrouponDesktop.GD2C2012DataSetviewAdministradoresTableAdapters.viewadministradoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.administradores)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.administradoresBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetAdministradores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewadministradoresBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetviewAdministradores)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -49,7 +52,7 @@
             this.groupBox1.Controls.Add(this.administradores);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 226);
+            this.groupBox1.Size = new System.Drawing.Size(768, 226);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Administradores";
@@ -62,11 +65,14 @@
             this.usernameDataGridViewTextBoxColumn,
             this.nombreDataGridViewTextBoxColumn,
             this.apellidoDataGridViewTextBoxColumn,
+            this.estadoDataGridViewTextBoxColumn,
+            this.habilitar,
+            this.deshabilitar,
             this.eliminar});
-            this.administradores.DataSource = this.administradoresBindingSource;
+            this.administradores.DataSource = this.viewadministradoresBindingSource;
             this.administradores.Location = new System.Drawing.Point(7, 20);
             this.administradores.Name = "administradores";
-            this.administradores.Size = new System.Drawing.Size(454, 190);
+            this.administradores.Size = new System.Drawing.Size(755, 190);
             this.administradores.TabIndex = 0;
             this.administradores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.administradores_CellClick);
             // 
@@ -88,38 +94,55 @@
             this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
             this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
             // 
+            // estadoDataGridViewTextBoxColumn
+            // 
+            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
+            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // habilitar
+            // 
+            this.habilitar.HeaderText = "Habilitar";
+            this.habilitar.Name = "habilitar";
+            // 
+            // deshabilitar
+            // 
+            this.deshabilitar.HeaderText = "Deshabilitar";
+            this.deshabilitar.Name = "deshabilitar";
+            // 
             // eliminar
             // 
             this.eliminar.HeaderText = "Eliminar";
             this.eliminar.Name = "eliminar";
             // 
-            // administradoresBindingSource
+            // viewadministradoresBindingSource
             // 
-            this.administradoresBindingSource.DataMember = "Administradores";
-            this.administradoresBindingSource.DataSource = this.gD2C2012DataSetAdministradores;
+            this.viewadministradoresBindingSource.DataMember = "viewadministradores";
+            this.viewadministradoresBindingSource.DataSource = this.gD2C2012DataSetviewAdministradores;
             // 
-            // gD2C2012DataSetAdministradores
+            // gD2C2012DataSetviewAdministradores
             // 
-            this.gD2C2012DataSetAdministradores.DataSetName = "GD2C2012DataSetAdministradores";
-            this.gD2C2012DataSetAdministradores.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.gD2C2012DataSetviewAdministradores.DataSetName = "GD2C2012DataSetviewAdministradores";
+            this.gD2C2012DataSetviewAdministradores.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // administradoresTableAdapter
+            // viewadministradoresTableAdapter
             // 
-            this.administradoresTableAdapter.ClearBeforeFill = true;
+            this.viewadministradoresTableAdapter.ClearBeforeFill = true;
             // 
-            // BajaAdministrador
+            // ListadoAdministradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 248);
+            this.ClientSize = new System.Drawing.Size(792, 248);
             this.Controls.Add(this.groupBox1);
-            this.Name = "BajaAdministrador";
-            this.Text = "Baja Administrador";
+            this.Name = "ListadoAdministradores";
+            this.Text = "Listado de Administradores";
             this.Load += new System.EventHandler(this.BajaAdministrador_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.administradores)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.administradoresBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetAdministradores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewadministradoresBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetviewAdministradores)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -128,12 +151,15 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView administradores;
-        private GD2C2012DataSetAdministradores gD2C2012DataSetAdministradores;
-        private System.Windows.Forms.BindingSource administradoresBindingSource;
-        private GrouponDesktop.GD2C2012DataSetAdministradoresTableAdapters.AdministradoresTableAdapter administradoresTableAdapter;
+        private GD2C2012DataSetviewAdministradores gD2C2012DataSetviewAdministradores;
+        private System.Windows.Forms.BindingSource viewadministradoresBindingSource;
+        private GrouponDesktop.GD2C2012DataSetviewAdministradoresTableAdapters.viewadministradoresTableAdapter viewadministradoresTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn habilitar;
+        private System.Windows.Forms.DataGridViewButtonColumn deshabilitar;
         private System.Windows.Forms.DataGridViewButtonColumn eliminar;
     }
 }

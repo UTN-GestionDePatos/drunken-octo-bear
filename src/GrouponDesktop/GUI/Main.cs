@@ -69,7 +69,7 @@ namespace GrouponDesktop.GUI
             switch (((String)funcionalidades.SelectedItem))
             {
 
-                case "ABM Rol": new ListadoRol().Show();
+                case "ABM Rol": new ABMRol().Show();
                     break;
                 case "ABM Clientes": new ABMCliente().Show();
                     break;

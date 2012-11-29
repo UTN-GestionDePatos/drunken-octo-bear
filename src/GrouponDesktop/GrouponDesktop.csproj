@@ -155,6 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2012DataSetviewAdministradores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GD2C2012DataSetViewProveedores.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -172,11 +177,11 @@
     <Compile Include="GUI\AbmAdministrador\Form1.Designer.cs">
       <DependentUpon>AltaAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\AbmAdministrador\BajaAdministrador.cs">
+    <Compile Include="GUI\AbmAdministrador\ListadoAdministradores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\AbmAdministrador\BajaAdministrador.Designer.cs">
-      <DependentUpon>BajaAdministrador.cs</DependentUpon>
+    <Compile Include="GUI\AbmAdministrador\ListadoAdministradores.Designer.cs">
+      <DependentUpon>ListadoAdministradores.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmCliente\ABMCliente.cs">
       <SubType>Form</SubType>
@@ -232,6 +237,12 @@
     </Compile>
     <Compile Include="GUI\AbmRol\AltaRol.Designer.cs">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AbmRol\ABMRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AbmRol\ABMRol.Designer.cs">
+      <DependentUpon>ABMRol.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AbmRol\ListadoRol.cs">
       <SubType>Form</SubType>
@@ -355,8 +366,8 @@
     <EmbeddedResource Include="GUI\AbmAdministrador\AltaAdministrador.resx">
       <DependentUpon>AltaAdministrador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\AbmAdministrador\BajaAdministrador.resx">
-      <DependentUpon>BajaAdministrador.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\AbmAdministrador\ListadoAdministradores.resx">
+      <DependentUpon>ListadoAdministradores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmCliente\ABMCliente.resx">
       <DependentUpon>ABMCliente.cs</DependentUpon>
@@ -384,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmRol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AbmRol\ABMRol.resx">
+      <DependentUpon>ABMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AbmRol\ListadoRol.resx">
       <DependentUpon>ListadoRol.cs</DependentUpon>
@@ -626,6 +640,17 @@
     </None>
     <None Include="GD2C2012DataSetHistorialCupones.xss">
       <DependentUpon>GD2C2012DataSetHistorialCupones.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetviewAdministradores.xsc">
+      <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2012DataSetviewAdministradores.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2012DataSetviewAdministradores.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2012DataSetviewAdministradores.xss">
+      <DependentUpon>GD2C2012DataSetviewAdministradores.xsd</DependentUpon>
     </None>
     <None Include="GD2C2012DataSetViewProveedores.xsc">
       <DependentUpon>GD2C2012DataSetViewProveedores.xsd</DependentUpon>

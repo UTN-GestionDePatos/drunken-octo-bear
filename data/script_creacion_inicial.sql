@@ -1317,6 +1317,12 @@ GO
 */
 
 
+CREATE VIEW GESTION_DE_PATOS.viewadministradores AS
+SELECT a.username, a.nombre, a.apellido, GESTION_DE_PATOS.NombreEstado(u.estado) AS 'estado'
+FROM GESTION_DE_PATOS.Administradores a JOIN GESTION_DE_PATOS.Usuarios u ON a.username = u.username
+
+GO
+
 
 CREATE VIEW GESTION_DE_PATOS.viewroles AS
 SELECT nombre, GESTION_DE_PATOS.NombreEstado(estado) estado

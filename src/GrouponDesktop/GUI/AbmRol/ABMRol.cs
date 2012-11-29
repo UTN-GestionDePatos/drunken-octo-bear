@@ -7,24 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.GUI.AbmAdministrador
+namespace GrouponDesktop.GUI.AbmRol
 {
-    public partial class ABMAdministrador : Form
+    public partial class ABMRol : Form
     {
-        public ABMAdministrador()
+        public ABMRol()
         {
             InitializeComponent();
         }
 
         private void Alta_Click(object sender, EventArgs e)
         {
-            new AltaAdministrador().Show();
-
+            new AltaRol().Show();
         }
 
         private void Listado_Click(object sender, EventArgs e)
         {
-            new ListadoAdministradores().Show();
+            new ListadoRol().Show();
         }
     }
 }

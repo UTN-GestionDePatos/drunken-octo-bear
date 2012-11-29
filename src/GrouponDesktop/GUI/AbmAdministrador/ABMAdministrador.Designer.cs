@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Alta = new System.Windows.Forms.Button();
-            this.Baja = new System.Windows.Forms.Button();
+            this.Listado = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -43,15 +43,15 @@
             this.Alta.UseVisualStyleBackColor = true;
             this.Alta.Click += new System.EventHandler(this.Alta_Click);
             // 
-            // Baja
+            // Listado
             // 
-            this.Baja.Location = new System.Drawing.Point(156, 55);
-            this.Baja.Name = "Baja";
-            this.Baja.Size = new System.Drawing.Size(75, 23);
-            this.Baja.TabIndex = 1;
-            this.Baja.Text = "Baja";
-            this.Baja.UseVisualStyleBackColor = true;
-            this.Baja.Click += new System.EventHandler(this.Baja_Click);
+            this.Listado.Location = new System.Drawing.Point(156, 55);
+            this.Listado.Name = "Listado";
+            this.Listado.Size = new System.Drawing.Size(75, 23);
+            this.Listado.TabIndex = 1;
+            this.Listado.Text = "Listado";
+            this.Listado.UseVisualStyleBackColor = true;
+            this.Listado.Click += new System.EventHandler(this.Listado_Click);
             // 
             // label1
             // 
@@ -66,9 +66,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 87);
+            this.ClientSize = new System.Drawing.Size(272, 90);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Baja);
+            this.Controls.Add(this.Listado);
             this.Controls.Add(this.Alta);
             this.Name = "ABMAdministrador";
             this.Text = "ABMAdministrador";
@@ -80,7 +80,7 @@
         #endregion
 
         private System.Windows.Forms.Button Alta;
-        private System.Windows.Forms.Button Baja;
+        private System.Windows.Forms.Button Listado;
         private System.Windows.Forms.Label label1;
     }
 }
