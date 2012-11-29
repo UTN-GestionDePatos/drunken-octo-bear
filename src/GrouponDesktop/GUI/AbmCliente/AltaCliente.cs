@@ -62,7 +62,7 @@ namespace GrouponDesktop.AbmCliente
                        ciudadCliente.SelectedItem.ToString() == "")
                 {
 
-                    MessageBox.Show("Faltan datos","Alta cliente");
+                    MessageBox.Show("Faltan datos", "Alta cliente");
                     return;
                 }
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.AltaCliente");
@@ -72,7 +72,8 @@ namespace GrouponDesktop.AbmCliente
                 {
                     ps.AddParameter("@pass", PasswordCliente.Text);
                 }
-                else {
+                else
+                {
                     ps.NombreSP("GESTION_DE_PATOS.CambiarRolCliente");
                 }
 
@@ -98,9 +99,9 @@ namespace GrouponDesktop.AbmCliente
                             ps.executeNoReturn();
                         }
 
-                        MessageBox.Show("Registro realizado con éxito","Alta cliente");
+                        MessageBox.Show("Registro realizado con éxito", "Alta cliente");
 
-                        if(this.listado != null)
+                        if (this.listado != null)
                             this.listado.actualizar_datagridview();
 
                         this.Hide();
@@ -112,13 +113,18 @@ namespace GrouponDesktop.AbmCliente
                         break;
                 }
             }
-            catch (FormatException) {
-                MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento","Alta cliente");
+            catch (FormatException)
+            {
+                MessageBox.Show("Ingrese un valor correcto para el teléfono, el dni, el código postal o la fecha de nacimiento", "Alta cliente");
                 return;
             }
             catch (OverflowException)
             {
                 MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Hay campos vacíos", "Alta cliente");
             }
         }
 

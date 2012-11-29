@@ -81,16 +81,24 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             
                     
                 case "Cliente":
-                    if (UsernameCliente.Text == "" || PasswordCliente.Text == "" ||
-                        NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
-                        MailCliente.Text == "" || TelefonoCliente.Text == "" ||
-                        FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
-                        DireccionC.Text == "" || ListaZonas.CheckedItems.Count == 0 ||
-                        CodigoPostalC.Text == "" ||
-                        ciudadCliente.SelectedItem.ToString() == "" ) {
+                    try
+                    {
+                        if (UsernameCliente.Text == "" || PasswordCliente.Text == "" ||
+                            NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
+                            MailCliente.Text == "" || TelefonoCliente.Text == "" ||
+                            FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
+                            DireccionC.Text == "" || ListaZonas.CheckedItems.Count == 0 ||
+                            CodigoPostalC.Text == "" ||
+                            ciudadCliente.SelectedItem.ToString() == "")
+                        {
 
                             MessageBox.Show("Faltan datos");
                             return;
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+                        MessageBox.Show("Hay campos vacíos", "Registro de Usuario");
                     }
 
                     ps.NombreSP("GESTION_DE_PATOS.RegistroCliente");
@@ -146,19 +154,26 @@ namespace GrouponDesktop.GUI.RegistroUsuario
 
                 case "Proveedor":
 
-                    if (UsernameP.Text == "" || PassP.Text == "" ||
-                        RazonSocial.Text == "" || CUIT.Text == "" ||
-                        MailP.Text == "" || TelefonoP.Text == "" ||
-                        Direccion.Text == "" || NombreContacto.Text == "" ||
-                        ciudadP.SelectedItem.ToString() == "" ||
-                        CodigoPostalP.Text == ""||
-                        RubroP.SelectedItem.ToString() == "")
+                    try
                     {
 
-                        MessageBox.Show("Faltan datos", "Registro de usuario");
-                        return;
-                    }
+                        if (UsernameP.Text == "" || PassP.Text == "" ||
+                            RazonSocial.Text == "" || CUIT.Text == "" ||
+                            MailP.Text == "" || TelefonoP.Text == "" ||
+                            Direccion.Text == "" || NombreContacto.Text == "" ||
+                            ciudadP.SelectedItem.ToString() == "" ||
+                            CodigoPostalP.Text == "" ||
+                            RubroP.SelectedItem.ToString() == "")
+                        {
 
+                            MessageBox.Show("Faltan datos", "Registro de usuario");
+                            return;
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+                        MessageBox.Show("Hay campos vacíos", "Registro de Usuario");
+                    }
 
                     
 

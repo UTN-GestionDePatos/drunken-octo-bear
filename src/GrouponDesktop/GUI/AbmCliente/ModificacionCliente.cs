@@ -147,6 +147,10 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 MessageBox.Show("Ha ingresado un codigo postal demasiado grande, ingrese otro", "Alta proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Hay campos vacíos", "Modificación cliente");
+            }
         }
 
         private void ModificacionCliente_FormClosing(object sender, FormClosingEventArgs e)
