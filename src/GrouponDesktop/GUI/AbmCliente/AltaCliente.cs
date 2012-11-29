@@ -93,7 +93,7 @@ namespace GrouponDesktop.AbmCliente
                         }
 
                         MessageBox.Show("Registro realizado con éxito","Alta cliente");
-
+                        this.Hide();
                         return;
 
                     case "1": MessageBox.Show("El cliente ya existe", "Alta cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -128,6 +128,21 @@ namespace GrouponDesktop.AbmCliente
                 ciudadCliente.Items.Add(r[0]);
               
             }
+        }
+
+        private void Seleccionar_Click(object sender, EventArgs e)
+        {
+            Fecha.Visible = true;
+        }
+
+        private void Fecha_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime date = Fecha.SelectionStart;
+            string fechaStr = date.Date.ToShortDateString();
+
+            FchNacimientoCliente.Text = fechaStr;
+
+            Fecha.Visible = false;
         }     
     }
 }

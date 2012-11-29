@@ -185,11 +185,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 if (es_primero)
                 {
-                    where = where + " mail = " + Mail.Text.ToString();
+                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
                     es_primero = false;
                 }
                 else
-                    where = where + " AND mail = " + Mail.Text.ToString();
+                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
 
             }
 
