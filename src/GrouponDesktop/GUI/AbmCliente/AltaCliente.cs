@@ -99,7 +99,10 @@ namespace GrouponDesktop.AbmCliente
                         }
 
                         MessageBox.Show("Registro realizado con éxito","Alta cliente");
-                        this.listado.actualizar_datagridview();
+
+                        if(this.listado != null)
+                            this.listado.actualizar_datagridview();
+
                         this.Hide();
                         return;
 
