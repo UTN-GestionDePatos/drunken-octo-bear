@@ -17,13 +17,14 @@ namespace GrouponDesktop.AbmCliente
 
         private String rol_anterior = "";
         static DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
+        Listado listado;
 
         public AltaProveedor()
         {
             InitializeComponent();
         }
 
-        public AltaProveedor(String user, String rol)
+        public AltaProveedor(String user, String rol, Listado listado)
         {
             InitializeComponent();
             UsernameP.Text = user;
@@ -31,6 +32,7 @@ namespace GrouponDesktop.AbmCliente
             PassP.Enabled = false;
             UsernameP.Enabled = false;
             this.rol_anterior = rol;
+            this.listado = listado;
           
         }
 
@@ -58,6 +60,7 @@ namespace GrouponDesktop.AbmCliente
             {
                 db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol_anterior + "' where username = '" + UsernameP.Text + "'");
                 MessageBox.Show("Cancelación de alta. Este usuario vuelve a tener el rol anterior", "Cambiar rol");
+                this.listado.actualizar_datagridview();
                 this.Hide();
             }
         }
@@ -108,6 +111,7 @@ namespace GrouponDesktop.AbmCliente
                 {
                     case "0":
                         MessageBox.Show("Registro realizado con éxito", "Alta proveedor");
+                        this.listado.actualizar_datagridview();
                         this.Hide();
                         return;
 

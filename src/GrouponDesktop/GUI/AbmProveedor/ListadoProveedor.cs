@@ -14,6 +14,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
     public partial class ListadoProveedor : Form
     {
         private DBManager dbManager = null;
+        Listado listado;
 
         public ListadoProveedor()
         {
@@ -44,7 +45,9 @@ namespace GrouponDesktop.GUI.AbmProveedor
                     proveedor.addDato(nombre, value);
                 }
 
-                ModificacionProveedor mc = new ModificacionProveedor(proveedor);
+                listado = new Listado(dataGridProveedores, "SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
+
+                ModificacionProveedor mc = new ModificacionProveedor(proveedor,listado);
                 mc.Show();
                 SQLResponse  r = dbManager.executeQuery("SELECT v.username, v.razon_social, v.cuit, v.rubro, v.mail, v.nombre_contacto FROM GESTION_DE_PATOS.viewproveedores v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Proveedor'");
                 this.SetDataGridView(r.result);

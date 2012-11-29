@@ -17,12 +17,15 @@ namespace GrouponDesktop.GUI
         static DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
         static Session sesion = (Session)AppContext.getObject(typeof(Session));
         String user;
-        String actual; 
-        public CambiarRol(String user)
+        String actual;
+        public Listado listado;
+
+        public CambiarRol(String user, Listado listado)
         {
             InitializeComponent();
             this.user = user;
             this.actual = db.executeQuery("select rol from GESTION_DE_PATOS.Usuarios where username = '" + user + "'").result.Rows[0][0].ToString();
+            this.listado = listado;
        
         }
 
@@ -49,17 +52,18 @@ namespace GrouponDesktop.GUI
            
             if (this.Rol.SelectedItem.ToString() == "Proveedor")
             {
-                AltaProveedor ap = new AltaProveedor(user, actual);
+                AltaProveedor ap = new AltaProveedor(user, actual, listado);
                 ap.Show();
             }
             else if (this.Rol.SelectedItem.ToString() == "Cliente")
             {
-                AltaCliente ac = new AltaCliente(user, actual);
+                AltaCliente ac = new AltaCliente(user, actual, listado);
                 ac.Show();
             }
 
             db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol + "' where username = '" + user + "'");
             MessageBox.Show("Nuevo rol asignado correctamente", "Cambiar rol");
+            this.listado.actualizar_datagridview();
             this.Hide();
         }
 

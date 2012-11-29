@@ -15,12 +15,14 @@ namespace GrouponDesktop.GUI.AbmProveedor
     {
        private DBManager dbManager = null;
        private FilaSeleccionada proveedor;
+       public Listado listado;
 
-        public ModificacionProveedor(FilaSeleccionada proveedor_seleccionado)
+        public ModificacionProveedor(FilaSeleccionada proveedor_seleccionado, Listado listado)
         {
             InitializeComponent();
             dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
             proveedor = proveedor_seleccionado;
+            this.listado = listado;
         }
 
         private void ModificacionProveedor_Load(object sender, EventArgs e)
@@ -100,6 +102,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
                 {
                     case "0":
                         MessageBox.Show("Registro modificado con éxito", "Modificar proveedor", MessageBoxButtons.OK);
+                        this.listado.actualizar_datagridview();
                         this.Hide();
                         break;
                     case "1": MessageBox.Show("El proveedor no existe", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -126,6 +129,10 @@ namespace GrouponDesktop.GUI.AbmProveedor
             {
                 e.Cancel = true;
             }
+            else
+            {
+                this.listado.actualizar_datagridview();
+            }
         }
 
         private void CambiarPassword_Click(object sender, EventArgs e)
@@ -147,7 +154,8 @@ namespace GrouponDesktop.GUI.AbmProveedor
 
         private void CambiarRol_Click(object sender, EventArgs e)
         {
-            new CambiarRol(UsernameP.Text).Show();
+            new CambiarRol(UsernameP.Text, listado).Show();
+            this.listado.actualizar_datagridview();
             this.Hide();
         }
 

@@ -66,7 +66,9 @@ namespace GrouponDesktop.GUI.AbmCliente
                     cliente.addDato(nombre, value);
                 }
 
-                ModificacionCliente mc = new ModificacionCliente(cliente);
+                Listado listado = new Listado(dataGridClientes, "SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");
+
+                ModificacionCliente mc = new ModificacionCliente(cliente, listado);
                 mc.Show();
 
                 SQLResponse r2 = dbManager.executeQuery("SELECT v.username, v.nombre, v.apellido, v.dni, v.mail FROM GESTION_DE_PATOS.viewclientes v JOIN GESTION_DE_PATOS.Usuarios u ON v.username = u.username JOIN GESTION_DE_PATOS.Estados e ON e.id_estado = u.estado WHERE e.nombre_estado <> 'Eliminado' and u.rol = 'Cliente'");

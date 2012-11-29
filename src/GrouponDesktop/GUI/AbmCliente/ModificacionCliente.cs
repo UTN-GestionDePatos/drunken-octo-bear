@@ -15,12 +15,14 @@ namespace GrouponDesktop.GUI.AbmCliente
     {
        private DBManager dbManager = null;
        private FilaSeleccionada cliente;
+       public Listado listado;
 
-        public ModificacionCliente(FilaSeleccionada cliente_seleccionado)
+        public ModificacionCliente(FilaSeleccionada cliente_seleccionado, Listado listado)
         {
             InitializeComponent();
             dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
-            cliente = cliente_seleccionado;
+            this.cliente = cliente_seleccionado;
+            this.listado = listado;
         }
 
         private void ModificacionCliente_Load(object sender, EventArgs e)
@@ -123,6 +125,7 @@ namespace GrouponDesktop.GUI.AbmCliente
                         }
 
                         MessageBox.Show("Registro modificado con éxito", "Modificar cliente");
+                        this.listado.actualizar_datagridview();
                         this.Hide();
                         break;
                     case "1": MessageBox.Show("El cliente no existe", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -143,18 +146,23 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 e.Cancel = true;
             }
+            else
+            {
+                this.listado.actualizar_datagridview();
+            }
         }
 
         private void CambiarPassword_Click(object sender, EventArgs e)
         {
             CambiarPassDesdeAdmin new_form = new CambiarPassDesdeAdmin(UsernameCliente.Text);
-            new_form.Show();
+            new_form.ShowDialog();
 
         }
 
         private void CambiarRol_Click(object sender, EventArgs e)
         {
-            new CambiarRol(UsernameCliente.Text).Show();
+            new CambiarRol(UsernameCliente.Text, listado).ShowDialog();
+            listado.actualizar_datagridview();
             this.Hide();
         }
 
