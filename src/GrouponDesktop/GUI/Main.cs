@@ -119,7 +119,7 @@ namespace GrouponDesktop.GUI
         {
             if (MessageBox.Show("¿Esta seguro que desea darse de baja?", "Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarCliente");
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.EliminarUsuario");
                 ps.AddParameter("@user", sesion.username);
                 ps.executeNoReturn();
                 MessageBox.Show("Usted ha sido dado de baja");
