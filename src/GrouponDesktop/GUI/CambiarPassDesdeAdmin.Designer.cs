@@ -115,7 +115,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 167);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "CambiarPassDesdeAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambiar Password";
             this.Load += new System.EventHandler(this.CambiarPassDesdeAdmin_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CambiarPassDesdeAdmin_FormClosing);

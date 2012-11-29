@@ -113,7 +113,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 249);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "AltaRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol - Alta";
             this.Load += new System.EventHandler(this.AltaRol_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaRol_FormClosing);

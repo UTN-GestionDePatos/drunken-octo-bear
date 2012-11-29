@@ -87,8 +87,10 @@
             this.Controls.Add(this.CodigoCupon);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Nombre);
+            this.MaximizeBox = false;
             this.Name = "RegistroConsumoCupon";
-            this.Text = "RegistroConsumoCupo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Registro de consumo de cupón";
             this.ResumeLayout(false);
             this.PerformLayout();
 

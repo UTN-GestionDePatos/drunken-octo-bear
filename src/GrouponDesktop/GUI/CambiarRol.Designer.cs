@@ -81,7 +81,9 @@
             this.ClientSize = new System.Drawing.Size(330, 135);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Confirmar);
+            this.MaximizeBox = false;
             this.Name = "CambiarRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambio de Rol";
             this.Load += new System.EventHandler(this.CambiarRol_Load);
             this.groupBox1.ResumeLayout(false);

@@ -152,7 +152,9 @@
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.datosClientes);
+            this.MaximizeBox = false;
             this.Name = "AltaAdministrador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrador - Alta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaAdministrador_FormClosing);
             this.datosClientes.ResumeLayout(false);

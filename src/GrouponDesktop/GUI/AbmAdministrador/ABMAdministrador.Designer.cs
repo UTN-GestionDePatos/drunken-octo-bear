@@ -70,7 +70,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Listado);
             this.Controls.Add(this.Alta);
+            this.MaximizeBox = false;
             this.Name = "ABMAdministrador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Administrador";
             this.ResumeLayout(false);
             this.PerformLayout();

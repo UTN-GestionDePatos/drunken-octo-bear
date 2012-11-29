@@ -43,14 +43,14 @@
             this.FechaDesde = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridCupones = new System.Windows.Forms.DataGridView();
-            this.Facturar = new System.Windows.Forms.Button();
-            this.cuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSet3 = new GrouponDesktop.GD2C2012DataSet3();
-            this.cuponesTableAdapter = new GrouponDesktop.GD2C2012DataSet3TableAdapters.CuponesTableAdapter();
             this.idcuponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechacompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechacanjeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSet3 = new GrouponDesktop.GD2C2012DataSet3();
+            this.Facturar = new System.Windows.Forms.Button();
+            this.cuponesTableAdapter = new GrouponDesktop.GD2C2012DataSet3TableAdapters.CuponesTableAdapter();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCupones)).BeginInit();
@@ -201,30 +201,6 @@
             this.dataGridCupones.Size = new System.Drawing.Size(505, 150);
             this.dataGridCupones.TabIndex = 33;
             // 
-            // Facturar
-            // 
-            this.Facturar.Location = new System.Drawing.Point(24, 438);
-            this.Facturar.Name = "Facturar";
-            this.Facturar.Size = new System.Drawing.Size(75, 23);
-            this.Facturar.TabIndex = 34;
-            this.Facturar.Text = "Facturar";
-            this.Facturar.UseVisualStyleBackColor = true;
-            this.Facturar.Click += new System.EventHandler(this.Facturar_Click);
-            // 
-            // cuponesBindingSource
-            // 
-            this.cuponesBindingSource.DataMember = "Cupones";
-            this.cuponesBindingSource.DataSource = this.gD2C2012DataSet3;
-            // 
-            // gD2C2012DataSet3
-            // 
-            this.gD2C2012DataSet3.DataSetName = "GD2C2012DataSet3";
-            this.gD2C2012DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cuponesTableAdapter
-            // 
-            this.cuponesTableAdapter.ClearBeforeFill = true;
-            // 
             // idcuponDataGridViewTextBoxColumn
             // 
             this.idcuponDataGridViewTextBoxColumn.DataPropertyName = "id_cupon";
@@ -255,6 +231,30 @@
             this.fechacanjeDataGridViewTextBoxColumn.ReadOnly = true;
             this.fechacanjeDataGridViewTextBoxColumn.Width = 130;
             // 
+            // cuponesBindingSource
+            // 
+            this.cuponesBindingSource.DataMember = "Cupones";
+            this.cuponesBindingSource.DataSource = this.gD2C2012DataSet3;
+            // 
+            // gD2C2012DataSet3
+            // 
+            this.gD2C2012DataSet3.DataSetName = "GD2C2012DataSet3";
+            this.gD2C2012DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // Facturar
+            // 
+            this.Facturar.Location = new System.Drawing.Point(24, 438);
+            this.Facturar.Name = "Facturar";
+            this.Facturar.Size = new System.Drawing.Size(75, 23);
+            this.Facturar.TabIndex = 34;
+            this.Facturar.Text = "Facturar";
+            this.Facturar.UseVisualStyleBackColor = true;
+            this.Facturar.Click += new System.EventHandler(this.Facturar_Click);
+            // 
+            // cuponesTableAdapter
+            // 
+            this.cuponesTableAdapter.ClearBeforeFill = true;
+            // 
             // FacturacionProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,7 +264,9 @@
             this.Controls.Add(this.dataGridCupones);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "FacturacionProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facturar a Proveedor";
             this.Load += new System.EventHandler(this.FacturacionProveedor_Load);
             this.groupBox1.ResumeLayout(false);

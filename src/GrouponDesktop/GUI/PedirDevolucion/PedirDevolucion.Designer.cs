@@ -88,8 +88,10 @@
             this.Controls.Add(this.Cupon);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Nombre);
+            this.MaximizeBox = false;
             this.Name = "PedirDevolucion";
-            this.Text = "PedirDevolucion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Pedir devolución";
             this.ResumeLayout(false);
             this.PerformLayout();
 

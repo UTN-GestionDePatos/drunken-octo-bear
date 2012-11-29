@@ -92,8 +92,10 @@
             this.Controls.Add(this.Proveedores);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fecha);
+            this.MaximizeBox = false;
             this.Name = "PublicarCupon";
-            this.Text = "PublicarCupon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Publicar cupón";
             this.Load += new System.EventHandler(this.PublicarCupon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cupones)).EndInit();
             this.ResumeLayout(false);

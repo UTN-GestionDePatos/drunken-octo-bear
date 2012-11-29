@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Alta = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.Button();
+            this.Alta = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,14 +46,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // Listado
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Seleccione una operación:";
+            this.Listado.Location = new System.Drawing.Point(156, 50);
+            this.Listado.Name = "Listado";
+            this.Listado.Size = new System.Drawing.Size(75, 23);
+            this.Listado.TabIndex = 2;
+            this.Listado.Text = "Listado";
+            this.Listado.UseVisualStyleBackColor = true;
+            this.Listado.Click += new System.EventHandler(this.Listado_Click);
             // 
             // Alta
             // 
@@ -65,15 +66,14 @@
             this.Alta.UseVisualStyleBackColor = true;
             this.Alta.Click += new System.EventHandler(this.Alta_Click);
             // 
-            // Listado
+            // label1
             // 
-            this.Listado.Location = new System.Drawing.Point(156, 50);
-            this.Listado.Name = "Listado";
-            this.Listado.Size = new System.Drawing.Size(75, 23);
-            this.Listado.TabIndex = 2;
-            this.Listado.Text = "Listado";
-            this.Listado.UseVisualStyleBackColor = true;
-            this.Listado.Click += new System.EventHandler(this.Listado_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(70, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Seleccione una operación:";
             // 
             // ABMRol
             // 
@@ -81,7 +81,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 128);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "ABMRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Rol";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

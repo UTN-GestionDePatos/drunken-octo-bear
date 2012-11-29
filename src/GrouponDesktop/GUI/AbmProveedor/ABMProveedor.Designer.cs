@@ -70,7 +70,9 @@
             this.Controls.Add(this.Busqueda);
             this.Controls.Add(this.Alta);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ABMProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Proveedor";
             this.ResumeLayout(false);
             this.PerformLayout();

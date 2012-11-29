@@ -131,8 +131,10 @@
             this.Controls.Add(this.Anio);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ListadoEstadistico";
-            this.Text = "ListadoEstadistico";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Listado estadístico";
             this.Load += new System.EventHandler(this.ListadoEstadistico_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

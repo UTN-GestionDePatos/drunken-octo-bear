@@ -607,7 +607,9 @@
             this.Controls.Add(this.Rol);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
+            this.MaximizeBox = false;
             this.Name = "RegistroUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Usuario";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.datosProveedor.ResumeLayout(false);

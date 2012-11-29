@@ -58,7 +58,9 @@
             this.ClientSize = new System.Drawing.Size(445, 257);
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.ListadoGV);
+            this.MaximizeBox = false;
             this.Name = "Listado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado";
             ((System.ComponentModel.ISupportInitialize)(this.ListadoGV)).EndInit();
             this.ResumeLayout(false);

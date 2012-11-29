@@ -119,7 +119,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(433, 252);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "ListadoRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol - Listado de selección";
             this.Load += new System.EventHandler(this.ListadoRol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Datos)).EndInit();

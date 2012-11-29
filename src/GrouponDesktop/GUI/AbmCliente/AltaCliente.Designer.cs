@@ -339,7 +339,9 @@
             this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
+            this.MaximizeBox = false;
             this.Name = "AltaCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente - Alta";
             this.Load += new System.EventHandler(this.AltaCliente_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaCliente_FormClosing);

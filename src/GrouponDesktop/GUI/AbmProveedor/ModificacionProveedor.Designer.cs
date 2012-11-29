@@ -358,7 +358,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
+            this.MaximizeBox = false;
             this.Name = "ModificacionProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedor - Modificación";
             this.Load += new System.EventHandler(this.ModificacionProveedor_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ModificacionProveedor_KeyPress);

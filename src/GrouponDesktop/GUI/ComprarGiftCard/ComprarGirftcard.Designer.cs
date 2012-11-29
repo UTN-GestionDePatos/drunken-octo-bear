@@ -89,8 +89,10 @@
             this.Controls.Add(this.ClienteDestino);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Nombre);
+            this.MaximizeBox = false;
             this.Name = "ComprarGirftcard";
-            this.Text = "ComprarGirftcard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Comprar de Giftcard";
             this.Load += new System.EventHandler(this.ComprarGirftcard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

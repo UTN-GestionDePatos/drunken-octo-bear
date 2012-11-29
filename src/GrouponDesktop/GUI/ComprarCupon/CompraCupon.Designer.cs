@@ -70,8 +70,10 @@
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.cuponesDisponibles);
             this.Controls.Add(this.Nombre);
+            this.MaximizeBox = false;
             this.Name = "CompraCupon";
-            this.Text = "CompraCupon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Compra de Cupón";
             this.Load += new System.EventHandler(this.CompraCupon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cuponesDisponibles)).EndInit();
             this.ResumeLayout(false);

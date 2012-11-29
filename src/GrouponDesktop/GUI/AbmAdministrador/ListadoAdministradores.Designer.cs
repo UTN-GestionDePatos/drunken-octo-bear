@@ -136,7 +136,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 248);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "ListadoAdministradores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administradores - Listado de selección";
             this.Load += new System.EventHandler(this.BajaAdministrador_Load);
             this.groupBox1.ResumeLayout(false);

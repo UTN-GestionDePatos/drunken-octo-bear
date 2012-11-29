@@ -281,8 +281,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "ArmarCupon";
-            this.Text = "ArmarCupon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Armar cupón";
             this.Load += new System.EventHandler(this.ArmarCupon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

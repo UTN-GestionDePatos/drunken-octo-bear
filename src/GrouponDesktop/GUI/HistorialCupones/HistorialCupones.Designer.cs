@@ -40,17 +40,17 @@
             this.FechaDesde = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Cupones = new System.Windows.Forms.DataGridView();
-            this.gD2C2012DataSetHistorial = new GrouponDesktop.GD2C2012DataSetHistorial();
-            this.viewcuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewcuponesTableAdapter = new GrouponDesktop.GD2C2012DataSetHistorialTableAdapters.viewcuponesTableAdapter();
             this.idcuponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.promocionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechacompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewcuponesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetHistorial = new GrouponDesktop.GD2C2012DataSetHistorial();
+            this.viewcuponesTableAdapter = new GrouponDesktop.GD2C2012DataSetHistorialTableAdapters.viewcuponesTableAdapter();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Cupones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewcuponesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -166,20 +166,6 @@
             this.Cupones.Size = new System.Drawing.Size(663, 205);
             this.Cupones.TabIndex = 34;
             // 
-            // gD2C2012DataSetHistorial
-            // 
-            this.gD2C2012DataSetHistorial.DataSetName = "GD2C2012DataSetHistorial";
-            this.gD2C2012DataSetHistorial.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewcuponesBindingSource
-            // 
-            this.viewcuponesBindingSource.DataMember = "viewcupones";
-            this.viewcuponesBindingSource.DataSource = this.gD2C2012DataSetHistorial;
-            // 
-            // viewcuponesTableAdapter
-            // 
-            this.viewcuponesTableAdapter.ClearBeforeFill = true;
-            // 
             // idcuponDataGridViewTextBoxColumn
             // 
             this.idcuponDataGridViewTextBoxColumn.DataPropertyName = "id_cupon";
@@ -207,6 +193,20 @@
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // viewcuponesBindingSource
+            // 
+            this.viewcuponesBindingSource.DataMember = "viewcupones";
+            this.viewcuponesBindingSource.DataSource = this.gD2C2012DataSetHistorial;
+            // 
+            // gD2C2012DataSetHistorial
+            // 
+            this.gD2C2012DataSetHistorial.DataSetName = "GD2C2012DataSetHistorial";
+            this.gD2C2012DataSetHistorial.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewcuponesTableAdapter
+            // 
+            this.viewcuponesTableAdapter.ClearBeforeFill = true;
+            // 
             // HistorialCupones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,14 +214,16 @@
             this.ClientSize = new System.Drawing.Size(741, 503);
             this.Controls.Add(this.Cupones);
             this.Controls.Add(this.groupBox2);
+            this.MaximizeBox = false;
             this.Name = "HistorialCupones";
-            this.Text = "HistorialCupones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Historial de Cupones";
             this.Load += new System.EventHandler(this.HistorialCupones_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Cupones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewcuponesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD2C2012DataSetHistorial)).EndInit();
             this.ResumeLayout(false);
 
         }

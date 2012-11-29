@@ -120,7 +120,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.bienvenida);
             this.Controls.Add(this.funcionalidades);
+            this.MaximizeBox = false;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Funcionalidades";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);

@@ -133,7 +133,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 256);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "ModificacionRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol - Modificacion";
             this.Load += new System.EventHandler(this.ModificacionRol_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionRol_FormClosing);

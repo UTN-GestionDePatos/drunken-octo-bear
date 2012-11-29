@@ -135,8 +135,10 @@
             this.Controls.Add(this.Monto);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Nombre);
+            this.MaximizeBox = false;
             this.Name = "CargaCredito";
-            this.Text = "CargaCredito";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Carga de crédito";
             this.ResumeLayout(false);
             this.PerformLayout();
 

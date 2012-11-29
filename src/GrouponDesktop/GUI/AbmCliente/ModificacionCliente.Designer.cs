@@ -410,7 +410,9 @@
             this.Controls.Add(this.datosClientes);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Limpiar);
+            this.MaximizeBox = false;
             this.Name = "ModificacionCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente - Modificación";
             this.Load += new System.EventHandler(this.ModificacionCliente_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificacionCliente_FormClosing);
