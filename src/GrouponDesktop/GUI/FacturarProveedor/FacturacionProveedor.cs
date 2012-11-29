@@ -42,6 +42,8 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             FechaDesde.Text = fechaDesdeStr;
 
             FechaDesdeCalendario.Visible = false;
+            this.dataGridCupones.DataSource = null;
+
         }
 
 
@@ -84,6 +86,8 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             FechaHasta.Text = fechaHastaStr;
 
             FechaHastaCalendario.Visible = false;
+
+            this.dataGridCupones.DataSource = null;
         }
 
         private object montoFactura()
