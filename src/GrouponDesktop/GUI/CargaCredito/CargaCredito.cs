@@ -25,6 +25,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                 this.NumeroTarjeta.Enabled = true;
             }
             else {
+                this.NumeroTarjeta.Text = "";
                 this.NumeroTarjeta.Enabled = false;
             }
         }
