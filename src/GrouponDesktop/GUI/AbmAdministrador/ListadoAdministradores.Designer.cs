@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.administradores = new System.Windows.Forms.DataGridView();
+            this.viewadministradoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetviewAdministradores = new GrouponDesktop.GD2C2012DataSetviewAdministradores();
+            this.viewadministradoresTableAdapter = new GrouponDesktop.GD2C2012DataSetviewAdministradoresTableAdapters.viewadministradoresTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,9 +41,6 @@
             this.habilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.viewadministradoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSetviewAdministradores = new GrouponDesktop.GD2C2012DataSetviewAdministradores();
-            this.viewadministradoresTableAdapter = new GrouponDesktop.GD2C2012DataSetviewAdministradoresTableAdapters.viewadministradoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.administradores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewadministradoresBindingSource)).BeginInit();
@@ -56,6 +56,7 @@
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Administradores";
+  
             // 
             // administradores
             // 
@@ -76,23 +77,40 @@
             this.administradores.TabIndex = 0;
             this.administradores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.administradores_CellClick);
             // 
+            // viewadministradoresBindingSource
+            // 
+            this.viewadministradoresBindingSource.DataMember = "viewadministradores";
+            this.viewadministradoresBindingSource.DataSource = this.gD2C2012DataSetviewAdministradores;
+            // 
+            // gD2C2012DataSetviewAdministradores
+            // 
+            this.gD2C2012DataSetviewAdministradores.DataSetName = "GD2C2012DataSetviewAdministradores";
+            this.gD2C2012DataSetviewAdministradores.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewadministradoresTableAdapter
+            // 
+            this.viewadministradoresTableAdapter.ClearBeforeFill = true;
+            // 
             // usernameDataGridViewTextBoxColumn
             // 
             this.usernameDataGridViewTextBoxColumn.DataPropertyName = "username";
             this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
             this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nombreDataGridViewTextBoxColumn
             // 
             this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
             this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
             this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // apellidoDataGridViewTextBoxColumn
             // 
             this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido";
             this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
             this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            this.apellidoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // estadoDataGridViewTextBoxColumn
             // 
@@ -115,20 +133,6 @@
             // 
             this.eliminar.HeaderText = "Eliminar";
             this.eliminar.Name = "eliminar";
-            // 
-            // viewadministradoresBindingSource
-            // 
-            this.viewadministradoresBindingSource.DataMember = "viewadministradores";
-            this.viewadministradoresBindingSource.DataSource = this.gD2C2012DataSetviewAdministradores;
-            // 
-            // gD2C2012DataSetviewAdministradores
-            // 
-            this.gD2C2012DataSetviewAdministradores.DataSetName = "GD2C2012DataSetviewAdministradores";
-            this.gD2C2012DataSetviewAdministradores.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewadministradoresTableAdapter
-            // 
-            this.viewadministradoresTableAdapter.ClearBeforeFill = true;
             // 
             // ListadoAdministradores
             // 

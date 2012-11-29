@@ -13,6 +13,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
     public partial class ListadoAdministradores : Form
     {
         private DBManager dbManager = null;
+        Listado listado;
 
         public ListadoAdministradores()
         {
@@ -28,19 +29,8 @@ namespace GrouponDesktop.GUI.AbmAdministrador
 
         private void BajaAdministrador_Load(object sender, EventArgs e)
         {
-            SQLResponse r;
-            String query = "SELECT * FROM GESTION_DE_PATOS.viewadministradores";
-            r = dbManager.executeQuery(query);
-            this.SetDataGridView(r.result);
-        }
-
-        private void actualizar_datagridview()
-        {
-            SQLResponse r;
-            String query = "SELECT * FROM GESTION_DE_PATOS.viewadministradores";
-            r = dbManager.executeQuery(query);
-            this.SetDataGridView(r.result);
-            return;
+            this.listado = new Listado(administradores, "SELECT * FROM GESTION_DE_PATOS.viewadministradores");
+            this.listado.actualizar_datagridview();
         }
 
         private void administradores_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -62,7 +52,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
 
                     case "0":
                         MessageBox.Show("Baja realizada con éxito","Baja administrador");
-                        actualizar_datagridview();
+                        this.listado.actualizar_datagridview();
                         return;
                     case "1":
                         MessageBox.Show("El usuario no existe","Baja administrador");
@@ -78,7 +68,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
                 SQLResponse r;
                 String query = "UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado('Habilitado') WHERE username = '" + username + "'";
                 r = dbManager.executeQuery(query);
-                actualizar_datagridview();
+                this.listado.actualizar_datagridview();
                 return;
             }
             else if (columna_seleccionada == "deshabilitar")
@@ -86,9 +76,10 @@ namespace GrouponDesktop.GUI.AbmAdministrador
                 SQLResponse r;
                 String query = "UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado('Deshabilitado') WHERE username = '" + username + "'";
                 r = dbManager.executeQuery(query);
-                actualizar_datagridview();
+                this.listado.actualizar_datagridview();
                 return;
             }
         }
+
     }
 }
