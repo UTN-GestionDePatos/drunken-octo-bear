@@ -272,7 +272,6 @@
         private System.Windows.Forms.TextBox DNI;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn saldoDataGridViewTextBoxColumn;
         private GD2C2012DataSetviewclientes gD2C2012DataSetviewclientes;
         private System.Windows.Forms.BindingSource viewclientesBindingSource;
         private GrouponDesktop.GD2C2012DataSetviewclientesTableAdapters.viewclientesTableAdapter viewclientesTableAdapter;

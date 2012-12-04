@@ -84,8 +84,6 @@ namespace GrouponDesktop.GUI.AbmProveedor
             Mail.Text = "";
             CUIT.Text = "";
 
-            SQLResponse r;
-
             this.listado.actualizar_datagridview();
         }
 

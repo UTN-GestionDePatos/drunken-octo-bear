@@ -300,7 +300,6 @@
         private GrouponDesktop.GD2C2012DataSet3TableAdapters.CuponesTableAdapter cuponesTableAdapter;
         private System.Windows.Forms.Button Listar;
         private System.Windows.Forms.Button Facturar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idgrupoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idcuponDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clienteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechacompraDataGridViewTextBoxColumn;

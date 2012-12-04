@@ -21,7 +21,7 @@ namespace GrouponDesktop.Core
             DBManager m = new DBManager("user id=" + Properties.getProperty("dbuser") +
                                        ";password=" + Properties.getProperty("dbpasswd") + 
                                        ";server=" + Properties.getProperty("dburl") +
-                                       ";Trusted_Connection=yes;" +
+                                       ";Trusted_Connection=no;" +
                                        "database=" + Properties.getProperty("dbname") +
                                        ";connection timeout=60");
             appContext.Add(typeof(DBManager), m);
