@@ -20,6 +20,8 @@ namespace GrouponDesktop.Core
         {
             foreach(String line in File.ReadAllLines(path)){
                 if(line.StartsWith("#")) continue;
+                if(line.Length == 0) continue;
+                if(!line.Contains("=")) continue;
                 properties.Add(line.Substring(0, line.IndexOf("=")).Trim(), line.Substring(line.IndexOf("=")+1).Trim());
             }
         }

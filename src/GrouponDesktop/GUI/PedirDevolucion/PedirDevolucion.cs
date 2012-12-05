@@ -70,6 +70,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 switch (retval.Value.ToString())
                 {
                     case "0": MessageBox.Show("Devolución exitosa");
+                        Main.actualizar();
                         return;
 
                     case "1": MessageBox.Show("El cupón ya está devuelto");
@@ -78,7 +79,6 @@ namespace GrouponDesktop.GUI.PedirDevolucion
 
                 }
             }
-            
         }
     }
 }

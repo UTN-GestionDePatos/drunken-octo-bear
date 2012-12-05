@@ -60,8 +60,6 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarCupon");
 
-
-
                 ps.AddParameter("@id_promocion", this.cuponesDisponibles.Rows[e.RowIndex].Cells[0].Value.ToString());
                 ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
                 ps.AddParameter("@username", s.username);
@@ -77,7 +75,9 @@ namespace GrouponDesktop.GUI.ComprarCupon
                     case "3": MessageBox.Show("El usuario no tiene saldo suficiente.");
                         return;
 
-                    default: MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
+                    default:
+                        MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
+                        Main.actualizar();
                         return;
                 }
             }

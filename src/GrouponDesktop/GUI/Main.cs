@@ -52,7 +52,9 @@ namespace GrouponDesktop.GUI
                 this.funcionalidades.Items.Add("ABM Administrador");
             }
 
-
+            this.actualizarSaldo();
+            Fecha.Text = ((DateTime)AppContext.getObject(typeof(DateTime))).ToShortDateString();
+            AppContext.setObject(typeof(Main), this);
         }
 
         
@@ -125,6 +127,38 @@ namespace GrouponDesktop.GUI
                 MessageBox.Show("Usted ha sido dado de baja");
                 Dispose();
             }
+        }
+
+        /**
+         * Método que debe ser llamado cuando alguna acción requiera que se actualice el
+         * saldo del cliente que está usando la aplicación.
+         **/
+        public void actualizarSaldo()
+        {
+            if (this.Saldo.Visible)
+            {
+
+                DBManager dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
+
+                SQLResponse r = dbManager.executeQuery(
+                    "SELECT c.saldo FROM GESTION_DE_PATOS.Clientes c WHERE c.username = \'" + this.sesion.username + "\'");
+
+                if (r.rowsAffected == 0)
+                {
+                    this.Saldo.Visible = false;
+                    this.LabelSaldo.Visible = false;
+                }
+                else
+                {
+                    this.Saldo.Text = "$ " + r.result.Rows[0][0];
+                }
+            }
+        }
+
+        public static void actualizar()
+        {
+            Main m = (Main)AppContext.getObject(typeof(Main));
+            m.actualizarSaldo();
         }
     }
 }

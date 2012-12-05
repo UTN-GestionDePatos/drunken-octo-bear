@@ -13,9 +13,12 @@ namespace GrouponDesktop.GUI.CargaCredito
 {
     public partial class CargaCredito : Form
     {
+        private Session s;
+
         public CargaCredito()
         {
             InitializeComponent();
+            this.s = (Session)AppContext.getObject(typeof(Session));
         }
 
         private void TipoPago_SelectedIndexChanged(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace GrouponDesktop.GUI.CargaCredito
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (Username.Text == "" || Monto.Text == "" || TipoPago.SelectedItem == null || (NumeroTarjeta.Text == "" && NumeroTarjeta.Enabled)) {
+            if (Monto.Text == "" || TipoPago.SelectedItem == null || (NumeroTarjeta.Text == "" && NumeroTarjeta.Enabled)) {
                 MessageBox.Show("Faltan datos");
                 return;
             }
@@ -46,7 +49,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                 return;
             }
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
-            ps.AddParameter("@username", Username.Text);
+            ps.AddParameter("@username", s.username);
             ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
             ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
             ps.AddParameter("@monto", Int64.Parse(Monto.Text));
@@ -84,6 +87,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                     break;
             }
 
+            Main.actualizar();
         }
 
        

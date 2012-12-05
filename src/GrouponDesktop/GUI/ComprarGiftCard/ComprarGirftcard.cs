@@ -38,7 +38,9 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
 
             switch (retval.Value.ToString())
             {
-                case "0": MessageBox.Show("Operación finalizada con éxito");
+                case "0":
+                    MessageBox.Show("Operación finalizada con éxito");
+                    Main.actualizar();
                     break;
                 case "1": MessageBox.Show("El cliente destino no puede coincidir con el cliente origen");
                     break;
@@ -49,6 +51,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 case "4": MessageBox.Show("Usted no tiene saldo suficiente para comprar el giftcard requerido");
                     break;
             }
+            
         }
 
         private void ComprarGirftcard_Load(object sender, EventArgs e)

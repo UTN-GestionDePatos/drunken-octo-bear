@@ -1426,6 +1426,7 @@ BEGIN
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (2,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (3,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (4,'Administrador')
+		insert into GESTION_DE_PATOS.Funcion_por_rol values (4,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (5,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (6,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (7,'Cliente')

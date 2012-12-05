@@ -1,7 +1,14 @@
-﻿fecha=2012-06-06
+﻿# Formato AAAA-MM-DD
+fecha=2012-07-06
+
 dbuser=gd
+
 dbpasswd=gd2012
+
 dburl=localhost\SQLSERVER2008
+
 dbname=GD2C2012
+
 gcmin=10
+
 gcmax=100

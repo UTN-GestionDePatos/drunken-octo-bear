@@ -30,8 +30,11 @@ namespace GrouponDesktop.Core
         private void loadConfig(String path)
         {
             Properties p = new Properties(path);
-            Console.WriteLine(Properties.getProperty("fecha"));
+
+            appContext.Add(typeof(DateTime),DateTime.Parse(Properties.getProperty("fecha")));
             appContext.Add(typeof(Properties),p);
+
+            Console.WriteLine(DateTime.Parse(Properties.getProperty("fecha")).ToShortDateString());
         }
 
         public static Object getObject(Type t)
