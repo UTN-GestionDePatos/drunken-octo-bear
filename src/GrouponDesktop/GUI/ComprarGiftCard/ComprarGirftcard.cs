@@ -55,12 +55,12 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
         }
 
         private void ComprarGirftcard_Load(object sender, EventArgs e)
-        {   
-            int min = Int32.Parse(Core.Properties.getProperty("gcmin"));
-            int max = Int32.Parse(Core.Properties.getProperty("gcmax"));
-            for (int i = min; i <= max; i += 5) { //regla de negocio que vaya de a 5 pesos 
-                this.monto.Items.Add(i.ToString());
-            } 
+        {
+            DBManager db = (DBManager)AppContext.getObject(typeof(DBManager));
+            SQLResponse res = db.executeQuery("select monto from GESTION_DE_PATOS.Montos_Giftcard");
+            foreach (DataRow r in res.result.Rows) {
+                this.monto.Items.Add(r[0].ToString());
+            }
 
         }
 

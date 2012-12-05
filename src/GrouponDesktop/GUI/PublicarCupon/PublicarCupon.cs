@@ -52,7 +52,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
             {
                 this.cupones.Columns.Clear();
                 //todos los proveedores
-                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where estado = 'A publicar'");
+                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where GESTION_DE_PATOS.NombreEstadoPromocion(estado) = 'A publicar'");
                 cupones.DataSource = r.result;
                 cupones.Columns[2].Width = 300;
 
@@ -62,7 +62,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
                 //un proveedor en particular
                 this.cupones.Columns.Clear();
 
-                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where estado = 'A publicar' and proveedor = '" + proveedor + "'");
+                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where GESTION_DE_PATOS.NombreEstadoPromocion(estado) = 'A publicar' and proveedor = '" + proveedor + "'");
                 cupones.DataSource = r.result;
                 cupones.Columns[2].Width = 300;
 

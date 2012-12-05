@@ -48,13 +48,13 @@
             this.cuponesDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cuponesDisponibles.Location = new System.Drawing.Point(29, 42);
             this.cuponesDisponibles.Name = "cuponesDisponibles";
-            this.cuponesDisponibles.Size = new System.Drawing.Size(646, 200);
+            this.cuponesDisponibles.Size = new System.Drawing.Size(740, 200);
             this.cuponesDisponibles.TabIndex = 25;
             this.cuponesDisponibles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cuponesDisponibles_CellContentClick);
             // 
             // Cerrar
             // 
-            this.Cerrar.Location = new System.Drawing.Point(586, 265);
+            this.Cerrar.Location = new System.Drawing.Point(680, 265);
             this.Cerrar.Name = "Cerrar";
             this.Cerrar.Size = new System.Drawing.Size(89, 23);
             this.Cerrar.TabIndex = 26;
@@ -66,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 300);
+            this.ClientSize = new System.Drawing.Size(789, 300);
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.cuponesDisponibles);
             this.Controls.Add(this.Nombre);

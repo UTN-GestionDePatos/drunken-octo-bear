@@ -103,6 +103,11 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		fecha datetime
 	)
 
+	CREATE TABLE Estados_Promociones(
+		id_estado int identity(1,1) primary key,
+		nombre_estado varchar(20)
+	)
+	
 	CREATE TABLE Promociones ( 
 		id_promocion varchar(30) primary key,
 		proveedor varchar(30) references Proveedores(username),
@@ -112,7 +117,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		limite_por_usuario int,
 		precio_real float,
 		fecha_vencimiento_canje datetime,
-		estado varchar(20),
+		estado int references Estados_Promociones(id_estado),
 		fecha_vencimiento_oferta datetime,
 		descripcion varchar(250)
 	)
@@ -145,6 +150,8 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		id_estado int identity(1,1) primary key,
 		nombre_estado varchar(20)
 	)
+	
+	
 
 	CREATE TABLE Facturas ( 
 		id_factura bigint primary key,
@@ -152,6 +159,11 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		monto float,
 		fecha_desde datetime,
 		fecha_hasta datetime
+	)
+	
+	CREATE TABLE Cupones_por_factura (
+		id_factura bigint references Facturas (id_factura),
+		id_cupon bigint references Canjes(id_cupon)
 	)
 
 	CREATE TABLE Funcionalidades ( 
@@ -169,12 +181,17 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		nombre_rol varchar(30) NOT NULL references Roles(nombre)
 	)
 
+	CREATE TABLE Montos_giftcard(
+		id_monto int identity(1,1) primary key,
+		monto int
+	)
+	
 	CREATE TABLE Giftcards ( 
 		id_giftcard bigint identity(1,1) primary key,
 		cliente_origen varchar(30) references Clientes(username),
 		cliente_destino varchar(30) references Clientes(username),
 		fecha datetime,
-		monto bigint
+		id_monto int references Montos_giftcard(id_monto)
 	)
 
 	CREATE TABLE Usuarios ( 
@@ -273,6 +290,19 @@ BEGIN
 END
 GO
 
+CREATE FUNCTION GESTION_DE_PATOS.idEstadoPromocion(@estado varchar(30))
+RETURNS int
+AS
+BEGIN
+	DECLARE @id int
+	SELECT @id = id_estado
+	FROM GESTION_DE_PATOS.Estados_Promociones
+	WHERE nombre_estado = @estado
+	RETURN @id
+END
+
+GO
+
 CREATE PROCEDURE GESTION_DE_PATOS.PedirDevolucion(@idcupon int ,@username varchar(30),@fecha_actual datetime,@motivo varchar(250),@ret int output)
 AS
 BEGIN
@@ -362,7 +392,7 @@ BEGIN
                Update GESTION_DE_PATOS.Usuarios set intentos_fallidos =intentos_fallidos+1 Where username = @user
                if(select intentos_fallidos from GESTION_DE_PATOS.Usuarios where username = @user) = 3
                begin
-					Update GESTION_DE_PATOS.Usuarios set intentos_fallidos = 0, estado = 2 Where username = @user
+					Update GESTION_DE_PATOS.Usuarios set intentos_fallidos = 0, estado = GESTION_DE_PATOS.idEstado('Deshabilitado') Where username = @user
 					set @ret = 2
 					return
                end
@@ -410,7 +440,7 @@ BEGIN
 			end
 			IF (select estado from GESTION_DE_PATOS.Usuarios where username=@clienteDestino) = GESTION_DE_PATOS.idEstado('Habilitado')
 			BEGIN
-				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, @monto)
+				insert into GESTION_DE_PATOS.Giftcards values (@clienteOrigen, @clienteDestino, @fecha, GESTION_DE_PATOS.idMonto(@monto))
 				set @ret = 0
 				return
 			END
@@ -525,7 +555,7 @@ if @fechaVencimientoOferta > @fechaVencimientoCanje
 	end
 
 insert into GESTION_DE_PATOS.Promociones values(	@codigoGrupo, @proveedor, @precio_ficticio, null, @stock, @limite_usuario, @precio_real,
-								@fechaVencimientoCanje, 'A publicar', @fechaVencimientoOferta, @descripcion)
+								@fechaVencimientoCanje, GESTION_DE_PATOS.idEstadoPromocion('A publicar'), @fechaVencimientoOferta, @descripcion)
 
 set @ret = 0
 return
@@ -565,6 +595,56 @@ BEGIN
 END
 GO
 
+
+--MODIFICAR CLIENTE
+CREATE PROCEDURE GESTION_DE_PATOS.ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
+@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @codigo_postal int, @ciudad varchar(30), @estado varchar(20), @ret int output) 
+
+/*
+0:salio ok
+1:el cliente a modificar no existe
+2:existe un cliente gemelo
+*/
+AS
+BEGIN
+	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
+	BEGIN
+		IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE (dni = @dni OR telefono = @tel or mail = @mail) AND @user <> username)
+				 AND NOT EXISTS (SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE (telefono = @tel OR mail = @mail) AND @user <> username) )
+		BEGIN		 
+			UPDATE GESTION_DE_PATOS.Clientes SET nombre = @nombre, 
+												 apellido = @apellido,
+												 dni = @dni,
+												 fecha_nacimiento = @fecha,
+												 mail = @mail,
+												 telefono = @tel,
+												 direccion = @direccion,
+												 codigo_postal = @codigo_postal,											 
+												 ciudad = GESTION_DE_PATOS.idCiudad(@ciudad)
+												 
+											 WHERE username = @user
+											 
+			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
+			BEGIN
+				UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
+			END						 
+			
+			set @ret = 0								 
+		END
+		ELSE
+		BEGIN
+			set @ret = 2
+		END
+							 
+	END
+	ELSE
+	BEGIN
+		 set @ret = 1
+	END
+END
+
+GO
+
 CREATE PROCEDURE GESTION_DE_PATOS.CambiarRolCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
 @tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @ciudad varchar(50), @cp int, @ret int output) 
 /*
@@ -597,6 +677,50 @@ BEGIN
 	
 	END	
 		
+
+GO
+
+
+--MODFICAR PROVEEDOR
+CREATE PROCEDURE GESTION_DE_PATOS.ModificarProveedor(@user varchar(30),@cuit nvarchar(20),@razon_social varchar(30),@mail varchar(30),
+@telefono bigint,@direccion varchar(100),@codigo_postal int,@ciudad varchar(30),@rubro varchar(30),@nombre_contacto varchar(30), @estado varchar(20), @ret int output) 
+AS
+BEGIN
+
+	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE username = @user)
+	BEGIN
+		IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE (razon_social = @razon_social OR telefono = @telefono
+							OR cuit = @cuit OR mail = @mail) AND username <> @user) AND NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes 
+							where (telefono = @telefono OR mail = @mail) AND username <> @user)
+		BEGIN
+			UPDATE GESTION_DE_PATOS.Proveedores SET cuit=@cuit,
+													razon_social = @razon_social,
+													mail = @mail,
+													telefono = @telefono,
+													direccion = @direccion,
+													codigo_postal = @codigo_postal,
+													ciudad = GESTION_DE_PATOS.idCiudad(@ciudad),
+													id_rubro = GESTION_DE_PATOS.idRubro(@rubro),
+													nombre_contacto = @nombre_contacto
+												WHERE username = @user
+						
+			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
+			BEGIN
+				UPDATE GESTION_DE_PATOS.Usuarios SET estado= GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
+			END	
+					
+			set @ret = 0
+		END
+		ELSE
+		BEGIN
+			set @ret = 2
+		END
+	END
+	ELSE
+	BEGIN
+		set @ret = 1
+	END
+END
 
 GO
 
@@ -666,7 +790,7 @@ GO
 CREATE PROCEDURE GESTION_DE_PATOS.PublicarCupon(@codigoPromocion varchar(30), @fecha datetime)
 AS
 BEGIN
-update GESTION_DE_PATOS.Promociones set estado = 'Publicado', fecha_publicacion = @fecha where id_promocion = @codigoPromocion
+update GESTION_DE_PATOS.Promociones set estado = GESTION_DE_PATOS.idEstadoPromocion('Publicado'), fecha_publicacion = @fecha where id_promocion = @codigoPromocion
 END
 
 GO
@@ -961,54 +1085,6 @@ BEGIN
 		
 END
 
-go
-
---MODIFICAR CLIENTE
-CREATE PROCEDURE GESTION_DE_PATOS.ModificarCliente(@user varchar(30),@nombre varchar(30), @apellido varchar(30), @mail varchar(30),
-@tel bigint, @fecha datetime, @dni bigint,@direccion varchar(100), @codigo_postal int, @ciudad varchar(30), @estado varchar(20), @ret int output) 
-
-/*
-0:salio ok
-1:el cliente a modificar no existe
-2:existe un cliente gemelo
-*/
-AS
-BEGIN
-	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Usuarios WHERE username = @user)
-	BEGIN
-		IF (NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes WHERE (dni = @dni OR telefono = @tel or mail = @mail) AND @user <> username)
-				 AND NOT EXISTS (SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE (telefono = @tel OR mail = @mail) AND @user <> username) )
-		BEGIN		 
-			UPDATE GESTION_DE_PATOS.Clientes SET nombre = @nombre, 
-												 apellido = @apellido,
-												 dni = @dni,
-												 fecha_nacimiento = @fecha,
-												 mail = @mail,
-												 telefono = @tel,
-												 direccion = @direccion,
-												 codigo_postal = @codigo_postal,											 
-												 ciudad = GESTION_DE_PATOS.idCiudad(@ciudad)
-												 
-											 WHERE username = @user
-											 
-			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
-			BEGIN
-				UPDATE GESTION_DE_PATOS.Usuarios SET estado = GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
-			END						 
-			
-			set @ret = 0								 
-		END
-		ELSE
-		BEGIN
-			set @ret = 2
-		END
-							 
-	END
-	ELSE
-	BEGIN
-		 set @ret = 1
-	END
-END
 GO
 
 --ELIMINAR CLIENTE
@@ -1084,49 +1160,6 @@ END
 
 GO
 
---MODFICAR PROVEEDOR
-CREATE PROCEDURE GESTION_DE_PATOS.ModificarProveedor(@user varchar(30),@cuit nvarchar(20),@razon_social varchar(30),@mail varchar(30),
-@telefono bigint,@direccion varchar(100),@codigo_postal int,@ciudad varchar(30),@rubro varchar(30),@nombre_contacto varchar(30), @estado varchar(20), @ret int output) 
-AS
-BEGIN
-
-	IF EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE username = @user)
-	BEGIN
-		IF NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Proveedores WHERE (razon_social = @razon_social OR telefono = @telefono
-							OR cuit = @cuit OR mail = @mail) AND username <> @user) AND NOT EXISTS(SELECT 1 FROM GESTION_DE_PATOS.Clientes 
-							where (telefono = @telefono OR mail = @mail) AND username <> @user)
-		BEGIN
-			UPDATE GESTION_DE_PATOS.Proveedores SET cuit=@cuit,
-													razon_social = @razon_social,
-													mail = @mail,
-													telefono = @telefono,
-													direccion = @direccion,
-													codigo_postal = @codigo_postal,
-													ciudad = GESTION_DE_PATOS.idCiudad(@ciudad),
-													id_rubro = GESTION_DE_PATOS.idRubro(@rubro),
-													nombre_contacto = @nombre_contacto
-												WHERE username = @user
-						
-			IF (@estado='Habilitado' OR @estado = 'Deshabilitado') 
-			BEGIN
-				UPDATE GESTION_DE_PATOS.Usuarios SET estado= GESTION_DE_PATOS.idEstado(@estado) WHERE username = @user
-			END	
-					
-			set @ret = 0
-		END
-		ELSE
-		BEGIN
-			set @ret = 2
-		END
-	END
-	ELSE
-	BEGIN
-		set @ret = 1
-	END
-END
-
-GO
-
 
 CREATE PROCEDURE GESTION_DE_PATOS.FacturarProveedor (@proveedor varchar(30), @fecha_desde datetime, @fecha_hasta datetime, @monto float,@ret int output)
 AS
@@ -1198,11 +1231,30 @@ END
 
 GO
 
+CREATE FUNCTION GESTION_DE_PATOS.idMonto(@monto int)
+RETURNS int
+AS
+BEGIN
+	RETURN (SELECT id_monto FROM GESTION_DE_PATOS.Montos_Giftcard where monto = @monto)
+END
+
+GO
+
+CREATE FUNCTION GESTION_DE_PATOS.Monto(@id int)
+RETURNS int
+AS
+BEGIN
+	RETURN (SELECT monto FROM GESTION_DE_PATOS.Montos_Giftcard where id_monto = @id)
+END
+
+GO
+
 /*
 	=============================================
 					   TRIGGERS 
 	=============================================
 */
+
 
 CREATE TRIGGER GESTION_DE_PATOS.actualizarSaldoCargas
 ON GESTION_DE_PATOS.Cargas
@@ -1262,14 +1314,14 @@ AFTER INSERT
 AS
 	BEGIN		
 		declare @temp table (id varchar(30), monto float)
-		insert into @temp select inserted.cliente_origen,sum(inserted.monto) from inserted group by inserted.cliente_origen
+		insert into @temp select inserted.cliente_origen,sum(GESTION_DE_PATOS.Monto(inserted.id_monto)) from inserted group by inserted.cliente_origen
 		
 		update GESTION_DE_PATOS.Clientes set saldo = saldo - t.monto
 		from GESTION_DE_PATOS.Clientes c join @temp t on c.username = t.id
 	
 		delete from @temp
 		
-		insert into @temp select inserted.cliente_destino,sum(inserted.monto) from inserted group by inserted.cliente_destino
+		insert into @temp select inserted.cliente_destino,sum(GESTION_DE_PATOS.Monto(inserted.id_monto)) from inserted group by inserted.cliente_destino
 		
 		update GESTION_DE_PATOS.Clientes set saldo = saldo + t.monto
 		from GESTION_DE_PATOS.Clientes c join @temp t on c.username = t.id		
@@ -1312,6 +1364,23 @@ BEGIN
 	deallocate unCursor
 END
 GO
+
+--Cupones por factura
+CREATE TRIGGER GESTION_DE_PATOS.RegistrarRenglonFactura
+ON GESTION_DE_PATOS.Facturas
+AFTER INSERT
+AS
+BEGIN
+	insert into GESTION_DE_PATOS.Cupones_por_factura
+	select i.id_factura, c.id_cupon
+	from inserted i join GESTION_DE_PATOS.Canjes c
+	on c.fecha_canje between CONVERT(date,i.fecha_desde) and CONVERT(date,i.fecha_hasta)
+	
+END
+
+GO
+
+
 
 /*
 	=============================================
@@ -1372,6 +1441,10 @@ BEGIN
 		insert into GESTION_DE_PATOS.Estados(nombre_estado) values('Habilitado')
 		insert into GESTION_DE_PATOS.Estados(nombre_estado) values('Deshabilitado')
 		insert into GESTION_DE_PATOS.Estados(nombre_estado) values('Eliminado')
+		
+		insert into GESTION_DE_PATOS.Estados_Promociones(nombre_estado) values('A publicar')
+		insert into GESTION_DE_PATOS.Estados_Promociones(nombre_estado) values('Publicado')
+		
 
 		--Tipo de pago
 
@@ -1425,7 +1498,6 @@ BEGIN
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (1,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (2,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (3,'Administrador')
-		insert into GESTION_DE_PATOS.Funcion_por_rol values (4,'Administrador')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (4,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (5,'Cliente')
 		insert into GESTION_DE_PATOS.Funcion_por_rol values (6,'Cliente')
@@ -1487,17 +1559,22 @@ BEGIN
 		INSERT	INTO GESTION_DE_PATOS.Cargas (username, monto, tipo, tarjeta, fecha) 
 				SELECT Cli_Dni, Carga_Credito, (select id_pago from GESTION_DE_PATOS.Tipos_pago where descripcion = Tipo_Pago_Desc),null, Carga_Fecha FROM gd_esquema.Maestra WHERE Carga_Credito is not null
 
-
+	
 	--Giftcards
-
-		INSERT INTO GESTION_DE_PATOS.Giftcards (cliente_origen, cliente_destino, fecha, monto)
-		SELECT Cli_Dni, Cli_Dest_Dni, GiftCard_Fecha, GiftCard_Monto FROM gd_esquema.Maestra WHERE Cli_Dest_Dni is not null
+		INSERT INTO GESTION_DE_PATOS.Montos_Giftcard (monto)
+			select distinct GiftCard_Monto
+			from gd_esquema.Maestra
+			where GiftCard_Monto is not null
+			order by 1
+		
+		INSERT INTO GESTION_DE_PATOS.Giftcards (cliente_origen, cliente_destino, fecha, id_monto)
+		SELECT Cli_Dni, Cli_Dest_Dni, GiftCard_Fecha, GESTION_DE_PATOS.idMonto(GiftCard_Monto) FROM gd_esquema.Maestra WHERE Cli_Dest_Dni is not null
 
 
 	--PROMOCIONES
 		
 		INSERT	INTO GESTION_DE_PATOS.Promociones (id_promocion, proveedor,precio_ficticio,fecha_publicacion,stock,limite_por_usuario, precio_real, fecha_vencimiento_canje, estado, fecha_vencimiento_oferta, descripcion)
-				SELECT distinct Groupon_Codigo, Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, null, 'Publicado', Groupon_Fecha_Venc, Groupon_Descripcion
+				SELECT distinct Groupon_Codigo, Provee_CUIT, Groupon_Precio_Ficticio, Groupon_Fecha, Groupon_Cantidad, null, Groupon_Precio, null, GESTION_DE_PATOS.idEstadoPromocion('Publicado'), Groupon_Fecha_Venc, Groupon_Descripcion
 				FROM gd_esquema.Maestra 
 				WHERE Groupon_Codigo is not null
 	
@@ -1537,6 +1614,7 @@ BEGIN
 			FROM gd_esquema.Maestra
 			WHERE Factura_Nro is not null
 			GROUP BY Factura_Nro, Provee_CUIT, Factura_Fecha
+		
 
 END
 GO
@@ -1548,7 +1626,6 @@ AS
 		set saldo = saldo + 10
 	END
 GO
-
 
 
 
