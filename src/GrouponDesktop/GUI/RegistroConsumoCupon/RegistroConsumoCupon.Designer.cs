@@ -33,13 +33,14 @@
             this.CodigoCupon = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(18, 103);
+            this.Guardar.Location = new System.Drawing.Point(18, 101);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(75, 23);
+            this.Guardar.Size = new System.Drawing.Size(103, 23);
             this.Guardar.TabIndex = 36;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
@@ -77,11 +78,22 @@
             this.Nombre.TabIndex = 32;
             this.Nombre.Text = "Código de Cupón";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(237, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "Buscar Cliente";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // RegistroConsumoCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 140);
+            this.ClientSize = new System.Drawing.Size(354, 136);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.Cliente);
             this.Controls.Add(this.CodigoCupon);
@@ -103,5 +115,6 @@
         private System.Windows.Forms.TextBox CodigoCupon;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
+        private System.Windows.Forms.Button button1;
     }
 }

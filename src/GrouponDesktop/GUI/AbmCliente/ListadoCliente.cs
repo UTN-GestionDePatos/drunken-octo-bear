@@ -63,6 +63,7 @@ namespace GrouponDesktop.GUI.AbmCliente
                     Object value = dataGridClientes[i, dataGridClientes.CurrentCell.RowIndex].Value;
                     String nombre = dataGridClientes.Columns[i].Name;
                     cliente.addDato(nombre, value);
+                    
                 }
 
  

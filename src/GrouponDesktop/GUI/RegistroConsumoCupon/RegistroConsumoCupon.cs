@@ -33,14 +33,14 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
 
                 ps.AddParameter("@idcupon", Int32.Parse(CodigoCupon.Text));
                 ps.AddParameter("@username", Cliente.Text);
-                ps.AddParameter("@fecha_actual", Core.Properties.getProperty("fecha"));
+                ps.AddParameter("@fecha_actual", (DateTime)AppContext.getObject(typeof(DateTime)));
                 ps.AddParameter("@proveedor", s.username);
 
                 SqlParameter retval = ps.execSP();
 
                 switch (retval.Value.ToString())
                 {
-                    case "1": MessageBox.Show("El cupón ingresado no es válido para el cliente, o el cliente no existe");
+                    case "1": MessageBox.Show("El cupón no es válido para el cliente ingresado");
                         return;
                     case "2": MessageBox.Show("El cupón no pertenece al proveedor logueado");
                         return;
@@ -50,6 +50,9 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
                         return;
                     case "5": MessageBox.Show("El cupón está devuelto o ya canjeado");
                         return;
+                    case "6": MessageBox.Show("El cliente ingresado no existe");
+                        return;
+
                 }
             }
             catch (FormatException) {
@@ -57,5 +60,14 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new BusquedaCliente(this).Show();
+        }
+
+        public void SetDatos(String cupon, String cliente) {
+            this.Cliente.Text = cliente;
+            this.CodigoCupon.Text = cupon;
+        }
     }
 }

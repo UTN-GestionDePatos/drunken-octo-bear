@@ -62,7 +62,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 		direccion varchar(100),
 		codigo_postal int,		
 		ciudad int references Localidades(id_localidad),
-		saldo float
+		saldo numeric(18,2)
 	)
 
 	CREATE TABLE Rubros ( 
@@ -111,11 +111,11 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 	CREATE TABLE Promociones ( 
 		id_promocion varchar(30) primary key,
 		proveedor varchar(30) references Proveedores(username),
-		precio_ficticio float,
+		precio_ficticio numeric(18,2),
 		fecha_publicacion datetime,
 		stock bigint,
 		limite_por_usuario int,
-		precio_real float,
+		precio_real numeric(18,2),
 		fecha_vencimiento_canje datetime,
 		estado int references Estados_Promociones(id_estado),
 		fecha_vencimiento_oferta datetime,
@@ -156,7 +156,7 @@ CREATE SCHEMA GESTION_DE_PATOS AUTHORIZATION gd
 	CREATE TABLE Facturas ( 
 		id_factura bigint primary key,
 		proveedor varchar(30) references Proveedores(username),
-		monto float,
+		monto numeric(18,2),
 		fecha_desde datetime,
 		fecha_hasta datetime
 	)
@@ -985,11 +985,18 @@ AS
 BEGIN
 /*
 	0: ok
-	1: user y cupon no matchean
+	1: El cupón no corresponde al cliente
 	2: proveedor y cupon no matchean
 	3: se vencio el canje
 	5: el cupon esta devuelto o ya canjeado
+	6: el usuario no existe
 */
+	if not exists(select * from GESTION_DE_PATOS.Clientes where username = @username)
+	begin
+		set @ret = 6
+		return
+	end
+	
 	IF not exists(select * from GESTION_DE_PATOS.Cupones where id_cupon = @idcupon and cliente = @username)
 		begin
 			set @ret = 1
@@ -1227,6 +1234,15 @@ RETURNS VARCHAR(30)
 AS
 BEGIN
 	RETURN (SELECT nombre_estado FROM GESTION_DE_PATOS.Estados where id_estado = @id)
+END
+
+GO
+
+CREATE FUNCTION GESTION_DE_PATOS.NombreEstadoPromocion(@id int)
+RETURNS VARCHAR(30)
+AS
+BEGIN
+	RETURN (SELECT nombre_estado FROM GESTION_DE_PATOS.Estados_Promociones where id_estado = @id)
 END
 
 GO

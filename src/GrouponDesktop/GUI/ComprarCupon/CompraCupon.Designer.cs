@@ -31,6 +31,8 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.cuponesDisponibles = new System.Windows.Forms.DataGridView();
             this.Cerrar = new System.Windows.Forms.Button();
+            this.Cantidad = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cuponesDisponibles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +64,29 @@
             this.Cerrar.UseVisualStyleBackColor = true;
             this.Cerrar.Click += new System.EventHandler(this.Cerrar_Click);
             // 
+            // Cantidad
+            // 
+            this.Cantidad.Location = new System.Drawing.Point(150, 268);
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Size = new System.Drawing.Size(139, 20);
+            this.Cantidad.TabIndex = 27;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 270);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Cantidad de cupones:";
+            // 
             // CompraCupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 300);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Cantidad);
             this.Controls.Add(this.Cerrar);
             this.Controls.Add(this.cuponesDisponibles);
             this.Controls.Add(this.Nombre);
@@ -86,5 +106,7 @@
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.DataGridView cuponesDisponibles;
         private System.Windows.Forms.Button Cerrar;
+        private System.Windows.Forms.TextBox Cantidad;
+        private System.Windows.Forms.Label label1;
     }
 }

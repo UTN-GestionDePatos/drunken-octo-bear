@@ -45,12 +45,12 @@ namespace GrouponDesktop.GUI.CargaCredito
                 Int64.Parse(Monto.Text);
             }
             catch (FormatException) {
-                MessageBox.Show("Ingrese un monto válido");
+                MessageBox.Show("Ingrese un monto entero válido");
                 return;
             }
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
             ps.AddParameter("@username", s.username);
-            ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
             ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
             ps.AddParameter("@monto", Int64.Parse(Monto.Text));
             

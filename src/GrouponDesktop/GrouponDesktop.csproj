@@ -298,6 +298,12 @@
     <Compile Include="GUI\ComprarCupon\CompraCupon.Designer.cs">
       <DependentUpon>CompraCupon.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ComprarGiftCard\BusquedaClienteDestino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ComprarGiftCard\BusquedaClienteDestino.Designer.cs">
+      <DependentUpon>BusquedaClienteDestino.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ComprarGiftCard\ComprarGirftcard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +351,18 @@
     </Compile>
     <Compile Include="GUI\PublicarCupon\PublicarCupon.Designer.cs">
       <DependentUpon>PublicarCupon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RegistroConsumoCupon\BusquedaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\RegistroConsumoCupon\BusquedaCliente.Designer.cs">
+      <DependentUpon>BusquedaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RegistroConsumoCupon\GridCupones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\RegistroConsumoCupon\GridCupones.Designer.cs">
+      <DependentUpon>GridCupones.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\RegistroConsumoCupon\RegistroConsumoCupon.cs">
       <SubType>Form</SubType>
@@ -429,6 +447,9 @@
     <EmbeddedResource Include="GUI\ComprarCupon\CompraCupon.resx">
       <DependentUpon>CompraCupon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ComprarGiftCard\BusquedaClienteDestino.resx">
+      <DependentUpon>BusquedaClienteDestino.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ComprarGiftCard\ComprarGirftcard.resx">
       <DependentUpon>ComprarGirftcard.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +473,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PublicarCupon\PublicarCupon.resx">
       <DependentUpon>PublicarCupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\RegistroConsumoCupon\BusquedaCliente.resx">
+      <DependentUpon>BusquedaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\RegistroConsumoCupon\GridCupones.resx">
+      <DependentUpon>GridCupones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\RegistroConsumoCupon\RegistroConsumoCupon.resx">
       <DependentUpon>RegistroConsumoCupon.cs</DependentUpon>

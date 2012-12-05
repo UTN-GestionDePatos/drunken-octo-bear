@@ -36,7 +36,6 @@ namespace GrouponDesktop.GUI.ComprarCupon
             comprar.HeaderText = "Comprar";
             this.cuponesDisponibles.Columns.Add(comprar);
             this.cuponesDisponibles.Columns["comprar"].ReadOnly = false;
-
         }
 
         private void Cerrar_Click(object sender, EventArgs e)
@@ -58,26 +57,69 @@ namespace GrouponDesktop.GUI.ComprarCupon
                     return;
                 }
 
-                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarCupon");
+                if (this.Cantidad.Text == "") {
+                    MessageBox.Show("Ingrese una cantidad");
+                    return;
+                }
 
+                Int64 cantidad = 1;
+                
+                try{
+                    cantidad = Int64.Parse(this.Cantidad.Text);
+                    
+                }
+                catch(FormatException){
+                    MessageBox.Show("Ingrese una cantidad correcta");
+                    return;
+                }
+                if(cantidad < 1 ){
+                    MessageBox.Show("Ingrese una cantidad positiva");
+                    return;
+                }
+                
+                ParamSet ps = new ParamSet("GESTION_DE_PATOS.ValidarCompraCupon");
                 ps.AddParameter("@id_promocion", this.cuponesDisponibles.Rows[e.RowIndex].Cells[0].Value.ToString());
-                ps.AddParameter("@fecha", Core.Properties.getProperty("fecha"));
+                ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
                 ps.AddParameter("@username", s.username);
-                SqlParameter retval = ps.execSP();
+                ps.AddParameter("@cantidad", cantidad);
+
+                SqlParameter retval;
+                
+                retval = ps.execSP();
                 String ret = retval.Value.ToString();
 
                 switch (ret)
                 {
-                    case "1": MessageBox.Show("Ha llegado al límite por usuario para el cupón solicitado.");
+                    case "1": MessageBox.Show("La compra solicitada supera el límite por usuario permitido.");
                         return;
-                    case "2": MessageBox.Show("No hay stock para el cupón solicitado.");
+                    case "2": MessageBox.Show("No hay stock para la compra deseada.");
                         return;
                     case "3": MessageBox.Show("El usuario no tiene saldo suficiente.");
                         return;
 
-                    default:
-                        MessageBox.Show("Compra realizada con éxito. \nCupón Nro: " + ret);
-                        Main.actualizar();
+                    case "0":
+                        String mensaje;
+                        if (cantidad == 1)
+                        {
+                            mensaje = "Compra realizada con éxito. \nCupón nro: ";
+                        }
+                        else
+                        {
+                            mensaje = "Compra realizada con éxito. \nCupones: ";
+                        }
+                        SqlParameter r;
+                        ps.NombreSP("GESTION_DE_PATOS.ComprarCupon");
+                        for (int i = 0; i < cantidad; i++)
+                        {
+                            ps.AddParameter("@id_promocion", this.cuponesDisponibles.Rows[e.RowIndex].Cells[0].Value.ToString());
+                            ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
+                            ps.AddParameter("@username", s.username);
+                            r = ps.execSP();
+                            mensaje += "\n\t" + r.Value.ToString();
+                            Main.actualizar();
+
+                        }
+                        MessageBox.Show(mensaje);
                         return;
                 }
             }

@@ -48,7 +48,7 @@ namespace GrouponDesktop.ArmarCupon
             
             ps.AddParameter("@codigoGrupo",idPromo);
             ps.AddParameter("@descripcion", DescripcionCupon.Text);
-            ps.AddParameter("@fechaSistema", Core.Properties.getProperty("fecha"));
+            ps.AddParameter("@fechaSistema", (DateTime)AppContext.getObject(typeof(DateTime)));
             ps.AddParameter("@fechaVencimientoCanje", VencimientoCanje.Text);
             ps.AddParameter("@fechaVencimientoOferta", VencimientoOferta.Text);
             ps.AddParameter("@precio_ficticio", float.Parse(PrecioFicticio.Text));
