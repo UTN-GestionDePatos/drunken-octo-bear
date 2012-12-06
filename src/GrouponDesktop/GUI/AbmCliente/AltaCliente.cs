@@ -130,16 +130,19 @@ namespace GrouponDesktop.AbmCliente
 
         private void AltaCliente_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = true;
-            }
-            else if(!String.Equals(rol_anterior,""))
-            {
-                db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol_anterior + "' where username = '" + UsernameCliente.Text + "'");
-                MessageBox.Show("Cancelación de alta. Este usuario vuelve a tener el rol anterior", "Cambiar rol");
-                this.listado.actualizar_datagridview();
-                this.Hide();
+                if (MessageBox.Show("¿Desea rechazar los cambios?", "Alta cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else if (!String.Equals(rol_anterior, ""))
+                {
+                    db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol_anterior + "' where username = '" + UsernameCliente.Text + "'");
+                    MessageBox.Show("Cancelación de alta. Este usuario vuelve a tener el rol anterior", "Cambiar rol");
+                    this.listado.actualizar_datagridview();
+                    this.Hide();
+                }
             }
         }
 
