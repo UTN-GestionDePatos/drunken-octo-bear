@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Windows.Forms;
 
 namespace GrouponDesktop.Core
 {
@@ -31,9 +32,9 @@ namespace GrouponDesktop.Core
         {
             Properties p = new Properties();
 
-            appContext.Add(typeof(DateTime),DateTime.Parse(Properties.getProperty("fecha")));
-            appContext.Add(typeof(Properties),p);
-
+            appContext.Add(typeof(DateTime), DateTime.Parse(Properties.getProperty("fecha")));
+            appContext.Add(typeof(Properties), p);
+            
             Console.WriteLine(DateTime.Parse(Properties.getProperty("fecha")).ToShortDateString());
         }
 

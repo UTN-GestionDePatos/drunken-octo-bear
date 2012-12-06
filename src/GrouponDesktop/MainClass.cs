@@ -15,6 +15,7 @@ namespace GrouponDesktop
         [STAThread]
         static void Main()
         {
+          try{  
             new AppContext();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -25,6 +26,12 @@ namespace GrouponDesktop
                 Application.Run(new Main());
                 
             }
+          }
+          catch (Exception e)
+          {
+              MessageBox.Show("Ingrese una fecha válida en el archivo de configuración - Formato AAAA-MM-DD");
+              return;
+          }
         }
     }
 }
