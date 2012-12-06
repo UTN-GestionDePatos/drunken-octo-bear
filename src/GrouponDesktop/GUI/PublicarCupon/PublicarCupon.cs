@@ -27,7 +27,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
         private void PublicarCupon_Load(object sender, EventArgs e)
         {
 
-            this.fecha.Text += " " + ((DateTime)AppContext.getObject(typeof(DateTime))).ToShortDateString(); ;
+            this.fecha.Text += " " + ((String)AppContext.getObject(typeof(String)));
 
             this.Proveedores.Items.Clear();
             this.Proveedores.Items.Add("");
