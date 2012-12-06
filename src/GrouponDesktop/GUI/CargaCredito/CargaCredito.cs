@@ -51,7 +51,7 @@ namespace GrouponDesktop.GUI.CargaCredito
             }
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
             ps.AddParameter("@username", Cliente.Text);
-            ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
+            ps.AddParameter("@fecha", (String)AppContext.getObject(typeof(String)));
             ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
             ps.AddParameter("@monto", Int64.Parse(Monto.Text));
             

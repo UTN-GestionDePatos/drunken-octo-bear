@@ -99,7 +99,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
                 
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.PublicarCupon");
                 ps.AddParameter("@codigoPromocion", codigo);
-                ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
+                ps.AddParameter("@fecha", (String)AppContext.getObject(typeof(String)));
                 ps.executeNoReturn();
 
                 MessageBox.Show("Promoción publicada");

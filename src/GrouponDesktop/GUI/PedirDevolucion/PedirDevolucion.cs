@@ -35,7 +35,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 Dictionary<String, Object> d = new Dictionary<string, object>();
                 d.Add("@idCupon", Int32.Parse(Cupon.Text));
                 d.Add("@username", s.username);
-                d.Add("@fecha_actual", (DateTime)AppContext.getObject(typeof(DateTime)));
+                d.Add("@fecha_actual", (String)AppContext.getObject(typeof(String)));
                 d.Add("@motivo", Motivo.Text);
                 ps.Parametros(d);
                 SqlParameter retval = ps.execSP();
@@ -63,7 +63,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
                 Session s = (Session)AppContext.getObject(typeof(Session));
                 ParamSet ps = new ParamSet("GESTION_DE_PATOS.ConfirmarDevolucion");
                 ps.AddParameter("@idCupon", Int64.Parse(this.Cupon.Text));
-                ps.AddParameter("@fecha_actual", (DateTime)AppContext.getObject(typeof(DateTime)));
+                ps.AddParameter("@fecha_actual", (String)AppContext.getObject(typeof(String)));
                 ps.AddParameter("@motivo", this.Motivo.Text);
 
                 SqlParameter retval = ps.execSP();

@@ -27,7 +27,7 @@ namespace GrouponDesktop
                 
             }
           }
-          catch (Exception e)
+          catch (Exception)
           {
               MessageBox.Show("Ingrese una fecha válida en el archivo de configuración - Formato AAAA-MM-DD");
               return;

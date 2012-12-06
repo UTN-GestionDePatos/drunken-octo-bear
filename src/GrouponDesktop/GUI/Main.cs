@@ -53,7 +53,7 @@ namespace GrouponDesktop.GUI
             }
 
             this.actualizarSaldo();
-            Fecha.Text = ((DateTime)AppContext.getObject(typeof(DateTime))).ToShortDateString();
+            Fecha.Text = ((String)AppContext.getObject(typeof(String)));
             AppContext.setObject(typeof(Main), this);
         }
 

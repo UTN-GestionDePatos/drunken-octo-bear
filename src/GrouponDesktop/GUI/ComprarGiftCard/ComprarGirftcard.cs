@@ -30,7 +30,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.ComprarGiftcard"); 
 
             ps.AddParameter("@clienteOrigen", s.username);
-            ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
+            ps.AddParameter("@fecha", (String)AppContext.getObject(typeof(String)));
             ps.AddParameter("@clienteDestino", ClienteDestino.Text);
             ps.AddParameter("@monto", Int64.Parse(monto.SelectedItem.ToString()));
 

@@ -33,7 +33,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
 
                 ps.AddParameter("@idcupon", Int32.Parse(CodigoCupon.Text));
                 ps.AddParameter("@username", Cliente.Text);
-                ps.AddParameter("@fecha_actual", (DateTime)AppContext.getObject(typeof(DateTime)));
+                ps.AddParameter("@fecha_actual", (String)AppContext.getObject(typeof(String)));
                 ps.AddParameter("@proveedor", s.username);
 
                 SqlParameter retval = ps.execSP();
