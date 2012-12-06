@@ -26,5 +26,11 @@ namespace GrouponDesktop.GUI.ListadoEstadistico
         {
             this.Hide();
         }
+
+        private void Listado_Load(object sender, EventArgs e)
+        {
+            this.ListadoGV.AllowUserToAddRows = false;
+            this.ListadoGV.ReadOnly = true;
+        }
     }
 }
