@@ -136,7 +136,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
 
             this.dataGridClientes.Enabled = false;
 
-
+            this.dataGridClientes.AllowUserToAddRows = false;
             
 
         }

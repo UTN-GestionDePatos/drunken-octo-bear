@@ -105,7 +105,7 @@ namespace GrouponDesktop.GUI.AbmProveedor
             this.dataGridProveedores.ReadOnly = true;
             this.dataGridProveedores.Columns["modificar"].ReadOnly = false;
             this.dataGridProveedores.Columns["eliminar"].ReadOnly = false;
-
+            this.dataGridProveedores.AllowUserToAddRows = false;
         }
 
         private bool validarTextBox(TextBox textBox)

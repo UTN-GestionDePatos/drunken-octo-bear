@@ -26,12 +26,14 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             this.proveedores.Items.Clear();
             Session s = (Session)AppContext.getObject(typeof(Session));
             
-            SQLResponse r = dbManager.executeQuery("SELECT p.username FROM GESTION_DE_PATOS.Proveedores p JOIN GESTION_DE_PATOS.Usuarios u on p.username = u.username and u.rol = 'Proveedor'");
+            SQLResponse r = dbManager.executeQuery("SELECT p.CUIT FROM GESTION_DE_PATOS.Proveedores p JOIN GESTION_DE_PATOS.Usuarios u on p.username = u.username and u.rol = 'Proveedor'");
             foreach (DataRow row in r.result.Rows)
             {
                 this.proveedores.Items.Add(row[0]);
             }
             this.proveedores.SelectedIndex = 0;
+
+            this.dataGridCupones.AllowUserToAddRows = false;
         }
 
         private void FechaDesdeCalendario_DateSelected(object sender, DateRangeEventArgs e)
@@ -68,7 +70,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             }
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p, GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
             this.SetDataGridView(r.result);
 
         }
@@ -104,15 +106,14 @@ namespace GrouponDesktop.GUI.FacturarProveedor
 
         private void Facturar_Click(object sender, EventArgs e)
         {
-            if (FechaDesde.Text == "" || FechaHasta.Text == "" || this.dataGridCupones.RowCount == 0 || this.proveedores.Text == "" )
+            if (FechaDesde.Text == "" || FechaHasta.Text == "" || this.proveedores.Text == "" )
             {
                 MessageBox.Show("Faltan datos");
                 return;
             }
 
-            if (this.dataGridCupones.Rows.Count == 1)
-            {
-                MessageBox.Show("No hay cupones para facturar");
+            if(this.dataGridCupones.RowCount == 0){
+                MessageBox.Show("No hay cupones para facturar para el intervalo de fechas seleccionado");
                 return;
             }
 
@@ -131,11 +132,16 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             {
                 case "1": MessageBox.Show("Ya hay cupones facturados para el intervalo ingresado.");
                     return;
-                default: MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + (monto*0.5).ToString());
-                    return;
+                default:    MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + (monto*0.5).ToString());
+                            SQLResponse r;
+                            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
+                            this.SetDataGridView(r.result);
+                            return;
                
                
             }
+
+
         }
 
 

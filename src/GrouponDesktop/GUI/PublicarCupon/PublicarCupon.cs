@@ -26,8 +26,8 @@ namespace GrouponDesktop.GUI.PublicarCupon
         
         private void PublicarCupon_Load(object sender, EventArgs e)
         {
-            
-            this.fecha.Text += " " + Core.Properties.getProperty("fecha");
+
+            this.fecha.Text += " " + ((DateTime)AppContext.getObject(typeof(DateTime))).ToShortDateString(); ;
 
             this.Proveedores.Items.Clear();
             this.Proveedores.Items.Add("");
@@ -42,6 +42,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
 
             this.cupones.ReadOnly = true;
 
+            this.cupones.AllowUserToAddRows = false;
 
         }
 

@@ -45,7 +45,7 @@ namespace GrouponDesktop.GUI.AbmCliente
             this.dataGridClientes.ReadOnly = true;
             this.dataGridClientes.Columns["modificar"].ReadOnly = false;
             this.dataGridClientes.Columns["eliminar"].ReadOnly = false;
-
+            this.dataGridClientes.AllowUserToAddRows = false;
         }
 
         private void dataGridClientes_CellClick(object sender, DataGridViewCellEventArgs e)

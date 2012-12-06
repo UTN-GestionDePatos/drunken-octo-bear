@@ -175,6 +175,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
         private void BusquedaCliente_Load(object sender, EventArgs e)
         {
             this.dataGridClientes.Enabled = false;
+            this.dataGridClientes.AllowUserToAddRows = false;
         }
     }
 }

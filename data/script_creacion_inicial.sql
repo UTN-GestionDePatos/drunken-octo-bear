@@ -1183,15 +1183,9 @@ AS
 BEGIN
 /*
 	idfactura: ok
-	1: se overlapean los intervalos --> cupones ya facturados
+	
 */
-	if exists (select * from GESTION_DE_PATOS.Facturas where proveedor = @proveedor and 
-	(	@fecha_desde between fecha_desde and fecha_hasta or @fecha_hasta between fecha_desde and fecha_hasta
-		or fecha_desde between @fecha_desde and @fecha_hasta or fecha_hasta between @fecha_desde and @fecha_hasta))
-		begin
-			set @ret = 1
-			return
-		end
+	
 	
 	select @ret = MAX(id_factura)+1 from GESTION_DE_PATOS.Facturas
 	insert into GESTION_DE_PATOS.Facturas values(@ret, @proveedor, @monto, @fecha_desde, @fecha_hasta)
@@ -1397,10 +1391,26 @@ ON GESTION_DE_PATOS.Facturas
 AFTER INSERT
 AS
 BEGIN
-	insert into GESTION_DE_PATOS.Cupones_por_factura
-	select i.id_factura, c.id_cupon
-	from inserted i join GESTION_DE_PATOS.Canjes c
-	on c.fecha_canje between CONVERT(date,i.fecha_desde) and CONVERT(date,i.fecha_hasta)
+	
+	declare cursorFactura cursor for
+		select i.id_factura, c.id_cupon
+		from inserted i join GESTION_DE_PATOS.Canjes c
+		on c.fecha_canje between CONVERT(date,i.fecha_desde) and CONVERT(date,i.fecha_hasta)
+	
+	declare @idF bigint, @idC bigint
+	open cursorFactura
+	fetch cursorFactura into @idF, @idC
+	while @@fetch_status = 0
+	begin
+		if not exists (select * from GESTION_DE_PATOS.Cupones_por_factura where id_cupon = @idC)
+			begin
+				insert into GESTION_DE_PATOS.Cupones_por_factura values (@idF,@idC)
+			end
+		fetch cursorFactura into @idF, @idC
+	end
+	close cursorFactura
+	deallocate cursorFactura
+
 	
 END
 

@@ -35,6 +35,7 @@ namespace GrouponDesktop.GUI.AbmAdministrador
             this.administradores.Columns[4].ReadOnly = false;
             this.administradores.Columns[5].ReadOnly = false;
             this.administradores.Columns[6].ReadOnly = false;
+            this.administradores.AllowUserToAddRows = false;
 
         }
 

@@ -38,14 +38,14 @@
             this.dataGridCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCupones.Location = new System.Drawing.Point(26, 55);
             this.dataGridCupones.Name = "dataGridCupones";
-            this.dataGridCupones.Size = new System.Drawing.Size(446, 150);
+            this.dataGridCupones.Size = new System.Drawing.Size(463, 150);
             this.dataGridCupones.TabIndex = 0;
             this.dataGridCupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCupones_CellClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 18);
+            this.label1.Location = new System.Drawing.Point(162, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(228, 13);
             this.label1.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 244);
+            this.ClientSize = new System.Drawing.Size(517, 244);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridCupones);
             this.Name = "GridCupones";

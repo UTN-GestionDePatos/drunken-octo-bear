@@ -40,6 +40,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
 
             this.dataGridCupones.ReadOnly = true;
             this.dataGridCupones.Columns["Seleccionar"].ReadOnly = false;
+            this.dataGridCupones.AllowUserToAddRows = false;
         }
 
         private void dataGridCupones_CellClick(object sender, DataGridViewCellEventArgs e)

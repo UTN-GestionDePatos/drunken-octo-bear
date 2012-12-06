@@ -25,7 +25,7 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
         private void CompraCupon_Load(object sender, EventArgs e)
         {
-            r = dbManager.executeQuery("select distinct gc.id_promocion Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_oferta 'VencimientoOferta', gc.fecha_vencimiento_canje VencimientoCanje, gc.proveedor Proveedor from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Localidad_por_promocion lpg on lpg.id_promocion = gc.id_promocion join GESTION_DE_PATOS.Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad where GESTION_DE_PATOS.NombreEstadoPromocion(gc.estado) = 'Publicado' and lpu.username = '" + s.username + "' and gc.fecha_vencimiento_oferta >= '" + Core.Properties.getProperty("fecha") + "'");
+            r = dbManager.executeQuery("select distinct gc.id_promocion Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_oferta 'VencimientoOferta', gc.fecha_vencimiento_canje VencimientoCanje, pr.CUIT Proveedor from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Localidad_por_promocion lpg on lpg.id_promocion = gc.id_promocion join GESTION_DE_PATOS.Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad join GESTION_DE_PATOS.Proveedores pr on pr.username = gc.proveedor where GESTION_DE_PATOS.NombreEstadoPromocion(gc.estado) = 'Publicado' and lpu.username = '" + s.username + "' and gc.fecha_vencimiento_oferta >= '" + (DateTime)AppContext.getObject(typeof(DateTime)) + "'");
 
             this.cuponesDisponibles.DataSource = r.result;
 
@@ -36,6 +36,8 @@ namespace GrouponDesktop.GUI.ComprarCupon
             comprar.HeaderText = "Comprar";
             this.cuponesDisponibles.Columns.Add(comprar);
             this.cuponesDisponibles.Columns["comprar"].ReadOnly = false;
+
+            this.cuponesDisponibles.AllowUserToAddRows = false;
         }
 
         private void Cerrar_Click(object sender, EventArgs e)
@@ -49,13 +51,6 @@ namespace GrouponDesktop.GUI.ComprarCupon
 
             if (columna_seleccionada == "comprar")
             {
-
-                if (this.cuponesDisponibles.Rows.Count == 1)
-                {
-
-                    MessageBox.Show("No hay cupones para comprar");
-                    return;
-                }
 
                 if (this.Cantidad.Text == "") {
                     MessageBox.Show("Ingrese una cantidad");

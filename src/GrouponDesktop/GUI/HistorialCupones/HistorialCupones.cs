@@ -76,7 +76,8 @@ namespace GrouponDesktop.GUI.HistorialCupones
 
         private void HistorialCupones_Load(object sender, EventArgs e)
         {
-
+            this.Cupones.AllowUserToAddRows = false;
+            this.Cupones.ReadOnly = true;
         }
 
 
