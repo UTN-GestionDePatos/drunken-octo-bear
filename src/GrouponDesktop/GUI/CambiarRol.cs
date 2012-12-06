@@ -58,12 +58,12 @@ namespace GrouponDesktop.GUI
             if (this.Rol.SelectedItem.ToString() == "Proveedor")
             {
                 AltaProveedor ap = new AltaProveedor(user, actual, listado);
-                ap.Show();
+                ap.ShowDialog();
             }
             else if (this.Rol.SelectedItem.ToString() == "Cliente")
             {
                 AltaCliente ac = new AltaCliente(user, actual, listado);
-                ac.Show();
+                ac.ShowDialog();
             }
             else if (this.Rol.SelectedItem.ToString() == "Administrador General" || this.Rol.SelectedItem.ToString() == "Administrador") 
             {
@@ -71,7 +71,7 @@ namespace GrouponDesktop.GUI
             
             }
 
-
+         
             db.executeQuery("UPDATE GESTION_DE_PATOS.Usuarios SET rol = '" + rol + "' where username = '" + user + "'");
 
             this.listado.actualizar_datagridview();
