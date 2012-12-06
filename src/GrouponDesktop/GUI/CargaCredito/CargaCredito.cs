@@ -35,7 +35,7 @@ namespace GrouponDesktop.GUI.CargaCredito
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (Monto.Text == "" || TipoPago.SelectedItem == null || (NumeroTarjeta.Text == "" && NumeroTarjeta.Enabled)) {
+            if (Cliente.Text == "" || Monto.Text == "" || TipoPago.SelectedItem == null || (NumeroTarjeta.Text == "" && NumeroTarjeta.Enabled)) {
                 MessageBox.Show("Faltan datos");
                 return;
             }
@@ -49,7 +49,7 @@ namespace GrouponDesktop.GUI.CargaCredito
                 return;
             }
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
-            ps.AddParameter("@username", s.username);
+            ps.AddParameter("@username", Cliente.Text);
             ps.AddParameter("@fecha", (DateTime)AppContext.getObject(typeof(DateTime)));
             ps.AddParameter("@tipoPago", TipoPago.SelectedItem.ToString());
             ps.AddParameter("@monto", Int64.Parse(Monto.Text));
@@ -90,6 +90,15 @@ namespace GrouponDesktop.GUI.CargaCredito
             Main.actualizar();
         }
 
+        private void CargaCredito_Load(object sender, EventArgs e)
+        {
+            if (s.rol.Equals("Cliente"))
+            {
+                this.Cliente.Text = s.username;
+                this.Cliente.Enabled = false;
+
+            }
+        }
        
 
       
