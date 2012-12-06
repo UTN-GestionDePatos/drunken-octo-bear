@@ -14,7 +14,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
     public partial class FacturacionProveedor : Form
     {
         private DBManager dbManager = null;
-
+        SQLResponse r;
         public FacturacionProveedor()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             }
             SQLResponse r;
 
-            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
+            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
             this.SetDataGridView(r.result);
 
         }
@@ -94,10 +94,10 @@ namespace GrouponDesktop.GUI.FacturarProveedor
 
         private object montoFactura()
         {
-            SQLResponse r;
+            
             object monto = null;
 
-            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p,GESTION_DE_PATOS.Canjes ca WHERE c.id_cupon = ca.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p,GESTION_DE_PATOS.Canjes ca WHERE c.id_cupon = ca.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
             monto = r.result.Rows[0][0];
 
             return monto;
@@ -120,7 +120,8 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.FacturarProveedor");
             
             float monto = float.Parse(montoFactura().ToString());
-            ps.AddParameter("@proveedor", proveedores.SelectedItem.ToString());
+            r = dbManager.executeQuery("SELECT username FROM GESTION_DE_PATOS.Proveedores where cuit = '"+proveedores.SelectedItem.ToString() + "'");
+            ps.AddParameter("@proveedor", r.result.Rows[0][0].ToString() );
             ps.AddParameter("@fecha_desde", FechaDesde.Text);
             ps.AddParameter("@fecha_hasta", FechaHasta.Text);
             ps.AddParameter("@monto", monto*0.5);
@@ -133,8 +134,8 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 case "1": MessageBox.Show("Ya hay cupones facturados para el intervalo ingresado.");
                     return;
                 default:    MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + (monto*0.5).ToString());
-                            SQLResponse r;
-                            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.username = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
+                            
+                            r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
                             this.SetDataGridView(r.result);
                             return;
                
