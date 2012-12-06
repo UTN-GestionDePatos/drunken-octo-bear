@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.IO;
+using System.Configuration;
 
 namespace GrouponDesktop.Core
 {
@@ -11,18 +12,16 @@ namespace GrouponDesktop.Core
     {
         private static Dictionary<String, String> properties = new Dictionary<String, String>();
 
-        public Properties(String filePath)
+        public Properties()
         {
-            this.loadProperties(filePath);
+            this.loadProperties();
         }
         
-        public void loadProperties(String path)
+        public void loadProperties()
         {
-            foreach(String line in File.ReadAllLines(path)){
-                if(line.StartsWith("#")) continue;
-                if(line.Length == 0) continue;
-                if(!line.Contains("=")) continue;
-                properties.Add(line.Substring(0, line.IndexOf("=")).Trim(), line.Substring(line.IndexOf("=")+1).Trim());
+           
+            foreach (String key in System.Configuration.ConfigurationSettings.AppSettings.AllKeys) {
+                properties.Add(key, System.Configuration.ConfigurationSettings.AppSettings[key]);
             }
         }
 

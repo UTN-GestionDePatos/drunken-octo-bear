@@ -23,6 +23,7 @@ namespace GrouponDesktop.GUI.CargaCredito
 
         private void TipoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (this.TipoPago.SelectedItem.Equals("Crédito") || this.TipoPago.SelectedItem.Equals("Débito"))
             {
                 this.NumeroTarjeta.Enabled = true;
