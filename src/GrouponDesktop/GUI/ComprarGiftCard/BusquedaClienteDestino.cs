@@ -104,6 +104,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 if (!string.Equals(where, "WHERE"))
                 {
                     query = query + where;
+                    query = query + " and estado = 'Habilitado'";
                 }
 
                 this.dataGridClientes.Enabled = true;
