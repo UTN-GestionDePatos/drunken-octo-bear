@@ -535,6 +535,7 @@ BEGIN
 	2: la fecha de vencimiento de la oferta ya paso...
 	3: vencimiento ofert > vencimiento canje
 	4: fecha publicacion < vencimiento oferta
+	5: fecha publicacion < fecha sistema
 */
 
 if exists (select * from GESTION_DE_PATOS.Promociones where id_promocion = @codigoGrupo)
@@ -560,6 +561,12 @@ if @fechaPublicacion > @fechaVencimientoOferta
 		set @ret = 4
 		return
 	end
+
+if @fechaPublicacion < @fechaSistema
+begin
+	set @ret = 5
+	return
+end
 insert into GESTION_DE_PATOS.Promociones values(	@codigoGrupo, @proveedor, @precio_ficticio, @fechaPublicacion, @stock, @limite_usuario, @precio_real,
 								@fechaVencimientoCanje, GESTION_DE_PATOS.idEstadoPromocion('A publicar'), @fechaVencimientoOferta, @descripcion)
 
