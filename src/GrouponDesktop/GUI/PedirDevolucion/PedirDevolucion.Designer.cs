@@ -50,7 +50,6 @@
             // 
             // Cupon
             // 
-            this.Cupon.Enabled = false;
             this.Cupon.Location = new System.Drawing.Point(129, 26);
             this.Cupon.Name = "Cupon";
             this.Cupon.Size = new System.Drawing.Size(209, 20);

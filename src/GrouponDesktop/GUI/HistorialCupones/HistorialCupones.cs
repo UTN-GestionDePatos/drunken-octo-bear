@@ -40,8 +40,9 @@ namespace GrouponDesktop.GUI.HistorialCupones
             DBManager dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
             Session s = (Session)AppContext.getObject(typeof(Session));
             String cliente = s.username;
-            SQLResponse r = dbManager.executeQuery("SELECT id_cupon, promocion, fecha_compra, estado FROM GESTION_DE_PATOS.viewcupones WHERE cliente = '" + cliente + "' AND fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' ORDER BY 4");
+            SQLResponse r = dbManager.executeQuery("SELECT v.id_cupon, c.id_promocion, v.promocion, v.fecha_compra,isnull(convert(varchar,can.fecha_canje,103),'-') fecha_canje, isnull(convert(varchar,d.fecha_devolucion,103),'-') fecha_devolucion, v.estado FROM GESTION_DE_PATOS.viewcupones v join GESTION_DE_PATOS.Cupones c on c.id_cupon = v.id_cupon left join GESTION_DE_PATOS.Canjes can on can.id_cupon = v.id_cupon left join GESTION_DE_PATOS.Devoluciones d on d.id_cupon = v.id_cupon WHERE v.cliente = '" + cliente + "' AND v.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' ORDER BY 4");
             this.SetDataGridView(r.result);
+            this.Cupones.Columns[2].Width = 250;
             if (r.result.Rows.Count == 0)
             {
                 MessageBox.Show("No hay cupones en su historial en esas fechas", "Historial cupones");

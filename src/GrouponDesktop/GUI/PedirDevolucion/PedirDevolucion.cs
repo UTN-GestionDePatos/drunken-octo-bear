@@ -47,7 +47,7 @@ namespace GrouponDesktop.GUI.PedirDevolucion
 
                 switch (retval.Value.ToString())
                 {
-                    case "1": MessageBox.Show("El cupón no existe o el usuario no es el dueño");
+                    case "1": MessageBox.Show("El cupón ingresado no corresponde al usuario");
                         return;
                     case "4": MessageBox.Show("El cupón está canjeado o ya devuelto");
                         return;

@@ -27,13 +27,15 @@ namespace GrouponDesktop.GUI.PedirDevolucion
         private void Cupones_Load(object sender, EventArgs e)
         {
             this.sesion = (Session)AppContext.getObject(typeof(Session));
-            String query = "SELECT c.id_cupon AS 'ID Cupón', p.proveedor AS 'Proveedor', c.id_promocion AS 'ID Promoción', GESTION_DE_PATOS.promocion(c.id_promocion) AS 'Promocion', c.fecha_compra AS 'Fecha de Compra' FROM GESTION_DE_PATOS.Cupones c LEFT JOIN GESTION_DE_PATOS.Devoluciones d ON c.id_cupon = d.id_cupon LEFT JOIN GESTION_DE_PATOS.Canjes cj ON c.id_cupon = cj.id_cupon JOIN GESTION_DE_PATOS.Promociones p ON p.id_promocion = c.id_promocion WHERE fecha_devolucion is null AND fecha_canje is null AND cliente = '" + sesion.username + "' AND p.fecha_vencimiento_canje >= '" + (String)AppContext.getObject(typeof(String)) + "'";
+            String query = "SELECT c.id_cupon AS 'ID Cupón', pr.cuit AS 'Proveedor', c.id_promocion AS 'ID Promoción', GESTION_DE_PATOS.promocion(c.id_promocion) AS 'Promocion', c.fecha_compra AS 'Fecha de Compra' FROM GESTION_DE_PATOS.Cupones c LEFT JOIN GESTION_DE_PATOS.Devoluciones d ON c.id_cupon = d.id_cupon LEFT JOIN GESTION_DE_PATOS.Canjes cj ON c.id_cupon = cj.id_cupon JOIN GESTION_DE_PATOS.Promociones p ON p.id_promocion = c.id_promocion join GESTION_DE_PATOS.Proveedores pr on pr.username = p.proveedor WHERE fecha_devolucion is null AND fecha_canje is null AND cliente = '" + sesion.username + "' AND p.fecha_vencimiento_canje >= '" + (String)AppContext.getObject(typeof(String)) + "'";
             this.listado = new Listado(dataGridCupones, query);
             this.listado.actualizar_datagridview();
             DataGridViewButtonColumn seleccionar = new DataGridViewButtonColumn();
             seleccionar.Name = "seleccionar";
             seleccionar.HeaderText = "Seleccionar";
             this.dataGridCupones.Columns.Add(seleccionar);
+            this.dataGridCupones.ReadOnly = true;
+            this.dataGridCupones.AllowUserToAddRows = false;
             
         }
 
