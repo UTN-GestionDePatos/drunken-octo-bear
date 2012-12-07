@@ -21,7 +21,7 @@ namespace GrouponDesktop.ArmarCupon
 
         private void Guardar_Click(object sender, EventArgs e)
         {
-            if (PrecioFicticio.Text == "" || PrecioReal.Text  == ""
+            if (PrecioFicticio.Text == "" || PrecioReal.Text  == "" || Publicacion.Text == ""
                 || VencimientoOferta.Text == "" || VencimientoCanje.Text == "" || Stock.Text  == "" ||
                 LimitePorUsuario.Text  == "" || DescripcionCupon.Text  == "" || ListaZonas.CheckedItems.Count == 0)
             {
@@ -51,6 +51,7 @@ namespace GrouponDesktop.ArmarCupon
             ps.AddParameter("@fechaSistema", (String)AppContext.getObject(typeof(String)));
             ps.AddParameter("@fechaVencimientoCanje", VencimientoCanje.Text);
             ps.AddParameter("@fechaVencimientoOferta", VencimientoOferta.Text);
+            ps.AddParameter("@fechaPublicacion", Publicacion.Text);
             ps.AddParameter("@precio_ficticio", float.Parse(PrecioFicticio.Text));
             ps.AddParameter("@precio_real", float.Parse(PrecioReal.Text));
             ps.AddParameter("@limite_usuario", Int32.Parse(LimitePorUsuario.Text));
@@ -67,6 +68,9 @@ namespace GrouponDesktop.ArmarCupon
                     return;
                 case "3": MessageBox.Show("El canje no puede vencer antes de la oferta");
                     return;
+                case "4": MessageBox.Show("La fecha de publicación no puede ser anterior al vencimiento de la oferta");
+                    return;
+
 
             }
 
@@ -130,6 +134,20 @@ namespace GrouponDesktop.ArmarCupon
             VencimientoOferta.Text = ofertaStr;
 
             VencimientoOfertaCalendario.Visible = false;
+        }
+
+        private void PublicacionAbrir_Click(object sender, EventArgs e)
+        {
+            FechaPublicacion.Visible = true;
+        }
+
+        private void FechaPublicacion_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            DateTime fchPublicacion = FechaPublicacion.SelectionStart;
+            String fechaP = fchPublicacion.Date.ToShortDateString();
+
+            Publicacion.Text = fechaP;
+            FechaPublicacion.Visible = false;
         }
 
        

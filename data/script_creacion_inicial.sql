@@ -525,7 +525,7 @@ GO
 CREATE PROCEDURE GESTION_DE_PATOS.ArmarCupon (	@codigoGrupo varchar(30), @descripcion varchar(250), @fechaSistema datetime, 
 								@fechaVencimientoCanje datetime, @fechaVencimientoOferta datetime,
 								@precio_ficticio float, @precio_real float, @limite_usuario int, @stock bigint,
-								@proveedor varchar(30), @ret int output)
+								@proveedor varchar(30), @fechaPublicacion datetime, @ret int output)
 AS
 BEGIN
 
@@ -534,6 +534,7 @@ BEGIN
 	1: grupo ya existe
 	2: la fecha de vencimiento de la oferta ya paso...
 	3: vencimiento ofert > vencimiento canje
+	4: fecha publicacion < vencimiento oferta
 */
 
 if exists (select * from GESTION_DE_PATOS.Promociones where id_promocion = @codigoGrupo)
@@ -554,7 +555,12 @@ if @fechaVencimientoOferta > @fechaVencimientoCanje
 		return
 	end
 
-insert into GESTION_DE_PATOS.Promociones values(	@codigoGrupo, @proveedor, @precio_ficticio, null, @stock, @limite_usuario, @precio_real,
+if @fechaPublicacion > @fechaVencimientoOferta
+	begin
+		set @ret = 4
+		return
+	end
+insert into GESTION_DE_PATOS.Promociones values(	@codigoGrupo, @proveedor, @precio_ficticio, @fechaPublicacion, @stock, @limite_usuario, @precio_real,
 								@fechaVencimientoCanje, GESTION_DE_PATOS.idEstadoPromocion('A publicar'), @fechaVencimientoOferta, @descripcion)
 
 set @ret = 0

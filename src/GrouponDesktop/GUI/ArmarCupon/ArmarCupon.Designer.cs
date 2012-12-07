@@ -43,6 +43,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FechaPublicacion = new System.Windows.Forms.MonthCalendar();
+            this.PublicacionAbrir = new System.Windows.Forms.Button();
+            this.Publicacion = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.VencimientoCanjeCalendario = new System.Windows.Forms.MonthCalendar();
             this.VencimientoOfertaCalendario = new System.Windows.Forms.MonthCalendar();
             this.CanjeAbrir = new System.Windows.Forms.Button();
@@ -187,6 +191,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.FechaPublicacion);
+            this.groupBox3.Controls.Add(this.PublicacionAbrir);
+            this.groupBox3.Controls.Add(this.Publicacion);
+            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.VencimientoCanjeCalendario);
             this.groupBox3.Controls.Add(this.VencimientoOfertaCalendario);
             this.groupBox3.Controls.Add(this.CanjeAbrir);
@@ -201,6 +209,41 @@
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fechas";
+            // 
+            // FechaPublicacion
+            // 
+            this.FechaPublicacion.Location = new System.Drawing.Point(331, 17);
+            this.FechaPublicacion.Name = "FechaPublicacion";
+            this.FechaPublicacion.TabIndex = 11;
+            this.FechaPublicacion.Visible = false;
+            this.FechaPublicacion.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.FechaPublicacion_DateSelected);
+            // 
+            // PublicacionAbrir
+            // 
+            this.PublicacionAbrir.Location = new System.Drawing.Point(234, 79);
+            this.PublicacionAbrir.Name = "PublicacionAbrir";
+            this.PublicacionAbrir.Size = new System.Drawing.Size(75, 23);
+            this.PublicacionAbrir.TabIndex = 10;
+            this.PublicacionAbrir.Text = "Seleccionar";
+            this.PublicacionAbrir.UseVisualStyleBackColor = true;
+            this.PublicacionAbrir.Click += new System.EventHandler(this.PublicacionAbrir_Click);
+            // 
+            // Publicacion
+            // 
+            this.Publicacion.Enabled = false;
+            this.Publicacion.Location = new System.Drawing.Point(128, 82);
+            this.Publicacion.Name = "Publicacion";
+            this.Publicacion.Size = new System.Drawing.Size(100, 20);
+            this.Publicacion.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Publicación:";
             // 
             // VencimientoCanjeCalendario
             // 
@@ -251,9 +294,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Vencimiento Canje";
+            this.label2.Text = "Vencimiento Canje:";
             // 
             // VencimientoOferta
             // 
@@ -320,5 +363,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MonthCalendar VencimientoOfertaCalendario;
         private System.Windows.Forms.MonthCalendar VencimientoCanjeCalendario;
+        private System.Windows.Forms.MonthCalendar FechaPublicacion;
+        private System.Windows.Forms.Button PublicacionAbrir;
+        private System.Windows.Forms.TextBox Publicacion;
+        private System.Windows.Forms.Label label1;
     }
 }
