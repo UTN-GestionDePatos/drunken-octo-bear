@@ -39,7 +39,7 @@
             this.dataGridCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCupones.Location = new System.Drawing.Point(21, 29);
             this.dataGridCupones.Name = "dataGridCupones";
-            this.dataGridCupones.Size = new System.Drawing.Size(651, 299);
+            this.dataGridCupones.Size = new System.Drawing.Size(752, 299);
             this.dataGridCupones.TabIndex = 0;
             this.dataGridCupones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCupones_CellClick);
             // 
@@ -48,7 +48,7 @@
             this.groupBox1.Controls.Add(this.dataGridCupones);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(692, 352);
+            this.groupBox1.Size = new System.Drawing.Size(779, 352);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Devolución:";
@@ -57,7 +57,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 378);
+            this.ClientSize = new System.Drawing.Size(818, 378);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "Cupones";
