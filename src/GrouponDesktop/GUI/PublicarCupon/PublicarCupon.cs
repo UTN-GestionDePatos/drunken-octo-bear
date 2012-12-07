@@ -64,7 +64,7 @@ namespace GrouponDesktop.GUI.PublicarCupon
                 //un proveedor en particular
                 this.cupones.Columns.Clear();
 
-                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where GESTION_DE_PATOS.NombreEstadoPromocion(estado) = 'A publicar' and proveedor = '" + proveedor + "'" + "and fecha_vencimiento_oferta >= '" + fechaActual + "and fecha_publicacion <= '" + fechaActual + "'");
+                r = dbManager.executeQuery("select  id_promocion, proveedor, descripcion from GESTION_DE_PATOS.Promociones where GESTION_DE_PATOS.NombreEstadoPromocion(estado) = 'A publicar' and proveedor = '" + proveedor + "'" + "and fecha_vencimiento_oferta >= '" + fechaActual + "' and fecha_publicacion <= '" + fechaActual + "'");
                 cupones.DataSource = r.result;
                 cupones.Columns[2].Width = 300;
 

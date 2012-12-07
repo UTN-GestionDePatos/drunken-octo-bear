@@ -340,6 +340,12 @@
     <Compile Include="GUI\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\PedirDevolucion\Cupones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PedirDevolucion\Cupones.Designer.cs">
+      <DependentUpon>Cupones.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\PedirDevolucion\PedirDevolucion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,6 +473,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PedirDevolucion\Cupones.resx">
+      <DependentUpon>Cupones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PedirDevolucion\PedirDevolucion.resx">
       <DependentUpon>PedirDevolucion.cs</DependentUpon>

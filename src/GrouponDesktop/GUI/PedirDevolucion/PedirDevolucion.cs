@@ -13,9 +13,14 @@ namespace GrouponDesktop.GUI.PedirDevolucion
 {
     public partial class PedirDevolucion : Form
     {
+        private DBManager dbManager = null;
+        private Session sesion = null;
+
         public PedirDevolucion()
         {
             InitializeComponent();
+            dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
+            this.sesion = (Session)AppContext.getObject(typeof(Session));
         }
 
         private void Guardar_Click(object sender, EventArgs e)
@@ -79,6 +84,24 @@ namespace GrouponDesktop.GUI.PedirDevolucion
 
                 }
             }
+        }
+
+        private void Seleccionar_Click(object sender, EventArgs e)
+        {
+            String query = "SELECT c.id_cupon, p.proveedor, c.id_promocion, GESTION_DE_PATOS.promocion(c.id_promocion) AS 'promocion', c.fecha_compra AS 'fecha_compra' FROM GESTION_DE_PATOS.Cupones c LEFT JOIN GESTION_DE_PATOS.Devoluciones d ON c.id_cupon = d.id_cupon LEFT JOIN GESTION_DE_PATOS.Canjes cj ON c.id_cupon = cj.id_cupon JOIN GESTION_DE_PATOS.Promociones p ON p.id_promocion = c.id_promocion WHERE fecha_devolucion is null AND fecha_canje is null AND cliente = '" + sesion.username + "' AND p.fecha_vencimiento_canje >= '" + (String)AppContext.getObject(typeof(String)) + "'";
+            SQLResponse r = dbManager.executeQuery(query);
+
+            if (r.rowsAffected == 0)
+            {
+                MessageBox.Show("No tiene cupones que pueda devolver", "Pedir devolución");
+            }
+            else
+            {
+                Cupones cp = new Cupones(Cupon);
+                cp.Show();
+            }
+
+            
         }
     }
 }

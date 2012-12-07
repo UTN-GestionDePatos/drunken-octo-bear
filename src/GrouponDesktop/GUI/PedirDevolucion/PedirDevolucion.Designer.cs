@@ -33,11 +33,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.Motivo = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Seleccionar = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(15, 150);
+            this.Guardar.Location = new System.Drawing.Point(12, 170);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(75, 23);
             this.Guardar.TabIndex = 36;
@@ -47,7 +50,8 @@
             // 
             // Cupon
             // 
-            this.Cupon.Location = new System.Drawing.Point(132, 6);
+            this.Cupon.Enabled = false;
+            this.Cupon.Location = new System.Drawing.Point(129, 26);
             this.Cupon.Name = "Cupon";
             this.Cupon.Size = new System.Drawing.Size(209, 20);
             this.Cupon.TabIndex = 34;
@@ -55,7 +59,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 45);
+            this.label3.Location = new System.Drawing.Point(9, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 33;
@@ -64,7 +68,7 @@
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(12, 9);
+            this.Nombre.Location = new System.Drawing.Point(9, 29);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(96, 13);
             this.Nombre.TabIndex = 32;
@@ -72,28 +76,50 @@
             // 
             // Motivo
             // 
-            this.Motivo.Location = new System.Drawing.Point(132, 35);
+            this.Motivo.Location = new System.Drawing.Point(129, 55);
             this.Motivo.Multiline = true;
             this.Motivo.Name = "Motivo";
             this.Motivo.Size = new System.Drawing.Size(209, 93);
             this.Motivo.TabIndex = 37;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Seleccionar);
+            this.groupBox1.Controls.Add(this.Motivo);
+            this.groupBox1.Controls.Add(this.Nombre);
+            this.groupBox1.Controls.Add(this.Guardar);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.Cupon);
+            this.groupBox1.Location = new System.Drawing.Point(12, 22);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(448, 210);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Devolución:";
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Location = new System.Drawing.Point(345, 26);
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Size = new System.Drawing.Size(92, 23);
+            this.Seleccionar.TabIndex = 38;
+            this.Seleccionar.Text = "Seleccionar";
+            this.Seleccionar.UseVisualStyleBackColor = true;
+            this.Seleccionar.Click += new System.EventHandler(this.Seleccionar_Click);
+            // 
             // PedirDevolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 185);
-            this.Controls.Add(this.Motivo);
-            this.Controls.Add(this.Guardar);
-            this.Controls.Add(this.Cupon);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.Nombre);
+            this.ClientSize = new System.Drawing.Size(473, 245);
+            this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "PedirDevolucion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pedir devolución";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -104,5 +130,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.TextBox Motivo;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button Seleccionar;
     }
 }
