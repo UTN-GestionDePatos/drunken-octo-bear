@@ -147,7 +147,7 @@ namespace GrouponDesktop.GUI.AbmCliente
 
             if (validarTextBox(Nombre))
             {
-                where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
+                where = where + " nombre like '%" + Nombre.Text.ToString() + "%'";
                 es_primero = false;             
             }
 
@@ -155,11 +155,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 if (es_primero)
                 {
-                    where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
+                    where = where + " apellido like '%" + Apellido.Text.ToString() + "%'";
                     es_primero = false;
                 }
                 else
-                    where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
+                    where = where + " AND apellido like '%" + Apellido.Text.ToString() + "%'";
 
             }
 
@@ -179,11 +179,11 @@ namespace GrouponDesktop.GUI.AbmCliente
             {
                 if (es_primero)
                 {
-                    where = where + " mail like '" + Mail.Text.ToString() + "%'";
+                    where = where + " mail like '%" + Mail.Text.ToString() + "%'";
                     es_primero = false;
                 }
                 else
-                    where = where + " AND mail like '" + Mail.Text.ToString() + "%'";
+                    where = where + " AND mail like '%" + Mail.Text.ToString() + "%'";
                 
             }
 
