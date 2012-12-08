@@ -37,15 +37,19 @@ namespace GrouponDesktop.AbmCliente
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
+            if (this.UsernameCliente.Enabled == true)
+            {
+                this.ConfirmarPassword.Text = "";
+                this.UsernameCliente.Text = "";
+                this.PasswordCliente.Text = "";
+            }
+            
             this.ApellidoCliente.Text = "";
-            this.UsernameCliente.Text = "";
             this.NombreCliente.Text = "";
             this.MailCliente.Text = "";
             this.TelefonoCliente.Text = "";
             this.FchNacimientoCliente.Text = "";
             this.DNICliente.Text = "";
-            this.PasswordCliente.Text = "";
-            this.ConfirmarPassword.Text = "";
             this.DireccionC.Text = "";
             this.CodigoPostal.Text = "";
             for (int i = 0; i < ListaZonas.Items.Count; i++) ListaZonas.SetItemChecked(i, false);

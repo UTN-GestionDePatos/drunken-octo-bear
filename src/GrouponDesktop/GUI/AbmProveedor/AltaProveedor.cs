@@ -40,16 +40,19 @@ namespace GrouponDesktop.AbmCliente
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
+            if (this.UsernameP.Enabled == true)
+            {
+                this.UsernameP.Text = "";
+                this.ConfirmarPassword.Text = "";
+                this.PassP.Text = "";
+            }            
             this.RazonSocial.Text = "";
-            this.UsernameP.Text = "";
             this.CUIT.Text = "";
             this.MailP.Text = "";
             this.TelefonoP.Text = "";
             this.NombreContacto.Text = "";
             this.Direccion.Text = "";
             this.CodigoPostalP.Text = "";
-            this.PassP.Text = "";
-            this.ConfirmarPassword.Text = "";
             
         }
 
