@@ -106,15 +106,29 @@ namespace GrouponDesktop.GUI.ComprarCupon
                         }
                         SqlParameter r;
                         ps.NombreSP("GESTION_DE_PATOS.ComprarCupon");
+                        mensaje += "\n";
+                        int cambioDeLinea = 0;
                         for (int i = 0; i < cantidad; i++)
                         {
+                            if (cambioDeLinea == 10)
+                            {
+                                mensaje += "\n";
+                                cambioDeLinea = 0;
+                            }
                             ps.AddParameter("@id_promocion", this.cuponesDisponibles.Rows[e.RowIndex].Cells[0].Value.ToString());
                             ps.AddParameter("@fecha", (String)AppContext.getObject(typeof(String)));
                             ps.AddParameter("@username", s.username);
                             r = ps.execSP();
-                            mensaje += "\n\t" + r.Value.ToString();
-                            Main.actualizar();
-
+                            
+                            if (i == cantidad-1)
+                            {
+                                mensaje += r.Value.ToString() + ".";
+                            }
+                            else {
+                                mensaje += r.Value.ToString() + ", ";
+                            }
+                                Main.actualizar();
+                                cambioDeLinea++;
                         }
                         MessageBox.Show(mensaje);
                         return;
