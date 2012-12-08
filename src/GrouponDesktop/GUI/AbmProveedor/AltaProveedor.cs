@@ -29,7 +29,7 @@ namespace GrouponDesktop.AbmCliente
             InitializeComponent();
             UsernameP.Text = user;
             PassP.Text = "sumbudrule";
-            ConfirmarPassword.Text = "askdjaam";
+            ConfirmarPassword.Text = "sumbudrule";
             ConfirmarPassword.Enabled = false;
             PassP.Enabled = false;
             UsernameP.Enabled = false;

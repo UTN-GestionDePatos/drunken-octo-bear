@@ -27,7 +27,7 @@ namespace GrouponDesktop.AbmCliente
             UsernameCliente.Text = user;
             UsernameCliente.Enabled = false;
             PasswordCliente.Text = "sumbudrule";
-            ConfirmarPassword.Text = "aidjaksd";
+            ConfirmarPassword.Text = "sumbudrule";
             ConfirmarPassword.Enabled = false;
             PasswordCliente.Enabled = false;
             this.rol_anterior = rol;
