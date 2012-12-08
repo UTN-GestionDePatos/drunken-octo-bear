@@ -32,7 +32,7 @@ namespace GrouponDesktop.GUI
         private void CambiarRol_Load(object sender, EventArgs e)
         {
 
-            SQLResponse re = db.executeQuery("select nombre from GESTION_DE_PATOS.Roles");
+            SQLResponse re = db.executeQuery("select nombre from GESTION_DE_PATOS.Roles where estado = gestion_de_patos.idEstado('Habilitado')");
             foreach (DataRow r in re.result.Rows)
             {
                 Rol.Items.Add(r[0]);
