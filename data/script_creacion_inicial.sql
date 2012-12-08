@@ -379,6 +379,12 @@ BEGIN
 		end
 		if (select r.estado from GESTION_DE_PATOS.Usuarios LEFT JOIN GESTION_DE_PATOS.Roles r ON rol = r.nombre where username = @user ) != (select id_estado from GESTION_DE_PATOS.Estados where nombre_estado = 'Habilitado')
 		begin
+			if (select r.estado from GESTION_DE_PATOS.Usuarios LEFT JOIN GESTION_DE_PATOS.Roles r ON rol = r.nombre where username = @user ) = (select id_estado from GESTION_DE_PATOS.Estados where nombre_estado = 'Eliminado')
+			begin
+				set @ret = 5
+				return
+			end
+		
 			set @ret = 4
 			return
 		end
