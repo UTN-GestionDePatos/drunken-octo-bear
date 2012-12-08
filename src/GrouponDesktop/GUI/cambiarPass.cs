@@ -66,5 +66,10 @@ namespace GrouponDesktop.GUI
                     return;
             }
         }
+
+        private void Cancelar_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
