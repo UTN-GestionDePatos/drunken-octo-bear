@@ -29,6 +29,8 @@ namespace GrouponDesktop.AbmCliente
             InitializeComponent();
             UsernameP.Text = user;
             PassP.Text = "sumbudrule";
+            ConfirmarPassword.Text = "askdjaam";
+            ConfirmarPassword.Enabled = false;
             PassP.Enabled = false;
             UsernameP.Enabled = false;
             this.rol_anterior = rol;
@@ -47,6 +49,7 @@ namespace GrouponDesktop.AbmCliente
             this.Direccion.Text = "";
             this.CodigoPostalP.Text = "";
             this.PassP.Text = "";
+            this.ConfirmarPassword.Text = "";
             
         }
 
@@ -71,13 +74,19 @@ namespace GrouponDesktop.AbmCliente
         private void Guardar_Click(object sender, EventArgs e)
         {
 
+            if (!String.Equals(PassP.Text, ConfirmarPassword.Text))
+            {
+                MessageBox.Show("Los campos passwords no coinciden", "Alta Proveedor");
+                return;
+            }
+
             if ((UsernameP.Text == "" && UsernameP.Enabled == true) || PassP.Text == "" ||
                        RazonSocial.Text == "" || CUIT.Text == "" ||
                        MailP.Text == "" || TelefonoP.Text == "" ||
                        Direccion.Text == "" || NombreContacto.Text == "" ||
                        ciudadP.SelectedItem == null ||
                        CodigoPostalP.Text == "" ||
-                       RubroP.SelectedItem  == null)
+                       RubroP.SelectedItem  == null || ConfirmarPassword.Text == "")
             {
 
                 MessageBox.Show("Faltan datos");

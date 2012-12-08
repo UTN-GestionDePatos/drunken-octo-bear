@@ -27,6 +27,8 @@ namespace GrouponDesktop.AbmCliente
             UsernameCliente.Text = user;
             UsernameCliente.Enabled = false;
             PasswordCliente.Text = "sumbudrule";
+            ConfirmarPassword.Text = "aidjaksd";
+            ConfirmarPassword.Enabled = false;
             PasswordCliente.Enabled = false;
             this.rol_anterior = rol;
             this.listado = listado;
@@ -43,6 +45,7 @@ namespace GrouponDesktop.AbmCliente
             this.FchNacimientoCliente.Text = "";
             this.DNICliente.Text = "";
             this.PasswordCliente.Text = "";
+            this.ConfirmarPassword.Text = "";
             this.DireccionC.Text = "";
             this.CodigoPostal.Text = "";
             for (int i = 0; i < ListaZonas.Items.Count; i++) ListaZonas.SetItemChecked(i, false);
@@ -53,12 +56,18 @@ namespace GrouponDesktop.AbmCliente
         {
             try
             {
+                if (!String.Equals(PasswordCliente.Text, ConfirmarPassword.Text))
+                {
+                    MessageBox.Show("Los campos passwords no coinciden", "Alta Cliente");
+                    return;
+                }
+
                 if ((UsernameCliente.Text == "" && UsernameCliente.Enabled == true) || PasswordCliente.Text == "" ||
                        NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
                        MailCliente.Text == "" || TelefonoCliente.Text == "" ||
                        FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
                        DireccionC.Text == "" || ListaZonas.CheckedItems.Count == 0 ||
-                       CodigoPostal.Text == "" ||
+                       CodigoPostal.Text == "" || ConfirmarPassword.Text == "" ||
                        ciudadCliente.SelectedItem.ToString() == "")
                 {
 

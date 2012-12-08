@@ -83,7 +83,14 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                 case "Cliente":
                     try
                     {
+                        if (!String.Equals(PasswordCliente.Text, ConfirmarPassword.Text))
+                        {
+                            MessageBox.Show("Los campos passwords no coinciden", "Registro Usuario");
+                            return;
+                        }
+
                         if (UsernameCliente.Text == "" || PasswordCliente.Text == "" ||
+                            ConfirmarPassword.Text == "" ||
                             NombreCliente.Text == "" || ApellidoCliente.Text == "" ||
                             MailCliente.Text == "" || TelefonoCliente.Text == "" ||
                             FchNacimientoCliente.Text == "" || DNICliente.Text == "" ||
@@ -157,7 +164,14 @@ namespace GrouponDesktop.GUI.RegistroUsuario
                     try
                     {
 
+                        if (!String.Equals(PassP.Text, ConfirmarPass.Text))
+                        {
+                            MessageBox.Show("Los campos passwords no coinciden", "Registro Usuario");
+                            return;
+                        }
+
                         if (UsernameP.Text == "" || PassP.Text == "" ||
+                            ConfirmarPass.Text == "" ||
                             RazonSocial.Text == "" || CUIT.Text == "" ||
                             MailP.Text == "" || TelefonoP.Text == "" ||
                             Direccion.Text == "" || NombreContacto.Text == "" ||
@@ -231,6 +245,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             ApellidoCliente.Text = "";
             UsernameCliente.Text = "";
             PasswordCliente.Text = "";
+            ConfirmarPassword.Text = "";
             DNICliente.Text = "";
             MailCliente.Text = "";
             TelefonoCliente.Text = "";
@@ -239,6 +254,7 @@ namespace GrouponDesktop.GUI.RegistroUsuario
             for (int i = 0; i < ListaZonas.Items.Count; i++) ListaZonas.SetItemChecked(i, false);
             UsernameP.Text = "";
             PassP.Text = "";
+            ConfirmarPass.Text = "";
             RazonSocial.Text = "";
             CUIT.Text = "";
             Direccion.Text = "";
