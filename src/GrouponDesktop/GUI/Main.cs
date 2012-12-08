@@ -133,6 +133,16 @@ namespace GrouponDesktop.GUI
          * Método que debe ser llamado cuando alguna acción requiera que se actualice el
          * saldo del cliente que está usando la aplicación.
          **/
+        public void actualizarFuncionalidades() {
+            SQLResponse r = dbManager.executeQuery("SELECT f.id_funcionalidad,descripcion FROM GESTION_DE_PATOS.Funcionalidades f,GESTION_DE_PATOS.Funcion_por_rol fpr WHERE f.id_funcionalidad = fpr.id_funcionalidad AND fpr.nombre_rol =\'" + sesion.rol + "\'");
+            this.funcionalidades.Items.Clear();
+            foreach (DataRow row in r.result.Rows)
+            {
+                this.funcionalidades.Items.Add(row[1]);
+            }
+            this.funcionalidades.SelectedIndex = 0;
+
+        }
         public void actualizarSaldo()
         {
             if (this.Saldo.Visible)
@@ -159,6 +169,7 @@ namespace GrouponDesktop.GUI
         {
             Main m = (Main)AppContext.getObject(typeof(Main));
             m.actualizarSaldo();
+            m.actualizarFuncionalidades();
         }
     }
 }

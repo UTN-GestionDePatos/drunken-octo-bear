@@ -82,8 +82,9 @@ namespace GrouponDesktop.GUI.AbmRol
                 manager.executeQuery(query);
             }
             MessageBox.Show("Rol actualizado");
+            
+            Main.actualizar();
             this.Hide();
-          
         }
 
         private void ModificacionRol_FormClosing(object sender, FormClosingEventArgs e)
