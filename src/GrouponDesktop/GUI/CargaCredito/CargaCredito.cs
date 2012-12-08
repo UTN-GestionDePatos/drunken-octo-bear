@@ -40,13 +40,19 @@ namespace GrouponDesktop.GUI.CargaCredito
                 MessageBox.Show("Faltan datos");
                 return;
             }
-            
+
             try
             {
                 Int64.Parse(Monto.Text);
             }
-            catch (FormatException) {
+            catch (FormatException)
+            {
                 MessageBox.Show("Ingrese un monto entero válido");
+                return;
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("El campo ingresado es demasiado grande, ingrese otro", "Carga de crédito");
                 return;
             }
             ParamSet ps = new ParamSet("GESTION_DE_PATOS.CargarCredito");
