@@ -498,6 +498,11 @@ BEGIN
 			--validacion tarjeta
 			if not exists (select * from GESTION_DE_PATOS.Tarjetas where username = @username and tipo = @tipo)
 				begin
+					if exists (select * from GESTION_DE_PATOS.Tarjetas where numero = @numeroTarjeta)
+					begin
+						set @ret = 2
+						return
+					end
 					insert into GESTION_DE_PATOS.Tarjetas (numero,username,tipo) values (@numeroTarjeta, @username, @tipo)
 				end
 			else
