@@ -118,11 +118,15 @@ namespace GrouponDesktop.ArmarCupon
         private void OfertaAbrir_Click(object sender, EventArgs e)
         {
             VencimientoOfertaCalendario.Visible = true;
+            VencimientoCanjeCalendario.Visible = false;
+            FechaPublicacion.Visible = false;
         }
 
         private void CanjeAbrir_Click(object sender, EventArgs e)
         {
             VencimientoCanjeCalendario.Visible = true;
+            FechaPublicacion.Visible = false;
+            VencimientoOfertaCalendario.Visible = false;
         }
 
     
@@ -150,6 +154,8 @@ namespace GrouponDesktop.ArmarCupon
         private void PublicacionAbrir_Click(object sender, EventArgs e)
         {
             FechaPublicacion.Visible = true;
+            VencimientoOfertaCalendario.Visible = false;
+            VencimientoCanjeCalendario.Visible = false;
         }
 
         private void FechaPublicacion_DateSelected(object sender, DateRangeEventArgs e)

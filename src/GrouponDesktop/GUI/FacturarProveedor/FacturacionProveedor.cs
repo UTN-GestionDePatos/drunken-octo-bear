@@ -68,6 +68,11 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 MessageBox.Show("Faltan datos");
                 return;
             }
+
+            if (FechaDesde.Text.CompareTo(FechaHasta.Text) > 0) {
+                MessageBox.Show("La fecha desde debe ser anterior a la fecha hasta");
+                return;
+            }
             SQLResponse r;
 
             r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
