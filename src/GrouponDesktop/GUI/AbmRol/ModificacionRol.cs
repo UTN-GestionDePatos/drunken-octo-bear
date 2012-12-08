@@ -82,14 +82,18 @@ namespace GrouponDesktop.GUI.AbmRol
                 manager.executeQuery(query);
             }
             MessageBox.Show("Rol actualizado");
+            this.Hide();
           
         }
 
         private void ModificacionRol_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea rechazar los cambios?", "Modificar rol", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = true;
+                if (MessageBox.Show("¿Desea rechazar los cambios?", "Modificar rol", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }
