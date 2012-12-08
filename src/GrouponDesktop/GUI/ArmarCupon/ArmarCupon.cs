@@ -77,7 +77,7 @@ namespace GrouponDesktop.ArmarCupon
                         return;
                     case "3": MessageBox.Show("El canje no puede vencer antes de la oferta");
                         return;
-                    case "4": MessageBox.Show("La fecha de publicación no puede ser anterior al vencimiento de la oferta");
+                    case "4": MessageBox.Show("La fecha de publicación no puede ser posterior al vencimiento de la oferta");
                         return;
                     case "5": MessageBox.Show("La fecha de publicación no puede ser anterior a la fecha actual");
                         return;

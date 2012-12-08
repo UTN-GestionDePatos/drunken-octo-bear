@@ -37,6 +37,12 @@ namespace GrouponDesktop.GUI.HistorialCupones
                 MessageBox.Show("Faltan datos");
                 return;
             }
+
+            if (FechaDesde.Text.CompareTo(FechaHasta.Text) > 0) {
+                MessageBox.Show("La fecha desde debe ser menor que la fecha hasta");
+                return;
+            }
+
             DBManager dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
             Session s = (Session)AppContext.getObject(typeof(Session));
             String cliente = s.username;
