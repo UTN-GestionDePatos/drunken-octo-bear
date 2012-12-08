@@ -26,12 +26,15 @@ namespace GrouponDesktop.GUI.ComprarCupon
         private void CompraCupon_Load(object sender, EventArgs e)
         {
             
-            String query = "select distinct gc.id_promocion Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_oferta 'VencimientoOferta', gc.fecha_vencimiento_canje VencimientoCanje, pr.CUIT Proveedor from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Localidad_por_promocion lpg on lpg.id_promocion = gc.id_promocion join GESTION_DE_PATOS.Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad join GESTION_DE_PATOS.Proveedores pr on pr.username = gc.proveedor where GESTION_DE_PATOS.NombreEstadoPromocion(gc.estado) = 'Publicado' and lpu.username = '" + s.username + "' and gc.fecha_vencimiento_oferta >= '" + (String)AppContext.getObject(typeof(String)) + "'";
+            String query = "select distinct gc.id_promocion Promoción, gc.descripcion Descripción, gc.precio_real Precio, gc.fecha_vencimiento_oferta 'Vencimiento Oferta', gc.fecha_vencimiento_canje 'Vencimiento Canje', pr.CUIT Proveedor from GESTION_DE_PATOS.Promociones gc join GESTION_DE_PATOS.Localidad_por_promocion lpg on lpg.id_promocion = gc.id_promocion join GESTION_DE_PATOS.Localidad_por_usuario lpu on lpu.id_localidad = lpg.id_localidad join GESTION_DE_PATOS.Proveedores pr on pr.username = gc.proveedor where GESTION_DE_PATOS.NombreEstadoPromocion(gc.estado) = 'Publicado' and lpu.username = '" + s.username + "' and gc.fecha_vencimiento_oferta >= '" + (String)AppContext.getObject(typeof(String)) + "'";
             r = dbManager.executeQuery(query);
 
             this.cuponesDisponibles.DataSource = r.result;
 
             this.cuponesDisponibles.ReadOnly = true;
+            this.cuponesDisponibles.Columns["Vencimiento Oferta"].Width = 120;
+            this.cuponesDisponibles.Columns["Vencimiento Canje"].Width = 120;
+
 
             DataGridViewButtonColumn comprar = new DataGridViewButtonColumn();
             comprar.Name = "comprar";
