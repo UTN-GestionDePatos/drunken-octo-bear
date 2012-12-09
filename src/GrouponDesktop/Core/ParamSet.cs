@@ -74,7 +74,7 @@ namespace GrouponDesktop.Core
             query.CommandType = CommandType.StoredProcedure;
 
             foreach (String nombreP in parametros.Keys)
-                query.Parameters.Add(new SqlParameter(nombreP, parametros[nombreP]));
+            query.Parameters.Add(new SqlParameter(nombreP, parametros[nombreP]));
             query.Connection = db.getConnection();
             query.ExecuteNonQuery();
             this.RemoveParameters();

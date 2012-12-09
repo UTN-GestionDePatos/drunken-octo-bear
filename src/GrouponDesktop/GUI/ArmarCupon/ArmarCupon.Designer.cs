@@ -101,7 +101,7 @@
             // LimitePorUsuario
             // 
             this.LimitePorUsuario.Location = new System.Drawing.Point(217, 128);
-            this.LimitePorUsuario.MaxLength = 10;
+            this.LimitePorUsuario.MaxLength = 9;
             this.LimitePorUsuario.Name = "LimitePorUsuario";
             this.LimitePorUsuario.Size = new System.Drawing.Size(209, 20);
             this.LimitePorUsuario.TabIndex = 22;
@@ -126,18 +126,18 @@
             // PrecioReal
             // 
             this.PrecioReal.Location = new System.Drawing.Point(217, 59);
-            this.PrecioReal.MaxLength = 20;
+            this.PrecioReal.MaxLength = 15;
             this.PrecioReal.Name = "PrecioReal";
             this.PrecioReal.Size = new System.Drawing.Size(209, 20);
-            this.PrecioReal.TabIndex = 17;
+            this.PrecioReal.TabIndex = 15;
             // 
             // PrecioFicticio
             // 
             this.PrecioFicticio.Location = new System.Drawing.Point(217, 27);
-            this.PrecioFicticio.MaxLength = 20;
+            this.PrecioFicticio.MaxLength = 15;
             this.PrecioFicticio.Name = "PrecioFicticio";
             this.PrecioFicticio.Size = new System.Drawing.Size(209, 20);
-            this.PrecioFicticio.TabIndex = 16;
+            this.PrecioFicticio.TabIndex = 15;
             // 
             // label7
             // 

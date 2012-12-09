@@ -38,7 +38,7 @@ namespace GrouponDesktop.ArmarCupon
 
             try
             {
-                if (Int32.Parse(Stock.Text) < Int32.Parse(LimitePorUsuario.Text))
+                if (Int64.Parse(Stock.Text) < Int64.Parse(LimitePorUsuario.Text))
                 {
                     MessageBox.Show("El limite por usuario no puede ser mayor que el stock", "Armar cupón");
                     return;
@@ -69,8 +69,8 @@ namespace GrouponDesktop.ArmarCupon
                 ps.AddParameter("@fechaPublicacion", Publicacion.Text);
                 ps.AddParameter("@precio_ficticio", float.Parse(PrecioFicticio.Text));
                 ps.AddParameter("@precio_real", float.Parse(PrecioReal.Text));
-                ps.AddParameter("@limite_usuario", Int32.Parse(LimitePorUsuario.Text));
-                ps.AddParameter("@stock", Int32.Parse(Stock.Text));
+                ps.AddParameter("@limite_usuario", Int64.Parse(LimitePorUsuario.Text));
+                ps.AddParameter("@stock", Int64.Parse(Stock.Text));
                 ps.AddParameter("@proveedor", s.username);
                 
                 SqlParameter retval = ps.execSP();
