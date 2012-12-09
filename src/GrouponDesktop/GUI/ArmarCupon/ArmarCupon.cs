@@ -29,6 +29,12 @@ namespace GrouponDesktop.ArmarCupon
                 return;
             }
 
+            if (PrecioFicticio.Text.Contains('.') || PrecioReal.Text.Contains('.'))
+            {
+                MessageBox.Show("Ingrese un precio correcto", "Armar cupon");
+                return;
+            }
+
 
             try
             {
