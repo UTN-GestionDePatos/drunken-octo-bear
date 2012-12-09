@@ -31,7 +31,7 @@ namespace GrouponDesktop.ArmarCupon
 
             if (PrecioFicticio.Text.Contains('.') || PrecioReal.Text.Contains('.'))
             {
-                MessageBox.Show("Ingrese un precio correcto", "Armar cupon");
+                MessageBox.Show("Ingrese un precio correcto. El decimal se indica con una ',' (coma).", "Armar cupon");
                 return;
             }
 
