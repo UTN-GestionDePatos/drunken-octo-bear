@@ -51,7 +51,7 @@
             // Monto
             // 
             this.Monto.Location = new System.Drawing.Point(174, 44);
-            this.Monto.MaxLength = 18;
+            this.Monto.MaxLength = 15;
             this.Monto.Name = "Monto";
             this.Monto.Size = new System.Drawing.Size(209, 20);
             this.Monto.TabIndex = 22;

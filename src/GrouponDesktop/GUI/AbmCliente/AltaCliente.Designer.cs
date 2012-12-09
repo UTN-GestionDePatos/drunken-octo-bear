@@ -157,7 +157,7 @@
             // CodigoPostal
             // 
             this.CodigoPostal.Location = new System.Drawing.Point(143, 385);
-            this.CodigoPostal.MaxLength = 10;
+            this.CodigoPostal.MaxLength = 9;
             this.CodigoPostal.Name = "CodigoPostal";
             this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostal.TabIndex = 53;

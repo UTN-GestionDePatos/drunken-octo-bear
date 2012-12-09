@@ -51,7 +51,7 @@
             // Cupon
             // 
             this.Cupon.Location = new System.Drawing.Point(129, 26);
-            this.Cupon.MaxLength = 10;
+            this.Cupon.MaxLength = 9;
             this.Cupon.Name = "Cupon";
             this.Cupon.Size = new System.Drawing.Size(209, 20);
             this.Cupon.TabIndex = 34;
