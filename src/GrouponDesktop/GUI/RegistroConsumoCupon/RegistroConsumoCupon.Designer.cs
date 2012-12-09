@@ -49,6 +49,7 @@
             // Cliente
             // 
             this.Cliente.Location = new System.Drawing.Point(135, 47);
+            this.Cliente.MaxLength = 30;
             this.Cliente.Name = "Cliente";
             this.Cliente.Size = new System.Drawing.Size(209, 20);
             this.Cliente.TabIndex = 35;
@@ -56,6 +57,7 @@
             // CodigoCupon
             // 
             this.CodigoCupon.Location = new System.Drawing.Point(135, 15);
+            this.CodigoCupon.MaxLength = 10;
             this.CodigoCupon.Name = "CodigoCupon";
             this.CodigoCupon.Size = new System.Drawing.Size(209, 20);
             this.CodigoCupon.TabIndex = 34;

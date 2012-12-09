@@ -157,6 +157,7 @@
             // CodigoPostalP
             // 
             this.CodigoPostalP.Location = new System.Drawing.Point(126, 247);
+            this.CodigoPostalP.MaxLength = 10;
             this.CodigoPostalP.Name = "CodigoPostalP";
             this.CodigoPostalP.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostalP.TabIndex = 29;
@@ -191,6 +192,7 @@
             // NombreContacto
             // 
             this.NombreContacto.Location = new System.Drawing.Point(126, 349);
+            this.NombreContacto.MaxLength = 30;
             this.NombreContacto.Name = "NombreContacto";
             this.NombreContacto.Size = new System.Drawing.Size(209, 20);
             this.NombreContacto.TabIndex = 25;
@@ -225,6 +227,7 @@
             // Direccion
             // 
             this.Direccion.Location = new System.Drawing.Point(126, 214);
+            this.Direccion.MaxLength = 100;
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(209, 20);
             this.Direccion.TabIndex = 19;
@@ -232,6 +235,7 @@
             // TelefonoP
             // 
             this.TelefonoP.Location = new System.Drawing.Point(126, 182);
+            this.TelefonoP.MaxLength = 18;
             this.TelefonoP.Name = "TelefonoP";
             this.TelefonoP.Size = new System.Drawing.Size(209, 20);
             this.TelefonoP.TabIndex = 18;
@@ -239,6 +243,7 @@
             // CUIT
             // 
             this.CUIT.Location = new System.Drawing.Point(126, 116);
+            this.CUIT.MaxLength = 20;
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(209, 20);
             this.CUIT.TabIndex = 17;
@@ -246,6 +251,7 @@
             // RazonSocial
             // 
             this.RazonSocial.Location = new System.Drawing.Point(126, 84);
+            this.RazonSocial.MaxLength = 30;
             this.RazonSocial.Name = "RazonSocial";
             this.RazonSocial.Size = new System.Drawing.Size(209, 20);
             this.RazonSocial.TabIndex = 16;
@@ -253,6 +259,7 @@
             // MailP
             // 
             this.MailP.Location = new System.Drawing.Point(126, 150);
+            this.MailP.MaxLength = 30;
             this.MailP.Name = "MailP";
             this.MailP.Size = new System.Drawing.Size(209, 20);
             this.MailP.TabIndex = 16;
@@ -261,6 +268,7 @@
             // 
             this.UsernameP.Enabled = false;
             this.UsernameP.Location = new System.Drawing.Point(126, 26);
+            this.UsernameP.MaxLength = 30;
             this.UsernameP.Name = "UsernameP";
             this.UsernameP.Size = new System.Drawing.Size(209, 20);
             this.UsernameP.TabIndex = 15;

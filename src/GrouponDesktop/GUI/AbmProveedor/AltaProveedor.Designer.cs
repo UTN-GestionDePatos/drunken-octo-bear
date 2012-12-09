@@ -31,6 +31,8 @@
             this.Guardar = new System.Windows.Forms.Button();
             this.Limpiar = new System.Windows.Forms.Button();
             this.datosProveedor = new System.Windows.Forms.GroupBox();
+            this.ConfirmarPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.CodigoPostalP = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.ciudadP = new System.Windows.Forms.ComboBox();
@@ -53,8 +55,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.ConfirmarPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.datosProveedor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,9 +112,28 @@
             this.datosProveedor.TabStop = false;
             this.datosProveedor.Text = "Datos Personales";
             // 
+            // ConfirmarPassword
+            // 
+            this.ConfirmarPassword.Location = new System.Drawing.Point(126, 84);
+            this.ConfirmarPassword.MaxLength = 30;
+            this.ConfirmarPassword.Name = "ConfirmarPassword";
+            this.ConfirmarPassword.Size = new System.Drawing.Size(209, 20);
+            this.ConfirmarPassword.TabIndex = 31;
+            this.ConfirmarPassword.UseSystemPasswordChar = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Confirmar password:";
+            // 
             // CodigoPostalP
             // 
             this.CodigoPostalP.Location = new System.Drawing.Point(126, 279);
+            this.CodigoPostalP.MaxLength = 10;
             this.CodigoPostalP.Name = "CodigoPostalP";
             this.CodigoPostalP.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostalP.TabIndex = 29;
@@ -149,6 +168,7 @@
             // NombreContacto
             // 
             this.NombreContacto.Location = new System.Drawing.Point(126, 381);
+            this.NombreContacto.MaxLength = 30;
             this.NombreContacto.Name = "NombreContacto";
             this.NombreContacto.Size = new System.Drawing.Size(209, 20);
             this.NombreContacto.TabIndex = 25;
@@ -174,6 +194,7 @@
             // PassP
             // 
             this.PassP.Location = new System.Drawing.Point(126, 55);
+            this.PassP.MaxLength = 30;
             this.PassP.Name = "PassP";
             this.PassP.Size = new System.Drawing.Size(209, 20);
             this.PassP.TabIndex = 22;
@@ -191,6 +212,7 @@
             // Direccion
             // 
             this.Direccion.Location = new System.Drawing.Point(126, 246);
+            this.Direccion.MaxLength = 100;
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(209, 20);
             this.Direccion.TabIndex = 19;
@@ -198,6 +220,7 @@
             // TelefonoP
             // 
             this.TelefonoP.Location = new System.Drawing.Point(126, 214);
+            this.TelefonoP.MaxLength = 18;
             this.TelefonoP.Name = "TelefonoP";
             this.TelefonoP.Size = new System.Drawing.Size(209, 20);
             this.TelefonoP.TabIndex = 18;
@@ -205,6 +228,7 @@
             // CUIT
             // 
             this.CUIT.Location = new System.Drawing.Point(126, 148);
+            this.CUIT.MaxLength = 20;
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(209, 20);
             this.CUIT.TabIndex = 17;
@@ -212,6 +236,7 @@
             // RazonSocial
             // 
             this.RazonSocial.Location = new System.Drawing.Point(126, 116);
+            this.RazonSocial.MaxLength = 30;
             this.RazonSocial.Name = "RazonSocial";
             this.RazonSocial.Size = new System.Drawing.Size(209, 20);
             this.RazonSocial.TabIndex = 16;
@@ -219,6 +244,7 @@
             // MailP
             // 
             this.MailP.Location = new System.Drawing.Point(126, 182);
+            this.MailP.MaxLength = 30;
             this.MailP.Name = "MailP";
             this.MailP.Size = new System.Drawing.Size(209, 20);
             this.MailP.TabIndex = 16;
@@ -226,6 +252,7 @@
             // UsernameP
             // 
             this.UsernameP.Location = new System.Drawing.Point(126, 26);
+            this.UsernameP.MaxLength = 30;
             this.UsernameP.Name = "UsernameP";
             this.UsernameP.Size = new System.Drawing.Size(209, 20);
             this.UsernameP.TabIndex = 15;
@@ -292,23 +319,6 @@
             this.label16.Size = new System.Drawing.Size(70, 13);
             this.label16.TabIndex = 9;
             this.label16.Text = "Razón Social";
-            // 
-            // ConfirmarPassword
-            // 
-            this.ConfirmarPassword.Location = new System.Drawing.Point(126, 84);
-            this.ConfirmarPassword.Name = "ConfirmarPassword";
-            this.ConfirmarPassword.Size = new System.Drawing.Size(209, 20);
-            this.ConfirmarPassword.TabIndex = 31;
-            this.ConfirmarPassword.UseSystemPasswordChar = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 87);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Confirmar password:";
             // 
             // AltaProveedor
             // 

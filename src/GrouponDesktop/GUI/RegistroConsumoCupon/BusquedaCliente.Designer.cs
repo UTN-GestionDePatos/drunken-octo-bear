@@ -45,6 +45,7 @@
             // Apellido
             // 
             this.Apellido.Location = new System.Drawing.Point(427, 23);
+            this.Apellido.MaxLength = 50;
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
@@ -61,6 +62,7 @@
             // Nombre
             // 
             this.Nombre.Location = new System.Drawing.Point(89, 23);
+            this.Nombre.MaxLength = 50;
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(135, 20);
             this.Nombre.TabIndex = 24;
@@ -94,6 +96,7 @@
             // DNI
             // 
             this.DNI.Location = new System.Drawing.Point(89, 63);
+            this.DNI.MaxLength = 18;
             this.DNI.Name = "DNI";
             this.DNI.Size = new System.Drawing.Size(135, 20);
             this.DNI.TabIndex = 22;

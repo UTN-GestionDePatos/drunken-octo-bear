@@ -39,9 +39,6 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridProveedores = new System.Windows.Forms.DataGridView();
-            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSetProveedoresView = new GrouponDesktop.GD2C2012DataSetProveedoresView();
-            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSetProveedoresViewTableAdapters.viewproveedoresTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razonsocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cuitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +46,9 @@
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombrecontactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewproveedoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetProveedoresView = new GrouponDesktop.GD2C2012DataSetProveedoresView();
+            this.viewproveedoresTableAdapter = new GrouponDesktop.GD2C2012DataSetProveedoresViewTableAdapters.viewproveedoresTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewproveedoresBindingSource)).BeginInit();
@@ -58,6 +58,7 @@
             // CUIT
             // 
             this.CUIT.Location = new System.Drawing.Point(817, 21);
+            this.CUIT.MaxLength = 20;
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(135, 20);
             this.CUIT.TabIndex = 26;
@@ -92,6 +93,7 @@
             // RazonSocial
             // 
             this.RazonSocial.Location = new System.Drawing.Point(89, 19);
+            this.RazonSocial.MaxLength = 30;
             this.RazonSocial.Name = "RazonSocial";
             this.RazonSocial.Size = new System.Drawing.Size(135, 20);
             this.RazonSocial.TabIndex = 24;
@@ -129,6 +131,7 @@
             // Mail
             // 
             this.Mail.Location = new System.Drawing.Point(89, 61);
+            this.Mail.MaxLength = 30;
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(135, 20);
             this.Mail.TabIndex = 19;
@@ -161,20 +164,6 @@
             this.dataGridProveedores.Size = new System.Drawing.Size(977, 308);
             this.dataGridProveedores.TabIndex = 3;
             this.dataGridProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellClick);
-            // 
-            // viewproveedoresBindingSource
-            // 
-            this.viewproveedoresBindingSource.DataMember = "viewproveedores";
-            this.viewproveedoresBindingSource.DataSource = this.gD2C2012DataSetProveedoresView;
-            // 
-            // gD2C2012DataSetProveedoresView
-            // 
-            this.gD2C2012DataSetProveedoresView.DataSetName = "GD2C2012DataSetProveedoresView";
-            this.gD2C2012DataSetProveedoresView.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewproveedoresTableAdapter
-            // 
-            this.viewproveedoresTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -224,6 +213,20 @@
             this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // viewproveedoresBindingSource
+            // 
+            this.viewproveedoresBindingSource.DataMember = "viewproveedores";
+            this.viewproveedoresBindingSource.DataSource = this.gD2C2012DataSetProveedoresView;
+            // 
+            // gD2C2012DataSetProveedoresView
+            // 
+            this.gD2C2012DataSetProveedoresView.DataSetName = "GD2C2012DataSetProveedoresView";
+            this.gD2C2012DataSetProveedoresView.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewproveedoresTableAdapter
+            // 
+            this.viewproveedoresTableAdapter.ClearBeforeFill = true;
             // 
             // ListadoProveedor
             // 

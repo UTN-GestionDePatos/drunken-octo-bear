@@ -62,6 +62,7 @@
             // pass
             // 
             this.pass.Location = new System.Drawing.Point(122, 52);
+            this.pass.MaxLength = 30;
             this.pass.Name = "pass";
             this.pass.Size = new System.Drawing.Size(209, 20);
             this.pass.TabIndex = 47;
@@ -79,6 +80,7 @@
             // apellido
             // 
             this.apellido.Location = new System.Drawing.Point(122, 113);
+            this.apellido.MaxLength = 50;
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(209, 20);
             this.apellido.TabIndex = 42;
@@ -86,6 +88,7 @@
             // nombreA
             // 
             this.nombreA.Location = new System.Drawing.Point(122, 81);
+            this.nombreA.MaxLength = 50;
             this.nombreA.Name = "nombreA";
             this.nombreA.Size = new System.Drawing.Size(209, 20);
             this.nombreA.TabIndex = 40;
@@ -93,6 +96,7 @@
             // user
             // 
             this.user.Location = new System.Drawing.Point(122, 23);
+            this.user.MaxLength = 30;
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(209, 20);
             this.user.TabIndex = 39;

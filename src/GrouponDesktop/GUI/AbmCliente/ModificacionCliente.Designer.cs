@@ -153,6 +153,7 @@
             // CodigoPostal
             // 
             this.CodigoPostal.Location = new System.Drawing.Point(121, 358);
+            this.CodigoPostal.MaxLength = 10;
             this.CodigoPostal.Name = "CodigoPostal";
             this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostal.TabIndex = 53;
@@ -196,6 +197,7 @@
             // DireccionC
             // 
             this.DireccionC.Location = new System.Drawing.Point(122, 273);
+            this.DireccionC.MaxLength = 100;
             this.DireccionC.Name = "DireccionC";
             this.DireccionC.Size = new System.Drawing.Size(209, 20);
             this.DireccionC.TabIndex = 49;
@@ -203,6 +205,7 @@
             // DNICliente
             // 
             this.DNICliente.Location = new System.Drawing.Point(122, 242);
+            this.DNICliente.MaxLength = 18;
             this.DNICliente.Name = "DNICliente";
             this.DNICliente.Size = new System.Drawing.Size(209, 20);
             this.DNICliente.TabIndex = 45;
@@ -220,6 +223,7 @@
             // 
             this.FchNacimientoCliente.Enabled = false;
             this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 211);
+            this.FchNacimientoCliente.MaxLength = 50;
             this.FchNacimientoCliente.Name = "FchNacimientoCliente";
             this.FchNacimientoCliente.Size = new System.Drawing.Size(129, 20);
             this.FchNacimientoCliente.TabIndex = 44;
@@ -227,6 +231,7 @@
             // TelefonoCliente
             // 
             this.TelefonoCliente.Location = new System.Drawing.Point(122, 179);
+            this.TelefonoCliente.MaxLength = 18;
             this.TelefonoCliente.Name = "TelefonoCliente";
             this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
             this.TelefonoCliente.TabIndex = 43;
@@ -234,6 +239,7 @@
             // ApellidoCliente
             // 
             this.ApellidoCliente.Location = new System.Drawing.Point(122, 113);
+            this.ApellidoCliente.MaxLength = 50;
             this.ApellidoCliente.Name = "ApellidoCliente";
             this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
             this.ApellidoCliente.TabIndex = 42;
@@ -241,6 +247,7 @@
             // NombreCliente
             // 
             this.NombreCliente.Location = new System.Drawing.Point(122, 81);
+            this.NombreCliente.MaxLength = 50;
             this.NombreCliente.Name = "NombreCliente";
             this.NombreCliente.Size = new System.Drawing.Size(209, 20);
             this.NombreCliente.TabIndex = 40;
@@ -248,6 +255,7 @@
             // MailCliente
             // 
             this.MailCliente.Location = new System.Drawing.Point(122, 147);
+            this.MailCliente.MaxLength = 50;
             this.MailCliente.Name = "MailCliente";
             this.MailCliente.Size = new System.Drawing.Size(209, 20);
             this.MailCliente.TabIndex = 41;
@@ -256,6 +264,7 @@
             // 
             this.UsernameCliente.Enabled = false;
             this.UsernameCliente.Location = new System.Drawing.Point(122, 23);
+            this.UsernameCliente.MaxLength = 30;
             this.UsernameCliente.Name = "UsernameCliente";
             this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
             this.UsernameCliente.TabIndex = 39;

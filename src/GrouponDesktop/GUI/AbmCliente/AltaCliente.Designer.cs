@@ -31,6 +31,8 @@
             this.Limpiar = new System.Windows.Forms.Button();
             this.Guardar = new System.Windows.Forms.Button();
             this.datosClientes = new System.Windows.Forms.GroupBox();
+            this.ConfirmarPassword = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.Fecha = new System.Windows.Forms.MonthCalendar();
             this.Seleccionar = new System.Windows.Forms.Button();
             this.CodigoPostal = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.ListaZonas = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ConfirmarPassword = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.datosClientes.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +118,24 @@
             this.datosClientes.TabStop = false;
             this.datosClientes.Text = "Datos Personales";
             // 
+            // ConfirmarPassword
+            // 
+            this.ConfirmarPassword.Location = new System.Drawing.Point(144, 82);
+            this.ConfirmarPassword.MaxLength = 30;
+            this.ConfirmarPassword.Name = "ConfirmarPassword";
+            this.ConfirmarPassword.Size = new System.Drawing.Size(209, 20);
+            this.ConfirmarPassword.TabIndex = 57;
+            this.ConfirmarPassword.UseSystemPasswordChar = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(2, 85);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(135, 13);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "Confirmación de Password:";
+            // 
             // Fecha
             // 
             this.Fecha.Location = new System.Drawing.Point(191, 167);
@@ -139,6 +157,7 @@
             // CodigoPostal
             // 
             this.CodigoPostal.Location = new System.Drawing.Point(143, 385);
+            this.CodigoPostal.MaxLength = 10;
             this.CodigoPostal.Name = "CodigoPostal";
             this.CodigoPostal.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostal.TabIndex = 53;
@@ -164,6 +183,7 @@
             // PasswordCliente
             // 
             this.PasswordCliente.Location = new System.Drawing.Point(144, 52);
+            this.PasswordCliente.MaxLength = 30;
             this.PasswordCliente.Name = "PasswordCliente";
             this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
             this.PasswordCliente.TabIndex = 47;
@@ -190,6 +210,7 @@
             // DireccionC
             // 
             this.DireccionC.Location = new System.Drawing.Point(144, 300);
+            this.DireccionC.MaxLength = 100;
             this.DireccionC.Name = "DireccionC";
             this.DireccionC.Size = new System.Drawing.Size(209, 20);
             this.DireccionC.TabIndex = 49;
@@ -197,6 +218,7 @@
             // DNICliente
             // 
             this.DNICliente.Location = new System.Drawing.Point(144, 269);
+            this.DNICliente.MaxLength = 18;
             this.DNICliente.Name = "DNICliente";
             this.DNICliente.Size = new System.Drawing.Size(209, 20);
             this.DNICliente.TabIndex = 45;
@@ -214,6 +236,7 @@
             // 
             this.FchNacimientoCliente.Enabled = false;
             this.FchNacimientoCliente.Location = new System.Drawing.Point(144, 238);
+            this.FchNacimientoCliente.MaxLength = 50;
             this.FchNacimientoCliente.Name = "FchNacimientoCliente";
             this.FchNacimientoCliente.Size = new System.Drawing.Size(127, 20);
             this.FchNacimientoCliente.TabIndex = 44;
@@ -221,6 +244,7 @@
             // TelefonoCliente
             // 
             this.TelefonoCliente.Location = new System.Drawing.Point(144, 206);
+            this.TelefonoCliente.MaxLength = 18;
             this.TelefonoCliente.Name = "TelefonoCliente";
             this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
             this.TelefonoCliente.TabIndex = 43;
@@ -228,6 +252,7 @@
             // ApellidoCliente
             // 
             this.ApellidoCliente.Location = new System.Drawing.Point(144, 140);
+            this.ApellidoCliente.MaxLength = 30;
             this.ApellidoCliente.Name = "ApellidoCliente";
             this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
             this.ApellidoCliente.TabIndex = 42;
@@ -235,6 +260,7 @@
             // NombreCliente
             // 
             this.NombreCliente.Location = new System.Drawing.Point(144, 108);
+            this.NombreCliente.MaxLength = 30;
             this.NombreCliente.Name = "NombreCliente";
             this.NombreCliente.Size = new System.Drawing.Size(209, 20);
             this.NombreCliente.TabIndex = 40;
@@ -242,6 +268,7 @@
             // MailCliente
             // 
             this.MailCliente.Location = new System.Drawing.Point(144, 174);
+            this.MailCliente.MaxLength = 30;
             this.MailCliente.Name = "MailCliente";
             this.MailCliente.Size = new System.Drawing.Size(209, 20);
             this.MailCliente.TabIndex = 41;
@@ -249,6 +276,7 @@
             // UsernameCliente
             // 
             this.UsernameCliente.Location = new System.Drawing.Point(144, 23);
+            this.UsernameCliente.MaxLength = 30;
             this.UsernameCliente.Name = "UsernameCliente";
             this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
             this.UsernameCliente.TabIndex = 39;
@@ -333,23 +361,6 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Zonas de Preferencia";
-            // 
-            // ConfirmarPassword
-            // 
-            this.ConfirmarPassword.Location = new System.Drawing.Point(144, 82);
-            this.ConfirmarPassword.Name = "ConfirmarPassword";
-            this.ConfirmarPassword.Size = new System.Drawing.Size(209, 20);
-            this.ConfirmarPassword.TabIndex = 57;
-            this.ConfirmarPassword.UseSystemPasswordChar = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(2, 85);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(135, 13);
-            this.label8.TabIndex = 56;
-            this.label8.Text = "Confirmación de Password:";
             // 
             // AltaCliente
             // 

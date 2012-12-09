@@ -41,15 +41,15 @@
             this.Mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridClientes = new System.Windows.Forms.DataGridView();
-            this.viewclientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD2C2012DataSetviewclientes = new GrouponDesktop.GD2C2012DataSetviewclientes();
-            this.viewclientesTableAdapter = new GrouponDesktop.GD2C2012DataSetviewclientesTableAdapters.viewclientesTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewclientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD2C2012DataSetviewclientes = new GrouponDesktop.GD2C2012DataSetviewclientes();
+            this.viewclientesTableAdapter = new GrouponDesktop.GD2C2012DataSetviewclientesTableAdapters.viewclientesTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewclientesBindingSource)).BeginInit();
@@ -78,6 +78,7 @@
             // Apellido
             // 
             this.Apellido.Location = new System.Drawing.Point(632, 19);
+            this.Apellido.MaxLength = 50;
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
@@ -95,6 +96,7 @@
             // Nombre
             // 
             this.Nombre.Location = new System.Drawing.Point(89, 19);
+            this.Nombre.MaxLength = 50;
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(135, 20);
             this.Nombre.TabIndex = 24;
@@ -112,6 +114,7 @@
             // DNI
             // 
             this.DNI.Location = new System.Drawing.Point(89, 63);
+            this.DNI.MaxLength = 18;
             this.DNI.Name = "DNI";
             this.DNI.Size = new System.Drawing.Size(135, 20);
             this.DNI.TabIndex = 22;
@@ -149,6 +152,7 @@
             // Mail
             // 
             this.Mail.Location = new System.Drawing.Point(632, 59);
+            this.Mail.MaxLength = 50;
             this.Mail.Name = "Mail";
             this.Mail.Size = new System.Drawing.Size(135, 20);
             this.Mail.TabIndex = 19;
@@ -180,20 +184,6 @@
             this.dataGridClientes.Size = new System.Drawing.Size(862, 241);
             this.dataGridClientes.TabIndex = 2;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
-            // 
-            // viewclientesBindingSource
-            // 
-            this.viewclientesBindingSource.DataMember = "viewclientes";
-            this.viewclientesBindingSource.DataSource = this.gD2C2012DataSetviewclientes;
-            // 
-            // gD2C2012DataSetviewclientes
-            // 
-            this.gD2C2012DataSetviewclientes.DataSetName = "GD2C2012DataSetviewclientes";
-            this.gD2C2012DataSetviewclientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewclientesTableAdapter
-            // 
-            this.viewclientesTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -236,6 +226,20 @@
             this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // viewclientesBindingSource
+            // 
+            this.viewclientesBindingSource.DataMember = "viewclientes";
+            this.viewclientesBindingSource.DataSource = this.gD2C2012DataSetviewclientes;
+            // 
+            // gD2C2012DataSetviewclientes
+            // 
+            this.gD2C2012DataSetviewclientes.DataSetName = "GD2C2012DataSetviewclientes";
+            this.gD2C2012DataSetviewclientes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewclientesTableAdapter
+            // 
+            this.viewclientesTableAdapter.ClearBeforeFill = true;
             // 
             // ListadoCliente
             // 

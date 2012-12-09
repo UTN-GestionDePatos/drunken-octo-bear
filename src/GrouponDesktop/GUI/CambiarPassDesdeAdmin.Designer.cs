@@ -66,6 +66,7 @@
             // passN
             // 
             this.passN.Location = new System.Drawing.Point(153, 28);
+            this.passN.MaxLength = 30;
             this.passN.Name = "passN";
             this.passN.PasswordChar = '•';
             this.passN.Size = new System.Drawing.Size(170, 20);
@@ -94,6 +95,7 @@
             // passN2
             // 
             this.passN2.Location = new System.Drawing.Point(153, 55);
+            this.passN2.MaxLength = 30;
             this.passN2.Name = "passN2";
             this.passN2.PasswordChar = '•';
             this.passN2.Size = new System.Drawing.Size(170, 20);

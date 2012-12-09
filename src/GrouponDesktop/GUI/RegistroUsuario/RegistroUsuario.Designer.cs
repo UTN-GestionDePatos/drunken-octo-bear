@@ -33,6 +33,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.Rol = new System.Windows.Forms.ComboBox();
             this.datosProveedor = new System.Windows.Forms.GroupBox();
+            this.ConfirmarPass = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.CodigoPostalP = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.ciudadP = new System.Windows.Forms.ComboBox();
@@ -84,8 +86,6 @@
             this.datosClientes = new System.Windows.Forms.GroupBox();
             this.ConfirmarPassword = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.ConfirmarPass = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.datosProveedor.SuspendLayout();
             this.zonas.SuspendLayout();
             this.datosClientes.SuspendLayout();
@@ -168,9 +168,28 @@
             this.datosProveedor.Text = "Datos Personales";
             this.datosProveedor.Visible = false;
             // 
+            // ConfirmarPass
+            // 
+            this.ConfirmarPass.Location = new System.Drawing.Point(126, 80);
+            this.ConfirmarPass.MaxLength = 30;
+            this.ConfirmarPass.Name = "ConfirmarPass";
+            this.ConfirmarPass.Size = new System.Drawing.Size(209, 20);
+            this.ConfirmarPass.TabIndex = 31;
+            this.ConfirmarPass.UseSystemPasswordChar = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 83);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(102, 13);
+            this.label24.TabIndex = 30;
+            this.label24.Text = "Confirmar password:";
+            // 
             // CodigoPostalP
             // 
             this.CodigoPostalP.Location = new System.Drawing.Point(126, 270);
+            this.CodigoPostalP.MaxLength = 10;
             this.CodigoPostalP.Name = "CodigoPostalP";
             this.CodigoPostalP.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostalP.TabIndex = 29;
@@ -205,6 +224,7 @@
             // NombreContacto
             // 
             this.NombreContacto.Location = new System.Drawing.Point(126, 372);
+            this.NombreContacto.MaxLength = 30;
             this.NombreContacto.Name = "NombreContacto";
             this.NombreContacto.Size = new System.Drawing.Size(209, 20);
             this.NombreContacto.TabIndex = 25;
@@ -230,6 +250,7 @@
             // PassP
             // 
             this.PassP.Location = new System.Drawing.Point(126, 55);
+            this.PassP.MaxLength = 30;
             this.PassP.Name = "PassP";
             this.PassP.Size = new System.Drawing.Size(209, 20);
             this.PassP.TabIndex = 22;
@@ -247,6 +268,7 @@
             // Direccion
             // 
             this.Direccion.Location = new System.Drawing.Point(126, 237);
+            this.Direccion.MaxLength = 100;
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(209, 20);
             this.Direccion.TabIndex = 19;
@@ -254,6 +276,7 @@
             // TelefonoP
             // 
             this.TelefonoP.Location = new System.Drawing.Point(126, 205);
+            this.TelefonoP.MaxLength = 18;
             this.TelefonoP.Name = "TelefonoP";
             this.TelefonoP.Size = new System.Drawing.Size(209, 20);
             this.TelefonoP.TabIndex = 18;
@@ -261,6 +284,7 @@
             // CUIT
             // 
             this.CUIT.Location = new System.Drawing.Point(126, 139);
+            this.CUIT.MaxLength = 20;
             this.CUIT.Name = "CUIT";
             this.CUIT.Size = new System.Drawing.Size(209, 20);
             this.CUIT.TabIndex = 17;
@@ -268,13 +292,16 @@
             // RazonSocial
             // 
             this.RazonSocial.Location = new System.Drawing.Point(126, 107);
+            this.RazonSocial.MaxLength = 30;
             this.RazonSocial.Name = "RazonSocial";
             this.RazonSocial.Size = new System.Drawing.Size(209, 20);
             this.RazonSocial.TabIndex = 16;
+            this.RazonSocial.TabStop = false;
             // 
             // MailP
             // 
             this.MailP.Location = new System.Drawing.Point(126, 173);
+            this.MailP.MaxLength = 30;
             this.MailP.Name = "MailP";
             this.MailP.Size = new System.Drawing.Size(209, 20);
             this.MailP.TabIndex = 16;
@@ -282,6 +309,7 @@
             // UsernameP
             // 
             this.UsernameP.Location = new System.Drawing.Point(126, 26);
+            this.UsernameP.MaxLength = 30;
             this.UsernameP.Name = "UsernameP";
             this.UsernameP.Size = new System.Drawing.Size(209, 20);
             this.UsernameP.TabIndex = 15;
@@ -435,6 +463,7 @@
             // UsernameCliente
             // 
             this.UsernameCliente.Location = new System.Drawing.Point(122, 23);
+            this.UsernameCliente.MaxLength = 30;
             this.UsernameCliente.Name = "UsernameCliente";
             this.UsernameCliente.Size = new System.Drawing.Size(209, 20);
             this.UsernameCliente.TabIndex = 39;
@@ -442,6 +471,7 @@
             // MailCliente
             // 
             this.MailCliente.Location = new System.Drawing.Point(122, 172);
+            this.MailCliente.MaxLength = 50;
             this.MailCliente.Name = "MailCliente";
             this.MailCliente.Size = new System.Drawing.Size(209, 20);
             this.MailCliente.TabIndex = 41;
@@ -449,6 +479,7 @@
             // NombreCliente
             // 
             this.NombreCliente.Location = new System.Drawing.Point(122, 106);
+            this.NombreCliente.MaxLength = 50;
             this.NombreCliente.Name = "NombreCliente";
             this.NombreCliente.Size = new System.Drawing.Size(209, 20);
             this.NombreCliente.TabIndex = 40;
@@ -456,6 +487,7 @@
             // ApellidoCliente
             // 
             this.ApellidoCliente.Location = new System.Drawing.Point(122, 138);
+            this.ApellidoCliente.MaxLength = 50;
             this.ApellidoCliente.Name = "ApellidoCliente";
             this.ApellidoCliente.Size = new System.Drawing.Size(209, 20);
             this.ApellidoCliente.TabIndex = 42;
@@ -463,6 +495,7 @@
             // TelefonoCliente
             // 
             this.TelefonoCliente.Location = new System.Drawing.Point(122, 204);
+            this.TelefonoCliente.MaxLength = 18;
             this.TelefonoCliente.Name = "TelefonoCliente";
             this.TelefonoCliente.Size = new System.Drawing.Size(209, 20);
             this.TelefonoCliente.TabIndex = 43;
@@ -471,6 +504,7 @@
             // 
             this.FchNacimientoCliente.Enabled = false;
             this.FchNacimientoCliente.Location = new System.Drawing.Point(122, 236);
+            this.FchNacimientoCliente.MaxLength = 50;
             this.FchNacimientoCliente.Name = "FchNacimientoCliente";
             this.FchNacimientoCliente.Size = new System.Drawing.Size(109, 20);
             this.FchNacimientoCliente.TabIndex = 44;
@@ -487,6 +521,7 @@
             // DNICliente
             // 
             this.DNICliente.Location = new System.Drawing.Point(122, 267);
+            this.DNICliente.MaxLength = 18;
             this.DNICliente.Name = "DNICliente";
             this.DNICliente.Size = new System.Drawing.Size(209, 20);
             this.DNICliente.TabIndex = 45;
@@ -494,6 +529,7 @@
             // DireccionC
             // 
             this.DireccionC.Location = new System.Drawing.Point(122, 298);
+            this.DireccionC.MaxLength = 100;
             this.DireccionC.Name = "DireccionC";
             this.DireccionC.Size = new System.Drawing.Size(209, 20);
             this.DireccionC.TabIndex = 49;
@@ -519,6 +555,7 @@
             // PasswordCliente
             // 
             this.PasswordCliente.Location = new System.Drawing.Point(122, 52);
+            this.PasswordCliente.MaxLength = 30;
             this.PasswordCliente.Name = "PasswordCliente";
             this.PasswordCliente.Size = new System.Drawing.Size(209, 20);
             this.PasswordCliente.TabIndex = 47;
@@ -545,6 +582,7 @@
             // CodigoPostalC
             // 
             this.CodigoPostalC.Location = new System.Drawing.Point(121, 333);
+            this.CodigoPostalC.MaxLength = 10;
             this.CodigoPostalC.Name = "CodigoPostalC";
             this.CodigoPostalC.Size = new System.Drawing.Size(209, 20);
             this.CodigoPostalC.TabIndex = 53;
@@ -606,6 +644,7 @@
             // ConfirmarPassword
             // 
             this.ConfirmarPassword.Location = new System.Drawing.Point(121, 80);
+            this.ConfirmarPassword.MaxLength = 30;
             this.ConfirmarPassword.Name = "ConfirmarPassword";
             this.ConfirmarPassword.Size = new System.Drawing.Size(209, 20);
             this.ConfirmarPassword.TabIndex = 57;
@@ -619,23 +658,6 @@
             this.label23.Size = new System.Drawing.Size(102, 13);
             this.label23.TabIndex = 56;
             this.label23.Text = "Confirmar password:";
-            // 
-            // ConfirmarPass
-            // 
-            this.ConfirmarPass.Location = new System.Drawing.Point(126, 80);
-            this.ConfirmarPass.Name = "ConfirmarPass";
-            this.ConfirmarPass.Size = new System.Drawing.Size(209, 20);
-            this.ConfirmarPass.TabIndex = 31;
-            this.ConfirmarPass.UseSystemPasswordChar = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 83);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(102, 13);
-            this.label24.TabIndex = 30;
-            this.label24.Text = "Confirmar password:";
             // 
             // RegistroUsuario
             // 

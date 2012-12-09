@@ -49,6 +49,7 @@
             // ClienteDestino
             // 
             this.ClienteDestino.Location = new System.Drawing.Point(187, 17);
+            this.ClienteDestino.MaxLength = 30;
             this.ClienteDestino.Name = "ClienteDestino";
             this.ClienteDestino.Size = new System.Drawing.Size(159, 20);
             this.ClienteDestino.TabIndex = 29;

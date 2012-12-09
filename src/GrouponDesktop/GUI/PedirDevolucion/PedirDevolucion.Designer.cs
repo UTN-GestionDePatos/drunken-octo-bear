@@ -51,6 +51,7 @@
             // Cupon
             // 
             this.Cupon.Location = new System.Drawing.Point(129, 26);
+            this.Cupon.MaxLength = 10;
             this.Cupon.Name = "Cupon";
             this.Cupon.Size = new System.Drawing.Size(209, 20);
             this.Cupon.TabIndex = 34;
@@ -76,6 +77,7 @@
             // Motivo
             // 
             this.Motivo.Location = new System.Drawing.Point(129, 55);
+            this.Motivo.MaxLength = 250;
             this.Motivo.Multiline = true;
             this.Motivo.Name = "Motivo";
             this.Motivo.Size = new System.Drawing.Size(209, 93);

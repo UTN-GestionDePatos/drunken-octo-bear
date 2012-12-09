@@ -43,6 +43,7 @@
             // 
             this.NumeroTarjeta.Enabled = false;
             this.NumeroTarjeta.Location = new System.Drawing.Point(174, 118);
+            this.NumeroTarjeta.MaxLength = 18;
             this.NumeroTarjeta.Name = "NumeroTarjeta";
             this.NumeroTarjeta.Size = new System.Drawing.Size(209, 20);
             this.NumeroTarjeta.TabIndex = 23;
@@ -50,6 +51,7 @@
             // Monto
             // 
             this.Monto.Location = new System.Drawing.Point(174, 44);
+            this.Monto.MaxLength = 18;
             this.Monto.Name = "Monto";
             this.Monto.Size = new System.Drawing.Size(209, 20);
             this.Monto.TabIndex = 22;
@@ -108,6 +110,7 @@
             // Cliente
             // 
             this.Cliente.Location = new System.Drawing.Point(174, 12);
+            this.Cliente.MaxLength = 30;
             this.Cliente.Name = "Cliente";
             this.Cliente.Size = new System.Drawing.Size(209, 20);
             this.Cliente.TabIndex = 28;

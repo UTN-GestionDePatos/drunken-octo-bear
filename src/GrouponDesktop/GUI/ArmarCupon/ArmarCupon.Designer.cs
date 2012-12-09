@@ -83,6 +83,7 @@
             // DescripcionCupon
             // 
             this.DescripcionCupon.Location = new System.Drawing.Point(217, 165);
+            this.DescripcionCupon.MaxLength = 250;
             this.DescripcionCupon.Multiline = true;
             this.DescripcionCupon.Name = "DescripcionCupon";
             this.DescripcionCupon.Size = new System.Drawing.Size(209, 131);
@@ -100,6 +101,7 @@
             // LimitePorUsuario
             // 
             this.LimitePorUsuario.Location = new System.Drawing.Point(217, 128);
+            this.LimitePorUsuario.MaxLength = 10;
             this.LimitePorUsuario.Name = "LimitePorUsuario";
             this.LimitePorUsuario.Size = new System.Drawing.Size(209, 20);
             this.LimitePorUsuario.TabIndex = 22;
@@ -116,6 +118,7 @@
             // Stock
             // 
             this.Stock.Location = new System.Drawing.Point(217, 94);
+            this.Stock.MaxLength = 18;
             this.Stock.Name = "Stock";
             this.Stock.Size = new System.Drawing.Size(209, 20);
             this.Stock.TabIndex = 20;
@@ -123,6 +126,7 @@
             // PrecioReal
             // 
             this.PrecioReal.Location = new System.Drawing.Point(217, 59);
+            this.PrecioReal.MaxLength = 20;
             this.PrecioReal.Name = "PrecioReal";
             this.PrecioReal.Size = new System.Drawing.Size(209, 20);
             this.PrecioReal.TabIndex = 17;
@@ -130,6 +134,7 @@
             // PrecioFicticio
             // 
             this.PrecioFicticio.Location = new System.Drawing.Point(217, 27);
+            this.PrecioFicticio.MaxLength = 20;
             this.PrecioFicticio.Name = "PrecioFicticio";
             this.PrecioFicticio.Size = new System.Drawing.Size(209, 20);
             this.PrecioFicticio.TabIndex = 16;

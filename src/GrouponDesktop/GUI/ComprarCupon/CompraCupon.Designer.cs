@@ -67,6 +67,7 @@
             // Cantidad
             // 
             this.Cantidad.Location = new System.Drawing.Point(150, 268);
+            this.Cantidad.MaxLength = 10;
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.Size = new System.Drawing.Size(139, 20);
             this.Cantidad.TabIndex = 27;

@@ -45,9 +45,9 @@
             // dataGridClientes
             // 
             this.dataGridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridClientes.Location = new System.Drawing.Point(4, 147);
+            this.dataGridClientes.Location = new System.Drawing.Point(32, 147);
             this.dataGridClientes.Name = "dataGridClientes";
-            this.dataGridClientes.Size = new System.Drawing.Size(561, 206);
+            this.dataGridClientes.Size = new System.Drawing.Size(572, 206);
             this.dataGridClientes.TabIndex = 4;
             this.dataGridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientes_CellClick);
             // 
@@ -61,7 +61,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.Buscar);
             this.groupBox1.Controls.Add(this.Limpiar);
-            this.groupBox1.Location = new System.Drawing.Point(-8, 19);
+            this.groupBox1.Location = new System.Drawing.Point(31, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(573, 122);
             this.groupBox1.TabIndex = 3;
@@ -71,6 +71,7 @@
             // Apellido
             // 
             this.Apellido.Location = new System.Drawing.Point(427, 23);
+            this.Apellido.MaxLength = 50;
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
@@ -87,6 +88,7 @@
             // Nombre
             // 
             this.Nombre.Location = new System.Drawing.Point(89, 23);
+            this.Nombre.MaxLength = 50;
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(135, 20);
             this.Nombre.TabIndex = 24;
@@ -103,6 +105,7 @@
             // DNI
             // 
             this.DNI.Location = new System.Drawing.Point(89, 63);
+            this.DNI.MaxLength = 18;
             this.DNI.Name = "DNI";
             this.DNI.Size = new System.Drawing.Size(135, 20);
             this.DNI.TabIndex = 22;
@@ -140,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 365);
+            this.ClientSize = new System.Drawing.Size(628, 365);
             this.Controls.Add(this.dataGridClientes);
             this.Controls.Add(this.groupBox1);
             this.Name = "BusquedaClienteDestino";
