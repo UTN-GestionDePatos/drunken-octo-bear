@@ -75,6 +75,7 @@
             this.Apellido.Name = "Apellido";
             this.Apellido.Size = new System.Drawing.Size(135, 20);
             this.Apellido.TabIndex = 26;
+            this.Apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Apellido_KeyPress);
             // 
             // label4
             // 
@@ -92,6 +93,7 @@
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(135, 20);
             this.Nombre.TabIndex = 24;
+            this.Nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nombre_KeyPress);
             // 
             // label3
             // 
@@ -109,6 +111,7 @@
             this.DNI.Name = "DNI";
             this.DNI.Size = new System.Drawing.Size(135, 20);
             this.DNI.TabIndex = 22;
+            this.DNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DNI_KeyPress);
             // 
             // label2
             // 

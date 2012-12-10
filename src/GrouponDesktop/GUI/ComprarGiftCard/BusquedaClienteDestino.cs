@@ -28,6 +28,12 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
             this.Apellido.Text = "";
             this.DNI.Text = "";
 
+            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+
+            this.dataGridClientes.Enabled = true;
+            new Listado(dataGridClientes, query).actualizar_datagridview();
+
+
         }
 
         public void SetDataGridView(DataTable data)
@@ -69,7 +75,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
 
             if (validarTextBox(Nombre))
             {
-                where = where + " nombre like '" + Nombre.Text.ToString() + "%'";
+                where = where + " nombre like '%" + Nombre.Text.ToString() + "%'";
                 es_primero = false;
             }
 
@@ -77,11 +83,11 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
             {
                 if (es_primero)
                 {
-                    where = where + " apellido like '" + Apellido.Text.ToString() + "%'";
+                    where = where + " apellido like '%" + Apellido.Text.ToString() + "%'";
                     es_primero = false;
                 }
                 else
-                    where = where + " AND apellido like '" + Apellido.Text.ToString() + "%'";
+                    where = where + " AND apellido like '%" + Apellido.Text.ToString() + "%'";
 
             }
 
@@ -110,16 +116,6 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 this.dataGridClientes.Enabled = true;
                 new Listado(dataGridClientes, query).actualizar_datagridview();
                 
-                if(!dataGridClientes.Columns.Contains("Seleccionar")){
-                    DataGridViewButtonColumn seleccionar = new DataGridViewButtonColumn();
-                    seleccionar.Name = "Seleccionar";
-                    seleccionar.HeaderText = "Seleccionar";
-                    this.dataGridClientes.Columns.Add(seleccionar);
-
-                    this.dataGridClientes.ReadOnly = true;
-                    this.dataGridClientes.Columns["Seleccionar"].ReadOnly = false;
-                }
-
            
             }
             catch (SqlException)
@@ -138,7 +134,24 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
             this.dataGridClientes.Enabled = false;
 
             this.dataGridClientes.AllowUserToAddRows = false;
-            
+
+            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+
+            this.dataGridClientes.Enabled = true;
+            new Listado(dataGridClientes, query).actualizar_datagridview();
+
+
+            if (!dataGridClientes.Columns.Contains("Seleccionar"))
+            {
+                DataGridViewButtonColumn seleccionar = new DataGridViewButtonColumn();
+                seleccionar.Name = "Seleccionar";
+                seleccionar.HeaderText = "Seleccionar";
+                this.dataGridClientes.Columns.Add(seleccionar);
+
+                this.dataGridClientes.ReadOnly = true;
+                this.dataGridClientes.Columns["Seleccionar"].ReadOnly = false;
+            }
+
 
         }
 
@@ -158,5 +171,31 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
                 this.Hide();
             }
         }
+
+        private void Nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.Buscar_Click(sender, null);
+            }
+        }
+
+        private void Apellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.Buscar_Click(sender, null);
+            }
+        }
+
+        private void DNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.Buscar_Click(sender, null);
+            }
+        }
+
+
     }
 }
