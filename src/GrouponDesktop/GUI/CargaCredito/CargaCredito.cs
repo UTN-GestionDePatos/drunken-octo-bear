@@ -84,7 +84,7 @@ namespace GrouponDesktop.GUI.CargaCredito
             switch (retval.Value.ToString()) {
                 case "0": MessageBox.Show("Carga correcta");
                     break;
-                case "1" : MessageBox.Show("Monto menor a $15");
+                case "1" : MessageBox.Show("El monto debe ser mayor a $15");
                     break;
                 case "2": MessageBox.Show("Tarjeta incorrecta");
                     break;
