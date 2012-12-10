@@ -30,7 +30,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
             this.Nombre.Text = "";
             this.Apellido.Text = "";
             this.DNI.Text = "";
-            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+            String query = "select distinct c.username, c.nombre, c.apellido, c.dni from GESTION_DE_PATOS.Clientes c join GESTION_DE_PATOS.Cupones cu on cu.cliente = c.username join GESTION_DE_PATOS.Promociones p on p.id_promocion = cu.id_promocion and p.proveedor = '" + s.username + "'";
 
             this.dataGridClientes.Enabled = true;
             new Listado(dataGridClientes, query).actualizar_datagridview();
@@ -116,7 +116,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
                 try
                 {
                     //Formación de query final
-                    String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+                    String query = "SELECT distinct c.username, c.nombre, c.apellido, c.dni FROM GESTION_DE_PATOS.Clientes c join GESTION_DE_PATOS.Cupones cu on cu.cliente = c.username join GESTION_DE_PATOS.Promociones prom on prom.id_promocion = cu.id_promocion and prom.proveedor = '" + s.username + "'";
                     if (!string.Equals(where, "WHERE"))
                     {
                         query = query + where;
@@ -171,7 +171,7 @@ namespace GrouponDesktop.GUI.RegistroConsumoCupon
         {
             this.dataGridClientes.Enabled = false;
             this.dataGridClientes.AllowUserToAddRows = false;
-            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+            String query = "SELECT distinct c.username, c.nombre, c.apellido, c.dni FROM GESTION_DE_PATOS.Clientes c join GESTION_DE_PATOS.Cupones cu on cu.cliente = c.username join GESTION_DE_PATOS.Promociones prom on prom.id_promocion = cu.id_promocion and prom.proveedor = '" + s.username + "'";
 
             this.dataGridClientes.Enabled = true;
             new Listado(dataGridClientes, query).actualizar_datagridview();
