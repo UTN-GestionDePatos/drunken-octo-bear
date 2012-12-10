@@ -36,7 +36,8 @@ namespace GrouponDesktop.GUI
             foreach(DataRow row in r.result.Rows){
                 this.funcionalidades.Items.Add(row[1]);
             }
-            this.funcionalidades.SelectedIndex = 0;
+
+          
 
             if (!sesion.rol.Equals("Administrador General"))
             {

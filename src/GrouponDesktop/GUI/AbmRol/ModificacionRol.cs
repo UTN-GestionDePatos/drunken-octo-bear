@@ -50,6 +50,12 @@ namespace GrouponDesktop.GUI.AbmRol
 
         private void Guardar_Click(object sender, EventArgs e)
         {
+            if (this.Estado.Text == "1: Habilitado") {
+                if (this.ListaFuncionalidades.CheckedItems.Count == 0) {
+                    MessageBox.Show("Seleccione al menos una funcionalidad");
+                    return;
+                }
+            }
             ParamSet builder = new ParamSet("GESTION_DE_PATOS.EliminarFuncionalidadesDeRol");
             builder.AddParameter("nombre_rol", this.nombre);
             builder.executeNoReturn();
@@ -96,6 +102,13 @@ namespace GrouponDesktop.GUI.AbmRol
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void Limpiar_Click(object sender, EventArgs e)
+        {
+            this.NombreRol.Text = "";
+            for (int i = 0; i < ListaFuncionalidades.Items.Count; i++) ListaFuncionalidades.SetItemChecked(i, false);
+          
         }
     }
 }
