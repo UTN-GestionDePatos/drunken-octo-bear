@@ -61,6 +61,20 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             FechaHastaCalendario.Visible = true;
         }
 
+        public int esMenor(String unaFecha, String otraFecha)
+        {
+            String anioF1 = unaFecha.Substring(6, 4);
+            String anioF2 = otraFecha.Substring(6, 4);
+            String mesF1 = unaFecha.Substring(3, 2);
+            String mesF2 = otraFecha.Substring(3, 2);
+            String diaF1 = unaFecha.Substring(0, 2);
+            String diaF2 = otraFecha.Substring(0, 2);
+            String fecha1 = anioF1 + mesF1 + diaF1;
+            String fecha2 = anioF2 + mesF2 + diaF2;
+            return fecha1.CompareTo(fecha2);
+
+        }
+
         private void Listar_Click(object sender, EventArgs e)
         {
             if (FechaDesde.Text == "" || FechaHasta.Text == "")
@@ -69,8 +83,9 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                 return;
             }
 
-            if (FechaDesde.Text.CompareTo(FechaHasta.Text) > 0) {
-                MessageBox.Show("La fecha desde debe ser anterior a la fecha hasta");
+            if (esMenor(FechaDesde.Text, FechaHasta.Text) > 0)
+            {
+                MessageBox.Show("La fecha desde no puede ser posterior a la fecha hasta");
                 return;
             }
             SQLResponse r;

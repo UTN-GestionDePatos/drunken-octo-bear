@@ -30,7 +30,18 @@ namespace GrouponDesktop.GUI.HistorialCupones
 
         }
 
+        public int esMenor(String unaFecha, String otraFecha) {
+            String anioF1 = unaFecha.Substring(6, 4);
+            String anioF2 = otraFecha.Substring(6,4);
+            String mesF1 = unaFecha.Substring(3, 2);
+            String mesF2 = otraFecha.Substring(3, 2);
+            String diaF1 = unaFecha.Substring(0, 2);
+            String diaF2 = otraFecha.Substring(0, 2);
+            String fecha1 = anioF1 + mesF1 + diaF1;
+            String fecha2 = anioF2 +  mesF2 + diaF2;
+            return fecha1.CompareTo(fecha2);
 
+        }
         private void Listar_Click(object sender, EventArgs e)
         {
             if (FechaDesde.Text == "" || FechaHasta.Text == "") {
@@ -38,11 +49,11 @@ namespace GrouponDesktop.GUI.HistorialCupones
                 return;
             }
 
-            if (FechaDesde.Text.CompareTo(FechaHasta.Text) > 0) {
-                MessageBox.Show("La fecha desde debe ser menor que la fecha hasta");
+            if (esMenor(FechaDesde.Text,FechaHasta.Text) > 0) {
+                MessageBox.Show("La fecha desde no puede ser posterior a la fecha hasta");
                 return;
             }
-
+            
             DBManager dbManager = (DBManager)AppContext.getObject(typeof(DBManager));
             Session s = (Session)AppContext.getObject(typeof(Session));
             String cliente = s.username;
