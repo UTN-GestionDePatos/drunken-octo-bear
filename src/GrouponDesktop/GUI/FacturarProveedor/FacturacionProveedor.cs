@@ -163,7 +163,8 @@ namespace GrouponDesktop.GUI.FacturarProveedor
                             
                     String elMonto = (monto*0.5).ToString();
                     if (elMonto.Contains(",")) {
-                        elMonto = elMonto.Substring(0, elMonto.IndexOf(",") + 3);
+                        int decimales = elMonto.Substring(elMonto.IndexOf(","), elMonto.Length - elMonto.IndexOf(",")).Length;
+                        elMonto = elMonto.Substring(0, elMonto.IndexOf(",") + decimales);
                     }
                     MessageBox.Show("Facturación finalizada con éxito. \n Nro de factura: " + ret + ".\n Monto: $" + elMonto);
                     r = dbManager.executeQuery("SELECT c.id_cupon, c.cliente, c.id_promocion, c.fecha_compra, ca.fecha_canje FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p , GESTION_DE_PATOS.Canjes ca WHERE ca.id_cupon = c.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and not exists (select * from GESTION_DE_PATOS.Cupones_por_factura cpf where cpf.id_cupon = c.id_cupon)");
