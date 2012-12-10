@@ -117,7 +117,7 @@ namespace GrouponDesktop.GUI.FacturarProveedor
             
             object monto = null;
 
-            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p,GESTION_DE_PATOS.Canjes ca WHERE c.id_cupon = ca.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND c.fecha_compra between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\'");
+            r = dbManager.executeQuery("SELECT SUM(g.precio_real) FROM GESTION_DE_PATOS.Cupones c, GESTION_DE_PATOS.Promociones g, GESTION_DE_PATOS.Proveedores p,GESTION_DE_PATOS.Canjes ca WHERE c.id_cupon = ca.id_cupon AND c.id_promocion = g.id_promocion AND g.proveedor = p.username AND p.cuit = \'" + this.proveedores.SelectedItem.ToString() + "\' AND ca.fecha_canje between " + "\'" + this.FechaDesde.Text + "\'" + " and " + "\'" + this.FechaHasta.Text + "\' and c.id_cupon not in (select id_cupon from GESTION_DE_PATOS.Cupones_por_factura)");
             monto = r.result.Rows[0][0];
 
             return monto;
