@@ -28,10 +28,11 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
             this.Apellido.Text = "";
             this.DNI.Text = "";
 
-            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
+            this.dataGridClientes.DataSource = null;
+            if(dataGridClientes.Columns.Contains("Seleccionar")){
+                this.dataGridClientes.Columns.Remove("Seleccionar");
+            }
 
-            this.dataGridClientes.Enabled = true;
-            new Listado(dataGridClientes, query).actualizar_datagridview();
 
 
         }
@@ -115,7 +116,17 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
 
                 this.dataGridClientes.Enabled = true;
                 new Listado(dataGridClientes, query).actualizar_datagridview();
-                
+               
+               if (!dataGridClientes.Columns.Contains("Seleccionar"))
+                {
+                    DataGridViewButtonColumn seleccionar = new DataGridViewButtonColumn();
+                    seleccionar.Name = "Seleccionar";
+                    seleccionar.HeaderText = "Seleccionar";
+                    this.dataGridClientes.Columns.Add(seleccionar);
+
+                    this.dataGridClientes.ReadOnly = true;
+                    this.dataGridClientes.Columns["Seleccionar"].ReadOnly = false;
+                }
            
             }
             catch (SqlException)
@@ -129,30 +140,7 @@ namespace GrouponDesktop.GUI.ComprarGiftCard
 
         private void BusquedaClienteDestino_Load(object sender, EventArgs e)
         {
-
-
-            this.dataGridClientes.Enabled = false;
-
             this.dataGridClientes.AllowUserToAddRows = false;
-
-            String query = "SELECT username, nombre, apellido, dni FROM GESTION_DE_PATOS.viewclientes ";
-
-            this.dataGridClientes.Enabled = true;
-            new Listado(dataGridClientes, query).actualizar_datagridview();
-
-
-            if (!dataGridClientes.Columns.Contains("Seleccionar"))
-            {
-                DataGridViewButtonColumn seleccionar = new DataGridViewButtonColumn();
-                seleccionar.Name = "Seleccionar";
-                seleccionar.HeaderText = "Seleccionar";
-                this.dataGridClientes.Columns.Add(seleccionar);
-
-                this.dataGridClientes.ReadOnly = true;
-                this.dataGridClientes.Columns["Seleccionar"].ReadOnly = false;
-            }
-
-
         }
 
         private void dataGridClientes_CellClick(object sender, DataGridViewCellEventArgs e)
